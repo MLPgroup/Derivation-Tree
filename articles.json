@@ -1,0 +1,99 @@
+{
+    "Comments": [
+        {
+            "Description": "Json file to make manually parsed articles parsable by a python program",
+            "Author": "Vishesh Prasad",
+            "Modification Log": {
+                "October 2, 2023": "Created file and populated with first few articles"
+            }
+        }
+    ],
+    "Manually Parsed Articles": [
+        {
+            "Article ID": "0907.2648",
+            "Equation ID": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "Adjacency List": {
+                "1": [null],
+                "2": ["4"],
+                "3": ["4"],
+                "4": ["5", "6", "7"],
+                "5": [null],
+                "6": ["7"],
+                "7": ["8", "9", "10"],
+                "8": [null],
+                "9": [null],
+                "10": [null]
+            },
+            "Labeled by": "Kani (Modified by Brian)"
+        },
+        {
+            "Article ID": "2011.01481",
+            "Equation ID": ["1a", "1b", "2", "3", "4", "5", "6", "7", "8"],
+            "Adjacency List": {
+                "1a": ["2"],
+                "1b": ["2"],
+                "2": ["4", "5"],
+                "3": ["4", "5"],
+                "4": ["6", "7", "8"],
+                "5": [null],
+                "6": [null],
+                "7": [null],
+                "8": [null]
+            },
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "2102.01252",
+            "Equation ID": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            "Adjacency List": {
+                "1": ["2", "3", "4"],
+                "2": [null],
+                "3": [null],
+                "4": [null],
+                "5": ["6", "7", "9"],
+                "6": ["7"],
+                "7": ["8"],
+                "8": [null],
+                "9": [null]
+            },
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "2112.14583",
+            "Equation ID": ["1", "2a", "2b", "2c", "3", "4", "5", "6a", "6b", "7", "8", "9", "10", "11", "12"],
+            "Adjacency List": {
+                "1": ["2a", "2b", "2c"],
+                "2a": ["3", "4", "6a", "6b"],
+                "2b": ["3", "4", "6a", "6b"],
+                "2c": ["3", "4", "6a", "6b"],
+                "3": ["4", "6a", "6b"],
+                "4": ["5", "8", "9"],
+                "5": ["6a", "6b"],
+                "6a": ["8", "9"],
+                "6b": ["8", "9"],
+                "7": ["8", "9"],
+                "8": ["10", "11"],
+                "9": ["10", "11"],
+                "10": ["12"],
+                "11": ["12"],
+                "12": [null]
+            },
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "2202.03331",
+            "Equation ID": ["1", "2", "3", "4", "5", "6", "7", "8"],
+            "Adjacency List": {
+                "1": ["2"],
+                "2": ["3", "4"],
+                "3": ["4"],
+                "4": ["5", "6"],
+                "5": ["7"],
+                "6": ["7"],
+                "7": ["8"],
+                "8": [null]
+            },
+            "Labeled by": "Brian"
+        }
+    ]
+}
