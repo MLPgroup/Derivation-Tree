@@ -6,10 +6,19 @@ Modification Log:
     October 22, 2023: Create function to use parser code
 '''
 
-def get_manually_parsed_articles():
-    # Import modules
-    import json
+# Import modules
+import json
 
+
+"""
+get_manually_parsed_articles()
+Input: none
+Return: dict -- dictionary of articles from the articles.json file: key = article id, value = dictionary with 
+                Article ID (string), Equation ID (list of strings), Adjacency List (dict with key = string and 
+                value = list of strings)
+Function: Parse the articles.json file and extract the article information
+"""
+def get_manually_parsed_articles():
     # Open json file and store into dicionary
     with open('articles.json') as json_file:
         # Load list of articles
