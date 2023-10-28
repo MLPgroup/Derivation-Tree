@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+
+  <body>
+
+    <svg width='700' height='700'></svg>
+
+    <script>
+
+      var svg = d3.select('svg');       // Selecting first matching element
+      var width = svg.attr('width');    // Taking width of svg element
+      var height = svg.attr('height');  // Taking height of svg element
+      var strkWidth = 5;
+    
+      var nodes = [
+      { name: '1' },
+      { name: '2' },
+      { name: '3' },
+      { name: '4' },
+      { name: '5' },
+      { name: '6' },
+      { name: '7' },
+      { name: '8' },
+      { name: '9' },
+      { name: '10' },
+      ]
+      var links = [
+      { source: '2', target: '4' },
+      { source: '1', target: '5' },
+      { source: '4', target: '5' },
+      { source: '4', target: '5' },
+      { source: '4', target: '5' },
+      { source: '4', target: '7' },
+      { source: '4', target: '7' },
+      { source: '6', target: '7' },
+      { source: '7', target: '9' },
+      { source: '7', target: '10' },
+      ]
+    
+      var simulation = d3.forceSimulation(nodes)
+        .force('charge', d3.forceManyBody().strength(-20))  // make element repel strength -20
+        .force('center', d3.forceCenter(width/2, height/2)) // Set center of gravity of system as middle of svg container
+        .force('link', d3.forceLink()                       // Forces linked nodes together; forcelink creates new link force
+        .id(function(d) { return d.name; }) // specify what is being used to connect elements; id function allows to used named source/target
+        .distance(100)  // Sets distance between each node
+        .links(links))  // sets the array of links associated with this force, recomputes the distance and strength parameters for each link, and returns this force.
+        .on('tick', ticked);  // callback function to update the element positions after each tick
+    
+      var link = svg
+        .append('g')                // Binding container to svg
+        .attr('class', 'links')     // Give it class name of links
+        .selectAll('line')          // Contains all lines on webpage (none)
+        .data(links)                // Binding data elements to selection "line". Since none, create DOM for each
+        .enter()                    // Returns placeholders for each data element for which there are no corresponding DOM elements on the page
+          .append('line')                         // Binding line container to g container
+          .attr('stroke-width', strkWidth);               // Setting stroke width to preset value  
+    
+      var node = svg
+        .append('g')
+        .attr("class", "nodes")
+        .selectAll("circle")
+        .data(nodes)
+        .enter()
+          .append("circle")
+          .attr("r", 5)
+          .attr("fill", function(d) {
+            return "red";
+          })
+          .call(
+            d3
+              .drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended)
+          );
+    
+      var texts = svg
+        .append('g')                    // In container svg create sub container called g
+        .attr('class', 'text')          // Name class as text
+        .selectAll('text')
+        .data(nodes)
+        .enter()
+          .append('text')
+          .text(d => d.name)
+
+
+      function ticked() {
+        texts.attr('x', d=>d.x)
+        texts.attr('y', d=>d.y)
+        link
+          .attr("x1", function(d) {
+            return d.source.x;
+          })
+          .attr("y1", function(d) {
+            return d.source.y;
+          })
+          .attr("x2", function(d) {
+            return d.target.x;
+          })
+          .attr("y2", function(d) {
+            return d.target.y;
+          });
+    
+        node
+          .attr("cx", function(d) {
+            return d.x;
+          })
+          .attr("cy", function(d) {
+            return d.y;
+          });
+      }
+    
+      function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+    
+      function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }
+    
+      function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+    </script>
+  </body>
+</html>
