@@ -112,16 +112,21 @@ def partial_tree_match(tree1, tree2):
 #           exten = Tuples of (Eq#, end interval; one sentence after)
 # --------------------------------------------------------------------------------------------
 def derivationTree(eqno, paraBreak, output, results, exten):
-    counter = 0                                                 # Counting number of elements between intervals
+                     
+    # counter = 0                                               # Counting number of elements between intervals
     adjList = directGraph()                                     # Create Adjacency List Object            
     G = nx.DiGraph()                                            # Create Directed Graph
     for i in range(len(eqno)):
-        if eqno[i][0] == 1:                                         # If scanning through paragraph before first equation, skip since no prior equations for linkage
+        if i == 0:                                         # If scanning through paragraph before first equation, skip since no prior equations for linkage
             continue
+        elif len(eqno[i][0]) > 1:
+            eQ = eqno[i][0]
+            if (ord(eQ[1]) <= 122 and ord(eQ[1]) >= 97 and eQ[0] == '1'):   
+                continue
         edgeFlag = False                                            # Boolean to check if an edge has been added. If none for an equation, check cosine similarity with all equations before it
-        for idx in range(eqno[i][0]-1):                                 # Scanning for possible edges ex. 1 to 3; 1 to 7 (-1 since not looking for current equation number)
-            counter = 0                                                 # Counter for number of words between paragraphs/equations
-            eqNum = str(eqno[idx][0])                                   # eqNum = current possible edge
+        for idx in range(i):                                 # Scanning for possible edges ex. 1 to 3; 1 to 7 (-1 since not looking for current equation number)
+            # counter = 0                                                 # Counter for number of words between paragraphs/equations
+            eqNum = eqno[idx][0]                                   # eqNum = current possible edge
             for j in range (paraBreak[i][1]+1, eqno[i][1]-1):           # Iterating through the strings between start and actual equation ex. 433 to 573; 573 to 643
                 # counter += 1                                            # Increment word counter
                 if (j >= 2 and eqNum in output[j]) and ('equationlink' in output[j-1]) and ('Fig' not in output[j-2]):         # If correct eq number is in curr element/ 'edgee' marker in previous element/ 'equationlink' is NOT in element before that                         
@@ -138,11 +143,11 @@ def derivationTree(eqno, paraBreak, output, results, exten):
         # If no previous edges were added for an equation (node), look for cosine similarity. If greater then 0.5 (arbitrary similarity), add edge
         if edgeFlag == False:
             baseEquation = str(results[i])
-            bE = toOpTree(baseEquation)                                     # change curr mathML element to string
-            for idx in range(eqno[i][0]-1):                                     # Scanning for possible edges ex. 1 to 3; 1 to 7 (-1 since not looking for current equation number)
+            bE = toOpTree(baseEquation)                                         # change curr mathML element to string
+            for idx in range(i):                                                # Scanning for possible edges ex. 1 to 3; 1 to 7 (-1 since not looking for current equation number)
                 compareEquation = str(results[idx])
-                cE = toOpTree(compareEquation)                           # Change possible edge equation mathML to vector
-                if partial_tree_match(bE, cE) >= 1:         # If similarity is greater then arbitrary percentage,
+                cE = toOpTree(compareEquation)                                  # Change possible edge equation mathML to vector
+                if partial_tree_match(bE, cE) >= 2:                             # If similarity is greater then arbitrary percentage,
                     if bfs(eqno[idx][0], eqno[i][0], adjList) == False:
                         adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
                         G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i
