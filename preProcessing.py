@@ -136,7 +136,12 @@ def eqTuples(output):
     # Checking for equations + line number
     for i in range(len(output)):
         if output[i] == 'mathequation' and i+2 < len(output):          # There is a block equation; i+2 for bound checking
-            eqno.append([output[i+2], i+1])
+            fullEqNum = output[i+2]
+            eqNum = ''
+            for j in range(len(fullEqNum)):
+                if (ord(fullEqNum[j]) <= 122 and ord(fullEqNum[j]) >= 97) or (ord(fullEqNum[j]) <= 57 and ord(fullEqNum[j]) >= 48):
+                    eqNum = eqNum + fullEqNum[j]
+            eqno.append([eqNum, i+1])                            # i+2 since i = mathequation, i+1 = equation location, i+2 = equation #
     return eqno
 
 # ------------------------------ # Starting Paragraph Intervals ------------------------------
