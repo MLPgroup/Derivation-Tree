@@ -2,6 +2,7 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from mathMLtoOP import *
 from tempGraphing import *
+from database import derivEdge
 from nltk.tokenize import sent_tokenize
 
 # ----------------------------------- Debugging Subtree Similarity -----------------------------------
@@ -53,7 +54,7 @@ def cleanUp(url):
     # Label block equations with "mathequation"
     for script in soup("math", {"display" : "block"}):
         script.insert_before("mathequation")        # All block equations have unique string prior
-
+    
     # Replace MathML with the text "unicodeError"
     for script in soup(['math']):
         script.string = "unicodeError"              # All block equations have unique string prior 
@@ -75,9 +76,11 @@ def cleanUp(url):
     # Get final processed text
     text = soup.get_text(' ', strip=True)           # Strip whitespace from the beginning and end of each bit of text; No more '\n' in text
 
-    # Remove References (Last) section
+    # Remove References OR Acknowledgments (Last) section
     text = text.split("References")     # Split string at "References"
     text = text[0]                      # Take only string before "References"
+    text = text.split("Acknowledgments")
+    text = text[0]
 
     return text
 
@@ -88,9 +91,32 @@ def cleanUp(url):
 def eqExtract(url):
     html = urlopen(url).read()
     soup = BeautifulSoup(html, 'html.parser')
-    # Parse all block/numbered equations within Math paper
-    mathML = soup.findAll("math", {"display" : "block"})
-    return mathML
+    ret = []
+
+    # Find all table MathML elements
+    mathML_all = soup.find_all("table")
+
+    # Loop through all tables
+    for table in mathML_all:
+        # Check if the table has a td element with rowspan=any int
+        td_with_rowspan = table.find('td', {'rowspan': True})
+    
+        if td_with_rowspan:
+            ret.append(table)
+
+    return ret
+
+# ----------------------------- Block Equation id Extraction -----------------------------
+# Description: Extracts all Block/Numbered Equation ID's from a Mathematical Text
+# @Param mathML = list of mathML equation elements
+# -------------------------------------------------------------------------------------
+def idExtract(mathML):
+    math_ids = []
+    for tag in mathML:
+        if tag.get('id'):
+            math_ids.append(tag.get('id'))
+
+    return math_ids
 
 # ----------------------------------- Array of Strings/Words -----------------------------------
 # Description: Converting entire text to an array of strings/words
@@ -106,6 +132,7 @@ def arrOfStrings(text):
             output.append(temp[:-1])        # Add string to output array 
             temp = ''
             continue
+    # print(len(output))
     return output
 
 # ----------------------------------- # Words per Sentence -----------------------------------
@@ -137,6 +164,8 @@ def eqTuples(output):
     for i in range(len(output)):
         if output[i] == 'mathequation' and i+2 < len(output):          # There is a block equation; i+2 for bound checking
             fullEqNum = output[i+2]
+            if (fullEqNum == 'parabreak'):
+                continue
             eqNum = ''
             for j in range(len(fullEqNum)):
                 if (ord(fullEqNum[j]) <= 122 and ord(fullEqNum[j]) >= 97) or (ord(fullEqNum[j]) <= 57 and ord(fullEqNum[j]) >= 48):
@@ -180,13 +209,46 @@ def endInterval(eqno, wordCount):
         exten.append([str(eqno[idx][0])+'end', sentenceEndIdx])     # Append current index as end of section
     return exten
 
+# ------------------------------- # False Positive/Negatives --------------------------------
+# Description: Identifies all false positives/negatives in a Mathematical Document
+# @Param    url = Link to the Mathematical Document
+#           adjList = Adjacency List that was created from the tempGraphing file
+#           derivEdge = Dictionary that holds all correct edges
+# --------------------------------------------------------------------------------------------
+def PosNeg(url, adjList, derivEdge):
+
+    edge = []
+    falseNeg = []
+    falsePos = []
+    correctUrl = derivEdge[url]
+
+    for key in adjList.getKeys():                 # Converting Dictionary to array of edge tuples
+        for val in adjList.getEdges(key):
+            edge.append((int(key), int(val)))
+    
+    for tuple in correctUrl:                # Checking for False Negatives
+        if tuple not in edge:
+            falseNeg.append(tuple)
+        if tuple in edge:               
+            edge.remove(tuple)
+    
+    falsePos = edge                         # Remaining edges are false positives
+
+    if len(falseNeg) >= 1:
+        print('False Negative Edges: ', falseNeg)
+
+    if len(falsePos) >= 1:
+        print('False Positive Edges: ', falsePos)
+
 # ----------------------------------------- # Main -------------------------------------------
 # Description: Call all functions here
 # --------------------------------------------------------------------------------------------
 
 def main():
-    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2648.html'      # Original Mathematical Document
+    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2720.html'      # Original Mathematical Document
     mathML = eqExtract(url)                         # Extract Block Equations
+    eqIDs = idExtract(mathML)                       # Extract all Block Equation IDs
+    print(eqIDs)
     text = cleanUp(url)                             # Text holds Processed HTML
     wordCount = sentenceCount(text)                 # Calculate # of words per sentence
     # Debugging for number of words in each sentence
@@ -198,12 +260,13 @@ def main():
     start = startInterval(equations, stringArr)     # Start Paragraph interval per equation
     end = endInterval(equations, wordCount)         # End Paragraph interval per equation
     # Debugging for paragraph intervals
-    '''
-    print("Paragraph breaks: ", start)
-    print("No Paragraph breaks: ", equations)
-    print("Paragraph extension: ", end)
-    '''
-    derivationTree(equations, start, stringArr, mathML, end)
+    
+    # print("Paragraph breaks: ", start)
+    # print("No Paragraph breaks: ", equations)
+    # print("Paragraph extension: ", end)
+    adjList = derivationTree(equations, start, stringArr, mathML, end)
+    PosNeg(url, adjList, derivEdge)
+    
 
 if __name__ == "__main__":
     main()
