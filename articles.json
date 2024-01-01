@@ -4,27 +4,288 @@
             "Description": "Json file to make manually parsed articles parsable by a python program",
             "Author": "Vishesh Prasad",
             "Modification Log": {
-                "October 2, 2023": "Created file and populated with first few articles"
+                "October 2, 2023": "Created file and populated with first few articles",
+                "December 31, 2023": "Added 5 articles"
             }
         }
     ],
     "Manually Parsed Articles": [
         {
             "Article ID": "0907.2648",
-            "Equation ID": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "Equation ID": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8",
+                "S0.E9",
+                "S0.E10"
+            ],
             "Adjacency List": {
-                "1": [null],
-                "2": ["4"],
-                "3": ["4"],
-                "4": ["5", "7"],
-                "5": [null],
-                "6": ["5", "7"],
-                "7": ["8", "9", "10"],
-                "8": [null],
-                "9": [null],
-                "10": [null]
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "S0.E4"
+                ],
+                "S0.E3": [
+                    "S0.E4"
+                ],
+                "S0.E4": [
+                    "S0.E5",
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    "S0.E8",
+                    "S0.E9",
+                    "S0.E10"
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
             },
-            "Labeled by": "Kani (Modified by Brian)"
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "0907.2720",
+            "Equation ID": [
+                "S0.EGx1",
+                "S0.EGx2",
+                "S0.EGx3",
+                "S0.E4",
+                "S0.EGx4",
+                "S0.E6",
+                "S0.EGx5",
+                "S0.EGx6",
+                "S0.EGx7"
+            ],
+            "Adjacency List": {
+                "S0.EGx1": [
+                    "S0.EGx3"
+                ],
+                "S0.EGx2": [
+                    "S0.EGx3"
+                ],
+                "S0.EGx3": [
+                    "S0.EGx5"
+                ],
+                "S0.E4": [
+                    "S0.EGx4",
+                    "S0.EGx6"
+                ],
+                "S0.EGx4": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.EGx5": [
+                    null
+                ],
+                "S0.EGx6": [
+                    "S0.EGx7"
+                ],
+                "S0.EGx7": [
+                    null
+                ]
+            },
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "0907.2870",
+            "Equation ID": [
+                "S3.EGx2",
+                "S3.EGx3",
+                "S3.EGx4",
+                "S3.EGx5",
+                "S3.EGx6",
+                "S3.EGx7",
+                "S3.EGx8",
+                "S3.EGx10",
+                "S3.EGx11",
+                "S3.EGx12"
+            ],
+            "Adjacency List": {
+                "S3.EGx2": [
+                    null
+                ],
+                "S3.EGx3": [
+                    null
+                ],
+                "S3.EGx4": [
+                    null
+                ],
+                "S3.EGx5": [
+                    "S3.EGx6",
+                    "S3.EGx7",
+                    "S3.EGx10"
+                ],
+                "S3.EGx6": [
+                    "S3.EGx8"
+                ],
+                "S3.EGx7": [
+                    null
+                ],
+                "S3.EGx8": [
+                    null
+                ],
+                "S3.EGx10": [
+                    "S3.EGx11"
+                ],
+                "S3.EGx11": [
+                    "S3.EGx12"
+                ],
+                "S3.EGx12": [
+                    null
+                ]
+            },
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "0907.2872",
+            "Equation ID": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8",
+                "S0.E9",
+                "S0.E10"
+            ],
+            "Adjacency List": {
+                "S0.E1": [
+                    "S0.E2",
+                    "S0.E8"
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    "S0.E4"
+                ],
+                "S0.E4": [
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    "S0.E8",
+                    "S0.E10"
+                ],
+                "S0.E8": [
+                    "S0.E9"
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Labeled by": "Brian"
+        },
+        {
+            "Article ID": "0907.2959",
+            "Equation ID": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8",
+                "S0.E9",
+                "S0.E10",
+                "S0.E11",
+                "S0.EGx1",
+                "S0.E13",
+                "S0.E14",
+                "S0.E15",
+                "S0.E16",
+                "S0.E17",
+                "S0.E18"
+            ],
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    "S0.E6"
+                ],
+                "S0.E6": [
+                    "S0.E7",
+                    "S0.E14"
+                ],
+                "S0.E7": [
+                    "S0.EGx1"
+                ],
+                "S0.E8": [
+                    "S0.E9"
+                ],
+                "S0.E9": [
+                    "S0.E10"
+                ],
+                "S0.E10": [
+                    "S0.E11"
+                ],
+                "S0.E11": [
+                    "S0.EGx1"
+                ],
+                "S0.EGx1": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    "S0.E15"
+                ],
+                "S0.E15": [
+                    "S0.E16"
+                ],
+                "S0.E16": [
+                    "S0.E17"
+                ],
+                "S0.E17": [
+                    "S0.E18"
+                ],
+                "S0.E18": [
+                    null
+                ]
+            },
+            "Labeled by": "Brian"
         },
         {
             "Article ID": "2011.01481",
