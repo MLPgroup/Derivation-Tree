@@ -24,6 +24,12 @@ class directGraph:
             return self.graph[node]
         else:
             return []
+    # Get all keys of directed graph
+    def getKeys(self):
+        temp = []
+        for keys in self.graph:
+            temp.append(keys)
+        return temp
 
 # ------------------------------------ # Seed Question --------------------------------------
 # Description:  BFS function for removing repetitive edges. 
@@ -129,13 +135,14 @@ def derivationTree(eqno, paraBreak, output, results, exten):
             eqNum = eqno[idx][0]                                   # eqNum = current possible edge
             for j in range (paraBreak[i][1]+1, eqno[i][1]-1):           # Iterating through the strings between start and actual equation ex. 433 to 573; 573 to 643
                 # counter += 1                                            # Increment word counter
-                if (j >= 2 and eqNum in output[j]) and ('equationlink' in output[j-1]) and ('Fig' not in output[j-2]):         # If correct eq number is in curr element/ 'edgee' marker in previous element/ 'equationlink' is NOT in element before that                         
+                if ((j >= 2) and (eqNum in output[j]) and ('equationlink' in output[j-1]) and ('Fig' not in output[j-2])):         # If correct eq number is in curr element/ 'edgee' marker in previous element/ 'equationlink' is NOT in element before that                         
                     if bfs(eqno[idx][0], eqno[i][0], adjList) == False:         # If there is no path between the two edges,
                         edgeFlag = True                                         # Edge was added so true
                         adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
                         G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i
-            for j in range (eqno[i][1]+1, exten[i][1]):                 # Iterating through the strings between each equation ex. 433 to 573; 573 to 643
-                if (j >= 2 and eqNum in output[j]) and ('equationlink' in output[j-1]) and ('Fig' not in output[j-2]):          # If correct eq number is in curr element/ 'edgee' marker in previous element/ 'equationlink' is NOT in element before that                         
+            for j in range (eqno[i][1]+1, exten[i][1]-1):                 # Iterating through the strings between each equation ex. 433 to 573; 573 to 643
+                #print(j)
+                if ((j >= 2) and (eqNum in output[j]) and ('equationlink' in output[j-1]) and ('Fig' not in output[j-2])):          # If correct eq number is in curr element/ 'edgee' marker in previous element/ 'equationlink' is NOT in element before that                         
                     if bfs(eqno[idx][0], eqno[i][0], adjList) == False:         # If there is no path between the two edges,
                         edgeFlag = True                                         # Edge was added so true
                         adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
@@ -160,6 +167,13 @@ def derivationTree(eqno, paraBreak, output, results, exten):
     return adjList
 
 # TODO LIST:
-#               - Testing program on multiple Mathematical Documents
-#               - Overleaf
+#               - When equations are brought up in sequence/near one another, derivation is liekly 2870
+#               - Add array of words "Where" which means direct derivation
+#               - Create Seperations in text with bold headers OR Increase paragraph interval for checking edges (for text)
+#               - Edges being added for the wrong reason?
 #               - Push all code to MLP Repo
+#               - Accuracy, precision, recall
+
+# Questions:
+#               - How to download as html on arXiv?
+#               - Final Season; what do students usually do in terms of research
