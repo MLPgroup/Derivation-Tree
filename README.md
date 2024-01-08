@@ -24,11 +24,11 @@ Python 3
 
 ## Instructions to Run Algorithm
 ```
-python3 derivation_tree.py
+python3 derivation_tree_algo.py
 ```
 - - - -
 ## File System
-### derivation_tree.py
+### derivation_tree_algo.py
 - entry point that runs all code written in the following files
 ### articles.json
 - json file to hold information about each article
