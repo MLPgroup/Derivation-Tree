@@ -3,6 +3,7 @@ Description: Python code to parse json file and store manually parsed articles
 Author: Vishesh Prasad
 Modification Log:
     October 22, 2023: created file and wrote working algorithm
+    January 5, 2023: accuracy script added
 '''
 
 # Import modules
@@ -118,4 +119,47 @@ def get_most_important_equation(article):
         if math.isclose(weight, max_weight, rel_tol = epsilon):
             important_nodes.append(cur_node)
 
-    return important_nodes
+    return max(important_nodes)
+
+"""
+get_algo_correctness(labeled_most_important_equations, algo_most_important_equations)
+Input: labeled_most_important_equations -- list with the equation ids of the most important equation where were labeled
+       algo_most_important_equations -- list with the equation ids of the most important equation found using the algorithm
+Return: 
+Function: calculate the confusion matrix for the algorithm
+"""
+def get_algo_correctness(labeled_most_important_equations, algo_most_important_equations):
+    true_labels = []
+    algo_labels = []
+    # Clean up for unlabeled articles
+    for i, cur_most_important_equation in enumerate(labeled_most_important_equations):
+        if cur_most_important_equation != None:
+            true_labels.append(labeled_most_important_equations[i])
+            algo_labels.append(algo_most_important_equations[i])
+    
+    unique_labels = set(true_labels + algo_labels)
+    num_classes = len(unique_labels)
+
+    # Create a mapping from labels to indices
+    label_to_index = {label: i for i, label in enumerate(unique_labels)}
+
+    # Fill in the confusion matrix
+    conf_matrix = [[0] * num_classes for _ in range(num_classes)]
+    for true, pred in zip(true_labels, algo_labels):
+        true_index = label_to_index[true]
+        pred_index = label_to_index[pred]
+        conf_matrix[true_index][pred_index] += 1
+    
+    # Calculate metrics
+    TP = sum(conf_matrix[i][i] for i in range(num_classes))
+    TN = sum(sum(conf_matrix[i][j] for j in range(num_classes) if i != j) for i in range(num_classes))
+    FP = sum(conf_matrix[i][j] for i in range(num_classes) for j in range(num_classes) if i != j)
+    FN = sum(conf_matrix[i][j] for i in range(num_classes) for j in range(num_classes) if i != j)
+
+    accuracy = (TP + TN) / (TP + TN + FP + FN) if (TP + TN + FP + FN) != 0 else 0
+    precision = TP / (TP + FP) if (TP + FP) != 0 else 0
+    recall = TP / (TP + FN) if (TP + FN) != 0 else 0
+    specificity = TN / (TN + FP) if (TN + FP) != 0 else 0
+    f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
+
+    return conf_matrix, accuracy, precision, recall, specificity, f1_score
