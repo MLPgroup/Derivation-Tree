@@ -1,6 +1,23 @@
-# Derivation-Tree
-Summarizing and Extracting Derivation Trees from Mathematical Texts
+# Summarizing and Extracting Derivation Trees from Mathematical Texts
 
+## Instructions to Run Algorithm
+```
+python preProcessing.py
+```
+- - - -
+## File System
+### preProcessing.py
+- Processes html data into a useable format for tempGraphing.py
+### tempGraphing.py
+- Edge Mapping Logic for mathML components
+### mathMLtoOP.py
+- Helper file for converting mathML components to OP Tree
+- File Credits: Sumedh Vemuganti
+### articleScript.py
+- Automates general article info (Article ID, Nodes, Edges) to proper json format
+- - - - 
+## System Requirements
+Python 3
 - - - -
 
 # Finding the most important equation
