@@ -93,6 +93,26 @@ def eqExtract(url):
     soup = BeautifulSoup(html, 'html.parser')
     ret = []
 
+    # Find all td tags with rowspan= any int
+    td_tags_with_rowspan_one = soup.find_all('td', {'rowspan': True})
+
+    for td_tag in td_tags_with_rowspan_one:
+        # Find the closest ancestor that is either a table or tbody tag
+        ancestor_table_or_tbody = td_tag.find_parent(['table', 'tbody'])
+
+        while ancestor_table_or_tbody:
+            # Get the id attribute of the found table or body tag
+            tag_id = ancestor_table_or_tbody.get('id')
+            if tag_id:
+                ret.append(ancestor_table_or_tbody)
+                break
+            else:
+                # If id not found, go to the next ancestor
+                ancestor_table_or_tbody = ancestor_table_or_tbody.find_parent(['table', 'body'])
+    return ret
+
+
+'''
     # Find all table MathML elements
     mathML_all = soup.find_all("table")
 
@@ -103,8 +123,7 @@ def eqExtract(url):
     
         if td_with_rowspan:
             ret.append(table)
-
-    return ret
+'''
 
 # ----------------------------- Block Equation id Extraction -----------------------------
 # Description: Extracts all Block/Numbered Equation ID's from a Mathematical Text
