@@ -125,7 +125,7 @@ def get_most_important_equation(article):
 get_algo_correctness(labeled_most_important_equations, algo_most_important_equations)
 Input: labeled_most_important_equations -- list with the equation ids of the most important equation where were labeled
        algo_most_important_equations -- list with the equation ids of the most important equation found using the algorithm
-Return: 
+Return: confusion matrix, accuracy, precision, recall, specificity, f1 score
 Function: calculate the confusion matrix for the algorithm
 """
 def get_algo_correctness(labeled_most_important_equations, algo_most_important_equations):
