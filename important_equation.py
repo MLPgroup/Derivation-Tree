@@ -3,7 +3,7 @@ Description: Python code to parse json file and store manually parsed articles
 Author: Vishesh Prasad
 Modification Log:
     October 22, 2023: created file and wrote working algorithm
-    January 5, 2023: accuracy script added
+    January 5, 2024: accuracy script added
 '''
 
 # Import modules
