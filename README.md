@@ -15,6 +15,8 @@ python preProcessing.py
 - File Credits: Sumedh Vemuganti
 ### articleScript.py
 - Automates general article info (Article ID, Nodes, Edges) to proper json format
+### bardTest.py
+- Automates comparing Bard Derivation Tree output with expected Adjacency List
 - - - - 
 ## System Requirements
 Python 3
