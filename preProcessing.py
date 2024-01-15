@@ -1,8 +1,8 @@
+import json
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from mathMLtoOP import *
 from tempGraphing import *
-from database import derivEdge
 from nltk.tokenize import sent_tokenize
 
 # ----------------------------------- Debugging Subtree Similarity -----------------------------------
@@ -227,44 +227,14 @@ def endInterval(eqno, wordCount):
         sentenceEndIdx = wordCount[wordIDX]                         # Set end interval to wordCount[wordIDX-1]
         exten.append([str(eqno[idx][0])+'end', sentenceEndIdx])     # Append current index as end of section
     return exten
-
-# ------------------------------- # False Positive/Negatives --------------------------------
-# Description: Identifies all false positives/negatives in a Mathematical Document
-# @Param    url = Link to the Mathematical Document
-#           adjList = Adjacency List that was created from the tempGraphing file
-#           derivEdge = Dictionary that holds all correct edges
-# --------------------------------------------------------------------------------------------
-def PosNeg(url, adjList, derivEdge):
-
-    edge = []
-    falseNeg = []
-    falsePos = []
-    correctUrl = derivEdge[url]
-
-    for key in adjList.getKeys():                 # Converting Dictionary to array of edge tuples
-        for val in adjList.getEdges(key):
-            edge.append((int(key), int(val)))
-    
-    for tuple in correctUrl:                # Checking for False Negatives
-        if tuple not in edge:
-            falseNeg.append(tuple)
-        if tuple in edge:               
-            edge.remove(tuple)
-    
-    falsePos = edge                         # Remaining edges are false positives
-
-    if len(falseNeg) >= 1:
-        print('False Negative Edges: ', falseNeg)
-
-    if len(falsePos) >= 1:
-        print('False Positive Edges: ', falsePos)
+  
 
 # ----------------------------------------- # Main -------------------------------------------
 # Description: Call all functions here
 # --------------------------------------------------------------------------------------------
 
 def main():
-    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2720.html'      # Original Mathematical Document
+    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2648.html'      # Original Mathematical Document
     mathML = eqExtract(url)                         # Extract Block Equations
     eqIDs = idExtract(mathML)                       # Extract all Block Equation IDs
     print(eqIDs)
@@ -283,9 +253,7 @@ def main():
     # print("Paragraph breaks: ", start)
     # print("No Paragraph breaks: ", equations)
     # print("Paragraph extension: ", end)
-    adjList = derivationTree(equations, start, stringArr, mathML, end)
-    PosNeg(url, adjList, derivEdge)
-    
+    adjList = derivationTree(equations, start, stringArr, mathML, end)  # Returns adjacency list of outputted PNG
 
 if __name__ == "__main__":
     main()
@@ -370,4 +338,37 @@ for i in range(len(output)):
 # print('Equation # + Index Pair: ', eqno)
 '''
 
+# ------------------------------- # False Positive/Negatives --------------------------------
+# Description: Identifies all false positives/negatives in a Mathematical Document
+# @Param    url = Link to the Mathematical Document
+#           adjList = Adjacency List that was created from the tempGraphing file
+#           derivEdge = Dictionary that holds all correct edges
+# --------------------------------------------------------------------------------------------
 
+'''
+def PosNeg(url, adjList, derivEdge):
+
+    edge = []
+    falseNeg = []
+    falsePos = []
+    correctUrl = derivEdge[url]
+
+    for key in adjList.getKeys():                 # Converting Dictionary to array of edge tuples
+        for val in adjList.getEdges(key):
+            edge.append((int(key), int(val)))
+    
+    for tuple in correctUrl:                # Checking for False Negatives
+        if tuple not in edge:
+            falseNeg.append(tuple)
+        if tuple in edge:               
+            edge.remove(tuple)
+    
+    falsePos = edge                         # Remaining edges are false positives
+
+    if len(falseNeg) >= 1:
+        print('False Negative Edges: ', falseNeg)
+
+    if len(falsePos) >= 1:
+        print('False Positive Edges: ', falsePos)
+
+'''
