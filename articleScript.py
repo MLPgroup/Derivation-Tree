@@ -2,7 +2,10 @@ import json
 import preProcessing
 import os  # Import the os module to check if the file exists
 
-# Function to create article addition
+# --------------------------------- # Article Additions  ----------------------------------
+# Description: Creates json data to add properly formatted article data to specified json file
+# @Param    none
+# ------------------------------------------------------------------------------------------
 def create_graph():
     url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2959.html'      # Original Mathematical Document
     mathML = preProcessing.eqExtract(url)                                                   # Extract Block Equations
@@ -34,6 +37,8 @@ def create_graph():
         "Labeled by": labeled_by
     }
     return graph
+
+# --------------------------------------------------------------------------------------------
 
 # List to store multiple graphs
 graphs = []
