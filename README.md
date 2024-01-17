@@ -29,15 +29,21 @@ Python 3
 python3 derivation_tree_algo.py
 ```
 - - - -
+## Output
+Running the above command will output 2 sections into the terminal. The first section holds, for each article in the JSON file below, the article id, the most important equation found by the algorithm for that article, and the labeled most important equation. The second section holds the output of the correctness script with metrics used to test the correctness of the algorithm.
+- - - -
 ## File System
 ### derivation_tree_algo.py
-- entry point that runs all code written in the following files
+- Entry point that runs all code written in the following files and outputs to the terminal
 ### articles.json
-- json file to hold information about each article
+- JSON file to hold information about each article
 ### article_parser.py
-- util file that parses the json file and returns a dictionary of the articles
+- Util file that parses the json file and returns a dictionary of the articles
 ### important_equation.py
-- util file that runs the important equation custom algorithm on an article
+- Util file that runs the important equation custom algorithm on an article
+- Runs the correctness script to test the algorithm's output
+### extra_articles.json
+- JSON file to hold information about articles that don't have a corresponding html file on the corpus
 - - - - 
 ## System Requirements
 Python 3.5 (can run on earlier versions but is untested and requires a few changes)
