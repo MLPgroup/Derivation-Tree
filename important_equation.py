@@ -4,6 +4,7 @@ Author: Vishesh Prasad
 Modification Log:
     October 22, 2023: created file and wrote working algorithm
     January 5, 2024: accuracy script added
+    January 16, 2024: edge case handling added for when no important equation found and accuracy script for input checking
 '''
 
 # Import modules
@@ -20,7 +21,8 @@ Input: article -- dictionary with following values:
                     - Adjacency List (outgoing edges for each node, dict with key = string and value = list of strings)
 Return: string -- most important equation in the article
 Function: run a custom algorithm on the article to find the most important equation
-Note: The following algorithm works on a directed, acyclic graph
+Note: (1) The following algorithm works on a directed, acyclic graph
+      (2) Currently only one equation is returned, see comment below to return > 1 equations
 """
 def get_most_important_equation(article):
     # Get required information
@@ -104,6 +106,10 @@ def get_most_important_equation(article):
                     cur_node_weights[child_node] += ((num_outgoing[child_node] / tot_outgoing) * node_weight)
                     node_weights[child_node] += cur_node_weights[child_node]
 
+    # No equations with weights
+    if not node_weights:
+        return "None"
+
     # Return node(s) with the maximum weight as most important node
     max_weight = max(node_weights.values())
     important_nodes = []
@@ -119,23 +125,31 @@ def get_most_important_equation(article):
         if math.isclose(weight, max_weight, rel_tol = epsilon):
             important_nodes.append(cur_node)
 
-    return max(important_nodes)
+    # Use for multiple important nodes: return important_nodes
+    # Returns most important node (for multiple max nodes, return the node that corresponds with the equation that shows up later in the research paper)
+    return important_nodes[-1]
 
 """
 get_algo_correctness(labeled_most_important_equations, algo_most_important_equations)
 Input: labeled_most_important_equations -- list with the equation ids of the most important equation where were labeled
        algo_most_important_equations -- list with the equation ids of the most important equation found using the algorithm
-Return: confusion matrix, accuracy, precision, recall, specificity, f1 score
+       article_id_correctness -- list with the article ids of all labeled articles
+Return: confusion matrix, accuracy, precision, recall, specificity, f1 score, articles used
 Function: calculate the confusion matrix for the algorithm
 """
-def get_algo_correctness(labeled_most_important_equations, algo_most_important_equations):
+def get_algo_correctness(labeled_most_important_equations, algo_most_important_equations, article_id_correctness):
     true_labels = []
     algo_labels = []
+    articles_used = []
     # Clean up for unlabeled articles
     for i, cur_most_important_equation in enumerate(labeled_most_important_equations):
         if cur_most_important_equation != None:
             true_labels.append(labeled_most_important_equations[i])
-            algo_labels.append(algo_most_important_equations[i])
+            articles_used.append(article_id_correctness[i])
+            if isinstance(algo_most_important_equations[i], list):
+                algo_labels.append(max(algo_most_important_equations[i]))
+            else:
+                algo_labels.append(algo_most_important_equations[i])
     
     unique_labels = set(true_labels + algo_labels)
     num_classes = len(unique_labels)
@@ -162,4 +176,4 @@ def get_algo_correctness(labeled_most_important_equations, algo_most_important_e
     specificity = TN / (TN + FP) if (TN + FP) != 0 else 0
     f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
-    return conf_matrix, accuracy, precision, recall, specificity, f1_score
+    return conf_matrix, accuracy, precision, recall, specificity, f1_score, articles_used
