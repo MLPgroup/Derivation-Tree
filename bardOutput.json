@@ -1,13 +1,14 @@
 {
     "Comments": [
         {
-            "Description": "Json file to verify Bard's Accuracy, Precision, Recall on Creating Derivation Trees",
+            "Description": "Json file to verify Bard's Output on Creating Derivation Trees",
             "Author": "Brian Kim",
             "Modification Log": {
                 "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles"
             },
             "Notes": {
-                "(1)": "Correctness is Based on Manually Parsed Articles in articles.json"
+                "(1)": "Accuracy/Precision/Recall is Based on Manually Parsed Articles in articles.json",
+                "(2)": "Unable to test 0907.2967 due to 'too much data"
             }
         }
     ],
@@ -52,6 +53,245 @@
             "Accuracy": 0.8,
             "Precision": 0.9,
             "Recall": 0.8,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2720",
+            "Bard's Adjacency List": {
+                "S0.E1": [
+                    "S0.E3"
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    "S0.E7"
+                ],
+                "S0.E4": [
+                    "S0.E5",
+                    "S0.E6"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    "S0.E8"
+                ],
+                "S0.E8": [
+                    "S0.E9"
+                ],
+                "S0.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.6666666666666666,
+            "Precision": 0.7777777777777778,
+            "Recall": 0.6666666666666666,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2870",
+            "Bard's Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S1.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S3.E6"
+                ],
+                "S2.E5": [
+                    "S3.E7"
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    "S3.E9"
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.25,
+            "Precision": 0.7,
+            "Recall": 0.25,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2872",
+            "Bard's Adjacency List": {
+                "S0.E1": [
+                    "S0.E2",
+                    "S0.E8"
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    "S0.E8"
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.16666666666666666,
+            "Precision": 0.5,
+            "Recall": 0.16666666666666666,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2959",
+            "Bard's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E5"
+                ],
+                "S0.E5": [
+                    "S0.E6"
+                ],
+                "S0.E6": [
+                    "S0.E14"
+                ],
+                "S0.E7": [
+                    "S0.E11"
+                ],
+                "S0.E8": [
+                    "S0.E9"
+                ],
+                "S0.E9": [
+                    "S0.E10"
+                ],
+                "S0.E10": [
+                    "S0.E11"
+                ],
+                "S0.E11": [
+                    null
+                ],
+                "S0.E12": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    "S0.E15"
+                ],
+                "S0.E15": [
+                    "S0.E16"
+                ],
+                "S0.E16": [
+                    "S0.E17"
+                ],
+                "S0.E17": [
+                    null
+                ],
+                "S0.E18": [
+                    null
+                ]
+            },
+            "Accuracy": 0.5833333333333334,
+            "Precision": 0.7222222222222222,
+            "Recall": 0.5833333333333334,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2994",
+            "Bard's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E16"
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    "S0.E15"
+                ],
+                "S0.E12": [
+                    "S0.E15"
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    null
+                ],
+                "S0.E15": [
+                    null
+                ],
+                "S0.E16": [
+                    null
+                ],
+                "S0.E17": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.7647058823529411,
+            "Recall": 0.0,
             "Tested by": "Brian Kim"
         }
     ]
