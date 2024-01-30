@@ -49,6 +49,7 @@ def create_graph():
     return graph
 
 # --------------------------------------------------------------------------------------------
+# Main
 
 # Ask the user for the existing JSON file
 existing_file = input("Enter the existing JSON file name (e.g., existing_data.json): ")

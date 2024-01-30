@@ -1,4 +1,5 @@
 import json
+import preProcessing
 import os
 
 # ------------------------------- # False Pos / False Neg --------------------------------
@@ -42,7 +43,7 @@ def compare_adjacency_lists(expected, actual):
 
 
 # ------------------------------- # Creates Adjacency List --------------------------------
-# Description: Creates a Map of the Adjacency List data from json file
+# Description: Finds a Map of the Adjacency List data from json file
 # @Param    json_data = Data from specified json file
 #           target_article_id = ID of specified article
 # ------------------------------------------------------------------------------------------
@@ -53,14 +54,25 @@ def find_adjacency_list(json_data, target_article_id):
             return article.get("Adjacency List", {})
     return {}
 
+# ------------------------------- # Creates Equation ID List --------------------------------
+# Description: Finds a Map of the eqID (mathML) List data from json file
+# @Param    json_data = Data from specified json file
+#           target_article_id = ID of specified article
+# ------------------------------------------------------------------------------------------
+
+def find_eqID_list(json_data, target_article_id):
+    for article in json_data["Manually Parsed Articles"]:
+        if article["Article ID"] == target_article_id:
+            return article.get("Equation ID", [])
+    return []
+
 # -------------------------- # Accuracy, Precision, Recall for Bard ---------------------------
 # Description: Identifies Accuracy, Precision, Recall for a specific article
-# @Param    adjList = Adjacency List that was created from the tempGraphing file
+# @Param        json_file_name: .json name
+#               target_article_id: article ID
+#               adjList = Adjacency List that was created from the tempGraphing file
 # --------------------------------------------------------------------------------------------
-def APR(adjList):
-    # Get JSON file name from user input
-    json_file_name = input("Enter the name of your JSON file (e.g., articles.json): ")
-
+def APR(json_file_name, target_article_id, adjList):
     # Construct the full path to the JSON file (assuming it's in the same directory as the script)
     script_directory = os.path.dirname(os.path.realpath(__file__))
     json_file_path = os.path.join(script_directory, json_file_name)
@@ -73,9 +85,6 @@ def APR(adjList):
     # Load JSON data from the file
     with open(json_file_path, 'r') as file:
         data = json.load(file)
-
-    # Get target Article ID from user input
-    target_article_id = input("Enter the target Article ID: ")
 
     # Find the adjacency list based on the target Article ID
     result_article = find_adjacency_list(data, target_article_id)
@@ -90,24 +99,95 @@ def APR(adjList):
     recall = len(TP) / (len(TP) + len(FN)) if (len(TP) + len(FN)) != 0 else 0
     accuracy = (len(TP) + len(TN)) / total_examples
 
-    print("\nPrecision: ", precision)
-    print("\nAccuracy: ", accuracy)
-    print("\nRecall: ", recall)
+    # Debugging Precision, Accuracy, Recall
+    #print("\nPrecision: ", precision)
+    #print("\nAccuracy: ", accuracy)
+    #print("\nRecall: ", recall)
+
+    return precision, accuracy, recall
 
 # --------------------------------------------------------------------------------------------
+# Main Function
+# --------------------------------------------------------------------------------------------  
 
-# Replace 'adjList' with the data from Bard
-adjList = {
-    "S0.E1": [None],
-    "S0.E2": ["S0.E5"],
-    "S0.E3": ["S0.E4"],
-    "S0.E4": ["S0.E5", "S0.E7"],
-    "S0.E5": [None],
-    "S0.E6": ["S0.E7"],
-    "S0.E7": ["S0.E8", "S0.E9", "S0.E10"],
-    "S0.E8": [None],
-    "S0.E9": [None],
-    "S0.E10": [None]
-}
+# Get JSON file name from user input
+json_file_name = input("Enter the name of your JSON file that holds Manually Parsed Articles (e.g., articles.json): ")
 
-modelAdjList = APR(adjList)  # Compares outputted adjacency list with manually parsed derivation links
+# Construct the full path to the JSON file (assuming it's in the same directory as the script)
+script_directory = os.path.dirname(os.path.realpath(__file__))
+json_file_path = os.path.join(script_directory, json_file_name)
+
+# Check if the file exists
+if not os.path.exists(json_file_path):
+    print(f"Error: File '{json_file_name}' not found in the script's directory.")
+    exit()
+
+# Load JSON data from the file
+with open(json_file_path, 'r') as file:
+    data = json.load(file)
+
+# Get target Article ID from user input
+target_article_id = input("Enter the target Article ID: ")
+
+# Find the eqeID list based on the target Article ID
+eqIDs = find_eqID_list(data, target_article_id)
+
+'''
+# Find the adjacency list based on the target Article ID
+adjacency_list = find_adjacency_list(data, target_article_id)
+'''
+
+print("Enter Bard Data: ")
+adjList = {}
+while True:
+    node = input("Enter Equation # (or 'done' to finish): ")
+    if node.lower() == 'done':
+        break
+    neighbors = input("Enter Derivation Links (comma-separated, or 'none'): ").split(", ")
+    if neighbors[0] == 'none':
+        adjList[eqIDs[int(node)-1]] = [None]
+    elif eqIDs[int(node)-1] in adjList:
+        for n in neighbors:
+            adjList[eqIDs[int(node)-1]].append(eqIDs[int(n)-1])
+    else:           
+        adjList[eqIDs[int(node)-1]] = [eqIDs[int(n)-1] for n in neighbors]
+
+precision, accuracy, recall = APR(json_file_name, target_article_id, adjList)  # Compares outputted adjacency list with manually parsed derivation links
+
+# Get JSON file name from user input
+existing_file = input("Enter the name of your JSON file to hold Bard Data (e.g., bardOutput.json): ")
+
+# Who Tested 
+labeled_by = input("Enter Labeled By: ")
+
+graphs = {
+        "Article ID": target_article_id,
+        "Bard's Adjacency List": adjList,
+        "Accuracy": precision,
+        "Precision": accuracy,
+        "Recall": recall,
+        "Tested by": labeled_by
+    }
+
+
+
+# Check if the file exists
+if os.path.exists(existing_file):
+    # Read existing JSON data from the file
+    with open(existing_file, 'r') as file:
+        data = json.load(file)
+
+        # Check if "Bard Data" key exists in the data
+        if "Bard Data" in data:
+            data["Bard Data"].append(graphs)  # Append the current graph to the existing data
+        else:
+            print("The existing JSON file does not contain 'Bard Data'. Initializing it.")
+            data["Bard Data"] = [graphs]  # Initialize "Bard Data" with the current graph
+
+        # Write the updated JSON data to the specified file
+        with open(existing_file, 'w') as file:
+            json.dump(data, file, indent=4)
+
+        print(f"JSON data has been written to {existing_file}.")
+else:
+    print(f"The specified file '{existing_file}' does not exist.")
