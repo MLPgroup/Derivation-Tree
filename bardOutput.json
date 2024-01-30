@@ -1,0 +1,58 @@
+{
+    "Comments": [
+        {
+            "Description": "Json file to verify Bard's Accuracy, Precision, Recall on Creating Derivation Trees",
+            "Author": "Brian Kim",
+            "Modification Log": {
+                "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles"
+            },
+            "Notes": {
+                "(1)": "Correctness is Based on Manually Parsed Articles in articles.json"
+            }
+        }
+    ],
+    "Bard Data": [
+        {
+            "Article ID": "0907.2648",
+            "Bard's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "S0.E4"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E5",
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    "S0.E8",
+                    "S0.E9",
+                    "S0.E10"
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8,
+            "Precision": 0.9,
+            "Recall": 0.8,
+            "Tested by": "Brian Kim"
+        }
+    ]
+}
