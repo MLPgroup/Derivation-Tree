@@ -32,6 +32,7 @@ def run_derivation_algo():
     print("*-----------------------------------------------------------*")
     print("Important Equation Algorithm Correctness: ")
     print(f"Articles used for correctness calculations: {algo_articles_used}")
+    print(f"Number of articles used for correctness calculations: {len(algo_articles_used)}")
     print(f"Accuracy: {algo_accuracy:.8f}")
     print(f"Precision: {algo_precision:.8f}")
     print(f"Recall: {algo_recall:.8f}")
