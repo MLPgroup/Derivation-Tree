@@ -21,7 +21,8 @@ python preProcessing.py
 ## System Requirements
 Python 3
 - - - -
-
+&nbsp;
+- - - -
 # Finding the most important equation
 
 ## Instructions to Run Algorithm
@@ -47,4 +48,25 @@ Running the above command will output 2 sections into the terminal. The first se
 - - - - 
 ## System Requirements
 Python 3.5 (can run on earlier versions but is untested and requires a few changes)
+- - - -
+&nbsp;
+- - - -
+# Building the Derivation Tree Using Equation Similarity
+
+## Instructions to Run Algorithm
+```
+python3 equation_similarity.py
+```
+- - - -
+## Output
+Running the above command will output results of the correctness script with metrics used to test the correctness of the algorithm which was computed using the labeled adjacency list and the predicted adjacency list.
+- - - -
+## File System
+### equation_similarity.py
+- Entry point that runs all the code written in the file. It first extracts the equations from the html, then computes the similarities between all equations in that were extracted, and finally constructs an adjacency list and compares it to the labeled adjacency list provided in articles.json.
+### /articles (folder)
+- Holds the html for the articles that are in the articles.json file
+- - - - 
+## System Requirements
+Python 3.5 (can run on earlier versions but is untested and requires a few changes). Requires the BeautifulSoup library.
 - - - -

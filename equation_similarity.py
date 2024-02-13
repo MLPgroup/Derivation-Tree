@@ -56,6 +56,8 @@ def extract_equations(html_content):
                 'equation_id': equation_id,
                 'alttext': alttext,
             })
+    
+        """Playground: """
         # elif len(equations) == 0 and match_2:
         #     # Extract section and equation numbers from the matched pattern
         #     section_number, equation_number = match_2.groups()
@@ -178,6 +180,8 @@ def equation_similarity_adjacency_list(similarity_matrix, equation_order, simila
                     equation_adjacency_list[equation_order[i]].append(equation_order[j])
                 else:
                     equation_adjacency_list[equation_order[j]].append(equation_order[i])
+
+            """Playground: """
             # if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
             #     if similarity_matrix[i][j] < similarity_matrix[j][i]:
             #         equation_adjacency_list[equation_order[i]].append(equation_order[j])
@@ -197,24 +201,25 @@ def equation_similarity_adjacency_list(similarity_matrix, equation_order, simila
 
 
 "Accuracy Script"
-def evaluate_adjacency_lists(true_adjacency_list, predicted_adjacency_list):
+def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     true_positive = 0
     true_negative = 0
     false_positive = 0
     false_negative = 0
 
-    for equation, true_neighbors in true_adjacency_list.items():
-        predicted_neighbors = predicted_adjacency_list.get(equation, [])
+    for true_adjacency_list, predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
+        for equation, true_neighbors in true_adjacency_list.items():
+            predicted_neighbors = predicted_adjacency_list.get(equation, [])
 
-        for neighbor in true_neighbors:
-            if neighbor in predicted_neighbors:
-                true_positive += 1
-            else:
-                false_negative += 1
+            for neighbor in true_neighbors:
+                if neighbor in predicted_neighbors:
+                    true_positive += 1
+                else:
+                    false_negative += 1
 
-        for neighbor in predicted_neighbors:
-            if neighbor not in true_neighbors:
-                false_positive += 1
+            for neighbor in predicted_neighbors:
+                if neighbor not in true_neighbors:
+                    false_positive += 1
 
     accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
     precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
@@ -234,7 +239,12 @@ def run_equation_similarity():
     # Get a list of manually parsed article IDs
     article_ids = article_parser.get_manually_parsed_articles()
 
-    # extracted_equations = []
+    extracted_equations = []
+    computed_similarities = []
+    equation_orders = []
+    true_adjacency_lists = []
+    predicted_adjacency_lists = []
+    
 
     # Iterate through article IDs
     for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
@@ -249,29 +259,23 @@ def run_equation_similarity():
                 
             # Extract equations from the HTML content
             equations = extract_equations(html_content)
+            extracted_equations.append(equations)
 
             # If extracted correctly, compute similarity
             if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
                 computed_similarity, equation_order = equation_similarity_percentages(equations)
-                print(cur_article_id)
-                print(equation_order)
-                for row in computed_similarity:
-                    print(' '.join(f'{percentage:.2f}' for percentage in row))
+                # print(cur_article_id)
+                # print(equation_order)
+                # for row in computed_similarity:
+                #     print(' '.join(f'{percentage:.2f}' for percentage in row))
                 
                 computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, 85)
-                print(computed_adjacency_list)
+                # print(computed_adjacency_list)
 
-                similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score = evaluate_adjacency_lists(cur_article["Adjacency List"], computed_adjacency_list)
-
-                print("*-----------------------------------------------------------*")
-                print("Equation Similarity Algorithm Correctness: ")
-                print(f"Accuracy: {similarity_accuracy:.8f}")
-                print(f"Precision: {similarity_precision:.8f}")
-                print(f"Recall: {similarity_recall:.8f}")
-                print(f"F1 Score: {similarity_f1_score:.8f}")
-                print("*-----------------------------------------------------------*")
-                return 0
-
+                computed_similarities.append(computed_similarity)
+                equation_orders.append(equation_order)
+                true_adjacency_lists.append(cur_article["Adjacency List"])
+                predicted_adjacency_lists.append(computed_adjacency_list)
 
             
             """ Debugging: """
@@ -296,12 +300,20 @@ def run_equation_similarity():
             #     continue
             #     print(f"Equation ID: {cur_article_id} same")
 
-            break
-
         else:
             # No html for article found
-            continue
             print(f"HTML file {html_path} not found")
+    
+    similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
+
+    print("*-----------------------------------------------------------*")
+    print("Equation Similarity Algorithm Correctness: ")
+    print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists)}")
+    print(f"Accuracy: {similarity_accuracy:.8f}")
+    print(f"Precision: {similarity_precision:.8f}")
+    print(f"Recall: {similarity_recall:.8f}")
+    print(f"F1 Score: {similarity_f1_score:.8f}")
+    print("*-----------------------------------------------------------*")
 
     return 0
 
