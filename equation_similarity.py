@@ -79,6 +79,7 @@ def extract_equations(html_content):
     return equations
 
 
+
 """
 combine_sub_equations(equation)
 Input: equation -- one equation in the article and all of its sub equations
@@ -89,6 +90,7 @@ def combine_sub_equations(equation):
     # Combine MathMLs of all sub-equations
     combined_mathml = ''.join(sub_equation['mathml'] for sub_equation in equation['equations'])
     return combined_mathml
+
 
 
 """
@@ -108,10 +110,12 @@ def compute_symbol_percentage(equation1, equation2):
     return percentage_equation1_in_equation2, percentage_equation2_in_equation1
 
 
+
 """
 equation_similarity_percentages(equations)
 Input: equations -- equations found in article
 Return: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
+        equation_order -- order of equations in matrix
 Function: Find similarity percentages between all equations
 """
 def equation_similarity_percentages(equations):
@@ -121,6 +125,7 @@ def equation_similarity_percentages(equations):
 
     # Combine mathml
     combined_mathml = [combine_sub_equations(equations[cur_equation]) for cur_equation in equations]
+    equation_order = [cur_equation for cur_equation in equations]
 
     # Compute similarity percentages
     for i in range(num_equations - 1):
@@ -135,7 +140,88 @@ def equation_similarity_percentages(equations):
             similarity_matrix[i][j] = percentage_i_in_j
             similarity_matrix[j][i] = percentage_j_in_i
 
-    return similarity_matrix
+    return similarity_matrix, equation_order
+
+
+
+"Check if cycle formed with new add"
+def has_cycle(adj_list, visited, current, parent):
+    visited[current] = True
+
+    for neighbor in adj_list[current]:
+        if not visited[neighbor]:
+            if has_cycle(adj_list, visited, neighbor, current):
+                return True
+        elif neighbor != parent:
+            return True
+
+    return False
+
+
+
+"""
+equation_similarity_percentages(equations)
+Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
+        equation_order -- order of equations in matrix
+        similarity_threshold -- threshold of matrix to determine if two equations are similar or not
+Return: equation_adjacency_list -- adjacency list computed using 
+Function: Construct an adjacency list from the similarity matrix
+"""
+def equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold):
+    num_equations = len(equation_order)
+    equation_adjacency_list = {equation_order[i]: [] for i in range(num_equations)}
+
+    for i in range(num_equations - 2, -1, -1):
+        for j in range(num_equations - 1, i - 1, -1):
+            if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
+                if similarity_matrix[i][j] > similarity_matrix[j][i]:
+                    equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                else:
+                    equation_adjacency_list[equation_order[j]].append(equation_order[i])
+            # if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
+            #     if similarity_matrix[i][j] < similarity_matrix[j][i]:
+            #         equation_adjacency_list[equation_order[i]].append(equation_order[j])
+
+            #         # Check for cycles
+            #         if has_cycle(equation_adjacency_list, {equation: False for equation in equation_order}, equation_order[i], None):
+            #             equation_adjacency_list[equation_order[i]].remove(equation_order[j])
+            #     else:
+            #         equation_adjacency_list[equation_order[j]].append(equation_order[i])
+
+            #         # Check for cycles
+            #         if has_cycle(equation_adjacency_list, {equation: False for equation in equation_order}, equation_order[j], None):
+            #             equation_adjacency_list[equation_order[j]].remove(equation_order[i])
+
+    return equation_adjacency_list
+
+
+
+"Accuracy Script"
+def evaluate_adjacency_lists(true_adjacency_list, predicted_adjacency_list):
+    true_positive = 0
+    true_negative = 0
+    false_positive = 0
+    false_negative = 0
+
+    for equation, true_neighbors in true_adjacency_list.items():
+        predicted_neighbors = predicted_adjacency_list.get(equation, [])
+
+        for neighbor in true_neighbors:
+            if neighbor in predicted_neighbors:
+                true_positive += 1
+            else:
+                false_negative += 1
+
+        for neighbor in predicted_neighbors:
+            if neighbor not in true_neighbors:
+                false_positive += 1
+
+    accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
+    precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
+    recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
+    f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
+
+    return accuracy, precision, recall, f1_score, 
 
 
 """
@@ -166,10 +252,24 @@ def run_equation_similarity():
 
             # If extracted correctly, compute similarity
             if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
-                computed_similarity = equation_similarity_percentages(equations)
+                computed_similarity, equation_order = equation_similarity_percentages(equations)
                 print(cur_article_id)
+                print(equation_order)
                 for row in computed_similarity:
                     print(' '.join(f'{percentage:.2f}' for percentage in row))
+                
+                computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, 85)
+                print(computed_adjacency_list)
+
+                similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score = evaluate_adjacency_lists(cur_article["Adjacency List"], computed_adjacency_list)
+
+                print("*-----------------------------------------------------------*")
+                print("Equation Similarity Algorithm Correctness: ")
+                print(f"Accuracy: {similarity_accuracy:.8f}")
+                print(f"Precision: {similarity_precision:.8f}")
+                print(f"Recall: {similarity_recall:.8f}")
+                print(f"F1 Score: {similarity_f1_score:.8f}")
+                print("*-----------------------------------------------------------*")
                 return 0
 
 
