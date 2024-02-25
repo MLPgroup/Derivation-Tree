@@ -1,7 +1,7 @@
 {
     "Comments": [
         {
-            "Description": "Json file to verify Bard's Output on Creating Derivation Trees",
+            "Description": "Json file to verify Bard's Output on Creating Derivation Trees. NO LONGER USING DUE TO GEMINI.",
             "Author": "Brian Kim",
             "Modification Log": {
                 "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles"
