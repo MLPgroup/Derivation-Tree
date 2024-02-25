@@ -10,20 +10,8 @@
                 "January 13, 2024": "Added 20 articles",
                 "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles",
                 "February 3, 2024": "Added 10 articles",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "February 5, 2024": "Added 8 articles, Fixed previous article edges",
                 "February 10, 2024": "Added 10 articles"
-=======
-                "February 5, 2024": "Added 8 articles, Fixed previous article edges"
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
-=======
-                "February 5, 2024": "Added 10 articles, Fixed previous article edges"
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
-                "February 5, 2024": "Added 10 articles, Fixed previous article edges"
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
             },
             "Notes": {
                 "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
@@ -1566,11 +1554,7 @@
                 "S3.E11",
                 "S3.E12",
                 "S3.E13",
-<<<<<<< HEAD
                 "S4.E14"
-=======
-                "S3.E14"
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             ],
             "Adjacency List": {
                 "S2.E1": [
@@ -1612,11 +1596,7 @@
                 "S3.E13": [
                     "S3.E7"
                 ],
-<<<<<<< HEAD
                 "S4.E14": [
-=======
-                "S3.E14": [
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                     "S3.E7"
                 ]
             },
@@ -1634,11 +1614,7 @@
                 "S3.E11": "11",
                 "S3.E12": "12",
                 "S3.E13": "13",
-<<<<<<< HEAD
                 "S4.E14": "14"
-=======
-                "S3.E14": "14"
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             },
             "Most Important Equation": "S3.E7",
             "Labeled by": "Vishesh"
@@ -2059,15 +2035,9 @@
         {
             "Article ID": "1701.01567",
             "Equation ID": [
-<<<<<<< HEAD
                 "S2.E1",
                 "S2.E2",
                 "S2.E3",
-=======
-                "S3.E1",
-                "S3.E2",
-                "S3.E3",
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                 "S3.E4",
                 "S3.E5",
                 "S3.E6",
@@ -2081,7 +2051,6 @@
                 "S3.E14"
             ],
             "Adjacency List": {
-<<<<<<< HEAD
                 "S2.E1": [
                     null
                 ],
@@ -2089,15 +2058,6 @@
                     "S2.E1"
                 ],
                 "S2.E3": [
-=======
-                "S3.E1": [
-                    null
-                ],
-                "S3.E2": [
-                    "S3.E1"
-                ],
-                "S3.E3": [
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                     "S3.E4"
                 ],
                 "S3.E4": [
@@ -2136,15 +2096,9 @@
                 ]
             },
             "Equation Number": {
-<<<<<<< HEAD
                 "S2.E1": "1",
                 "S2.E2": "2",
                 "S2.E3": "3",
-=======
-                "S3.E1": "1",
-                "S3.E2": "2",
-                "S3.E3": "3",
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                 "S3.E4": "4",
                 "S3.E5": "5",
                 "S3.E6": "6",
@@ -2472,11 +2426,7 @@
             "Labeled by": "Vishesh"
         },
         {
-<<<<<<< HEAD
             "Article ID": "1810.00264",
-=======
-            "Article ID": "1810.00204",
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             "Equation ID": [
                 "S1.E1",
                 "S1.E2",
@@ -3059,10 +3009,6 @@
                 "S0.E7": "7"
             },
             "Most Important Equation": "S0.E5",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             "Labeled by": "Vishesh"
         },
         {
@@ -3099,12 +3045,9 @@
                 "S5.E5": [
                     "S5.E6"
                 ],
-<<<<<<< HEAD
                 "S5.E6": [
                     null
                 ],
-=======
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                 "S5.E7": [
                     null
                 ],
@@ -3229,6 +3172,12 @@
                     null
                 ],
                 "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
                     null
                 ]
             },
@@ -3439,287 +3388,6 @@
                     null
                 ],
                 "S2.E5": [
-                    "S2.E6",
-                    "S2.E7"
-                ],
-                "S2.E6": [
-                    "S2.E8"
-                ],
-                "S2.E7": [
-                    "S2.E8"
-                ],
-                "S2.E8": [
-                    null
-                ],
-                "S2.E9": [
-                    null
-                ],
-                "S3.E10": [
-                    null
-                ]
-            },
-            "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S2.E6": 6,
-                "S2.E7": 7,
-                "S2.E8": 8,
-                "S2.E9": 9,
-                "S3.E10": 10
-            },
-            "Most Important Equation": "S2.E9",
-            "Labeled by": "Brian"
-        },
-        {
-            "Article ID": "0908.0180",
-            "Equation ID": [
-                "S1.E1",
-                "S4.E2",
-                "S4.E3",
-                "S4.E4",
-                "S4.E5",
-                "S4.E6",
-                "S4.E7",
-                "S4.E8",
-                "S4.E9",
-                "S5.E10",
-                "S5.E11",
-                "S5.E12"
-            ],
-            "Adjacency List": {
-                "S1.E1": [
-                    null
-                ],
-                "S4.E2": [
-                    null,
-                    "S4.E7"
-                ],
-                "S4.E3": [
-                    null
-                ],
-                "S4.E4": [
-                    null
-                ],
-                "S4.E5": [
-                    null
-                ],
-                "S4.E6": [
-                    null
-                ],
-                "S4.E7": [
-                    null
-                ],
-                "S4.E8": [
-                    null
-                ],
-                "S4.E9": [
-                    null
-                ],
-                "S5.E10": [
-                    null
-                ],
-                "S5.E11": [
-                    null
-                ],
-                "S5.E12": [
-                    null
-                ]
-            },
-            "Equation Number": {
-                "S1.E1": 1,
-                "S4.E2": 2,
-                "S4.E3": 3,
-                "S4.E4": 4,
-                "S4.E5": 5,
-                "S4.E6": 6,
-                "S4.E7": 7,
-                "S4.E8": 8,
-                "S4.E9": 9,
-                "S5.E10": 10,
-                "S5.E11": 11,
-                "S5.E12": 12
-            },
-            "Most Important Equation": "S4.E9",
-            "Labeled by": "Brian"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        },
-        {
-            "Article ID": "0908.0304",
-=======
-        },
-        {
-            "Article ID": "0908.0377",
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
-        },
-        {
-            "Article ID": "0908.0377",
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-            "Equation ID": [
-                "S2.E1",
-                "S2.E2",
-                "S2.E3",
-                "S2.E4",
-                "S2.E5",
-                "S2.E6",
-                "S2.E7",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "S2.E8",
-                "S3.E9"
-            ],
-            "Adjacency List": {
-                "S2.E1": [
-                    null
-                ],
-                "S2.E2": [
-                    null
-                ],
-                "S2.E3": [
-                    "S2.E4"
-                ],
-                "S2.E4": [
-                    null
-                ],
-                "S2.E5": [
-                    null
-                ],
-                "S2.E6": [
-                    "S2.E7",
-                    "S2.E8"
-                ],
-                "S2.E7": [
-                    null
-                ],
-                "S2.E8": [
-                    null
-                ],
-                "S3.E9": [
-                    null
-                ]
-            },
-            "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S2.E6": 6,
-                "S2.E7": 7,
-                "S2.E8": 8,
-                "S3.E9": 9
-            },
-            "Most Important Equation": "S2.E5",
-            "Labeled by": "Brian"
-        },
-        {
-            "Article ID": "0908.0314",
-            "Equation ID": [
-                "S2.E1",
-                "S2.E2",
-                "S2.E3",
-                "S2.E4",
-                "S2.E5",
-                "S3.E6",
-                "S3.E7",
-                "S3.E8"
-=======
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                "S4.E8.1",
-                "S4.E8.2",
-                "S5.E9",
-                "S5.E10"
-<<<<<<< HEAD
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-            ],
-            "Adjacency List": {
-                "S2.E1": [
-                    "S2.E2"
-                ],
-                "S2.E2": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    "S2.E3"
-                ],
-                "S2.E3": [
-                    "S2.E4",
-                    "S3.E7"
-                ],
-                "S2.E4": [
-                    "S3.E6"
-                ],
-                "S2.E5": [
-                    null
-                ],
-                "S3.E6": [
-                    null
-                ],
-                "S3.E7": [
-                    null
-                ],
-                "S3.E8": [
-                    null
-                ]
-            },
-            "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S3.E6": 6,
-                "S3.E7": 7,
-                "S3.E8": 8
-            },
-            "Most Important Equation": "S3.E6",
-            "Labeled by": "Brian"
-        },
-        {
-            "Article ID": "0908.0219",
-            "Equation ID": [
-                "S2.E1",
-                "S2.E2",
-                "S2.E3",
-                "S2.E4",
-                "S2.E5",
-                "S2.E6",
-                "S2.E7",
-                "S2.E8",
-                "S2.E9",
-                "S3.E10"
-            ],
-            "Adjacency List": {
-                "S2.E1": [
-                    null
-                ],
-                "S2.E2": [
-                    null
-=======
-                    "S2.E3",
-                    "S2.E4"
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
-                    "S2.E3",
-                    "S2.E4"
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                ],
-                "S2.E3": [
-                    null
-                ],
-                "S2.E4": [
-                    null
-                ],
-                "S2.E5": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                     "S2.E6",
                     "S2.E7"
                 ],
@@ -4177,53 +3845,6 @@
         },
         {
             "Article ID": "1908.01254",
-=======
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                    null,
-                    "S5.E10"
-                ],
-                "S2.E6": [
-                    null
-                ],
-                "S2.E7": [
-                    null
-                ],
-                "S4.E8.1": [
-                    null
-                ],
-                "S4.E8.2": [
-                    null
-                ],
-                "S5.E9": [
-                    "S5.E10"
-                ],
-                "S5.E10": [
-                    null
-                ]
-            },
-            "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S2.E6": 6,
-                "S2.E7": 7,
-                "S4.E8.1": 8,
-                "S4.E8.2": 9,
-                "S5.E9": 10,
-                "S5.E10": 11
-            },
-            "Most Important Equation": "S2.E6",
-            "Labeled by": "Brian"
-        },
-        {
-            "Article ID": "0908.0420",
-<<<<<<< HEAD
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
             "Equation ID": [
                 "S0.E1",
                 "S0.E2",
@@ -4234,8 +3855,6 @@
                 "S0.E7",
                 "S0.E8",
                 "S0.E9",
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "S0.E10",
                 "S0.E11",
                 "S0.E12",
@@ -4245,49 +3864,21 @@
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E12"
-=======
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                "S0.E10"
-            ],
-            "Adjacency List": {
-                "S0.E1": [
-                    "S0.E3"
-<<<<<<< HEAD
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
                 ],
                 "S0.E2": [
                     null
                 ],
                 "S0.E3": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                     "S0.E2"
                 ],
                 "S0.E4": [
                     "S0.E5",
                     "S0.E6"
-=======
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                    "S0.E5",
-                    "S0.E8"
-                ],
-                "S0.E4": [
-                    null
-<<<<<<< HEAD
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
                 ],
                 "S0.E5": [
                     "S0.E7"
                 ],
                 "S0.E6": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                     "S0.E8"
                 ],
                 "S0.E7": [
@@ -4312,31 +3903,10 @@
                     null
                 ],
                 "S0.E14": [
-=======
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                    null
-                ],
-                "S0.E7": [
-                    "S0.E10"
-                ],
-                "S0.E8": [
-                    null
-                ],
-                "S0.E9": [
-                    null
-                ],
-                "S0.E10": [
-<<<<<<< HEAD
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
                     null
                 ]
             },
             "Equation Number": {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "S0.E1": "1",
                 "S0.E2": "2",
                 "S0.E3": "3",
@@ -4492,31 +4062,7 @@
                 "S2.E10": "10"
             },
             "Most Important Equation": "S2.E10",
-=======
->>>>>>> db6c64b (finish more articles)
             "Labeled by": "Vishesh"
-=======
->>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
-=======
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
-                "S0.E1": 1,
-                "S0.E2": 2,
-                "S0.E3": 3,
-                "S0.E4": 4,
-                "S0.E5": 5,
-                "S0.E6": 6,
-                "S0.E7": 7,
-                "S0.E8": 8,
-                "S0.E9": 9,
-                "S0.E10": 10
-            },
-            "Most Important Equation": "S0.E3",
-            "Labeled by": "Brian"
-<<<<<<< HEAD
->>>>>>> 571b5ef (Added Gemini Test Output)
-=======
->>>>>>> 571b5ef501f97d393a9c5be82b025f7f0aeb1a87
         }
     ]
 }
