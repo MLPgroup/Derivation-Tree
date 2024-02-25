@@ -177,12 +177,12 @@ if os.path.exists(existing_file):
     with open(existing_file, 'r') as file:
         data = json.load(file)
 
-        # Check if "Bard Data" key exists in the data
-        if "Bard Data" in data:
-            data["Bard Data"].append(graphs)  # Append the current graph to the existing data
+        # Check if "Gemini Data" key exists in the data. Changed from "Bard Data" (February 15th 2024)"
+        if "Gemini Data" in data:
+            data["Gemini Data"].append(graphs)  # Append the current graph to the existing data
         else:
-            print("The existing JSON file does not contain 'Bard Data'. Initializing it.")
-            data["Bard Data"] = [graphs]  # Initialize "Bard Data" with the current graph
+            print("The existing JSON file does not contain 'Gemini Data'. Initializing it.")
+            data["Gemini Data"] = [graphs]  # Initialize "Gemini Data" with the current graph
 
         # Write the updated JSON data to the specified file
         with open(existing_file, 'w') as file:
