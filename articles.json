@@ -9,7 +9,7 @@
                 "January 8, 2024": "Added 11 articles",
                 "January 13, 2024": "Added 20 articles",
                 "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles",
-                "February 6, 2024": "Added 8 more Articles, Fixed previous articles"
+                "February 3, 2024": "Added 10 articles"
             },
             "Notes": {
                 "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
