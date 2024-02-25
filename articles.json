@@ -10,8 +10,12 @@
                 "January 13, 2024": "Added 20 articles",
                 "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles",
                 "February 3, 2024": "Added 10 articles",
+<<<<<<< HEAD
                 "February 5, 2024": "Added 8 articles, Fixed previous article edges",
                 "February 10, 2024": "Added 10 articles"
+=======
+                "February 5, 2024": "Added 8 articles, Fixed previous article edges"
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             },
             "Notes": {
                 "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
@@ -1554,7 +1558,11 @@
                 "S3.E11",
                 "S3.E12",
                 "S3.E13",
+<<<<<<< HEAD
                 "S4.E14"
+=======
+                "S3.E14"
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             ],
             "Adjacency List": {
                 "S2.E1": [
@@ -1596,7 +1604,11 @@
                 "S3.E13": [
                     "S3.E7"
                 ],
+<<<<<<< HEAD
                 "S4.E14": [
+=======
+                "S3.E14": [
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                     "S3.E7"
                 ]
             },
@@ -1614,7 +1626,11 @@
                 "S3.E11": "11",
                 "S3.E12": "12",
                 "S3.E13": "13",
+<<<<<<< HEAD
                 "S4.E14": "14"
+=======
+                "S3.E14": "14"
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             },
             "Most Important Equation": "S3.E7",
             "Labeled by": "Vishesh"
@@ -2035,9 +2051,15 @@
         {
             "Article ID": "1701.01567",
             "Equation ID": [
+<<<<<<< HEAD
                 "S2.E1",
                 "S2.E2",
                 "S2.E3",
+=======
+                "S3.E1",
+                "S3.E2",
+                "S3.E3",
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                 "S3.E4",
                 "S3.E5",
                 "S3.E6",
@@ -2051,6 +2073,7 @@
                 "S3.E14"
             ],
             "Adjacency List": {
+<<<<<<< HEAD
                 "S2.E1": [
                     null
                 ],
@@ -2058,6 +2081,15 @@
                     "S2.E1"
                 ],
                 "S2.E3": [
+=======
+                "S3.E1": [
+                    null
+                ],
+                "S3.E2": [
+                    "S3.E1"
+                ],
+                "S3.E3": [
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                     "S3.E4"
                 ],
                 "S3.E4": [
@@ -2096,9 +2128,15 @@
                 ]
             },
             "Equation Number": {
+<<<<<<< HEAD
                 "S2.E1": "1",
                 "S2.E2": "2",
                 "S2.E3": "3",
+=======
+                "S3.E1": "1",
+                "S3.E2": "2",
+                "S3.E3": "3",
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                 "S3.E4": "4",
                 "S3.E5": "5",
                 "S3.E6": "6",
@@ -2426,7 +2464,11 @@
             "Labeled by": "Vishesh"
         },
         {
+<<<<<<< HEAD
             "Article ID": "1810.00264",
+=======
+            "Article ID": "1810.00204",
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             "Equation ID": [
                 "S1.E1",
                 "S1.E2",
@@ -3010,6 +3052,9 @@
             },
             "Most Important Equation": "S0.E5",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
             "Labeled by": "Vishesh"
         },
         {
@@ -3046,9 +3091,12 @@
                 "S5.E5": [
                     "S5.E6"
                 ],
+<<<<<<< HEAD
                 "S5.E6": [
                     null
                 ],
+=======
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
                 "S5.E7": [
                     null
                 ],
@@ -3488,6 +3536,7 @@
             },
             "Most Important Equation": "S4.E9",
             "Labeled by": "Brian"
+<<<<<<< HEAD
         },
         {
             "Article ID": "0908.0304",
@@ -4303,6 +4352,8 @@
 =======
 >>>>>>> db6c64b (finish more articles)
             "Labeled by": "Vishesh"
+=======
+>>>>>>> 7205102 (Fixed merge, adding 8 articles + fixes)
         }
     ]
 }
