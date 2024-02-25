@@ -3009,6 +3009,7 @@
                 "S0.E7": "7"
             },
             "Most Important Equation": "S0.E5",
+<<<<<<< HEAD
             "Labeled by": "Vishesh"
         },
         {
@@ -4299,6 +4300,8 @@
                 "S2.E10": "10"
             },
             "Most Important Equation": "S2.E10",
+=======
+>>>>>>> db6c64b (finish more articles)
             "Labeled by": "Vishesh"
         }
     ]
