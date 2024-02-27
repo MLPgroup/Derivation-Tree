@@ -3,6 +3,7 @@ Description: Python code to parse article html and extract equations
 Author: Vishesh Prasad
 Modification Log:
     February 10, 2024: create file and extract equations from html successfully 
+    February 26, 2024: use the words between equations to build the derivation tree
 '''
 
 from bs4 import BeautifulSoup
@@ -15,7 +16,8 @@ import article_parser
 extract_equations(html_content)
 Input: html_content -- html content for current article that needs to be parsed
 Return: equations -- equations that were found in the article
-Function: Find and return all the equations, their ids, and equation content from the given article
+        words_between_equations -- words that occur between the equations in the article
+Function: Find and return all the equations, their ids, equation content, and words between equations from the given article
 """
 def extract_equations(html_content):
     # Parse HTML content using BeautifulSoup
@@ -23,39 +25,62 @@ def extract_equations(html_content):
 
     # Dictionary to store equations
     equations = {}
-
+    
+    # List to store words that occur between equations
+    words_between_equations = []
+    last_eq_id = "none"
+    last_update_id = "none"
+    
     # Define the pattern to match equations
     pattern = re.compile(r'S(\d+)\.E(\d+)')
     # pattern_2 = re.compile(r'S(\d+)\.Ex(\d+)')
 
     # Iterate through all 'math' elements in the HTML
-    for mathml in soup.find_all('math'):
-        # Get equation ID and alt text attributes
-        equation_id = mathml.get('id', '')
-        alttext = mathml.get('alttext', '')
+    # for mathml in soup.find_all('math'):
+    for item in soup.recursiveChildGenerator():
+        if item.name == 'math':
+            # Get equation ID and alt text attributes
+            equation_id = item.get('id', '')
+            alttext = item.get('alttext', '')
 
-        # Check if the equation ID matches the defined pattern
-        match = pattern.search(equation_id)
-        # match_2 = pattern_2.search(equation_id)
-        if match:
-            # Extract section and equation numbers from the matched pattern
-            section_number, equation_number = match.groups()
-            equation_key = f"S{section_number}.E{equation_number}"
+            # Check if the equation ID matches the defined pattern
+            match = pattern.search(equation_id)
+            # match_2 = pattern_2.search(equation_id)
+            if match:
+                # Extract section and equation numbers from the matched pattern
+                section_number, equation_number = match.groups()
+                equation_key = f"S{section_number}.E{equation_number}"
+                last_eq_id = equation_id
 
-             # Create an entry in the dictionary for the equation if not present
-            if equation_key not in equations:
-                equations[equation_key] = {
-                    'section_number': int(section_number),
-                    'equation_number': int(equation_number),
-                    'equations': [],
-                }
+                # Create an entry in the dictionary for the equation if not present
+                if equation_key not in equations:
+                    equations[equation_key] = {
+                        'section_number': int(section_number),
+                        'equation_number': int(equation_number),
+                        'equations': [],
+                    }
 
-            # Add the equation details to the list of equations for the current key
-            equations[equation_key]['equations'].append({
-                'mathml': str(mathml),
-                'equation_id': equation_id,
-                'alttext': alttext,
-            })
+                # Add the equation details to the list of equations for the current key
+                equations[equation_key]['equations'].append({
+                    'mathml': str(item),
+                    'equation_id': equation_id,
+                    'alttext': alttext,
+                })
+
+        elif isinstance(item, str):
+            if last_eq_id == "none":
+                if words_between_equations:
+                    words_between_equations[-1] += item
+                else: 
+                    words_between_equations.append(item)
+            else:
+                if last_eq_id != last_update_id:
+                    words_between_equations.append(item)
+                else:
+                    words_between_equations[-1] += item
+            last_update_id = last_eq_id
+
+
     
         """Playground: """
         # elif len(equations) == 0 and match_2:
@@ -78,7 +103,7 @@ def extract_equations(html_content):
         #         'alttext': alttext,
         #     })
 
-    return equations
+    return equations, words_between_equations
 
 
 
@@ -244,6 +269,7 @@ def run_equation_similarity():
     equation_orders = []
     true_adjacency_lists = []
     predicted_adjacency_lists = []
+    extracted_words_between_equations = []
     
 
     # Iterate through article IDs
@@ -258,8 +284,9 @@ def run_equation_similarity():
                 html_content = file.read()
                 
             # Extract equations from the HTML content
-            equations = extract_equations(html_content)
+            equations, words_between_equations = extract_equations(html_content)
             extracted_equations.append(equations)
+            extracted_words_between_equations.append(words_between_equations)
 
             # If extracted correctly, compute similarity
             if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
@@ -276,6 +303,7 @@ def run_equation_similarity():
                 equation_orders.append(equation_order)
                 true_adjacency_lists.append(cur_article["Adjacency List"])
                 predicted_adjacency_lists.append(computed_adjacency_list)
+                break
 
             
             """ Debugging: """
