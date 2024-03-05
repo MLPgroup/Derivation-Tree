@@ -67,17 +67,22 @@ def extract_equations(html_content):
                     'alttext': alttext,
                 })
 
+        # If string
         elif isinstance(item, str):
+            # If before any equation
             if last_eq_id == "none":
+                # If already found words
                 if words_between_equations:
                     words_between_equations[-1] += item
                 else: 
                     words_between_equations.append(item)
             else:
+                # If new equation found
                 if last_eq_id != last_update_id:
                     words_between_equations.append(item)
                 else:
                     words_between_equations[-1] += item
+            # Equation when updated
             last_update_id = last_eq_id
 
 
