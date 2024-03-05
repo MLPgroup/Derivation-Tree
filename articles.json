@@ -12,7 +12,8 @@
                 "February 3, 2024": "Added 10 articles",
                 "February 5, 2024": "Added 8 articles, Fixed previous article edges",
                 "February 10, 2024": "Added 10 articles",
-                "February 26, 20024": "Added 10 articles"
+                "February 26, 2024": "Added 10 articles",
+                "March 4. 2024": "Added 10 articles"
             },
             "Notes": {
                 "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
@@ -4166,6 +4167,116 @@
         },
         {
             "Article ID": "1612.00629",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00210",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00400",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00417",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00543",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00670",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00710",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00716",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.00770",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.01138",
+            "Equation ID": [
+            ],
+            "Adjacency List": {
+            },
+            "Equation Number": {
+            },
+            "Most Important Equation": "",
+            "Labeled by": "Vishesh"
+        },
+        {
+            "Article ID": "1510.01448",
             "Equation ID": [
             ],
             "Adjacency List": {
