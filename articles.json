@@ -4738,111 +4738,713 @@
         {
             "Article ID": "1510.00210",
             "Equation ID": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8"
             ],
             "Adjacency List": {
+                "S0.E1": [
+                    "S0.E5"
+                ],
+                "S0.E2": [
+                    "S0.E5"
+                ],
+                "S0.E3": [
+                    "S0.E5"
+                ],
+                "S0.E4": [
+                    "S0.E5"
+                ],
+                "S0.E5": [
+                    "S0.E7"
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    "S0.E8"
+                ],
+                "S0.E8": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S0.E1": "1",
+                "S0.E2": "2",
+                "S0.E3": "3",
+                "S0.E4": "4",
+                "S0.E5": "5",
+                "S0.E6": "6",
+                "S0.E7": "7",
+                "S0.E8": "8"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S0.E8",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00400",
             "Equation ID": [
+                "S1.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S2.E6",
+                "S2.E7",
+                "S2.E8",
+                "S3.E9",
+                "S3.E10",
+                "S6.E11",
+                "S6.E12"
             ],
             "Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    "S2.E4"
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    "S2.E4"
+                ],
+                "S2.E6": [
+                    "S2.E5",
+                    "S3.E9"
+                ],
+                "S2.E7": [
+                    "S3.E9"
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    "S3.E10"
+                ],
+                "S3.E10": [
+                    "S6.E11"
+                ],
+                "S6.E11": [
+                    "S6.E12"
+                ],
+                "S6.E12": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S1.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S2.E6": "6",
+                "S2.E7": "7",
+                "S2.E8": "8",
+                "S3.E9": "9",
+                "S3.E10": "10",
+                "S6.E11": "11",
+                "S6.E12": "12"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S6.E12",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00417",
             "Equation ID": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S3.E6",
+                "S3.E7",
+                "S3.E8",
+                "S3.E9",
+                "S4.E10"
             ],
             "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    "S2.E1"
+                ],
+                "S2.E3": [
+                    "S2.E1",
+                    "S3.E6",
+                    "S3.E7"
+                ],
+                "S2.E4": [
+                    "S2.E1"
+                ],
+                "S2.E5": [
+                    "S2.E1"
+                ],
+                "S3.E6": [
+                    "S3.E8"
+                ],
+                "S3.E7": [
+                    "S3.E8"
+                ],
+                "S3.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S4.E10": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S3.E6": "6",
+                "S3.E7": "7",
+                "S3.E8": "8",
+                "S3.E9": "9",
+                "S4.E10": "10"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S2.E1",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00543",
             "Equation ID": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S2.E6",
+                "S2.E7",
+                "S2.E8",
+                "S2.E9",
+                "S2.E10",
+                "S3.E11",
+                "S3.E12",
+                "A1.E13",
+                "A1.E14",
+                "A1.E15",
+                "A1.E16",
+                "A1.E17"
             ],
             "Adjacency List": {
+                "S2.E1": [
+                    "S2.E2"
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S2.E5"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    "S2.E8",
+                    "S2.E9",
+                    "S2.E10"
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S3.E12": [
+                    null
+                ],
+                "A1.E13": [
+                    null
+                ],
+                "A1.E14": [
+                    "A1.E17"
+                ],
+                "A1.E15": [
+                    "A1.E14"
+                ],
+                "A1.E16": [
+                    null
+                ],
+                "A1.E17": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S2.E6": "6",
+                "S2.E7": "7",
+                "S2.E8": "8",
+                "S2.E9": "9",
+                "S2.E10": "10",
+                "S3.E11": "11",
+                "S3.E12": "12",
+                "A1.E13": "A1",
+                "A1.E14": "A2",
+                "A1.E15": "A3",
+                "A1.E16": "A4",
+                "A1.E17": "A5"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S2.E7",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00670",
             "Equation ID": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S2.E6",
+                "S2.E7",
+                "S2.E8",
+                "S2.E9",
+                "S2.E10",
+                "S2.E11",
+                "S2.E12"
             ],
             "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    "S2.E5"
+                ],
+                "S2.E4": [
+                    "S2.E3"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S2.E6": "6",
+                "S2.E7": "7",
+                "S2.E8": "8",
+                "S2.E9": "9",
+                "S2.E10": "10",
+                "S2.E11": "11",
+                "S2.E12": "12"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S2.E3",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00710",
             "Equation ID": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S3.E4",
+                "S3.E5",
+                "S3.E6",
+                "S3.E7",
+                "S3.E8",
+                "S4.E9",
+                "S4.E10",
+                "S5.E11"
             ],
             "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    "S3.E8"
+                ],
+                "S3.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    "S3.E7"
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    null
+                ],
+                "S4.E9": [
+                    null
+                ],
+                "S4.E10": [
+                    "S4.E9"
+                ],
+                "S5.E11": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S3.E4": "4",
+                "S3.E5": "5",
+                "S3.E6": "6",
+                "S3.E7": "7",
+                "S3.E8": "8",
+                "S4.E9": "9",
+                "S4.E10": "10",
+                "S5.E11": "11"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S4.E9",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00716",
             "Equation ID": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8",
+                "S0.E9",
+                "S0.E10",
+                "S0.E11"
             ],
             "Adjacency List": {
+                "S0.E1": [
+                    "S0.E2"
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E5"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S0.E1": "1",
+                "S0.E2": "2",
+                "S0.E3": "3",
+                "S0.E4": "4",
+                "S0.E5": "5",
+                "S0.E6": "6",
+                "S0.E7": "7",
+                "S0.E8": "8",
+                "S0.E9": "9",
+                "S0.E10": "10",
+                "S0.E11": "11"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S0.E7",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.00770",
             "Equation ID": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S3.E6",
+                "S3.E7",
+                "S3.E8",
+                "S3.E9",
+                "S3.E10",
+                "S3.E11",
+                "S3.E12",
+                "S3.E13",
+                "S3.E14",
+                "S3.E15",
+                "S3.E16",
+                "S3.E17"
             ],
             "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    "S2.E3",
+                    "S2.E4"
+                ],
+                "S2.E3": [
+                    "S2.E4"
+                ],
+                "S2.E4": [
+                    "S2.E5",
+                    "S3.E8",
+                    "S3.E9",
+                    "S3.E15"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    "S3.E8",
+                    "S3.E9",
+                    "S3.E16"
+                ],
+                "S3.E7": [
+                    "S3.E6",
+                    "S3.E15"
+                ],
+                "S3.E8": [
+                    "S3.E9",
+                    "S3.E12"
+                ],
+                "S3.E9": [
+                    "S3.E12"
+                ],
+                "S3.E10": [
+                    "S3.E14"
+                ],
+                "S3.E11": [
+                    "S3.E10"
+                ],
+                "S3.E12": [
+                    "S3.E13"
+                ],
+                "S3.E13": [
+                    "S3.E14"
+                ],
+                "S3.E14": [
+                    "S3.E16"
+                ],
+                "S3.E15": [
+                    "S3.E16"
+                ],
+                "S3.E16": [
+                    "S3.E17"
+                ],
+                "S3.E17": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S3.E6": "6",
+                "S3.E7": "7",
+                "S3.E8": "8",
+                "S3.E9": "9",
+                "S3.E10": "10",
+                "S3.E11": "11",
+                "S3.E12": "12",
+                "S3.E13": "13",
+                "S3.E14": "14",
+                "S3.E15": "15",
+                "S3.E16": "16",
+                "S3.E17": "17"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S3.E17",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.01138",
             "Equation ID": [
+                "S1.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S2.E6",
+                "S2.E7",
+                "S3.E8",
+                "S3.E9",
+                "S3.E10",
+                "S3.E11"
             ],
             "Adjacency List": {
+                "S1.E1": [
+                    "S2.E3",
+                    "S2.E4"
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S2.E5",
+                    "S2.E6"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    "S2.E6",
+                    "S3.E9"
+                ],
+                "S3.E8": [
+                    "S3.E9"
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S1.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S2.E6": "6",
+                "S2.E7": "7",
+                "S3.E8": "8",
+                "S3.E9": "9",
+                "S3.E10": "10",
+                "S3.E11": "11"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S3.E9",
             "Labeled by": "Vishesh"
         },
         {
             "Article ID": "1510.01448",
             "Equation ID": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8"
             ],
             "Adjacency List": {
+                "S0.E1": [
+                    "S0.E3",
+                    "S0.E6"
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E3"
+                ],
+                "S0.E5": [
+                    "S0.E3"
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    "S0.E8"
+                ],
+                "S0.E8": [
+                    null
+                ]
             },
             "Equation Number": {
+                "S0.E1": "1",
+                "S0.E2": "2",
+                "S0.E3": "3",
+                "S0.E4": "4",
+                "S0.E5": "5",
+                "S0.E6": "6",
+                "S0.E7": "7",
+                "S0.E8": "8"
             },
-            "Most Important Equation": "",
+            "Most Important Equation": "S0.E3",
             "Labeled by": "Vishesh"
         }
     ]
