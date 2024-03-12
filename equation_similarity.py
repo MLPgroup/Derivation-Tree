@@ -3,19 +3,26 @@ Description: Python code to parse article html and extract equations
 Author: Vishesh Prasad
 Modification Log:
     February 10, 2024: create file and extract equations from html successfully 
+    February 26, 2024: use the words between equations to build the derivation tree
+    March 4, 2024: implement naive bayes equation similarity
 '''
 
 from bs4 import BeautifulSoup
 import os
 import re
 import article_parser
+import sys
+import random
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 """
 extract_equations(html_content)
 Input: html_content -- html content for current article that needs to be parsed
 Return: equations -- equations that were found in the article
-Function: Find and return all the equations, their ids, and equation content from the given article
+        words_between_equations -- words that occur between the equations in the article
+Function: Find and return all the equations, their ids, equation content, and words between equations from the given article
 """
 def extract_equations(html_content):
     # Parse HTML content using BeautifulSoup
@@ -23,39 +30,67 @@ def extract_equations(html_content):
 
     # Dictionary to store equations
     equations = {}
-
+    
+    # List to store words that occur between equations
+    words_between_equations = []
+    last_eq_id = "none"
+    last_update_id = "none"
+    
     # Define the pattern to match equations
     pattern = re.compile(r'S(\d+)\.E(\d+)')
     # pattern_2 = re.compile(r'S(\d+)\.Ex(\d+)')
 
     # Iterate through all 'math' elements in the HTML
-    for mathml in soup.find_all('math'):
-        # Get equation ID and alt text attributes
-        equation_id = mathml.get('id', '')
-        alttext = mathml.get('alttext', '')
+    # for mathml in soup.find_all('math'):
+    for item in soup.recursiveChildGenerator():
+        if item.name == 'math':
+            # Get equation ID and alt text attributes
+            equation_id = item.get('id', '')
+            alttext = item.get('alttext', '')
 
-        # Check if the equation ID matches the defined pattern
-        match = pattern.search(equation_id)
-        # match_2 = pattern_2.search(equation_id)
-        if match:
-            # Extract section and equation numbers from the matched pattern
-            section_number, equation_number = match.groups()
-            equation_key = f"S{section_number}.E{equation_number}"
+            # Check if the equation ID matches the defined pattern
+            match = pattern.search(equation_id)
+            # match_2 = pattern_2.search(equation_id)
+            if match:
+                # Extract section and equation numbers from the matched pattern
+                section_number, equation_number = match.groups()
+                equation_key = f"S{section_number}.E{equation_number}"
+                last_eq_id = equation_id
 
-             # Create an entry in the dictionary for the equation if not present
-            if equation_key not in equations:
-                equations[equation_key] = {
-                    'section_number': int(section_number),
-                    'equation_number': int(equation_number),
-                    'equations': [],
-                }
+                # Create an entry in the dictionary for the equation if not present
+                if equation_key not in equations:
+                    equations[equation_key] = {
+                        'section_number': int(section_number),
+                        'equation_number': int(equation_number),
+                        'equations': [],
+                    }
 
-            # Add the equation details to the list of equations for the current key
-            equations[equation_key]['equations'].append({
-                'mathml': str(mathml),
-                'equation_id': equation_id,
-                'alttext': alttext,
-            })
+                # Add the equation details to the list of equations for the current key
+                equations[equation_key]['equations'].append({
+                    'mathml': str(item),
+                    'equation_id': equation_id,
+                    'alttext': alttext,
+                })
+
+        # If string
+        elif isinstance(item, str):
+            # If before any equation
+            if last_eq_id == "none":
+                # If already found words
+                if words_between_equations:
+                    words_between_equations[-1] += item
+                else: 
+                    words_between_equations.append(item)
+            else:
+                # If new equation found
+                if last_eq_id != last_update_id:
+                    words_between_equations.append(item)
+                else:
+                    words_between_equations[-1] += item
+            # Equation when updated
+            last_update_id = last_eq_id
+
+
     
         """Playground: """
         # elif len(equations) == 0 and match_2:
@@ -78,7 +113,7 @@ def extract_equations(html_content):
         #         'alttext': alttext,
         #     })
 
-    return equations
+    return equations, words_between_equations
 
 
 
@@ -181,26 +216,76 @@ def equation_similarity_adjacency_list(similarity_matrix, equation_order, simila
                 else:
                     equation_adjacency_list[equation_order[j]].append(equation_order[i])
 
-            """Playground: """
-            # if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
-            #     if similarity_matrix[i][j] < similarity_matrix[j][i]:
-            #         equation_adjacency_list[equation_order[i]].append(equation_order[j])
-
-            #         # Check for cycles
-            #         if has_cycle(equation_adjacency_list, {equation: False for equation in equation_order}, equation_order[i], None):
-            #             equation_adjacency_list[equation_order[i]].remove(equation_order[j])
-            #     else:
-            #         equation_adjacency_list[equation_order[j]].append(equation_order[i])
-
-            #         # Check for cycles
-            #         if has_cycle(equation_adjacency_list, {equation: False for equation in equation_order}, equation_order[j], None):
-            #             equation_adjacency_list[equation_order[j]].remove(equation_order[i])
-
     return equation_adjacency_list
 
 
 
-"Accuracy Script"
+"""
+bayes_classifier(article_ids, articles_used, extract_equations, extracted_words_between_equations)
+Input: article_ids -- dictionary with info on all articles from articles.json
+       articles_used -- list of articles where equations were extracted correctly
+       extracted_equations -- list of equations that were successfully extracted
+       extracted_words_between_equation -- list of list of words that occur between equations
+Return: true_adjacency_lists -- list of labeled adjacency lists used in the test phase of the naive bayes algorithm
+        predicted_adjacency_lists -- list of predicted adjacency lists resulting from the test phase of the naive bayes algorithm
+Function: Predict adjacency list using the naive bayes algorithm
+"""
+def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations):
+    # Initialize lists to store true and predicted adjacency lists
+    true_adjacency_lists = []
+    predicted_adjacency_lists = []
+
+    # Split the data set into test and train
+    num_articles = len(articles_used)
+    train_random_indices = random.sample(range(num_articles), num_articles // 2)
+
+    # Prepare data for the naive Bayes algorithm
+    training_data = []
+    training_labels = []
+    train_selected_articles = set()
+    for i in train_random_indices:
+        training_labels.append(str(article_ids[articles_used[i]]["Adjacency List"]))
+        training_data.append(' '.join([combine_sub_equations(extracted_equations[i][cur_equation]) for cur_equation in extracted_equations[i]] + extracted_words_between_equations[i]))
+        train_selected_articles.add(articles_used[i])
+    
+    # Train the naive Bayes classifier
+    vectorizer = CountVectorizer()
+    X_train = vectorizer.fit_transform(training_data)
+    y_train = [int(label) for label in training_labels]
+
+    classifier = MultinomialNB()
+    classifier.fit(X_train, y_train)
+
+    # Predict adjacency lists for the remaining articles
+    for article_id in article_ids:
+        if article_id not in train_selected_articles:
+            equations = extracted_equations[articles_used.index(article_id)]
+            words_between_eqs = extracted_words_between_equations[articles_used.index(article_id)]
+
+            # Convert equations and words between equations to a single string
+            text_data = ' '.join(equations + words_between_eqs)
+
+            # Transform the data using the same vectorizer used during training
+            X_test = vectorizer.transform([text_data])
+
+            # Predict the adjacency list using the trained classifier
+            predicted_adjacency_list = classifier.predict(X_test)[0]
+
+            # Append the true and predicted adjacency lists to the result
+            true_adjacency_lists.append(article_ids[article_id]["Adjacency List"])
+            predicted_adjacency_lists.append(predicted_adjacency_list)
+
+    return true_adjacency_lists, predicted_adjacency_lists
+
+
+
+"""
+evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
+Input: true_adjacency_lists -- labeled adjacency list
+       predicted_adjacency_lists -- predicted adjacency list for algorithm
+Return: accuracy, precision, recall, f1_score
+Function: Evaluate accuracy of classification
+"""
 def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     true_positive = 0
     true_negative = 0
@@ -226,16 +311,17 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
     f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
-    return accuracy, precision, recall, f1_score, 
+    return accuracy, precision, recall, f1_score
+
 
 
 """
 run_equation_similarity()
-Input: none
+Input: algorithm_option -- type of equation similarity to run
 Return: none
 Function: Find the equations in articles and construct a tree depending on equation similarity
 """
-def run_equation_similarity():
+def run_equation_similarity(algorithm_option):
     # Get a list of manually parsed article IDs
     article_ids = article_parser.get_manually_parsed_articles()
 
@@ -244,6 +330,8 @@ def run_equation_similarity():
     equation_orders = []
     true_adjacency_lists = []
     predicted_adjacency_lists = []
+    extracted_words_between_equations = []
+    articles_used = []
     
 
     # Iterate through article IDs
@@ -258,57 +346,47 @@ def run_equation_similarity():
                 html_content = file.read()
                 
             # Extract equations from the HTML content
-            equations = extract_equations(html_content)
-            extracted_equations.append(equations)
+            equations, words_between_equations = extract_equations(html_content)
 
             # If extracted correctly, compute similarity
             if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
-                computed_similarity, equation_order = equation_similarity_percentages(equations)
-                # print(cur_article_id)
-                # print(equation_order)
-                # for row in computed_similarity:
-                #     print(' '.join(f'{percentage:.2f}' for percentage in row))
-                
-                computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, 85)
-                # print(computed_adjacency_list)
+                extracted_equations.append(equations)
+                extracted_words_between_equations.append(words_between_equations)
+                articles_used.append(cur_article_id)
 
-                computed_similarities.append(computed_similarity)
-                equation_orders.append(equation_order)
-                true_adjacency_lists.append(cur_article["Adjacency List"])
-                predicted_adjacency_lists.append(computed_adjacency_list)
+                if algorithm_option == 'string':
+                    computed_similarity, equation_order = equation_similarity_percentages(equations)
+                    # print(cur_article_id)
+                    # print(equation_order)
+                    # for row in computed_similarity:
+                    #     print(' '.join(f'{percentage:.2f}' for percentage in row))
+                    
+                    computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, 85)
+                    # print(computed_adjacency_list)
 
-            
-            """ Debugging: """
-            # for equation_key, equation_data in equations.items():
-            #     print(f"Equation: {equation_key}")
-            #     for subequation in equation_data['equations']:
-            #         print(f"  Equation ID: {subequation['equation_id']}")
-            #     print("---")
-
-            # if len(cur_article["Equation ID"]) != len(equations):
-            #     print(f"Equation ID: {cur_article_id} not same")
-            #     print(len(cur_article["Equation ID"]))
-            #     print(len(equations))
-            #     print(cur_article["Equation ID"])
-            #     for equation_key, equation_data in equations.items():
-            #         print(f"Equation: {equation_key}")
-            #         for subequation in equation_data['equations']:
-            #             print(f"  Equation ID: {subequation['equation_id']}")
-            #         print("---")
-
-            # else:
-            #     continue
-            #     print(f"Equation ID: {cur_article_id} same")
+                    computed_similarities.append(computed_similarity)
+                    equation_orders.append(equation_order)
+                    true_adjacency_lists.append(cur_article["Adjacency List"])
+                    predicted_adjacency_lists.append(computed_adjacency_list)
 
         else:
             # No html for article found
             print(f"HTML file {html_path} not found")
+
+    # Run Bayes algorithm
+    if algorithm_option == 'bayes':
+        true_adjacency_lists, predicted_adjacency_lists = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations)
     
+    # Get accuracy numbers
     similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
     print("*-----------------------------------------------------------*")
     print("Equation Similarity Algorithm Correctness: ")
     print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists)}")
+    if algorithm_option == 'string':
+        print(f"Method used: String Similarity")
+    elif algorithm_option == 'bayes':
+        print(f"Method used: Bayes Classifier")
     print(f"Accuracy: {similarity_accuracy:.8f}")
     print(f"Precision: {similarity_precision:.8f}")
     print(f"Recall: {similarity_recall:.8f}")
@@ -323,4 +401,16 @@ Entry point for equation_similarity.py
 Runs run_derivation_algo()
 """
 if __name__ == '__main__':
-    run_equation_similarity()
+    # Read in argument for which equation similarity algorithm to run
+    if len(sys.argv) != 2:
+        print("Incorrect call, Usage: python3 equation_similarity.py <algorithm>")
+        sys.exit(1)
+
+    algorithm_option = sys.argv[1].lower()
+
+    if algorithm_option not in ['bayes', 'string']:
+        print("Invalid algorithm option. Choose 'bayes' or 'string'.")
+        sys.exit(1)
+    
+    # Call corresponding equation similarity function
+    run_equation_similarity(algorithm_option)

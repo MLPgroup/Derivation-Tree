@@ -1,0 +1,1059 @@
+<!DOCTYPE html><html>
+<head>
+<title>A Novel Propulsion Method of Flexible Underwater Robots</title>
+<!--Generated on Mon Jul  1 18:22:41 2019 by LaTeXML (version 0.8.4) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">A Novel Propulsion Method of Flexible Underwater Robots</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">Jun Shintake, Aiguo Ming and Makoto Shimojo
+
+
+</span><span class="ltx_author_notes"><span>
+<span class="ltx_contact ltx_role_affiliation">Department of Mechanical Engineering and Intelligent Systems
+<br class="ltx_break">The University of Electro-Communications
+<br class="ltx_break">1-5-1 Chofugaoka, Chofu-shi, Tokyo 182-8585, Japan
+<br class="ltx_break">Email: shintake@rm.mce.uec.ac.jp, ming@mce.uec.ac.jp, shimojo@mce.uec.ac.jp
+</span></span></span></span>
+</div>
+
+<div class="ltx_abstract">
+<h6 class="ltx_title ltx_title_abstract">Abstract</h6>
+<p id="id1" class="ltx_p">This paper presents aims at mobility improvement of flexible underwater robots.
+For this purpose, a novel propulsion method using planar structural vibration pattern is proposed, and tested on two kinds of prototypes.
+The result of experiments showed the possibility of the movements for multiple directions:
+forward, backward, turn, rotation, drift, and their combination.
+These movements are achieved by only one structure with two actuators.
+The results also indicated the possibility of driving using eigenmodes since movements were concentrated on low driving frequency area.
+To investigate the relation between movement and structural vibration pattern, we established a simulation model.</p>
+</div>
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">I </span><span id="S1.1" class="ltx_text ltx_font_smallcaps">Introduction</span>
+</h2>
+
+<div id="S1.p1" class="ltx_para">
+<p id="S1.p1.1" class="ltx_p">In recent years, underwater robots come to be used for
+exploration, observation, research, and salvage.</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p id="S1.p2.1" class="ltx_p">Underwater creatures are capable of high movement performance
+in water and they have various forms, so it can be said
+that underwater robot design based on the movement mechanism
+of the underwater creatures is an effective method.</p>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p id="S1.p3.1" class="ltx_p">Over the past few years, many researches have been
+done on developing fish type bio-mimetic robot as one form of underwater
+robot based on creatures’ swimming mechanism [1]-[3].
+Most of the fish type robots developed up to now have complicated mechanisms using motors combined with cranks
+etc., and the control of the robots is also complicated [4], [5].
+The movement of the robots is like a mechanical one, it is considered that the performance of the robots is limited due to lack of flexibility and fluency[6].
+Therefore, taking a creature-like flexibility to the whole structure of the robots have attracted attention recently.
+For this, applying the soft actuators as an artificial muscle to the robots have been attempted[7]-[10].</p>
+</div>
+<div id="S1.p4" class="ltx_para">
+<p id="S1.p4.1" class="ltx_p">We also have studied such flexible underwater robots using piezoelectric fiber composites as a soft actuator [11], [12].
+The new type of piezoelectric fiber composite we noticed has flexibility, large displacement and high mechanical force.
+Compared with conventional artificial muscles, piezoelectric fiber composite can be used for composing powerful underwater robots with a very simple and compact structure.
+For example, an underwater robot can be made to behave like a genuine fish with only one piece of piezoelectric fiber composite and a thin structural plate.
+For such a structure, a flexible and fluent motion can be achieved and it has reduced fluid resistance and adaptability for narrow space.
+The piezoelectric fiber composite can be used for actuating, sensing and energy harvesting.
+Therefore, there is possibility to realize an intelligent underwater robot with intelligent motion control in the future.</p>
+</div>
+<div id="S1.p5" class="ltx_para">
+<p id="S1.p5.1" class="ltx_p">We developed fish like flexible underwater robots by meandering propulsion,
+which is capable of fast motion(0.32m/s, 2.9BL/s) and planar motion [11].
+Also, we have tried to improve the mobility performance of these robots,
+the robot using caudal fin propulsion was developed and more fast motion (0.72m/s, 4.3BL/s) and pitch/roll motion were demonstrated up to now [12].</p>
+</div>
+<div id="S1.p6" class="ltx_para">
+<p id="S1.p6.1" class="ltx_p">This paper aims further improvement of the mobility performance of flexible underwater robots. Different with the conventional propulsion methods of the underwater robots up to now, we propose a novel propulsion method utilizing both static and dynamic deformation of a flexible planar structure. By actuating the planar structure in two dimensions, various propulsive motions can be generated. And the realization of various robotic movements, such as movements with multiple DOFs, holonomic and non-holonomic movements, can be expected.
+First, the basic feature of piezoelectric fiber composite is introduced in section II.
+And a novel propulsion method is described in section III.
+Two kinds of robots based on the propulsion method are shown in section IV, and the result of experiments is shown in section V.
+The discussion using FEM simulation on the results is described in section VI. Section VII summarizes the results.</p>
+</div>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">II </span><span id="S2.1" class="ltx_text ltx_font_smallcaps">Piezoelectric fiber composite</span>
+</h2>
+
+<div id="S2.p1" class="ltx_para">
+<p id="S2.p1.1" class="ltx_p">We used one of the typical piezoelectric fiber composites, Macro Fiber Composite (MFC [13]) for this study.
+Fig.<a href="#S2.F1" title="Fig. 1 ‣ II Piezoelectric fiber composite ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> shows the structure of MFC.
+With structural features such as rectangular piezoceramic fibers and interdigitated
+electrode pattern on the polyimide film, this structure has
+better flexibility and large strain compare to conventional piezoelectric actuators.
+When a voltage is applied, this actuator expands and contracts in the direction of the fibers.
+If the actuator is attached to thin structure, it will realize the bending motion like a swimming motion of creatures,
+and also gives a resonant behavior with large displacement.</p>
+</div>
+<figure id="S2.F1" class="ltx_figure">
+<div id="S2.F1.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="MFCstructure1.png" id="S2.F1.1.g1" class="ltx_graphics" width="4362" height="1778" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 1: </span>Structure of Macro Fiber Composite</figcaption>
+</figure>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">III </span><span id="S3.1" class="ltx_text ltx_font_smallcaps">Propulsion method</span>
+</h2>
+
+<section id="S3.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S3.SS1.4" class="ltx_text">III-A</span> </span><span id="S3.SS1.5" class="ltx_text ltx_font_italic">Concept</span>
+</h3>
+
+<div id="S3.SS1.p1" class="ltx_para">
+<p id="S3.SS1.p1.1" class="ltx_p">In our previous work, robotic motion of one-dimensional vibration mode like Fig.<a href="#S3.F2" title="Fig. 2 ‣ III-A Concept ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>(a) has been considered.
+The propulsion method to be proposed is that, extending robotic motion from one-dimensional to two-dimensional like Fig.<a href="#S3.F2" title="Fig. 2 ‣ III-A Concept ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>(b).</p>
+</div>
+<figure id="S3.F2" class="ltx_figure">
+<div id="S3.F2.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="kakuchou.png" id="S3.F2.1.g1" class="ltx_graphics" width="2612" height="1122" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 2: </span>Robotic motions, (a): one-dimensional mode, (b): two-dimensional mode.</figcaption>
+</figure>
+<div id="S3.SS1.p2" class="ltx_para">
+<p id="S3.SS1.p2.1" class="ltx_p">This method can be used in planar structure such as thin plate and membrane, because there exist various vibration modes in this kind of structure.
+Fig.<a href="#S3.F3" title="Fig. 3 ‣ III-A Concept ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> shows typical eigenmodes of a rectangular plate.
+If these modes are excited in the water, there is possibility to generate fluid-flows for particular direction movement corresponding to each mode.
+Moreover, in planar structure, it is considered that we can get more vibration patterns by combining several modes generated by multiple actuations on the structure, shown as Fig.<a href="#S3.F4" title="Fig. 4 ‣ III-A Concept ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>.
+In this study, we call this crossing actuation as ”cross-mode”.</p>
+</div>
+<figure id="S3.F3" class="ltx_figure">
+<div id="S3.F3.1" class="ltx_block ltx_align_center" style="width:199.2pt;vertical-align:-0.0pt;">
+<img src="itamode.png" id="S3.F3.1.g1" class="ltx_graphics" width="1218" height="694" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 3: </span>Eigenmodes of rectangular plate</figcaption>
+</figure>
+<figure id="S3.F4" class="ltx_figure">
+<div id="S3.F4.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="gousei3.png" id="S3.F4.1.g1" class="ltx_graphics" width="2407" height="1401" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 4: </span>The cross-mode</figcaption>
+</figure>
+</section>
+<section id="S3.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S3.SS2.4" class="ltx_text">III-B</span> </span><span id="S3.SS2.5" class="ltx_text ltx_font_italic">Actuation method</span>
+</h3>
+
+<div id="S3.SS2.p1" class="ltx_para">
+<p id="S3.SS2.p1.1" class="ltx_p">It is considered that the cross-mode should be complicated,
+and it is difficult to control by actuation for general shape structures.
+One of the methods to solve this problem is using the degenerate mode to control the cross-mode.
+It is known that the degenerate mode appears on symmetric shapes such as rectangular and circular,
+where there are two modes with one eigenfrequency.</p>
+</div>
+<figure id="S3.F5" class="ltx_figure">
+<div id="S3.F5.1" class="ltx_block ltx_align_center" style="width:142.3pt;vertical-align:-0.0pt;">
+<img src="itanob.png" id="S3.F5.1.g1" class="ltx_graphics" width="426" height="373" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 5: </span>Coordinate system of a rectangular plate</figcaption>
+</figure>
+<div id="S3.SS2.p2" class="ltx_para">
+<p id="S3.SS2.p2.1" class="ltx_p">In Fig.<a href="#S3.F5" title="Fig. 5 ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5</span></a>, the equation of the vibration of a thin plate as a planar structure is</p>
+</div>
+<div id="S3.SS2.p3" class="ltx_para">
+<table id="S3.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E1.m1.1" class="ltx_Math" alttext="D\left(\frac{{\partial}^{4}w}{\partial{x^{4}}}+2\frac{{\partial}^{4}w}{%
+\partial{x^{2}}\partial{y^{2}}}+\frac{{\partial}^{4}w}{\partial{y^{4}}}\right)%
++\mu\frac{{\partial}^{2}w}{\partial{t^{2}}}-q_{z}(x,y,t)=0" display="block"><semantics id="S3.E1.m1.1a"><mrow id="S3.E1.m1.1.25" xref="S3.E1.m1.1.25.cmml"><mrow id="S3.E1.m1.1.25.1" xref="S3.E1.m1.1.25.1.cmml"><mrow id="S3.E1.m1.1.25.1.1" xref="S3.E1.m1.1.25.1.1.cmml"><mrow id="S3.E1.m1.1.25.1.1.1" xref="S3.E1.m1.1.25.1.1.1.cmml"><mi id="S3.E1.m1.1.1" xref="S3.E1.m1.1.1.cmml">D</mi><mo id="S3.E1.m1.1.25.1.1.1.1" xref="S3.E1.m1.1.25.1.1.1.1.cmml">⁢</mo><mrow id="S3.E1.m1.1.25.1.1.1.2" xref="S3.E1.m1.1.25.1.1.1.2.2.cmml"><mo id="S3.E1.m1.1.2" xref="S3.E1.m1.1.25.1.1.1.2.2.cmml">(</mo><mrow id="S3.E1.m1.1.25.1.1.1.2.2" xref="S3.E1.m1.1.25.1.1.1.2.2.cmml"><mfrac id="S3.E1.m1.1.3" xref="S3.E1.m1.1.3.cmml"><mrow id="S3.E1.m1.1.3.2" xref="S3.E1.m1.1.3.2.cmml"><msup id="S3.E1.m1.1.3.2.4" xref="S3.E1.m1.1.3.2.4.cmml"><mo id="S3.E1.m1.1.3.2.1" xref="S3.E1.m1.1.3.2.1.cmml">∂</mo><mn id="S3.E1.m1.1.3.2.2.1" xref="S3.E1.m1.1.3.2.2.1.cmml">4</mn></msup><mo id="S3.E1.m1.1.3.2a" xref="S3.E1.m1.1.3.2.cmml">⁡</mo><mi id="S3.E1.m1.1.3.2.3" xref="S3.E1.m1.1.3.2.3.cmml">w</mi></mrow><mrow id="S3.E1.m1.1.3.3" xref="S3.E1.m1.1.3.3.cmml"><mo id="S3.E1.m1.1.3.3.1" xref="S3.E1.m1.1.3.3.1.cmml">∂</mo><mo id="S3.E1.m1.1.3.3a" xref="S3.E1.m1.1.3.3.cmml">⁡</mo><msup id="S3.E1.m1.1.3.3.4" xref="S3.E1.m1.1.3.3.4.cmml"><mi id="S3.E1.m1.1.3.3.2" xref="S3.E1.m1.1.3.3.2.cmml">x</mi><mn id="S3.E1.m1.1.3.3.3.1" xref="S3.E1.m1.1.3.3.3.1.cmml">4</mn></msup></mrow></mfrac><mo id="S3.E1.m1.1.4" xref="S3.E1.m1.1.4.cmml">+</mo><mrow id="S3.E1.m1.1.25.1.1.1.2.2.1" xref="S3.E1.m1.1.25.1.1.1.2.2.1.cmml"><mn id="S3.E1.m1.1.5" xref="S3.E1.m1.1.5.cmml">2</mn><mo id="S3.E1.m1.1.25.1.1.1.2.2.1.1" xref="S3.E1.m1.1.25.1.1.1.2.2.1.1.cmml">⁢</mo><mfrac id="S3.E1.m1.1.6" xref="S3.E1.m1.1.6.cmml"><mrow id="S3.E1.m1.1.6.2" xref="S3.E1.m1.1.6.2.cmml"><msup id="S3.E1.m1.1.6.2.4" xref="S3.E1.m1.1.6.2.4.cmml"><mo id="S3.E1.m1.1.6.2.1" xref="S3.E1.m1.1.6.2.1.cmml">∂</mo><mn id="S3.E1.m1.1.6.2.2.1" xref="S3.E1.m1.1.6.2.2.1.cmml">4</mn></msup><mo id="S3.E1.m1.1.6.2a" xref="S3.E1.m1.1.6.2.cmml">⁡</mo><mi id="S3.E1.m1.1.6.2.3" xref="S3.E1.m1.1.6.2.3.cmml">w</mi></mrow><mrow id="S3.E1.m1.1.6.3" xref="S3.E1.m1.1.6.3.cmml"><mrow id="S3.E1.m1.1.6.3.8" xref="S3.E1.m1.1.6.3.8.cmml"><mo id="S3.E1.m1.1.6.3.1" xref="S3.E1.m1.1.6.3.1.cmml">∂</mo><mo id="S3.E1.m1.1.6.3.8a" xref="S3.E1.m1.1.6.3.8.cmml">⁡</mo><msup id="S3.E1.m1.1.6.3.8.1" xref="S3.E1.m1.1.6.3.8.1.cmml"><mi id="S3.E1.m1.1.6.3.2" xref="S3.E1.m1.1.6.3.2.cmml">x</mi><mn id="S3.E1.m1.1.6.3.3.1" xref="S3.E1.m1.1.6.3.3.1.cmml">2</mn></msup></mrow><mo id="S3.E1.m1.1.6.3.7" xref="S3.E1.m1.1.6.3.7.cmml">⁢</mo><mrow id="S3.E1.m1.1.6.3.9" xref="S3.E1.m1.1.6.3.9.cmml"><mo id="S3.E1.m1.1.6.3.4" xref="S3.E1.m1.1.6.3.4.cmml">∂</mo><mo id="S3.E1.m1.1.6.3.9a" xref="S3.E1.m1.1.6.3.9.cmml">⁡</mo><msup id="S3.E1.m1.1.6.3.9.1" xref="S3.E1.m1.1.6.3.9.1.cmml"><mi id="S3.E1.m1.1.6.3.5" xref="S3.E1.m1.1.6.3.5.cmml">y</mi><mn id="S3.E1.m1.1.6.3.6.1" xref="S3.E1.m1.1.6.3.6.1.cmml">2</mn></msup></mrow></mrow></mfrac></mrow><mo id="S3.E1.m1.1.4a" xref="S3.E1.m1.1.4.cmml">+</mo><mfrac id="S3.E1.m1.1.8" xref="S3.E1.m1.1.8.cmml"><mrow id="S3.E1.m1.1.8.2" xref="S3.E1.m1.1.8.2.cmml"><msup id="S3.E1.m1.1.8.2.4" xref="S3.E1.m1.1.8.2.4.cmml"><mo id="S3.E1.m1.1.8.2.1" xref="S3.E1.m1.1.8.2.1.cmml">∂</mo><mn id="S3.E1.m1.1.8.2.2.1" xref="S3.E1.m1.1.8.2.2.1.cmml">4</mn></msup><mo id="S3.E1.m1.1.8.2a" xref="S3.E1.m1.1.8.2.cmml">⁡</mo><mi id="S3.E1.m1.1.8.2.3" xref="S3.E1.m1.1.8.2.3.cmml">w</mi></mrow><mrow id="S3.E1.m1.1.8.3" xref="S3.E1.m1.1.8.3.cmml"><mo id="S3.E1.m1.1.8.3.1" xref="S3.E1.m1.1.8.3.1.cmml">∂</mo><mo id="S3.E1.m1.1.8.3a" xref="S3.E1.m1.1.8.3.cmml">⁡</mo><msup id="S3.E1.m1.1.8.3.4" xref="S3.E1.m1.1.8.3.4.cmml"><mi id="S3.E1.m1.1.8.3.2" xref="S3.E1.m1.1.8.3.2.cmml">y</mi><mn id="S3.E1.m1.1.8.3.3.1" xref="S3.E1.m1.1.8.3.3.1.cmml">4</mn></msup></mrow></mfrac></mrow><mo id="S3.E1.m1.1.9" xref="S3.E1.m1.1.25.1.1.1.2.2.cmml">)</mo></mrow></mrow><mo id="S3.E1.m1.1.10" xref="S3.E1.m1.1.10.cmml">+</mo><mrow id="S3.E1.m1.1.25.1.1.2" xref="S3.E1.m1.1.25.1.1.2.cmml"><mi id="S3.E1.m1.1.11" xref="S3.E1.m1.1.11.cmml">μ</mi><mo id="S3.E1.m1.1.25.1.1.2.1" xref="S3.E1.m1.1.25.1.1.2.1.cmml">⁢</mo><mfrac id="S3.E1.m1.1.12" xref="S3.E1.m1.1.12.cmml"><mrow id="S3.E1.m1.1.12.2" xref="S3.E1.m1.1.12.2.cmml"><msup id="S3.E1.m1.1.12.2.4" xref="S3.E1.m1.1.12.2.4.cmml"><mo id="S3.E1.m1.1.12.2.1" xref="S3.E1.m1.1.12.2.1.cmml">∂</mo><mn id="S3.E1.m1.1.12.2.2.1" xref="S3.E1.m1.1.12.2.2.1.cmml">2</mn></msup><mo id="S3.E1.m1.1.12.2a" xref="S3.E1.m1.1.12.2.cmml">⁡</mo><mi id="S3.E1.m1.1.12.2.3" xref="S3.E1.m1.1.12.2.3.cmml">w</mi></mrow><mrow id="S3.E1.m1.1.12.3" xref="S3.E1.m1.1.12.3.cmml"><mo id="S3.E1.m1.1.12.3.1" xref="S3.E1.m1.1.12.3.1.cmml">∂</mo><mo id="S3.E1.m1.1.12.3a" xref="S3.E1.m1.1.12.3.cmml">⁡</mo><msup id="S3.E1.m1.1.12.3.4" xref="S3.E1.m1.1.12.3.4.cmml"><mi id="S3.E1.m1.1.12.3.2" xref="S3.E1.m1.1.12.3.2.cmml">t</mi><mn id="S3.E1.m1.1.12.3.3.1" xref="S3.E1.m1.1.12.3.3.1.cmml">2</mn></msup></mrow></mfrac></mrow></mrow><mo id="S3.E1.m1.1.13" xref="S3.E1.m1.1.13.cmml">-</mo><mrow id="S3.E1.m1.1.25.1.2" xref="S3.E1.m1.1.25.1.2.cmml"><msub id="S3.E1.m1.1.25.1.2.2" xref="S3.E1.m1.1.25.1.2.2.cmml"><mi id="S3.E1.m1.1.14" xref="S3.E1.m1.1.14.cmml">q</mi><mi id="S3.E1.m1.1.15.1" xref="S3.E1.m1.1.15.1.cmml">z</mi></msub><mo id="S3.E1.m1.1.25.1.2.1" xref="S3.E1.m1.1.25.1.2.1.cmml">⁢</mo><mrow id="S3.E1.m1.1.25.1.2.3" xref="S3.E1.m1.1.25.1.2.3.1.cmml"><mo stretchy="false" id="S3.E1.m1.1.16" xref="S3.E1.m1.1.25.1.2.3.1.cmml">(</mo><mi id="S3.E1.m1.1.17" xref="S3.E1.m1.1.17.cmml">x</mi><mo id="S3.E1.m1.1.18" xref="S3.E1.m1.1.25.1.2.3.1.cmml">,</mo><mi id="S3.E1.m1.1.19" xref="S3.E1.m1.1.19.cmml">y</mi><mo id="S3.E1.m1.1.20" xref="S3.E1.m1.1.25.1.2.3.1.cmml">,</mo><mi id="S3.E1.m1.1.21" xref="S3.E1.m1.1.21.cmml">t</mi><mo stretchy="false" id="S3.E1.m1.1.22" xref="S3.E1.m1.1.25.1.2.3.1.cmml">)</mo></mrow></mrow></mrow><mo id="S3.E1.m1.1.23" xref="S3.E1.m1.1.23.cmml">=</mo><mn id="S3.E1.m1.1.24" xref="S3.E1.m1.1.24.cmml">0</mn></mrow><annotation-xml encoding="MathML-Content" id="S3.E1.m1.1b"><apply id="S3.E1.m1.1.25.cmml" xref="S3.E1.m1.1.25"><eq id="S3.E1.m1.1.23.cmml" xref="S3.E1.m1.1.23"></eq><apply id="S3.E1.m1.1.25.1.cmml" xref="S3.E1.m1.1.25.1"><minus id="S3.E1.m1.1.13.cmml" xref="S3.E1.m1.1.13"></minus><apply id="S3.E1.m1.1.25.1.1.cmml" xref="S3.E1.m1.1.25.1.1"><plus id="S3.E1.m1.1.10.cmml" xref="S3.E1.m1.1.10"></plus><apply id="S3.E1.m1.1.25.1.1.1.cmml" xref="S3.E1.m1.1.25.1.1.1"><times id="S3.E1.m1.1.25.1.1.1.1.cmml" xref="S3.E1.m1.1.25.1.1.1.1"></times><ci id="S3.E1.m1.1.1.cmml" xref="S3.E1.m1.1.1">𝐷</ci><apply id="S3.E1.m1.1.25.1.1.1.2.2.cmml" xref="S3.E1.m1.1.25.1.1.1.2"><plus id="S3.E1.m1.1.4.cmml" xref="S3.E1.m1.1.4"></plus><apply id="S3.E1.m1.1.3.cmml" xref="S3.E1.m1.1.3"><divide id="S3.E1.m1.1.3.1.cmml" xref="S3.E1.m1.1.3"></divide><apply id="S3.E1.m1.1.3.2.cmml" xref="S3.E1.m1.1.3.2"><apply id="S3.E1.m1.1.3.2.4.cmml" xref="S3.E1.m1.1.3.2.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.3.2.4.1.cmml" xref="S3.E1.m1.1.3.2.4">superscript</csymbol><partialdiff id="S3.E1.m1.1.3.2.1.cmml" xref="S3.E1.m1.1.3.2.1"></partialdiff><cn type="integer" id="S3.E1.m1.1.3.2.2.1.cmml" xref="S3.E1.m1.1.3.2.2.1">4</cn></apply><ci id="S3.E1.m1.1.3.2.3.cmml" xref="S3.E1.m1.1.3.2.3">𝑤</ci></apply><apply id="S3.E1.m1.1.3.3.cmml" xref="S3.E1.m1.1.3.3"><partialdiff id="S3.E1.m1.1.3.3.1.cmml" xref="S3.E1.m1.1.3.3.1"></partialdiff><apply id="S3.E1.m1.1.3.3.4.cmml" xref="S3.E1.m1.1.3.3.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.3.3.4.1.cmml" xref="S3.E1.m1.1.3.3.4">superscript</csymbol><ci id="S3.E1.m1.1.3.3.2.cmml" xref="S3.E1.m1.1.3.3.2">𝑥</ci><cn type="integer" id="S3.E1.m1.1.3.3.3.1.cmml" xref="S3.E1.m1.1.3.3.3.1">4</cn></apply></apply></apply><apply id="S3.E1.m1.1.25.1.1.1.2.2.1.cmml" xref="S3.E1.m1.1.25.1.1.1.2.2.1"><times id="S3.E1.m1.1.25.1.1.1.2.2.1.1.cmml" xref="S3.E1.m1.1.25.1.1.1.2.2.1.1"></times><cn type="integer" id="S3.E1.m1.1.5.cmml" xref="S3.E1.m1.1.5">2</cn><apply id="S3.E1.m1.1.6.cmml" xref="S3.E1.m1.1.6"><divide id="S3.E1.m1.1.6.1.cmml" xref="S3.E1.m1.1.6"></divide><apply id="S3.E1.m1.1.6.2.cmml" xref="S3.E1.m1.1.6.2"><apply id="S3.E1.m1.1.6.2.4.cmml" xref="S3.E1.m1.1.6.2.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.6.2.4.1.cmml" xref="S3.E1.m1.1.6.2.4">superscript</csymbol><partialdiff id="S3.E1.m1.1.6.2.1.cmml" xref="S3.E1.m1.1.6.2.1"></partialdiff><cn type="integer" id="S3.E1.m1.1.6.2.2.1.cmml" xref="S3.E1.m1.1.6.2.2.1">4</cn></apply><ci id="S3.E1.m1.1.6.2.3.cmml" xref="S3.E1.m1.1.6.2.3">𝑤</ci></apply><apply id="S3.E1.m1.1.6.3.cmml" xref="S3.E1.m1.1.6.3"><times id="S3.E1.m1.1.6.3.7.cmml" xref="S3.E1.m1.1.6.3.7"></times><apply id="S3.E1.m1.1.6.3.8.cmml" xref="S3.E1.m1.1.6.3.8"><partialdiff id="S3.E1.m1.1.6.3.1.cmml" xref="S3.E1.m1.1.6.3.1"></partialdiff><apply id="S3.E1.m1.1.6.3.8.1.cmml" xref="S3.E1.m1.1.6.3.8.1"><csymbol cd="ambiguous" id="S3.E1.m1.1.6.3.8.1.1.cmml" xref="S3.E1.m1.1.6.3.8.1">superscript</csymbol><ci id="S3.E1.m1.1.6.3.2.cmml" xref="S3.E1.m1.1.6.3.2">𝑥</ci><cn type="integer" id="S3.E1.m1.1.6.3.3.1.cmml" xref="S3.E1.m1.1.6.3.3.1">2</cn></apply></apply><apply id="S3.E1.m1.1.6.3.9.cmml" xref="S3.E1.m1.1.6.3.9"><partialdiff id="S3.E1.m1.1.6.3.4.cmml" xref="S3.E1.m1.1.6.3.4"></partialdiff><apply id="S3.E1.m1.1.6.3.9.1.cmml" xref="S3.E1.m1.1.6.3.9.1"><csymbol cd="ambiguous" id="S3.E1.m1.1.6.3.9.1.1.cmml" xref="S3.E1.m1.1.6.3.9.1">superscript</csymbol><ci id="S3.E1.m1.1.6.3.5.cmml" xref="S3.E1.m1.1.6.3.5">𝑦</ci><cn type="integer" id="S3.E1.m1.1.6.3.6.1.cmml" xref="S3.E1.m1.1.6.3.6.1">2</cn></apply></apply></apply></apply></apply><apply id="S3.E1.m1.1.8.cmml" xref="S3.E1.m1.1.8"><divide id="S3.E1.m1.1.8.1.cmml" xref="S3.E1.m1.1.8"></divide><apply id="S3.E1.m1.1.8.2.cmml" xref="S3.E1.m1.1.8.2"><apply id="S3.E1.m1.1.8.2.4.cmml" xref="S3.E1.m1.1.8.2.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.8.2.4.1.cmml" xref="S3.E1.m1.1.8.2.4">superscript</csymbol><partialdiff id="S3.E1.m1.1.8.2.1.cmml" xref="S3.E1.m1.1.8.2.1"></partialdiff><cn type="integer" id="S3.E1.m1.1.8.2.2.1.cmml" xref="S3.E1.m1.1.8.2.2.1">4</cn></apply><ci id="S3.E1.m1.1.8.2.3.cmml" xref="S3.E1.m1.1.8.2.3">𝑤</ci></apply><apply id="S3.E1.m1.1.8.3.cmml" xref="S3.E1.m1.1.8.3"><partialdiff id="S3.E1.m1.1.8.3.1.cmml" xref="S3.E1.m1.1.8.3.1"></partialdiff><apply id="S3.E1.m1.1.8.3.4.cmml" xref="S3.E1.m1.1.8.3.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.8.3.4.1.cmml" xref="S3.E1.m1.1.8.3.4">superscript</csymbol><ci id="S3.E1.m1.1.8.3.2.cmml" xref="S3.E1.m1.1.8.3.2">𝑦</ci><cn type="integer" id="S3.E1.m1.1.8.3.3.1.cmml" xref="S3.E1.m1.1.8.3.3.1">4</cn></apply></apply></apply></apply></apply><apply id="S3.E1.m1.1.25.1.1.2.cmml" xref="S3.E1.m1.1.25.1.1.2"><times id="S3.E1.m1.1.25.1.1.2.1.cmml" xref="S3.E1.m1.1.25.1.1.2.1"></times><ci id="S3.E1.m1.1.11.cmml" xref="S3.E1.m1.1.11">𝜇</ci><apply id="S3.E1.m1.1.12.cmml" xref="S3.E1.m1.1.12"><divide id="S3.E1.m1.1.12.1.cmml" xref="S3.E1.m1.1.12"></divide><apply id="S3.E1.m1.1.12.2.cmml" xref="S3.E1.m1.1.12.2"><apply id="S3.E1.m1.1.12.2.4.cmml" xref="S3.E1.m1.1.12.2.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.12.2.4.1.cmml" xref="S3.E1.m1.1.12.2.4">superscript</csymbol><partialdiff id="S3.E1.m1.1.12.2.1.cmml" xref="S3.E1.m1.1.12.2.1"></partialdiff><cn type="integer" id="S3.E1.m1.1.12.2.2.1.cmml" xref="S3.E1.m1.1.12.2.2.1">2</cn></apply><ci id="S3.E1.m1.1.12.2.3.cmml" xref="S3.E1.m1.1.12.2.3">𝑤</ci></apply><apply id="S3.E1.m1.1.12.3.cmml" xref="S3.E1.m1.1.12.3"><partialdiff id="S3.E1.m1.1.12.3.1.cmml" xref="S3.E1.m1.1.12.3.1"></partialdiff><apply id="S3.E1.m1.1.12.3.4.cmml" xref="S3.E1.m1.1.12.3.4"><csymbol cd="ambiguous" id="S3.E1.m1.1.12.3.4.1.cmml" xref="S3.E1.m1.1.12.3.4">superscript</csymbol><ci id="S3.E1.m1.1.12.3.2.cmml" xref="S3.E1.m1.1.12.3.2">𝑡</ci><cn type="integer" id="S3.E1.m1.1.12.3.3.1.cmml" xref="S3.E1.m1.1.12.3.3.1">2</cn></apply></apply></apply></apply></apply><apply id="S3.E1.m1.1.25.1.2.cmml" xref="S3.E1.m1.1.25.1.2"><times id="S3.E1.m1.1.25.1.2.1.cmml" xref="S3.E1.m1.1.25.1.2.1"></times><apply id="S3.E1.m1.1.25.1.2.2.cmml" xref="S3.E1.m1.1.25.1.2.2"><csymbol cd="ambiguous" id="S3.E1.m1.1.25.1.2.2.1.cmml" xref="S3.E1.m1.1.25.1.2.2">subscript</csymbol><ci id="S3.E1.m1.1.14.cmml" xref="S3.E1.m1.1.14">𝑞</ci><ci id="S3.E1.m1.1.15.1.cmml" xref="S3.E1.m1.1.15.1">𝑧</ci></apply><vector id="S3.E1.m1.1.25.1.2.3.1.cmml" xref="S3.E1.m1.1.25.1.2.3"><ci id="S3.E1.m1.1.17.cmml" xref="S3.E1.m1.1.17">𝑥</ci><ci id="S3.E1.m1.1.19.cmml" xref="S3.E1.m1.1.19">𝑦</ci><ci id="S3.E1.m1.1.21.cmml" xref="S3.E1.m1.1.21">𝑡</ci></vector></apply></apply><cn type="integer" id="S3.E1.m1.1.24.cmml" xref="S3.E1.m1.1.24">0</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E1.m1.1c">italic-D OPEN:( FRACOP:italic-divide ARG:start OPERATOR:partial-differential POSTSUPERSCRIPT:start NUMBER:4 POSTSUPERSCRIPT:end italic-w ARG:end ARG:start OPERATOR:partial-differential italic-x POSTSUPERSCRIPT:start NUMBER:4 POSTSUPERSCRIPT:end ARG:end ADDOP:plus NUMBER:2 FRACOP:italic-divide ARG:start OPERATOR:partial-differential POSTSUPERSCRIPT:start NUMBER:4 POSTSUPERSCRIPT:end italic-w ARG:end ARG:start OPERATOR:partial-differential italic-x POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end OPERATOR:partial-differential italic-y POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ADDOP:plus FRACOP:italic-divide ARG:start OPERATOR:partial-differential POSTSUPERSCRIPT:start NUMBER:4 POSTSUPERSCRIPT:end italic-w ARG:end ARG:start OPERATOR:partial-differential italic-y POSTSUPERSCRIPT:start NUMBER:4 POSTSUPERSCRIPT:end ARG:end CLOSE:) ADDOP:plus italic-mu FRACOP:italic-divide ARG:start OPERATOR:partial-differential POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end italic-w ARG:end ARG:start OPERATOR:partial-differential italic-t POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ADDOP:minus italic-q POSTSUBSCRIPT:start italic-z POSTSUBSCRIPT:end OPEN:( italic-x PUNCT:, italic-y PUNCT:, italic-t CLOSE:) RELOP:equals NUMBER:0</annotation><annotation encoding="application/x-tex" id="S3.E1.m1.1d">D\left(\frac{{\partial}^{4}w}{\partial{x^{4}}}+2\frac{{\partial}^{4}w}{%
+\partial{x^{2}}\partial{y^{2}}}+\frac{{\partial}^{4}w}{\partial{y^{4}}}\right)%
++\mu\frac{{\partial}^{2}w}{\partial{t^{2}}}-q_{z}(x,y,t)=0</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p4" class="ltx_para">
+<table id="S3.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E2.m1.1" class="ltx_Math" alttext="D=\frac{Eh^{3}}{12(1-\nu^{2})}" display="block"><semantics id="S3.E2.m1.1a"><mrow id="S3.E2.m1.1.4" xref="S3.E2.m1.1.4.cmml"><mi id="S3.E2.m1.1.1" xref="S3.E2.m1.1.1.cmml">D</mi><mo id="S3.E2.m1.1.2" xref="S3.E2.m1.1.2.cmml">=</mo><mfrac id="S3.E2.m1.1.3" xref="S3.E2.m1.1.3.cmml"><mrow id="S3.E2.m1.1.3.2" xref="S3.E2.m1.1.3.2.cmml"><mi id="S3.E2.m1.1.3.2.1" xref="S3.E2.m1.1.3.2.1.cmml">E</mi><mo id="S3.E2.m1.1.3.2.4" xref="S3.E2.m1.1.3.2.4.cmml">⁢</mo><msup id="S3.E2.m1.1.3.2.5" xref="S3.E2.m1.1.3.2.5.cmml"><mi id="S3.E2.m1.1.3.2.2" xref="S3.E2.m1.1.3.2.2.cmml">h</mi><mn id="S3.E2.m1.1.3.2.3.1" xref="S3.E2.m1.1.3.2.3.1.cmml">3</mn></msup></mrow><mrow id="S3.E2.m1.1.3.3" xref="S3.E2.m1.1.3.3.cmml"><mn id="S3.E2.m1.1.3.3.2" xref="S3.E2.m1.1.3.3.2.cmml">12</mn><mo id="S3.E2.m1.1.3.3.9" xref="S3.E2.m1.1.3.3.9.cmml">⁢</mo><mrow id="S3.E2.m1.1.3.3.10" xref="S3.E2.m1.1.3.3.10.2.cmml"><mo stretchy="false" id="S3.E2.m1.1.3.3.3" xref="S3.E2.m1.1.3.3.10.2.cmml">(</mo><mrow id="S3.E2.m1.1.3.3.10.2" xref="S3.E2.m1.1.3.3.10.2.cmml"><mn id="S3.E2.m1.1.3.3.4" xref="S3.E2.m1.1.3.3.4.cmml">1</mn><mo id="S3.E2.m1.1.3.3.5" xref="S3.E2.m1.1.3.3.5.cmml">-</mo><msup id="S3.E2.m1.1.3.3.10.2.1" xref="S3.E2.m1.1.3.3.10.2.1.cmml"><mi id="S3.E2.m1.1.3.3.6" xref="S3.E2.m1.1.3.3.6.cmml">ν</mi><mn id="S3.E2.m1.1.3.3.7.1" xref="S3.E2.m1.1.3.3.7.1.cmml">2</mn></msup></mrow><mo stretchy="false" id="S3.E2.m1.1.3.3.8" xref="S3.E2.m1.1.3.3.10.2.cmml">)</mo></mrow></mrow></mfrac></mrow><annotation-xml encoding="MathML-Content" id="S3.E2.m1.1b"><apply id="S3.E2.m1.1.4.cmml" xref="S3.E2.m1.1.4"><eq id="S3.E2.m1.1.2.cmml" xref="S3.E2.m1.1.2"></eq><ci id="S3.E2.m1.1.1.cmml" xref="S3.E2.m1.1.1">𝐷</ci><apply id="S3.E2.m1.1.3.cmml" xref="S3.E2.m1.1.3"><divide id="S3.E2.m1.1.3.1.cmml" xref="S3.E2.m1.1.3"></divide><apply id="S3.E2.m1.1.3.2.cmml" xref="S3.E2.m1.1.3.2"><times id="S3.E2.m1.1.3.2.4.cmml" xref="S3.E2.m1.1.3.2.4"></times><ci id="S3.E2.m1.1.3.2.1.cmml" xref="S3.E2.m1.1.3.2.1">𝐸</ci><apply id="S3.E2.m1.1.3.2.5.cmml" xref="S3.E2.m1.1.3.2.5"><csymbol cd="ambiguous" id="S3.E2.m1.1.3.2.5.1.cmml" xref="S3.E2.m1.1.3.2.5">superscript</csymbol><ci id="S3.E2.m1.1.3.2.2.cmml" xref="S3.E2.m1.1.3.2.2">ℎ</ci><cn type="integer" id="S3.E2.m1.1.3.2.3.1.cmml" xref="S3.E2.m1.1.3.2.3.1">3</cn></apply></apply><apply id="S3.E2.m1.1.3.3.cmml" xref="S3.E2.m1.1.3.3"><times id="S3.E2.m1.1.3.3.9.cmml" xref="S3.E2.m1.1.3.3.9"></times><cn type="integer" id="S3.E2.m1.1.3.3.2.cmml" xref="S3.E2.m1.1.3.3.2">12</cn><apply id="S3.E2.m1.1.3.3.10.2.cmml" xref="S3.E2.m1.1.3.3.10"><minus id="S3.E2.m1.1.3.3.5.cmml" xref="S3.E2.m1.1.3.3.5"></minus><cn type="integer" id="S3.E2.m1.1.3.3.4.cmml" xref="S3.E2.m1.1.3.3.4">1</cn><apply id="S3.E2.m1.1.3.3.10.2.1.cmml" xref="S3.E2.m1.1.3.3.10.2.1"><csymbol cd="ambiguous" id="S3.E2.m1.1.3.3.10.2.1.1.cmml" xref="S3.E2.m1.1.3.3.10.2.1">superscript</csymbol><ci id="S3.E2.m1.1.3.3.6.cmml" xref="S3.E2.m1.1.3.3.6">𝜈</ci><cn type="integer" id="S3.E2.m1.1.3.3.7.1.cmml" xref="S3.E2.m1.1.3.3.7.1">2</cn></apply></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E2.m1.1c">italic-D RELOP:equals FRACOP:italic-divide ARG:start italic-E italic-h POSTSUPERSCRIPT:start NUMBER:3 POSTSUPERSCRIPT:end ARG:end ARG:start NUMBER:12 OPEN:( NUMBER:1 ADDOP:minus italic-nu POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end CLOSE:) ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E2.m1.1d">D=\frac{Eh^{3}}{12(1-\nu^{2})}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p5" class="ltx_para">
+<p id="S3.SS2.p5.1" class="ltx_p">Where <math id="S3.SS2.p5.1.m1.1" class="ltx_Math" alttext="w" display="inline"><semantics id="S3.SS2.p5.1.m1.1a"><mi id="S3.SS2.p5.1.m1.1.1" xref="S3.SS2.p5.1.m1.1.1.cmml">w</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m1.1b"><ci id="S3.SS2.p5.1.m1.1.1.cmml" xref="S3.SS2.p5.1.m1.1.1">𝑤</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m1.1c">italic-w</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m1.1d">w</annotation></semantics></math> is displacement of direction <math id="S3.SS2.p5.1.m2.1" class="ltx_Math" alttext="z" display="inline"><semantics id="S3.SS2.p5.1.m2.1a"><mi id="S3.SS2.p5.1.m2.1.1" xref="S3.SS2.p5.1.m2.1.1.cmml">z</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m2.1b"><ci id="S3.SS2.p5.1.m2.1.1.cmml" xref="S3.SS2.p5.1.m2.1.1">𝑧</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m2.1c">italic-z</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m2.1d">z</annotation></semantics></math> at planar position of <math id="S3.SS2.p5.1.m3.1" class="ltx_Math" alttext="(x,y)" display="inline"><semantics id="S3.SS2.p5.1.m3.1a"><mrow id="S3.SS2.p5.1.m3.1.6" xref="S3.SS2.p5.1.m3.1.6.1.cmml"><mo stretchy="false" id="S3.SS2.p5.1.m3.1.1" xref="S3.SS2.p5.1.m3.1.6.1.cmml">(</mo><mi id="S3.SS2.p5.1.m3.1.2" xref="S3.SS2.p5.1.m3.1.2.cmml">x</mi><mo id="S3.SS2.p5.1.m3.1.3" xref="S3.SS2.p5.1.m3.1.6.1.cmml">,</mo><mi id="S3.SS2.p5.1.m3.1.4" xref="S3.SS2.p5.1.m3.1.4.cmml">y</mi><mo stretchy="false" id="S3.SS2.p5.1.m3.1.5" xref="S3.SS2.p5.1.m3.1.6.1.cmml">)</mo></mrow><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m3.1b"><interval closure="open" id="S3.SS2.p5.1.m3.1.6.1.cmml" xref="S3.SS2.p5.1.m3.1.6"><ci id="S3.SS2.p5.1.m3.1.2.cmml" xref="S3.SS2.p5.1.m3.1.2">𝑥</ci><ci id="S3.SS2.p5.1.m3.1.4.cmml" xref="S3.SS2.p5.1.m3.1.4">𝑦</ci></interval></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m3.1c">OPEN:( italic-x PUNCT:, italic-y CLOSE:)</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m3.1d">(x,y)</annotation></semantics></math>, <math id="S3.SS2.p5.1.m4.1" class="ltx_Math" alttext="D" display="inline"><semantics id="S3.SS2.p5.1.m4.1a"><mi id="S3.SS2.p5.1.m4.1.1" xref="S3.SS2.p5.1.m4.1.1.cmml">D</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m4.1b"><ci id="S3.SS2.p5.1.m4.1.1.cmml" xref="S3.SS2.p5.1.m4.1.1">𝐷</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m4.1c">italic-D</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m4.1d">D</annotation></semantics></math> is bending stiffness, <math id="S3.SS2.p5.1.m5.1" class="ltx_Math" alttext="E" display="inline"><semantics id="S3.SS2.p5.1.m5.1a"><mi id="S3.SS2.p5.1.m5.1.1" xref="S3.SS2.p5.1.m5.1.1.cmml">E</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m5.1b"><ci id="S3.SS2.p5.1.m5.1.1.cmml" xref="S3.SS2.p5.1.m5.1.1">𝐸</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m5.1c">italic-E</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m5.1d">E</annotation></semantics></math> is young’s modulus, <math id="S3.SS2.p5.1.m6.1" class="ltx_Math" alttext="h" display="inline"><semantics id="S3.SS2.p5.1.m6.1a"><mi id="S3.SS2.p5.1.m6.1.1" xref="S3.SS2.p5.1.m6.1.1.cmml">h</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m6.1b"><ci id="S3.SS2.p5.1.m6.1.1.cmml" xref="S3.SS2.p5.1.m6.1.1">ℎ</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m6.1c">italic-h</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m6.1d">h</annotation></semantics></math> is thickness of plate, <math id="S3.SS2.p5.1.m7.1" class="ltx_Math" alttext="\mu" display="inline"><semantics id="S3.SS2.p5.1.m7.1a"><mi id="S3.SS2.p5.1.m7.1.1" xref="S3.SS2.p5.1.m7.1.1.cmml">μ</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m7.1b"><ci id="S3.SS2.p5.1.m7.1.1.cmml" xref="S3.SS2.p5.1.m7.1.1">𝜇</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m7.1c">italic-mu</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m7.1d">\mu</annotation></semantics></math> is mass per unit volume, and <math id="S3.SS2.p5.1.m8.1" class="ltx_Math" alttext="\nu" display="inline"><semantics id="S3.SS2.p5.1.m8.1a"><mi id="S3.SS2.p5.1.m8.1.1" xref="S3.SS2.p5.1.m8.1.1.cmml">ν</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m8.1b"><ci id="S3.SS2.p5.1.m8.1.1.cmml" xref="S3.SS2.p5.1.m8.1.1">𝜈</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m8.1c">italic-nu</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m8.1d">\nu</annotation></semantics></math> is Poisson’s ratio.
+In Eq.(<a href="#S3.E1" title="(1) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>), solution of free vibration (<math id="S3.SS2.p5.1.m9.1" class="ltx_Math" alttext="q_{z}=0" display="inline"><semantics id="S3.SS2.p5.1.m9.1a"><mrow id="S3.SS2.p5.1.m9.1.5" xref="S3.SS2.p5.1.m9.1.5.cmml"><msub id="S3.SS2.p5.1.m9.1.5.1" xref="S3.SS2.p5.1.m9.1.5.1.cmml"><mi id="S3.SS2.p5.1.m9.1.1" xref="S3.SS2.p5.1.m9.1.1.cmml">q</mi><mi id="S3.SS2.p5.1.m9.1.2.1" xref="S3.SS2.p5.1.m9.1.2.1.cmml">z</mi></msub><mo id="S3.SS2.p5.1.m9.1.3" xref="S3.SS2.p5.1.m9.1.3.cmml">=</mo><mn id="S3.SS2.p5.1.m9.1.4" xref="S3.SS2.p5.1.m9.1.4.cmml">0</mn></mrow><annotation-xml encoding="MathML-Content" id="S3.SS2.p5.1.m9.1b"><apply id="S3.SS2.p5.1.m9.1.5.cmml" xref="S3.SS2.p5.1.m9.1.5"><eq id="S3.SS2.p5.1.m9.1.3.cmml" xref="S3.SS2.p5.1.m9.1.3"></eq><apply id="S3.SS2.p5.1.m9.1.5.1.cmml" xref="S3.SS2.p5.1.m9.1.5.1"><csymbol cd="ambiguous" id="S3.SS2.p5.1.m9.1.5.1.1.cmml" xref="S3.SS2.p5.1.m9.1.5.1">subscript</csymbol><ci id="S3.SS2.p5.1.m9.1.1.cmml" xref="S3.SS2.p5.1.m9.1.1">𝑞</ci><ci id="S3.SS2.p5.1.m9.1.2.1.cmml" xref="S3.SS2.p5.1.m9.1.2.1">𝑧</ci></apply><cn type="integer" id="S3.SS2.p5.1.m9.1.4.cmml" xref="S3.SS2.p5.1.m9.1.4">0</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p5.1.m9.1c">italic-q POSTSUBSCRIPT:start italic-z POSTSUBSCRIPT:end RELOP:equals NUMBER:0</annotation><annotation encoding="application/x-tex" id="S3.SS2.p5.1.m9.1d">q_{z}=0</annotation></semantics></math>) is</p>
+</div>
+<div id="S3.SS2.p6" class="ltx_para">
+<table id="S3.E3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E3.m1.1" class="ltx_Math" alttext="w(x,y,t)=W(x,y)\cos\omega{t}" display="block"><semantics id="S3.E3.m1.1a"><mrow id="S3.E3.m1.1.19" xref="S3.E3.m1.1.19.cmml"><mrow id="S3.E3.m1.1.19.1" xref="S3.E3.m1.1.19.1.cmml"><mi id="S3.E3.m1.1.1" xref="S3.E3.m1.1.1.cmml">w</mi><mo id="S3.E3.m1.1.19.1.1" xref="S3.E3.m1.1.19.1.1.cmml">⁢</mo><mrow id="S3.E3.m1.1.19.1.2" xref="S3.E3.m1.1.19.1.2.1.cmml"><mo stretchy="false" id="S3.E3.m1.1.2" xref="S3.E3.m1.1.19.1.2.1.cmml">(</mo><mi id="S3.E3.m1.1.3" xref="S3.E3.m1.1.3.cmml">x</mi><mo id="S3.E3.m1.1.4" xref="S3.E3.m1.1.19.1.2.1.cmml">,</mo><mi id="S3.E3.m1.1.5" xref="S3.E3.m1.1.5.cmml">y</mi><mo id="S3.E3.m1.1.6" xref="S3.E3.m1.1.19.1.2.1.cmml">,</mo><mi id="S3.E3.m1.1.7" xref="S3.E3.m1.1.7.cmml">t</mi><mo stretchy="false" id="S3.E3.m1.1.8" xref="S3.E3.m1.1.19.1.2.1.cmml">)</mo></mrow></mrow><mo id="S3.E3.m1.1.9" xref="S3.E3.m1.1.9.cmml">=</mo><mrow id="S3.E3.m1.1.19.2" xref="S3.E3.m1.1.19.2.cmml"><mi id="S3.E3.m1.1.10" xref="S3.E3.m1.1.10.cmml">W</mi><mo id="S3.E3.m1.1.19.2.1" xref="S3.E3.m1.1.19.2.1.cmml">⁢</mo><mrow id="S3.E3.m1.1.19.2.2" xref="S3.E3.m1.1.19.2.2.1.cmml"><mo stretchy="false" id="S3.E3.m1.1.11" xref="S3.E3.m1.1.19.2.2.1.cmml">(</mo><mi id="S3.E3.m1.1.12" xref="S3.E3.m1.1.12.cmml">x</mi><mo id="S3.E3.m1.1.13" xref="S3.E3.m1.1.19.2.2.1.cmml">,</mo><mi id="S3.E3.m1.1.14" xref="S3.E3.m1.1.14.cmml">y</mi><mo stretchy="false" id="S3.E3.m1.1.15" xref="S3.E3.m1.1.19.2.2.1.cmml">)</mo></mrow><mo id="S3.E3.m1.1.19.2.1a" xref="S3.E3.m1.1.19.2.1.cmml">⁢</mo><mrow id="S3.E3.m1.1.19.2.3" xref="S3.E3.m1.1.19.2.3.cmml"><mi id="S3.E3.m1.1.16" xref="S3.E3.m1.1.16.cmml">cos</mi><mo id="S3.E3.m1.1.19.2.3a" xref="S3.E3.m1.1.19.2.3.cmml">⁡</mo><mrow id="S3.E3.m1.1.19.2.3.1" xref="S3.E3.m1.1.19.2.3.1.cmml"><mi id="S3.E3.m1.1.17" xref="S3.E3.m1.1.17.cmml">ω</mi><mo id="S3.E3.m1.1.19.2.3.1.1" xref="S3.E3.m1.1.19.2.3.1.1.cmml">⁢</mo><mi id="S3.E3.m1.1.18" xref="S3.E3.m1.1.18.cmml">t</mi></mrow></mrow></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E3.m1.1b"><apply id="S3.E3.m1.1.19.cmml" xref="S3.E3.m1.1.19"><eq id="S3.E3.m1.1.9.cmml" xref="S3.E3.m1.1.9"></eq><apply id="S3.E3.m1.1.19.1.cmml" xref="S3.E3.m1.1.19.1"><times id="S3.E3.m1.1.19.1.1.cmml" xref="S3.E3.m1.1.19.1.1"></times><ci id="S3.E3.m1.1.1.cmml" xref="S3.E3.m1.1.1">𝑤</ci><vector id="S3.E3.m1.1.19.1.2.1.cmml" xref="S3.E3.m1.1.19.1.2"><ci id="S3.E3.m1.1.3.cmml" xref="S3.E3.m1.1.3">𝑥</ci><ci id="S3.E3.m1.1.5.cmml" xref="S3.E3.m1.1.5">𝑦</ci><ci id="S3.E3.m1.1.7.cmml" xref="S3.E3.m1.1.7">𝑡</ci></vector></apply><apply id="S3.E3.m1.1.19.2.cmml" xref="S3.E3.m1.1.19.2"><times id="S3.E3.m1.1.19.2.1.cmml" xref="S3.E3.m1.1.19.2.1"></times><ci id="S3.E3.m1.1.10.cmml" xref="S3.E3.m1.1.10">𝑊</ci><interval closure="open" id="S3.E3.m1.1.19.2.2.1.cmml" xref="S3.E3.m1.1.19.2.2"><ci id="S3.E3.m1.1.12.cmml" xref="S3.E3.m1.1.12">𝑥</ci><ci id="S3.E3.m1.1.14.cmml" xref="S3.E3.m1.1.14">𝑦</ci></interval><apply id="S3.E3.m1.1.19.2.3.cmml" xref="S3.E3.m1.1.19.2.3"><cos id="S3.E3.m1.1.16.cmml" xref="S3.E3.m1.1.16"></cos><apply id="S3.E3.m1.1.19.2.3.1.cmml" xref="S3.E3.m1.1.19.2.3.1"><times id="S3.E3.m1.1.19.2.3.1.1.cmml" xref="S3.E3.m1.1.19.2.3.1.1"></times><ci id="S3.E3.m1.1.17.cmml" xref="S3.E3.m1.1.17">𝜔</ci><ci id="S3.E3.m1.1.18.cmml" xref="S3.E3.m1.1.18">𝑡</ci></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E3.m1.1c">italic-w OPEN:( italic-x PUNCT:, italic-y PUNCT:, italic-t CLOSE:) RELOP:equals italic-W OPEN:( italic-x PUNCT:, italic-y CLOSE:) TRIGFUNCTION:cosine italic-omega italic-t</annotation><annotation encoding="application/x-tex" id="S3.E3.m1.1d">w(x,y,t)=W(x,y)\cos\omega{t}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(3)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p7" class="ltx_para">
+<p id="S3.SS2.p7.1" class="ltx_p">By substituting Eq.(<a href="#S3.E3" title="(3) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>) into Eq.(<a href="#S3.E1" title="(1) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>), we can get equation about <math id="S3.SS2.p7.1.m1.1" class="ltx_Math" alttext="W(x,y)" display="inline"><semantics id="S3.SS2.p7.1.m1.1a"><mrow id="S3.SS2.p7.1.m1.1.7" xref="S3.SS2.p7.1.m1.1.7.cmml"><mi id="S3.SS2.p7.1.m1.1.1" xref="S3.SS2.p7.1.m1.1.1.cmml">W</mi><mo id="S3.SS2.p7.1.m1.1.7.1" xref="S3.SS2.p7.1.m1.1.7.1.cmml">⁢</mo><mrow id="S3.SS2.p7.1.m1.1.7.2" xref="S3.SS2.p7.1.m1.1.7.2.1.cmml"><mo stretchy="false" id="S3.SS2.p7.1.m1.1.2" xref="S3.SS2.p7.1.m1.1.7.2.1.cmml">(</mo><mi id="S3.SS2.p7.1.m1.1.3" xref="S3.SS2.p7.1.m1.1.3.cmml">x</mi><mo id="S3.SS2.p7.1.m1.1.4" xref="S3.SS2.p7.1.m1.1.7.2.1.cmml">,</mo><mi id="S3.SS2.p7.1.m1.1.5" xref="S3.SS2.p7.1.m1.1.5.cmml">y</mi><mo stretchy="false" id="S3.SS2.p7.1.m1.1.6" xref="S3.SS2.p7.1.m1.1.7.2.1.cmml">)</mo></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.SS2.p7.1.m1.1b"><apply id="S3.SS2.p7.1.m1.1.7.cmml" xref="S3.SS2.p7.1.m1.1.7"><times id="S3.SS2.p7.1.m1.1.7.1.cmml" xref="S3.SS2.p7.1.m1.1.7.1"></times><ci id="S3.SS2.p7.1.m1.1.1.cmml" xref="S3.SS2.p7.1.m1.1.1">𝑊</ci><interval closure="open" id="S3.SS2.p7.1.m1.1.7.2.1.cmml" xref="S3.SS2.p7.1.m1.1.7.2"><ci id="S3.SS2.p7.1.m1.1.3.cmml" xref="S3.SS2.p7.1.m1.1.3">𝑥</ci><ci id="S3.SS2.p7.1.m1.1.5.cmml" xref="S3.SS2.p7.1.m1.1.5">𝑦</ci></interval></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p7.1.m1.1c">italic-W OPEN:( italic-x PUNCT:, italic-y CLOSE:)</annotation><annotation encoding="application/x-tex" id="S3.SS2.p7.1.m1.1d">W(x,y)</annotation></semantics></math></p>
+</div>
+<div id="S3.SS2.p8" class="ltx_para">
+<table id="S3.E4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E4.m1.1" class="ltx_Math" alttext="D\Delta{\Delta}W-\mu\omega^{2}W=0~{}~{}~{}~{}~{}\Delta=\frac{{\partial}^{2}}{%
+\partial{x^{2}}}+\frac{{\partial}^{2}}{\partial{y^{2}}}" display="block"><semantics id="S3.E4.m1.1a"><mrow id="S3.E4.m1.1.23" xref="S3.E4.m1.1.23.1.cmml"><mrow id="S3.E4.m1.1.23.2" xref="S3.E4.m1.1.23.2.cmml"><mrow id="S3.E4.m1.1.23.2.1" xref="S3.E4.m1.1.23.2.1.cmml"><mrow id="S3.E4.m1.1.23.2.1.1" xref="S3.E4.m1.1.23.2.1.1.cmml"><mi id="S3.E4.m1.1.1" xref="S3.E4.m1.1.1.cmml">D</mi><mo id="S3.E4.m1.1.23.2.1.1.1" xref="S3.E4.m1.1.23.2.1.1.1.cmml">⁢</mo><mi mathvariant="normal" id="S3.E4.m1.1.2" xref="S3.E4.m1.1.2.cmml">Δ</mi><mo id="S3.E4.m1.1.23.2.1.1.1a" xref="S3.E4.m1.1.23.2.1.1.1.cmml">⁢</mo><mi mathvariant="normal" id="S3.E4.m1.1.3" xref="S3.E4.m1.1.3.cmml">Δ</mi><mo id="S3.E4.m1.1.23.2.1.1.1b" xref="S3.E4.m1.1.23.2.1.1.1.cmml">⁢</mo><mi id="S3.E4.m1.1.4" xref="S3.E4.m1.1.4.cmml">W</mi></mrow><mo id="S3.E4.m1.1.5" xref="S3.E4.m1.1.5.cmml">-</mo><mrow id="S3.E4.m1.1.23.2.1.2" xref="S3.E4.m1.1.23.2.1.2.cmml"><mi id="S3.E4.m1.1.6" xref="S3.E4.m1.1.6.cmml">μ</mi><mo id="S3.E4.m1.1.23.2.1.2.1" xref="S3.E4.m1.1.23.2.1.2.1.cmml">⁢</mo><msup id="S3.E4.m1.1.23.2.1.2.2" xref="S3.E4.m1.1.23.2.1.2.2.cmml"><mi id="S3.E4.m1.1.7" xref="S3.E4.m1.1.7.cmml">ω</mi><mn id="S3.E4.m1.1.8.1" xref="S3.E4.m1.1.8.1.cmml">2</mn></msup><mo id="S3.E4.m1.1.23.2.1.2.1a" xref="S3.E4.m1.1.23.2.1.2.1.cmml">⁢</mo><mi id="S3.E4.m1.1.9" xref="S3.E4.m1.1.9.cmml">W</mi></mrow></mrow><mo id="S3.E4.m1.1.10" xref="S3.E4.m1.1.10.cmml">=</mo><mn id="S3.E4.m1.1.11" xref="S3.E4.m1.1.11.cmml">0</mn></mrow><mo mathvariant="italic" separator="true" id="S3.E4.m1.1.22" xref="S3.E4.m1.1.23.1a.cmml">  </mo><mrow id="S3.E4.m1.1.23.3" xref="S3.E4.m1.1.23.3.cmml"><mi mathvariant="normal" id="S3.E4.m1.1.17" xref="S3.E4.m1.1.17.cmml">Δ</mi><mo id="S3.E4.m1.1.18" xref="S3.E4.m1.1.18.cmml">=</mo><mrow id="S3.E4.m1.1.23.3.1" xref="S3.E4.m1.1.23.3.1.cmml"><mfrac id="S3.E4.m1.1.19" xref="S3.E4.m1.1.19.cmml"><msup id="S3.E4.m1.1.19.2" xref="S3.E4.m1.1.19.2.cmml"><mo id="S3.E4.m1.1.19.2.1" xref="S3.E4.m1.1.19.2.1.cmml">∂</mo><mn id="S3.E4.m1.1.19.2.2.1" xref="S3.E4.m1.1.19.2.2.1.cmml">2</mn></msup><mrow id="S3.E4.m1.1.19.3" xref="S3.E4.m1.1.19.3.cmml"><mo id="S3.E4.m1.1.19.3.1" xref="S3.E4.m1.1.19.3.1.cmml">∂</mo><mo id="S3.E4.m1.1.19.3a" xref="S3.E4.m1.1.19.3.cmml">⁡</mo><msup id="S3.E4.m1.1.19.3.4" xref="S3.E4.m1.1.19.3.4.cmml"><mi id="S3.E4.m1.1.19.3.2" xref="S3.E4.m1.1.19.3.2.cmml">x</mi><mn id="S3.E4.m1.1.19.3.3.1" xref="S3.E4.m1.1.19.3.3.1.cmml">2</mn></msup></mrow></mfrac><mo id="S3.E4.m1.1.20" xref="S3.E4.m1.1.20.cmml">+</mo><mfrac id="S3.E4.m1.1.21" xref="S3.E4.m1.1.21.cmml"><msup id="S3.E4.m1.1.21.2" xref="S3.E4.m1.1.21.2.cmml"><mo id="S3.E4.m1.1.21.2.1" xref="S3.E4.m1.1.21.2.1.cmml">∂</mo><mn id="S3.E4.m1.1.21.2.2.1" xref="S3.E4.m1.1.21.2.2.1.cmml">2</mn></msup><mrow id="S3.E4.m1.1.21.3" xref="S3.E4.m1.1.21.3.cmml"><mo id="S3.E4.m1.1.21.3.1" xref="S3.E4.m1.1.21.3.1.cmml">∂</mo><mo id="S3.E4.m1.1.21.3a" xref="S3.E4.m1.1.21.3.cmml">⁡</mo><msup id="S3.E4.m1.1.21.3.4" xref="S3.E4.m1.1.21.3.4.cmml"><mi id="S3.E4.m1.1.21.3.2" xref="S3.E4.m1.1.21.3.2.cmml">y</mi><mn id="S3.E4.m1.1.21.3.3.1" xref="S3.E4.m1.1.21.3.3.1.cmml">2</mn></msup></mrow></mfrac></mrow></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E4.m1.1b"><apply id="S3.E4.m1.1.23.1.cmml" xref="S3.E4.m1.1.23"><csymbol cd="ambiguous" id="S3.E4.m1.1.23.1a.cmml" xref="S3.E4.m1.1.22">formulae-sequence</csymbol><apply id="S3.E4.m1.1.23.2.cmml" xref="S3.E4.m1.1.23.2"><eq id="S3.E4.m1.1.10.cmml" xref="S3.E4.m1.1.10"></eq><apply id="S3.E4.m1.1.23.2.1.cmml" xref="S3.E4.m1.1.23.2.1"><minus id="S3.E4.m1.1.5.cmml" xref="S3.E4.m1.1.5"></minus><apply id="S3.E4.m1.1.23.2.1.1.cmml" xref="S3.E4.m1.1.23.2.1.1"><times id="S3.E4.m1.1.23.2.1.1.1.cmml" xref="S3.E4.m1.1.23.2.1.1.1"></times><ci id="S3.E4.m1.1.1.cmml" xref="S3.E4.m1.1.1">𝐷</ci><ci id="S3.E4.m1.1.2.cmml" xref="S3.E4.m1.1.2">Δ</ci><ci id="S3.E4.m1.1.3.cmml" xref="S3.E4.m1.1.3">Δ</ci><ci id="S3.E4.m1.1.4.cmml" xref="S3.E4.m1.1.4">𝑊</ci></apply><apply id="S3.E4.m1.1.23.2.1.2.cmml" xref="S3.E4.m1.1.23.2.1.2"><times id="S3.E4.m1.1.23.2.1.2.1.cmml" xref="S3.E4.m1.1.23.2.1.2.1"></times><ci id="S3.E4.m1.1.6.cmml" xref="S3.E4.m1.1.6">𝜇</ci><apply id="S3.E4.m1.1.23.2.1.2.2.cmml" xref="S3.E4.m1.1.23.2.1.2.2"><csymbol cd="ambiguous" id="S3.E4.m1.1.23.2.1.2.2.1.cmml" xref="S3.E4.m1.1.23.2.1.2.2">superscript</csymbol><ci id="S3.E4.m1.1.7.cmml" xref="S3.E4.m1.1.7">𝜔</ci><cn type="integer" id="S3.E4.m1.1.8.1.cmml" xref="S3.E4.m1.1.8.1">2</cn></apply><ci id="S3.E4.m1.1.9.cmml" xref="S3.E4.m1.1.9">𝑊</ci></apply></apply><cn type="integer" id="S3.E4.m1.1.11.cmml" xref="S3.E4.m1.1.11">0</cn></apply><apply id="S3.E4.m1.1.23.3.cmml" xref="S3.E4.m1.1.23.3"><eq id="S3.E4.m1.1.18.cmml" xref="S3.E4.m1.1.18"></eq><ci id="S3.E4.m1.1.17.cmml" xref="S3.E4.m1.1.17">Δ</ci><apply id="S3.E4.m1.1.23.3.1.cmml" xref="S3.E4.m1.1.23.3.1"><plus id="S3.E4.m1.1.20.cmml" xref="S3.E4.m1.1.20"></plus><apply id="S3.E4.m1.1.19.cmml" xref="S3.E4.m1.1.19"><divide id="S3.E4.m1.1.19.1.cmml" xref="S3.E4.m1.1.19"></divide><apply id="S3.E4.m1.1.19.2.cmml" xref="S3.E4.m1.1.19.2"><csymbol cd="ambiguous" id="S3.E4.m1.1.19.2.3.cmml" xref="S3.E4.m1.1.19.2">superscript</csymbol><partialdiff id="S3.E4.m1.1.19.2.1.cmml" xref="S3.E4.m1.1.19.2.1"></partialdiff><cn type="integer" id="S3.E4.m1.1.19.2.2.1.cmml" xref="S3.E4.m1.1.19.2.2.1">2</cn></apply><apply id="S3.E4.m1.1.19.3.cmml" xref="S3.E4.m1.1.19.3"><partialdiff id="S3.E4.m1.1.19.3.1.cmml" xref="S3.E4.m1.1.19.3.1"></partialdiff><apply id="S3.E4.m1.1.19.3.4.cmml" xref="S3.E4.m1.1.19.3.4"><csymbol cd="ambiguous" id="S3.E4.m1.1.19.3.4.1.cmml" xref="S3.E4.m1.1.19.3.4">superscript</csymbol><ci id="S3.E4.m1.1.19.3.2.cmml" xref="S3.E4.m1.1.19.3.2">𝑥</ci><cn type="integer" id="S3.E4.m1.1.19.3.3.1.cmml" xref="S3.E4.m1.1.19.3.3.1">2</cn></apply></apply></apply><apply id="S3.E4.m1.1.21.cmml" xref="S3.E4.m1.1.21"><divide id="S3.E4.m1.1.21.1.cmml" xref="S3.E4.m1.1.21"></divide><apply id="S3.E4.m1.1.21.2.cmml" xref="S3.E4.m1.1.21.2"><csymbol cd="ambiguous" id="S3.E4.m1.1.21.2.3.cmml" xref="S3.E4.m1.1.21.2">superscript</csymbol><partialdiff id="S3.E4.m1.1.21.2.1.cmml" xref="S3.E4.m1.1.21.2.1"></partialdiff><cn type="integer" id="S3.E4.m1.1.21.2.2.1.cmml" xref="S3.E4.m1.1.21.2.2.1">2</cn></apply><apply id="S3.E4.m1.1.21.3.cmml" xref="S3.E4.m1.1.21.3"><partialdiff id="S3.E4.m1.1.21.3.1.cmml" xref="S3.E4.m1.1.21.3.1"></partialdiff><apply id="S3.E4.m1.1.21.3.4.cmml" xref="S3.E4.m1.1.21.3.4"><csymbol cd="ambiguous" id="S3.E4.m1.1.21.3.4.1.cmml" xref="S3.E4.m1.1.21.3.4">superscript</csymbol><ci id="S3.E4.m1.1.21.3.2.cmml" xref="S3.E4.m1.1.21.3.2">𝑦</ci><cn type="integer" id="S3.E4.m1.1.21.3.3.1.cmml" xref="S3.E4.m1.1.21.3.3.1">2</cn></apply></apply></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E4.m1.1c">italic-D Delta Delta italic-W ADDOP:minus italic-mu italic-omega POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end italic-W RELOP:equals NUMBER:0 Delta RELOP:equals FRACOP:italic-divide ARG:start OPERATOR:partial-differential POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ARG:start OPERATOR:partial-differential italic-x POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ADDOP:plus FRACOP:italic-divide ARG:start OPERATOR:partial-differential POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ARG:start OPERATOR:partial-differential italic-y POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E4.m1.1d">D\Delta{\Delta}W-\mu\omega^{2}W=0~{}~{}~{}~{}~{}\Delta=\frac{{\partial}^{2}}{%
+\partial{x^{2}}}+\frac{{\partial}^{2}}{\partial{y^{2}}}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(4)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p9" class="ltx_para">
+<p id="S3.SS2.p9.1" class="ltx_p">For simple support boundary condition, we can get simple solution</p>
+</div>
+<div id="S3.SS2.p10" class="ltx_para">
+<table id="S3.E5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E5.m1.1" class="ltx_Math" alttext="W(x,y)=\sin\frac{m\pi{x}}{a}\sin\frac{n\pi{y}}{b}" display="block"><semantics id="S3.E5.m1.1a"><mrow id="S3.E5.m1.1.12" xref="S3.E5.m1.1.12.cmml"><mrow id="S3.E5.m1.1.12.1" xref="S3.E5.m1.1.12.1.cmml"><mi id="S3.E5.m1.1.1" xref="S3.E5.m1.1.1.cmml">W</mi><mo id="S3.E5.m1.1.12.1.1" xref="S3.E5.m1.1.12.1.1.cmml">⁢</mo><mrow id="S3.E5.m1.1.12.1.2" xref="S3.E5.m1.1.12.1.2.1.cmml"><mo stretchy="false" id="S3.E5.m1.1.2" xref="S3.E5.m1.1.12.1.2.1.cmml">(</mo><mi id="S3.E5.m1.1.3" xref="S3.E5.m1.1.3.cmml">x</mi><mo id="S3.E5.m1.1.4" xref="S3.E5.m1.1.12.1.2.1.cmml">,</mo><mi id="S3.E5.m1.1.5" xref="S3.E5.m1.1.5.cmml">y</mi><mo stretchy="false" id="S3.E5.m1.1.6" xref="S3.E5.m1.1.12.1.2.1.cmml">)</mo></mrow></mrow><mo id="S3.E5.m1.1.7" xref="S3.E5.m1.1.7.cmml">=</mo><mrow id="S3.E5.m1.1.12.2" xref="S3.E5.m1.1.12.2.cmml"><mrow id="S3.E5.m1.1.12.2.2" xref="S3.E5.m1.1.12.2.2.cmml"><mi id="S3.E5.m1.1.8" xref="S3.E5.m1.1.8.cmml">sin</mi><mo id="S3.E5.m1.1.12.2.2a" xref="S3.E5.m1.1.12.2.2.cmml">⁡</mo><mfrac id="S3.E5.m1.1.9" xref="S3.E5.m1.1.9.cmml"><mrow id="S3.E5.m1.1.9.2" xref="S3.E5.m1.1.9.2.cmml"><mi id="S3.E5.m1.1.9.2.1" xref="S3.E5.m1.1.9.2.1.cmml">m</mi><mo id="S3.E5.m1.1.9.2.4" xref="S3.E5.m1.1.9.2.4.cmml">⁢</mo><mi id="S3.E5.m1.1.9.2.2" xref="S3.E5.m1.1.9.2.2.cmml">π</mi><mo id="S3.E5.m1.1.9.2.4a" xref="S3.E5.m1.1.9.2.4.cmml">⁢</mo><mi id="S3.E5.m1.1.9.2.3" xref="S3.E5.m1.1.9.2.3.cmml">x</mi></mrow><mi id="S3.E5.m1.1.9.3" xref="S3.E5.m1.1.9.3.cmml">a</mi></mfrac></mrow><mo id="S3.E5.m1.1.12.2.1" xref="S3.E5.m1.1.12.2.1.cmml">⁢</mo><mrow id="S3.E5.m1.1.12.2.3" xref="S3.E5.m1.1.12.2.3.cmml"><mi id="S3.E5.m1.1.10" xref="S3.E5.m1.1.10.cmml">sin</mi><mo id="S3.E5.m1.1.12.2.3a" xref="S3.E5.m1.1.12.2.3.cmml">⁡</mo><mfrac id="S3.E5.m1.1.11" xref="S3.E5.m1.1.11.cmml"><mrow id="S3.E5.m1.1.11.2" xref="S3.E5.m1.1.11.2.cmml"><mi id="S3.E5.m1.1.11.2.1" xref="S3.E5.m1.1.11.2.1.cmml">n</mi><mo id="S3.E5.m1.1.11.2.4" xref="S3.E5.m1.1.11.2.4.cmml">⁢</mo><mi id="S3.E5.m1.1.11.2.2" xref="S3.E5.m1.1.11.2.2.cmml">π</mi><mo id="S3.E5.m1.1.11.2.4a" xref="S3.E5.m1.1.11.2.4.cmml">⁢</mo><mi id="S3.E5.m1.1.11.2.3" xref="S3.E5.m1.1.11.2.3.cmml">y</mi></mrow><mi id="S3.E5.m1.1.11.3" xref="S3.E5.m1.1.11.3.cmml">b</mi></mfrac></mrow></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E5.m1.1b"><apply id="S3.E5.m1.1.12.cmml" xref="S3.E5.m1.1.12"><eq id="S3.E5.m1.1.7.cmml" xref="S3.E5.m1.1.7"></eq><apply id="S3.E5.m1.1.12.1.cmml" xref="S3.E5.m1.1.12.1"><times id="S3.E5.m1.1.12.1.1.cmml" xref="S3.E5.m1.1.12.1.1"></times><ci id="S3.E5.m1.1.1.cmml" xref="S3.E5.m1.1.1">𝑊</ci><interval closure="open" id="S3.E5.m1.1.12.1.2.1.cmml" xref="S3.E5.m1.1.12.1.2"><ci id="S3.E5.m1.1.3.cmml" xref="S3.E5.m1.1.3">𝑥</ci><ci id="S3.E5.m1.1.5.cmml" xref="S3.E5.m1.1.5">𝑦</ci></interval></apply><apply id="S3.E5.m1.1.12.2.cmml" xref="S3.E5.m1.1.12.2"><times id="S3.E5.m1.1.12.2.1.cmml" xref="S3.E5.m1.1.12.2.1"></times><apply id="S3.E5.m1.1.12.2.2.cmml" xref="S3.E5.m1.1.12.2.2"><sin id="S3.E5.m1.1.8.cmml" xref="S3.E5.m1.1.8"></sin><apply id="S3.E5.m1.1.9.cmml" xref="S3.E5.m1.1.9"><divide id="S3.E5.m1.1.9.1.cmml" xref="S3.E5.m1.1.9"></divide><apply id="S3.E5.m1.1.9.2.cmml" xref="S3.E5.m1.1.9.2"><times id="S3.E5.m1.1.9.2.4.cmml" xref="S3.E5.m1.1.9.2.4"></times><ci id="S3.E5.m1.1.9.2.1.cmml" xref="S3.E5.m1.1.9.2.1">𝑚</ci><ci id="S3.E5.m1.1.9.2.2.cmml" xref="S3.E5.m1.1.9.2.2">𝜋</ci><ci id="S3.E5.m1.1.9.2.3.cmml" xref="S3.E5.m1.1.9.2.3">𝑥</ci></apply><ci id="S3.E5.m1.1.9.3.cmml" xref="S3.E5.m1.1.9.3">𝑎</ci></apply></apply><apply id="S3.E5.m1.1.12.2.3.cmml" xref="S3.E5.m1.1.12.2.3"><sin id="S3.E5.m1.1.10.cmml" xref="S3.E5.m1.1.10"></sin><apply id="S3.E5.m1.1.11.cmml" xref="S3.E5.m1.1.11"><divide id="S3.E5.m1.1.11.1.cmml" xref="S3.E5.m1.1.11"></divide><apply id="S3.E5.m1.1.11.2.cmml" xref="S3.E5.m1.1.11.2"><times id="S3.E5.m1.1.11.2.4.cmml" xref="S3.E5.m1.1.11.2.4"></times><ci id="S3.E5.m1.1.11.2.1.cmml" xref="S3.E5.m1.1.11.2.1">𝑛</ci><ci id="S3.E5.m1.1.11.2.2.cmml" xref="S3.E5.m1.1.11.2.2">𝜋</ci><ci id="S3.E5.m1.1.11.2.3.cmml" xref="S3.E5.m1.1.11.2.3">𝑦</ci></apply><ci id="S3.E5.m1.1.11.3.cmml" xref="S3.E5.m1.1.11.3">𝑏</ci></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E5.m1.1c">italic-W OPEN:( italic-x PUNCT:, italic-y CLOSE:) RELOP:equals TRIGFUNCTION:sine FRACOP:italic-divide ARG:start italic-m italic-pi italic-x ARG:end ARG:start italic-a ARG:end TRIGFUNCTION:sine FRACOP:italic-divide ARG:start italic-n italic-pi italic-y ARG:end ARG:start italic-b ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E5.m1.1d">W(x,y)=\sin\frac{m\pi{x}}{a}\sin\frac{n\pi{y}}{b}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p11" class="ltx_para">
+<p id="S3.SS2.p11.1" class="ltx_p">Where <math id="S3.SS2.p11.1.m1.1" class="ltx_Math" alttext="m" display="inline"><semantics id="S3.SS2.p11.1.m1.1a"><mi id="S3.SS2.p11.1.m1.1.1" xref="S3.SS2.p11.1.m1.1.1.cmml">m</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p11.1.m1.1b"><ci id="S3.SS2.p11.1.m1.1.1.cmml" xref="S3.SS2.p11.1.m1.1.1">𝑚</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p11.1.m1.1c">italic-m</annotation><annotation encoding="application/x-tex" id="S3.SS2.p11.1.m1.1d">m</annotation></semantics></math> and <math id="S3.SS2.p11.1.m2.1" class="ltx_Math" alttext="n" display="inline"><semantics id="S3.SS2.p11.1.m2.1a"><mi id="S3.SS2.p11.1.m2.1.1" xref="S3.SS2.p11.1.m2.1.1.cmml">n</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p11.1.m2.1b"><ci id="S3.SS2.p11.1.m2.1.1.cmml" xref="S3.SS2.p11.1.m2.1.1">𝑛</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p11.1.m2.1c">italic-n</annotation><annotation encoding="application/x-tex" id="S3.SS2.p11.1.m2.1d">n</annotation></semantics></math> are integer, and <math id="S3.SS2.p11.1.m3.1" class="ltx_Math" alttext="a" display="inline"><semantics id="S3.SS2.p11.1.m3.1a"><mi id="S3.SS2.p11.1.m3.1.1" xref="S3.SS2.p11.1.m3.1.1.cmml">a</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p11.1.m3.1b"><ci id="S3.SS2.p11.1.m3.1.1.cmml" xref="S3.SS2.p11.1.m3.1.1">𝑎</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p11.1.m3.1c">italic-a</annotation><annotation encoding="application/x-tex" id="S3.SS2.p11.1.m3.1d">a</annotation></semantics></math> and <math id="S3.SS2.p11.1.m4.1" class="ltx_Math" alttext="b" display="inline"><semantics id="S3.SS2.p11.1.m4.1a"><mi id="S3.SS2.p11.1.m4.1.1" xref="S3.SS2.p11.1.m4.1.1.cmml">b</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p11.1.m4.1b"><ci id="S3.SS2.p11.1.m4.1.1.cmml" xref="S3.SS2.p11.1.m4.1.1">𝑏</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p11.1.m4.1c">italic-b</annotation><annotation encoding="application/x-tex" id="S3.SS2.p11.1.m4.1d">b</annotation></semantics></math> are length of sides. By substituting Eq.(<a href="#S3.E5" title="(5) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5</span></a>) into Eq.(<a href="#S3.E4" title="(4) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>), we can get eigenfrequency</p>
+</div>
+<div id="S3.SS2.p12" class="ltx_para">
+<table id="S3.E6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E6.m1.1" class="ltx_Math" alttext="\omega_{mn}=\pi^{2}\left(\frac{m^{2}}{a^{2}}+\frac{n^{2}}{b^{2}}\right)\sqrt{%
+\frac{D}{\mu}}" display="block"><semantics id="S3.E6.m1.1a"><mrow id="S3.E6.m1.1.12" xref="S3.E6.m1.1.12.cmml"><msub id="S3.E6.m1.1.12.1" xref="S3.E6.m1.1.12.1.cmml"><mi id="S3.E6.m1.1.1" xref="S3.E6.m1.1.1.cmml">ω</mi><mrow id="S3.E6.m1.1.2.1" xref="S3.E6.m1.1.2.1.cmml"><mi id="S3.E6.m1.1.2.1.1" xref="S3.E6.m1.1.2.1.1.cmml">m</mi><mo id="S3.E6.m1.1.2.1.3" xref="S3.E6.m1.1.2.1.3.cmml">⁢</mo><mi id="S3.E6.m1.1.2.1.2" xref="S3.E6.m1.1.2.1.2.cmml">n</mi></mrow></msub><mo id="S3.E6.m1.1.3" xref="S3.E6.m1.1.3.cmml">=</mo><mrow id="S3.E6.m1.1.12.2" xref="S3.E6.m1.1.12.2.cmml"><msup id="S3.E6.m1.1.12.2.2" xref="S3.E6.m1.1.12.2.2.cmml"><mi id="S3.E6.m1.1.4" xref="S3.E6.m1.1.4.cmml">π</mi><mn id="S3.E6.m1.1.5.1" xref="S3.E6.m1.1.5.1.cmml">2</mn></msup><mo id="S3.E6.m1.1.12.2.1" xref="S3.E6.m1.1.12.2.1.cmml">⁢</mo><mrow id="S3.E6.m1.1.12.2.3" xref="S3.E6.m1.1.12.2.3.2.cmml"><mo id="S3.E6.m1.1.6" xref="S3.E6.m1.1.12.2.3.2.cmml">(</mo><mrow id="S3.E6.m1.1.12.2.3.2" xref="S3.E6.m1.1.12.2.3.2.cmml"><mfrac id="S3.E6.m1.1.7" xref="S3.E6.m1.1.7.cmml"><msup id="S3.E6.m1.1.7.2" xref="S3.E6.m1.1.7.2.cmml"><mi id="S3.E6.m1.1.7.2.1" xref="S3.E6.m1.1.7.2.1.cmml">m</mi><mn id="S3.E6.m1.1.7.2.2.1" xref="S3.E6.m1.1.7.2.2.1.cmml">2</mn></msup><msup id="S3.E6.m1.1.7.3" xref="S3.E6.m1.1.7.3.cmml"><mi id="S3.E6.m1.1.7.3.1" xref="S3.E6.m1.1.7.3.1.cmml">a</mi><mn id="S3.E6.m1.1.7.3.2.1" xref="S3.E6.m1.1.7.3.2.1.cmml">2</mn></msup></mfrac><mo id="S3.E6.m1.1.8" xref="S3.E6.m1.1.8.cmml">+</mo><mfrac id="S3.E6.m1.1.9" xref="S3.E6.m1.1.9.cmml"><msup id="S3.E6.m1.1.9.2" xref="S3.E6.m1.1.9.2.cmml"><mi id="S3.E6.m1.1.9.2.1" xref="S3.E6.m1.1.9.2.1.cmml">n</mi><mn id="S3.E6.m1.1.9.2.2.1" xref="S3.E6.m1.1.9.2.2.1.cmml">2</mn></msup><msup id="S3.E6.m1.1.9.3" xref="S3.E6.m1.1.9.3.cmml"><mi id="S3.E6.m1.1.9.3.1" xref="S3.E6.m1.1.9.3.1.cmml">b</mi><mn id="S3.E6.m1.1.9.3.2.1" xref="S3.E6.m1.1.9.3.2.1.cmml">2</mn></msup></mfrac></mrow><mo id="S3.E6.m1.1.10" xref="S3.E6.m1.1.12.2.3.2.cmml">)</mo></mrow><mo id="S3.E6.m1.1.12.2.1a" xref="S3.E6.m1.1.12.2.1.cmml">⁢</mo><msqrt id="S3.E6.m1.1.11" xref="S3.E6.m1.1.11.cmml"><mfrac id="S3.E6.m1.1.11.2" xref="S3.E6.m1.1.11.2.cmml"><mi id="S3.E6.m1.1.11.2.1.2" xref="S3.E6.m1.1.11.2.1.2.cmml">D</mi><mi id="S3.E6.m1.1.11.2.1.3" xref="S3.E6.m1.1.11.2.1.3.cmml">μ</mi></mfrac></msqrt></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E6.m1.1b"><apply id="S3.E6.m1.1.12.cmml" xref="S3.E6.m1.1.12"><eq id="S3.E6.m1.1.3.cmml" xref="S3.E6.m1.1.3"></eq><apply id="S3.E6.m1.1.12.1.cmml" xref="S3.E6.m1.1.12.1"><csymbol cd="ambiguous" id="S3.E6.m1.1.12.1.1.cmml" xref="S3.E6.m1.1.12.1">subscript</csymbol><ci id="S3.E6.m1.1.1.cmml" xref="S3.E6.m1.1.1">𝜔</ci><apply id="S3.E6.m1.1.2.1.cmml" xref="S3.E6.m1.1.2.1"><times id="S3.E6.m1.1.2.1.3.cmml" xref="S3.E6.m1.1.2.1.3"></times><ci id="S3.E6.m1.1.2.1.1.cmml" xref="S3.E6.m1.1.2.1.1">𝑚</ci><ci id="S3.E6.m1.1.2.1.2.cmml" xref="S3.E6.m1.1.2.1.2">𝑛</ci></apply></apply><apply id="S3.E6.m1.1.12.2.cmml" xref="S3.E6.m1.1.12.2"><times id="S3.E6.m1.1.12.2.1.cmml" xref="S3.E6.m1.1.12.2.1"></times><apply id="S3.E6.m1.1.12.2.2.cmml" xref="S3.E6.m1.1.12.2.2"><csymbol cd="ambiguous" id="S3.E6.m1.1.12.2.2.1.cmml" xref="S3.E6.m1.1.12.2.2">superscript</csymbol><ci id="S3.E6.m1.1.4.cmml" xref="S3.E6.m1.1.4">𝜋</ci><cn type="integer" id="S3.E6.m1.1.5.1.cmml" xref="S3.E6.m1.1.5.1">2</cn></apply><apply id="S3.E6.m1.1.12.2.3.2.cmml" xref="S3.E6.m1.1.12.2.3"><plus id="S3.E6.m1.1.8.cmml" xref="S3.E6.m1.1.8"></plus><apply id="S3.E6.m1.1.7.cmml" xref="S3.E6.m1.1.7"><divide id="S3.E6.m1.1.7.1.cmml" xref="S3.E6.m1.1.7"></divide><apply id="S3.E6.m1.1.7.2.cmml" xref="S3.E6.m1.1.7.2"><csymbol cd="ambiguous" id="S3.E6.m1.1.7.2.3.cmml" xref="S3.E6.m1.1.7.2">superscript</csymbol><ci id="S3.E6.m1.1.7.2.1.cmml" xref="S3.E6.m1.1.7.2.1">𝑚</ci><cn type="integer" id="S3.E6.m1.1.7.2.2.1.cmml" xref="S3.E6.m1.1.7.2.2.1">2</cn></apply><apply id="S3.E6.m1.1.7.3.cmml" xref="S3.E6.m1.1.7.3"><csymbol cd="ambiguous" id="S3.E6.m1.1.7.3.3.cmml" xref="S3.E6.m1.1.7.3">superscript</csymbol><ci id="S3.E6.m1.1.7.3.1.cmml" xref="S3.E6.m1.1.7.3.1">𝑎</ci><cn type="integer" id="S3.E6.m1.1.7.3.2.1.cmml" xref="S3.E6.m1.1.7.3.2.1">2</cn></apply></apply><apply id="S3.E6.m1.1.9.cmml" xref="S3.E6.m1.1.9"><divide id="S3.E6.m1.1.9.1.cmml" xref="S3.E6.m1.1.9"></divide><apply id="S3.E6.m1.1.9.2.cmml" xref="S3.E6.m1.1.9.2"><csymbol cd="ambiguous" id="S3.E6.m1.1.9.2.3.cmml" xref="S3.E6.m1.1.9.2">superscript</csymbol><ci id="S3.E6.m1.1.9.2.1.cmml" xref="S3.E6.m1.1.9.2.1">𝑛</ci><cn type="integer" id="S3.E6.m1.1.9.2.2.1.cmml" xref="S3.E6.m1.1.9.2.2.1">2</cn></apply><apply id="S3.E6.m1.1.9.3.cmml" xref="S3.E6.m1.1.9.3"><csymbol cd="ambiguous" id="S3.E6.m1.1.9.3.3.cmml" xref="S3.E6.m1.1.9.3">superscript</csymbol><ci id="S3.E6.m1.1.9.3.1.cmml" xref="S3.E6.m1.1.9.3.1">𝑏</ci><cn type="integer" id="S3.E6.m1.1.9.3.2.1.cmml" xref="S3.E6.m1.1.9.3.2.1">2</cn></apply></apply></apply><apply id="S3.E6.m1.1.11.cmml" xref="S3.E6.m1.1.11"><root id="S3.E6.m1.1.11a.cmml" xref="S3.E6.m1.1.11"></root><apply id="S3.E6.m1.1.11.2.cmml" xref="S3.E6.m1.1.11.2"><divide id="S3.E6.m1.1.11.2.1.1.cmml" xref="S3.E6.m1.1.11.2"></divide><ci id="S3.E6.m1.1.11.2.1.2.cmml" xref="S3.E6.m1.1.11.2.1.2">𝐷</ci><ci id="S3.E6.m1.1.11.2.1.3.cmml" xref="S3.E6.m1.1.11.2.1.3">𝜇</ci></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E6.m1.1c">italic-omega POSTSUBSCRIPT:start italic-m italic-n POSTSUBSCRIPT:end RELOP:equals italic-pi POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end OPEN:( FRACOP:italic-divide ARG:start italic-m POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ARG:start italic-a POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ADDOP:plus FRACOP:italic-divide ARG:start italic-n POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end ARG:start italic-b POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end CLOSE:) italic-square-root ARG:start FRACOP:italic-divide ARG:start italic-D ARG:end ARG:start italic-mu ARG:end ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E6.m1.1d">\omega_{mn}=\pi^{2}\left(\frac{m^{2}}{a^{2}}+\frac{n^{2}}{b^{2}}\right)\sqrt{%
+\frac{D}{\mu}}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(6)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p13" class="ltx_para">
+<p id="S3.SS2.p13.1" class="ltx_p">Eq.(<a href="#S3.E5" title="(5) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5</span></a>) shows the shape of eigen modes, and it is changed by value of <math id="S3.SS2.p13.1.m1.1" class="ltx_Math" alttext="m" display="inline"><semantics id="S3.SS2.p13.1.m1.1a"><mi id="S3.SS2.p13.1.m1.1.1" xref="S3.SS2.p13.1.m1.1.1.cmml">m</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p13.1.m1.1b"><ci id="S3.SS2.p13.1.m1.1.1.cmml" xref="S3.SS2.p13.1.m1.1.1">𝑚</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p13.1.m1.1c">italic-m</annotation><annotation encoding="application/x-tex" id="S3.SS2.p13.1.m1.1d">m</annotation></semantics></math> and <math id="S3.SS2.p13.1.m2.1" class="ltx_Math" alttext="n" display="inline"><semantics id="S3.SS2.p13.1.m2.1a"><mi id="S3.SS2.p13.1.m2.1.1" xref="S3.SS2.p13.1.m2.1.1.cmml">n</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p13.1.m2.1b"><ci id="S3.SS2.p13.1.m2.1.1.cmml" xref="S3.SS2.p13.1.m2.1.1">𝑛</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p13.1.m2.1c">italic-n</annotation><annotation encoding="application/x-tex" id="S3.SS2.p13.1.m2.1d">n</annotation></semantics></math>. If the structure is square <math id="S3.SS2.p13.1.m3.1" class="ltx_Math" alttext="(a=b)" display="inline"><semantics id="S3.SS2.p13.1.m3.1a"><mrow id="S3.SS2.p13.1.m3.1.6" xref="S3.SS2.p13.1.m3.1.6.2.cmml"><mo stretchy="false" id="S3.SS2.p13.1.m3.1.1" xref="S3.SS2.p13.1.m3.1.6.2.cmml">(</mo><mrow id="S3.SS2.p13.1.m3.1.6.2" xref="S3.SS2.p13.1.m3.1.6.2.cmml"><mi id="S3.SS2.p13.1.m3.1.2" xref="S3.SS2.p13.1.m3.1.2.cmml">a</mi><mo id="S3.SS2.p13.1.m3.1.3" xref="S3.SS2.p13.1.m3.1.3.cmml">=</mo><mi id="S3.SS2.p13.1.m3.1.4" xref="S3.SS2.p13.1.m3.1.4.cmml">b</mi></mrow><mo stretchy="false" id="S3.SS2.p13.1.m3.1.5" xref="S3.SS2.p13.1.m3.1.6.2.cmml">)</mo></mrow><annotation-xml encoding="MathML-Content" id="S3.SS2.p13.1.m3.1b"><apply id="S3.SS2.p13.1.m3.1.6.2.cmml" xref="S3.SS2.p13.1.m3.1.6"><eq id="S3.SS2.p13.1.m3.1.3.cmml" xref="S3.SS2.p13.1.m3.1.3"></eq><ci id="S3.SS2.p13.1.m3.1.2.cmml" xref="S3.SS2.p13.1.m3.1.2">𝑎</ci><ci id="S3.SS2.p13.1.m3.1.4.cmml" xref="S3.SS2.p13.1.m3.1.4">𝑏</ci></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p13.1.m3.1c">OPEN:( italic-a RELOP:equals italic-b CLOSE:)</annotation><annotation encoding="application/x-tex" id="S3.SS2.p13.1.m3.1d">(a=b)</annotation></semantics></math>, eigen modes of <math id="S3.SS2.p13.1.m4.1" class="ltx_Math" alttext="(m,n)" display="inline"><semantics id="S3.SS2.p13.1.m4.1a"><mrow id="S3.SS2.p13.1.m4.1.6" xref="S3.SS2.p13.1.m4.1.6.1.cmml"><mo stretchy="false" id="S3.SS2.p13.1.m4.1.1" xref="S3.SS2.p13.1.m4.1.6.1.cmml">(</mo><mi id="S3.SS2.p13.1.m4.1.2" xref="S3.SS2.p13.1.m4.1.2.cmml">m</mi><mo id="S3.SS2.p13.1.m4.1.3" xref="S3.SS2.p13.1.m4.1.6.1.cmml">,</mo><mi id="S3.SS2.p13.1.m4.1.4" xref="S3.SS2.p13.1.m4.1.4.cmml">n</mi><mo stretchy="false" id="S3.SS2.p13.1.m4.1.5" xref="S3.SS2.p13.1.m4.1.6.1.cmml">)</mo></mrow><annotation-xml encoding="MathML-Content" id="S3.SS2.p13.1.m4.1b"><interval closure="open" id="S3.SS2.p13.1.m4.1.6.1.cmml" xref="S3.SS2.p13.1.m4.1.6"><ci id="S3.SS2.p13.1.m4.1.2.cmml" xref="S3.SS2.p13.1.m4.1.2">𝑚</ci><ci id="S3.SS2.p13.1.m4.1.4.cmml" xref="S3.SS2.p13.1.m4.1.4">𝑛</ci></interval></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p13.1.m4.1c">OPEN:( italic-m PUNCT:, italic-n CLOSE:)</annotation><annotation encoding="application/x-tex" id="S3.SS2.p13.1.m4.1d">(m,n)</annotation></semantics></math> and <math id="S3.SS2.p13.1.m5.1" class="ltx_Math" alttext="(n,m)" display="inline"><semantics id="S3.SS2.p13.1.m5.1a"><mrow id="S3.SS2.p13.1.m5.1.6" xref="S3.SS2.p13.1.m5.1.6.1.cmml"><mo stretchy="false" id="S3.SS2.p13.1.m5.1.1" xref="S3.SS2.p13.1.m5.1.6.1.cmml">(</mo><mi id="S3.SS2.p13.1.m5.1.2" xref="S3.SS2.p13.1.m5.1.2.cmml">n</mi><mo id="S3.SS2.p13.1.m5.1.3" xref="S3.SS2.p13.1.m5.1.6.1.cmml">,</mo><mi id="S3.SS2.p13.1.m5.1.4" xref="S3.SS2.p13.1.m5.1.4.cmml">m</mi><mo stretchy="false" id="S3.SS2.p13.1.m5.1.5" xref="S3.SS2.p13.1.m5.1.6.1.cmml">)</mo></mrow><annotation-xml encoding="MathML-Content" id="S3.SS2.p13.1.m5.1b"><interval closure="open" id="S3.SS2.p13.1.m5.1.6.1.cmml" xref="S3.SS2.p13.1.m5.1.6"><ci id="S3.SS2.p13.1.m5.1.2.cmml" xref="S3.SS2.p13.1.m5.1.2">𝑛</ci><ci id="S3.SS2.p13.1.m5.1.4.cmml" xref="S3.SS2.p13.1.m5.1.4">𝑚</ci></interval></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p13.1.m5.1c">OPEN:( italic-n PUNCT:, italic-m CLOSE:)</annotation><annotation encoding="application/x-tex" id="S3.SS2.p13.1.m5.1d">(n,m)</annotation></semantics></math> are shown by</p>
+</div>
+<div id="S3.SS2.p14" class="ltx_para">
+<table id="S3.E7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E7.m1.1" class="ltx_Math" alttext="W_{mn}=\sin\frac{m\pi{x}}{a}\sin\frac{n\pi{y}}{b}" display="block"><semantics id="S3.E7.m1.1a"><mrow id="S3.E7.m1.1.8" xref="S3.E7.m1.1.8.cmml"><msub id="S3.E7.m1.1.8.1" xref="S3.E7.m1.1.8.1.cmml"><mi id="S3.E7.m1.1.1" xref="S3.E7.m1.1.1.cmml">W</mi><mrow id="S3.E7.m1.1.2.1" xref="S3.E7.m1.1.2.1.cmml"><mi id="S3.E7.m1.1.2.1.1" xref="S3.E7.m1.1.2.1.1.cmml">m</mi><mo id="S3.E7.m1.1.2.1.3" xref="S3.E7.m1.1.2.1.3.cmml">⁢</mo><mi id="S3.E7.m1.1.2.1.2" xref="S3.E7.m1.1.2.1.2.cmml">n</mi></mrow></msub><mo id="S3.E7.m1.1.3" xref="S3.E7.m1.1.3.cmml">=</mo><mrow id="S3.E7.m1.1.8.2" xref="S3.E7.m1.1.8.2.cmml"><mrow id="S3.E7.m1.1.8.2.2" xref="S3.E7.m1.1.8.2.2.cmml"><mi id="S3.E7.m1.1.4" xref="S3.E7.m1.1.4.cmml">sin</mi><mo id="S3.E7.m1.1.8.2.2a" xref="S3.E7.m1.1.8.2.2.cmml">⁡</mo><mfrac id="S3.E7.m1.1.5" xref="S3.E7.m1.1.5.cmml"><mrow id="S3.E7.m1.1.5.2" xref="S3.E7.m1.1.5.2.cmml"><mi id="S3.E7.m1.1.5.2.1" xref="S3.E7.m1.1.5.2.1.cmml">m</mi><mo id="S3.E7.m1.1.5.2.4" xref="S3.E7.m1.1.5.2.4.cmml">⁢</mo><mi id="S3.E7.m1.1.5.2.2" xref="S3.E7.m1.1.5.2.2.cmml">π</mi><mo id="S3.E7.m1.1.5.2.4a" xref="S3.E7.m1.1.5.2.4.cmml">⁢</mo><mi id="S3.E7.m1.1.5.2.3" xref="S3.E7.m1.1.5.2.3.cmml">x</mi></mrow><mi id="S3.E7.m1.1.5.3" xref="S3.E7.m1.1.5.3.cmml">a</mi></mfrac></mrow><mo id="S3.E7.m1.1.8.2.1" xref="S3.E7.m1.1.8.2.1.cmml">⁢</mo><mrow id="S3.E7.m1.1.8.2.3" xref="S3.E7.m1.1.8.2.3.cmml"><mi id="S3.E7.m1.1.6" xref="S3.E7.m1.1.6.cmml">sin</mi><mo id="S3.E7.m1.1.8.2.3a" xref="S3.E7.m1.1.8.2.3.cmml">⁡</mo><mfrac id="S3.E7.m1.1.7" xref="S3.E7.m1.1.7.cmml"><mrow id="S3.E7.m1.1.7.2" xref="S3.E7.m1.1.7.2.cmml"><mi id="S3.E7.m1.1.7.2.1" xref="S3.E7.m1.1.7.2.1.cmml">n</mi><mo id="S3.E7.m1.1.7.2.4" xref="S3.E7.m1.1.7.2.4.cmml">⁢</mo><mi id="S3.E7.m1.1.7.2.2" xref="S3.E7.m1.1.7.2.2.cmml">π</mi><mo id="S3.E7.m1.1.7.2.4a" xref="S3.E7.m1.1.7.2.4.cmml">⁢</mo><mi id="S3.E7.m1.1.7.2.3" xref="S3.E7.m1.1.7.2.3.cmml">y</mi></mrow><mi id="S3.E7.m1.1.7.3" xref="S3.E7.m1.1.7.3.cmml">b</mi></mfrac></mrow></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E7.m1.1b"><apply id="S3.E7.m1.1.8.cmml" xref="S3.E7.m1.1.8"><eq id="S3.E7.m1.1.3.cmml" xref="S3.E7.m1.1.3"></eq><apply id="S3.E7.m1.1.8.1.cmml" xref="S3.E7.m1.1.8.1"><csymbol cd="ambiguous" id="S3.E7.m1.1.8.1.1.cmml" xref="S3.E7.m1.1.8.1">subscript</csymbol><ci id="S3.E7.m1.1.1.cmml" xref="S3.E7.m1.1.1">𝑊</ci><apply id="S3.E7.m1.1.2.1.cmml" xref="S3.E7.m1.1.2.1"><times id="S3.E7.m1.1.2.1.3.cmml" xref="S3.E7.m1.1.2.1.3"></times><ci id="S3.E7.m1.1.2.1.1.cmml" xref="S3.E7.m1.1.2.1.1">𝑚</ci><ci id="S3.E7.m1.1.2.1.2.cmml" xref="S3.E7.m1.1.2.1.2">𝑛</ci></apply></apply><apply id="S3.E7.m1.1.8.2.cmml" xref="S3.E7.m1.1.8.2"><times id="S3.E7.m1.1.8.2.1.cmml" xref="S3.E7.m1.1.8.2.1"></times><apply id="S3.E7.m1.1.8.2.2.cmml" xref="S3.E7.m1.1.8.2.2"><sin id="S3.E7.m1.1.4.cmml" xref="S3.E7.m1.1.4"></sin><apply id="S3.E7.m1.1.5.cmml" xref="S3.E7.m1.1.5"><divide id="S3.E7.m1.1.5.1.cmml" xref="S3.E7.m1.1.5"></divide><apply id="S3.E7.m1.1.5.2.cmml" xref="S3.E7.m1.1.5.2"><times id="S3.E7.m1.1.5.2.4.cmml" xref="S3.E7.m1.1.5.2.4"></times><ci id="S3.E7.m1.1.5.2.1.cmml" xref="S3.E7.m1.1.5.2.1">𝑚</ci><ci id="S3.E7.m1.1.5.2.2.cmml" xref="S3.E7.m1.1.5.2.2">𝜋</ci><ci id="S3.E7.m1.1.5.2.3.cmml" xref="S3.E7.m1.1.5.2.3">𝑥</ci></apply><ci id="S3.E7.m1.1.5.3.cmml" xref="S3.E7.m1.1.5.3">𝑎</ci></apply></apply><apply id="S3.E7.m1.1.8.2.3.cmml" xref="S3.E7.m1.1.8.2.3"><sin id="S3.E7.m1.1.6.cmml" xref="S3.E7.m1.1.6"></sin><apply id="S3.E7.m1.1.7.cmml" xref="S3.E7.m1.1.7"><divide id="S3.E7.m1.1.7.1.cmml" xref="S3.E7.m1.1.7"></divide><apply id="S3.E7.m1.1.7.2.cmml" xref="S3.E7.m1.1.7.2"><times id="S3.E7.m1.1.7.2.4.cmml" xref="S3.E7.m1.1.7.2.4"></times><ci id="S3.E7.m1.1.7.2.1.cmml" xref="S3.E7.m1.1.7.2.1">𝑛</ci><ci id="S3.E7.m1.1.7.2.2.cmml" xref="S3.E7.m1.1.7.2.2">𝜋</ci><ci id="S3.E7.m1.1.7.2.3.cmml" xref="S3.E7.m1.1.7.2.3">𝑦</ci></apply><ci id="S3.E7.m1.1.7.3.cmml" xref="S3.E7.m1.1.7.3">𝑏</ci></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E7.m1.1c">italic-W POSTSUBSCRIPT:start italic-m italic-n POSTSUBSCRIPT:end RELOP:equals TRIGFUNCTION:sine FRACOP:italic-divide ARG:start italic-m italic-pi italic-x ARG:end ARG:start italic-a ARG:end TRIGFUNCTION:sine FRACOP:italic-divide ARG:start italic-n italic-pi italic-y ARG:end ARG:start italic-b ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E7.m1.1d">W_{mn}=\sin\frac{m\pi{x}}{a}\sin\frac{n\pi{y}}{b}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(7)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p15" class="ltx_para">
+<table id="S3.E8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E8.m1.1" class="ltx_Math" alttext="W_{nm}=\sin\frac{n\pi{x}}{a}\sin\frac{m\pi{y}}{b}" display="block"><semantics id="S3.E8.m1.1a"><mrow id="S3.E8.m1.1.8" xref="S3.E8.m1.1.8.cmml"><msub id="S3.E8.m1.1.8.1" xref="S3.E8.m1.1.8.1.cmml"><mi id="S3.E8.m1.1.1" xref="S3.E8.m1.1.1.cmml">W</mi><mrow id="S3.E8.m1.1.2.1" xref="S3.E8.m1.1.2.1.cmml"><mi id="S3.E8.m1.1.2.1.1" xref="S3.E8.m1.1.2.1.1.cmml">n</mi><mo id="S3.E8.m1.1.2.1.3" xref="S3.E8.m1.1.2.1.3.cmml">⁢</mo><mi id="S3.E8.m1.1.2.1.2" xref="S3.E8.m1.1.2.1.2.cmml">m</mi></mrow></msub><mo id="S3.E8.m1.1.3" xref="S3.E8.m1.1.3.cmml">=</mo><mrow id="S3.E8.m1.1.8.2" xref="S3.E8.m1.1.8.2.cmml"><mrow id="S3.E8.m1.1.8.2.2" xref="S3.E8.m1.1.8.2.2.cmml"><mi id="S3.E8.m1.1.4" xref="S3.E8.m1.1.4.cmml">sin</mi><mo id="S3.E8.m1.1.8.2.2a" xref="S3.E8.m1.1.8.2.2.cmml">⁡</mo><mfrac id="S3.E8.m1.1.5" xref="S3.E8.m1.1.5.cmml"><mrow id="S3.E8.m1.1.5.2" xref="S3.E8.m1.1.5.2.cmml"><mi id="S3.E8.m1.1.5.2.1" xref="S3.E8.m1.1.5.2.1.cmml">n</mi><mo id="S3.E8.m1.1.5.2.4" xref="S3.E8.m1.1.5.2.4.cmml">⁢</mo><mi id="S3.E8.m1.1.5.2.2" xref="S3.E8.m1.1.5.2.2.cmml">π</mi><mo id="S3.E8.m1.1.5.2.4a" xref="S3.E8.m1.1.5.2.4.cmml">⁢</mo><mi id="S3.E8.m1.1.5.2.3" xref="S3.E8.m1.1.5.2.3.cmml">x</mi></mrow><mi id="S3.E8.m1.1.5.3" xref="S3.E8.m1.1.5.3.cmml">a</mi></mfrac></mrow><mo id="S3.E8.m1.1.8.2.1" xref="S3.E8.m1.1.8.2.1.cmml">⁢</mo><mrow id="S3.E8.m1.1.8.2.3" xref="S3.E8.m1.1.8.2.3.cmml"><mi id="S3.E8.m1.1.6" xref="S3.E8.m1.1.6.cmml">sin</mi><mo id="S3.E8.m1.1.8.2.3a" xref="S3.E8.m1.1.8.2.3.cmml">⁡</mo><mfrac id="S3.E8.m1.1.7" xref="S3.E8.m1.1.7.cmml"><mrow id="S3.E8.m1.1.7.2" xref="S3.E8.m1.1.7.2.cmml"><mi id="S3.E8.m1.1.7.2.1" xref="S3.E8.m1.1.7.2.1.cmml">m</mi><mo id="S3.E8.m1.1.7.2.4" xref="S3.E8.m1.1.7.2.4.cmml">⁢</mo><mi id="S3.E8.m1.1.7.2.2" xref="S3.E8.m1.1.7.2.2.cmml">π</mi><mo id="S3.E8.m1.1.7.2.4a" xref="S3.E8.m1.1.7.2.4.cmml">⁢</mo><mi id="S3.E8.m1.1.7.2.3" xref="S3.E8.m1.1.7.2.3.cmml">y</mi></mrow><mi id="S3.E8.m1.1.7.3" xref="S3.E8.m1.1.7.3.cmml">b</mi></mfrac></mrow></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E8.m1.1b"><apply id="S3.E8.m1.1.8.cmml" xref="S3.E8.m1.1.8"><eq id="S3.E8.m1.1.3.cmml" xref="S3.E8.m1.1.3"></eq><apply id="S3.E8.m1.1.8.1.cmml" xref="S3.E8.m1.1.8.1"><csymbol cd="ambiguous" id="S3.E8.m1.1.8.1.1.cmml" xref="S3.E8.m1.1.8.1">subscript</csymbol><ci id="S3.E8.m1.1.1.cmml" xref="S3.E8.m1.1.1">𝑊</ci><apply id="S3.E8.m1.1.2.1.cmml" xref="S3.E8.m1.1.2.1"><times id="S3.E8.m1.1.2.1.3.cmml" xref="S3.E8.m1.1.2.1.3"></times><ci id="S3.E8.m1.1.2.1.1.cmml" xref="S3.E8.m1.1.2.1.1">𝑛</ci><ci id="S3.E8.m1.1.2.1.2.cmml" xref="S3.E8.m1.1.2.1.2">𝑚</ci></apply></apply><apply id="S3.E8.m1.1.8.2.cmml" xref="S3.E8.m1.1.8.2"><times id="S3.E8.m1.1.8.2.1.cmml" xref="S3.E8.m1.1.8.2.1"></times><apply id="S3.E8.m1.1.8.2.2.cmml" xref="S3.E8.m1.1.8.2.2"><sin id="S3.E8.m1.1.4.cmml" xref="S3.E8.m1.1.4"></sin><apply id="S3.E8.m1.1.5.cmml" xref="S3.E8.m1.1.5"><divide id="S3.E8.m1.1.5.1.cmml" xref="S3.E8.m1.1.5"></divide><apply id="S3.E8.m1.1.5.2.cmml" xref="S3.E8.m1.1.5.2"><times id="S3.E8.m1.1.5.2.4.cmml" xref="S3.E8.m1.1.5.2.4"></times><ci id="S3.E8.m1.1.5.2.1.cmml" xref="S3.E8.m1.1.5.2.1">𝑛</ci><ci id="S3.E8.m1.1.5.2.2.cmml" xref="S3.E8.m1.1.5.2.2">𝜋</ci><ci id="S3.E8.m1.1.5.2.3.cmml" xref="S3.E8.m1.1.5.2.3">𝑥</ci></apply><ci id="S3.E8.m1.1.5.3.cmml" xref="S3.E8.m1.1.5.3">𝑎</ci></apply></apply><apply id="S3.E8.m1.1.8.2.3.cmml" xref="S3.E8.m1.1.8.2.3"><sin id="S3.E8.m1.1.6.cmml" xref="S3.E8.m1.1.6"></sin><apply id="S3.E8.m1.1.7.cmml" xref="S3.E8.m1.1.7"><divide id="S3.E8.m1.1.7.1.cmml" xref="S3.E8.m1.1.7"></divide><apply id="S3.E8.m1.1.7.2.cmml" xref="S3.E8.m1.1.7.2"><times id="S3.E8.m1.1.7.2.4.cmml" xref="S3.E8.m1.1.7.2.4"></times><ci id="S3.E8.m1.1.7.2.1.cmml" xref="S3.E8.m1.1.7.2.1">𝑚</ci><ci id="S3.E8.m1.1.7.2.2.cmml" xref="S3.E8.m1.1.7.2.2">𝜋</ci><ci id="S3.E8.m1.1.7.2.3.cmml" xref="S3.E8.m1.1.7.2.3">𝑦</ci></apply><ci id="S3.E8.m1.1.7.3.cmml" xref="S3.E8.m1.1.7.3">𝑏</ci></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E8.m1.1c">italic-W POSTSUBSCRIPT:start italic-n italic-m POSTSUBSCRIPT:end RELOP:equals TRIGFUNCTION:sine FRACOP:italic-divide ARG:start italic-n italic-pi italic-x ARG:end ARG:start italic-a ARG:end TRIGFUNCTION:sine FRACOP:italic-divide ARG:start italic-m italic-pi italic-y ARG:end ARG:start italic-b ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E8.m1.1d">W_{nm}=\sin\frac{n\pi{x}}{a}\sin\frac{m\pi{y}}{b}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(8)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p16" class="ltx_para">
+<p id="S3.SS2.p16.1" class="ltx_p">These two modes have same eigenfrequency, it can be calculated by</p>
+</div>
+<div id="S3.SS2.p17" class="ltx_para">
+<table id="S3.E9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E9.m1.1" class="ltx_Math" alttext="\omega_{mn}=\omega_{nm}=\pi^{2}\left({m^{2}}+{n^{2}}\right){\frac{1}{a^{2}}}%
+\sqrt{\frac{D}{\mu}}" display="block"><semantics id="S3.E9.m1.1a"><mrow id="S3.E9.m1.1.18" xref="S3.E9.m1.1.18.cmml"><msub id="S3.E9.m1.1.18.2" xref="S3.E9.m1.1.18.2.cmml"><mi id="S3.E9.m1.1.1" xref="S3.E9.m1.1.1.cmml">ω</mi><mrow id="S3.E9.m1.1.2.1" xref="S3.E9.m1.1.2.1.cmml"><mi id="S3.E9.m1.1.2.1.1" xref="S3.E9.m1.1.2.1.1.cmml">m</mi><mo id="S3.E9.m1.1.2.1.3" xref="S3.E9.m1.1.2.1.3.cmml">⁢</mo><mi id="S3.E9.m1.1.2.1.2" xref="S3.E9.m1.1.2.1.2.cmml">n</mi></mrow></msub><mo id="S3.E9.m1.1.3" xref="S3.E9.m1.1.3.cmml">=</mo><msub id="S3.E9.m1.1.18.3" xref="S3.E9.m1.1.18.3.cmml"><mi id="S3.E9.m1.1.4" xref="S3.E9.m1.1.4.cmml">ω</mi><mrow id="S3.E9.m1.1.5.1" xref="S3.E9.m1.1.5.1.cmml"><mi id="S3.E9.m1.1.5.1.1" xref="S3.E9.m1.1.5.1.1.cmml">n</mi><mo id="S3.E9.m1.1.5.1.3" xref="S3.E9.m1.1.5.1.3.cmml">⁢</mo><mi id="S3.E9.m1.1.5.1.2" xref="S3.E9.m1.1.5.1.2.cmml">m</mi></mrow></msub><mo id="S3.E9.m1.1.6" xref="S3.E9.m1.1.6.cmml">=</mo><mrow id="S3.E9.m1.1.18.4" xref="S3.E9.m1.1.18.4.cmml"><msup id="S3.E9.m1.1.18.4.2" xref="S3.E9.m1.1.18.4.2.cmml"><mi id="S3.E9.m1.1.7" xref="S3.E9.m1.1.7.cmml">π</mi><mn id="S3.E9.m1.1.8.1" xref="S3.E9.m1.1.8.1.cmml">2</mn></msup><mo id="S3.E9.m1.1.18.4.1" xref="S3.E9.m1.1.18.4.1.cmml">⁢</mo><mrow id="S3.E9.m1.1.18.4.3" xref="S3.E9.m1.1.18.4.3.2.cmml"><mo id="S3.E9.m1.1.9" xref="S3.E9.m1.1.18.4.3.2.cmml">(</mo><mrow id="S3.E9.m1.1.18.4.3.2" xref="S3.E9.m1.1.18.4.3.2.cmml"><msup id="S3.E9.m1.1.18.4.3.2.1" xref="S3.E9.m1.1.18.4.3.2.1.cmml"><mi id="S3.E9.m1.1.10" xref="S3.E9.m1.1.10.cmml">m</mi><mn id="S3.E9.m1.1.11.1" xref="S3.E9.m1.1.11.1.cmml">2</mn></msup><mo id="S3.E9.m1.1.12" xref="S3.E9.m1.1.12.cmml">+</mo><msup id="S3.E9.m1.1.18.4.3.2.2" xref="S3.E9.m1.1.18.4.3.2.2.cmml"><mi id="S3.E9.m1.1.13" xref="S3.E9.m1.1.13.cmml">n</mi><mn id="S3.E9.m1.1.14.1" xref="S3.E9.m1.1.14.1.cmml">2</mn></msup></mrow><mo id="S3.E9.m1.1.15" xref="S3.E9.m1.1.18.4.3.2.cmml">)</mo></mrow><mo id="S3.E9.m1.1.18.4.1a" xref="S3.E9.m1.1.18.4.1.cmml">⁢</mo><mfrac id="S3.E9.m1.1.16" xref="S3.E9.m1.1.16.cmml"><mn id="S3.E9.m1.1.16.2" xref="S3.E9.m1.1.16.2.cmml">1</mn><msup id="S3.E9.m1.1.16.3" xref="S3.E9.m1.1.16.3.cmml"><mi id="S3.E9.m1.1.16.3.1" xref="S3.E9.m1.1.16.3.1.cmml">a</mi><mn id="S3.E9.m1.1.16.3.2.1" xref="S3.E9.m1.1.16.3.2.1.cmml">2</mn></msup></mfrac><mo id="S3.E9.m1.1.18.4.1b" xref="S3.E9.m1.1.18.4.1.cmml">⁢</mo><msqrt id="S3.E9.m1.1.17" xref="S3.E9.m1.1.17.cmml"><mfrac id="S3.E9.m1.1.17.2" xref="S3.E9.m1.1.17.2.cmml"><mi id="S3.E9.m1.1.17.2.1.2" xref="S3.E9.m1.1.17.2.1.2.cmml">D</mi><mi id="S3.E9.m1.1.17.2.1.3" xref="S3.E9.m1.1.17.2.1.3.cmml">μ</mi></mfrac></msqrt></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E9.m1.1b"><apply id="S3.E9.m1.1.18.cmml" xref="S3.E9.m1.1.18"><and id="S3.E9.m1.1.18a.cmml" xref="S3.E9.m1.1.18"></and><apply id="S3.E9.m1.1.18b.cmml" xref="S3.E9.m1.1.18"><eq id="S3.E9.m1.1.3.cmml" xref="S3.E9.m1.1.3"></eq><apply id="S3.E9.m1.1.18.2.cmml" xref="S3.E9.m1.1.18.2"><csymbol cd="ambiguous" id="S3.E9.m1.1.18.2.1.cmml" xref="S3.E9.m1.1.18.2">subscript</csymbol><ci id="S3.E9.m1.1.1.cmml" xref="S3.E9.m1.1.1">𝜔</ci><apply id="S3.E9.m1.1.2.1.cmml" xref="S3.E9.m1.1.2.1"><times id="S3.E9.m1.1.2.1.3.cmml" xref="S3.E9.m1.1.2.1.3"></times><ci id="S3.E9.m1.1.2.1.1.cmml" xref="S3.E9.m1.1.2.1.1">𝑚</ci><ci id="S3.E9.m1.1.2.1.2.cmml" xref="S3.E9.m1.1.2.1.2">𝑛</ci></apply></apply><apply id="S3.E9.m1.1.18.3.cmml" xref="S3.E9.m1.1.18.3"><csymbol cd="ambiguous" id="S3.E9.m1.1.18.3.1.cmml" xref="S3.E9.m1.1.18.3">subscript</csymbol><ci id="S3.E9.m1.1.4.cmml" xref="S3.E9.m1.1.4">𝜔</ci><apply id="S3.E9.m1.1.5.1.cmml" xref="S3.E9.m1.1.5.1"><times id="S3.E9.m1.1.5.1.3.cmml" xref="S3.E9.m1.1.5.1.3"></times><ci id="S3.E9.m1.1.5.1.1.cmml" xref="S3.E9.m1.1.5.1.1">𝑛</ci><ci id="S3.E9.m1.1.5.1.2.cmml" xref="S3.E9.m1.1.5.1.2">𝑚</ci></apply></apply></apply><apply id="S3.E9.m1.1.18c.cmml" xref="S3.E9.m1.1.18"><eq id="S3.E9.m1.1.6.cmml" xref="S3.E9.m1.1.6"></eq><share href="#S3.E9.m1.1.18.3.cmml" id="S3.E9.m1.1.18d.cmml" xref="S3.E9.m1.1.18"></share><apply id="S3.E9.m1.1.18.4.cmml" xref="S3.E9.m1.1.18.4"><times id="S3.E9.m1.1.18.4.1.cmml" xref="S3.E9.m1.1.18.4.1"></times><apply id="S3.E9.m1.1.18.4.2.cmml" xref="S3.E9.m1.1.18.4.2"><csymbol cd="ambiguous" id="S3.E9.m1.1.18.4.2.1.cmml" xref="S3.E9.m1.1.18.4.2">superscript</csymbol><ci id="S3.E9.m1.1.7.cmml" xref="S3.E9.m1.1.7">𝜋</ci><cn type="integer" id="S3.E9.m1.1.8.1.cmml" xref="S3.E9.m1.1.8.1">2</cn></apply><apply id="S3.E9.m1.1.18.4.3.2.cmml" xref="S3.E9.m1.1.18.4.3"><plus id="S3.E9.m1.1.12.cmml" xref="S3.E9.m1.1.12"></plus><apply id="S3.E9.m1.1.18.4.3.2.1.cmml" xref="S3.E9.m1.1.18.4.3.2.1"><csymbol cd="ambiguous" id="S3.E9.m1.1.18.4.3.2.1.1.cmml" xref="S3.E9.m1.1.18.4.3.2.1">superscript</csymbol><ci id="S3.E9.m1.1.10.cmml" xref="S3.E9.m1.1.10">𝑚</ci><cn type="integer" id="S3.E9.m1.1.11.1.cmml" xref="S3.E9.m1.1.11.1">2</cn></apply><apply id="S3.E9.m1.1.18.4.3.2.2.cmml" xref="S3.E9.m1.1.18.4.3.2.2"><csymbol cd="ambiguous" id="S3.E9.m1.1.18.4.3.2.2.1.cmml" xref="S3.E9.m1.1.18.4.3.2.2">superscript</csymbol><ci id="S3.E9.m1.1.13.cmml" xref="S3.E9.m1.1.13">𝑛</ci><cn type="integer" id="S3.E9.m1.1.14.1.cmml" xref="S3.E9.m1.1.14.1">2</cn></apply></apply><apply id="S3.E9.m1.1.16.cmml" xref="S3.E9.m1.1.16"><divide id="S3.E9.m1.1.16.1.cmml" xref="S3.E9.m1.1.16"></divide><cn type="integer" id="S3.E9.m1.1.16.2.cmml" xref="S3.E9.m1.1.16.2">1</cn><apply id="S3.E9.m1.1.16.3.cmml" xref="S3.E9.m1.1.16.3"><csymbol cd="ambiguous" id="S3.E9.m1.1.16.3.3.cmml" xref="S3.E9.m1.1.16.3">superscript</csymbol><ci id="S3.E9.m1.1.16.3.1.cmml" xref="S3.E9.m1.1.16.3.1">𝑎</ci><cn type="integer" id="S3.E9.m1.1.16.3.2.1.cmml" xref="S3.E9.m1.1.16.3.2.1">2</cn></apply></apply><apply id="S3.E9.m1.1.17.cmml" xref="S3.E9.m1.1.17"><root id="S3.E9.m1.1.17a.cmml" xref="S3.E9.m1.1.17"></root><apply id="S3.E9.m1.1.17.2.cmml" xref="S3.E9.m1.1.17.2"><divide id="S3.E9.m1.1.17.2.1.1.cmml" xref="S3.E9.m1.1.17.2"></divide><ci id="S3.E9.m1.1.17.2.1.2.cmml" xref="S3.E9.m1.1.17.2.1.2">𝐷</ci><ci id="S3.E9.m1.1.17.2.1.3.cmml" xref="S3.E9.m1.1.17.2.1.3">𝜇</ci></apply></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E9.m1.1c">italic-omega POSTSUBSCRIPT:start italic-m italic-n POSTSUBSCRIPT:end RELOP:equals italic-omega POSTSUBSCRIPT:start italic-n italic-m POSTSUBSCRIPT:end RELOP:equals italic-pi POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end OPEN:( italic-m POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ADDOP:plus italic-n POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end CLOSE:) FRACOP:italic-divide ARG:start NUMBER:1 ARG:end ARG:start italic-a POSTSUPERSCRIPT:start NUMBER:2 POSTSUPERSCRIPT:end ARG:end italic-square-root ARG:start FRACOP:italic-divide ARG:start italic-D ARG:end ARG:start italic-mu ARG:end ARG:end</annotation><annotation encoding="application/x-tex" id="S3.E9.m1.1d">\omega_{mn}=\omega_{nm}=\pi^{2}\left({m^{2}}+{n^{2}}\right){\frac{1}{a^{2}}}%
+\sqrt{\frac{D}{\mu}}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(9)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p18" class="ltx_para">
+<p id="S3.SS2.p18.1" class="ltx_p">This is called degeneracy. And Eq.(<a href="#S3.E7" title="(7) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>) and Eq.(<a href="#S3.E8" title="(8) ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a>) are called degenerate mode.
+There is possibility of these two modes occur at once, but only one mode appears as unspecified mode shape.
+It can be described by superposition of those two equations as</p>
+</div>
+<div id="S3.SS2.p19" class="ltx_para">
+<table id="S3.E10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.E10.m1.1" class="ltx_Math" alttext="W=W_{mn}\cos{\gamma}+W_{nm}\sin{\gamma}" display="block"><semantics id="S3.E10.m1.1a"><mrow id="S3.E10.m1.1.12" xref="S3.E10.m1.1.12.cmml"><mi id="S3.E10.m1.1.1" xref="S3.E10.m1.1.1.cmml">W</mi><mo id="S3.E10.m1.1.2" xref="S3.E10.m1.1.2.cmml">=</mo><mrow id="S3.E10.m1.1.12.1" xref="S3.E10.m1.1.12.1.cmml"><mrow id="S3.E10.m1.1.12.1.1" xref="S3.E10.m1.1.12.1.1.cmml"><msub id="S3.E10.m1.1.12.1.1.2" xref="S3.E10.m1.1.12.1.1.2.cmml"><mi id="S3.E10.m1.1.3" xref="S3.E10.m1.1.3.cmml">W</mi><mrow id="S3.E10.m1.1.4.1" xref="S3.E10.m1.1.4.1.cmml"><mi id="S3.E10.m1.1.4.1.1" xref="S3.E10.m1.1.4.1.1.cmml">m</mi><mo id="S3.E10.m1.1.4.1.3" xref="S3.E10.m1.1.4.1.3.cmml">⁢</mo><mi id="S3.E10.m1.1.4.1.2" xref="S3.E10.m1.1.4.1.2.cmml">n</mi></mrow></msub><mo id="S3.E10.m1.1.12.1.1.1" xref="S3.E10.m1.1.12.1.1.1.cmml">⁢</mo><mrow id="S3.E10.m1.1.12.1.1.3" xref="S3.E10.m1.1.12.1.1.3.cmml"><mi id="S3.E10.m1.1.5" xref="S3.E10.m1.1.5.cmml">cos</mi><mo id="S3.E10.m1.1.12.1.1.3a" xref="S3.E10.m1.1.12.1.1.3.cmml">⁡</mo><mi id="S3.E10.m1.1.6" xref="S3.E10.m1.1.6.cmml">γ</mi></mrow></mrow><mo id="S3.E10.m1.1.7" xref="S3.E10.m1.1.7.cmml">+</mo><mrow id="S3.E10.m1.1.12.1.2" xref="S3.E10.m1.1.12.1.2.cmml"><msub id="S3.E10.m1.1.12.1.2.2" xref="S3.E10.m1.1.12.1.2.2.cmml"><mi id="S3.E10.m1.1.8" xref="S3.E10.m1.1.8.cmml">W</mi><mrow id="S3.E10.m1.1.9.1" xref="S3.E10.m1.1.9.1.cmml"><mi id="S3.E10.m1.1.9.1.1" xref="S3.E10.m1.1.9.1.1.cmml">n</mi><mo id="S3.E10.m1.1.9.1.3" xref="S3.E10.m1.1.9.1.3.cmml">⁢</mo><mi id="S3.E10.m1.1.9.1.2" xref="S3.E10.m1.1.9.1.2.cmml">m</mi></mrow></msub><mo id="S3.E10.m1.1.12.1.2.1" xref="S3.E10.m1.1.12.1.2.1.cmml">⁢</mo><mrow id="S3.E10.m1.1.12.1.2.3" xref="S3.E10.m1.1.12.1.2.3.cmml"><mi id="S3.E10.m1.1.10" xref="S3.E10.m1.1.10.cmml">sin</mi><mo id="S3.E10.m1.1.12.1.2.3a" xref="S3.E10.m1.1.12.1.2.3.cmml">⁡</mo><mi id="S3.E10.m1.1.11" xref="S3.E10.m1.1.11.cmml">γ</mi></mrow></mrow></mrow></mrow><annotation-xml encoding="MathML-Content" id="S3.E10.m1.1b"><apply id="S3.E10.m1.1.12.cmml" xref="S3.E10.m1.1.12"><eq id="S3.E10.m1.1.2.cmml" xref="S3.E10.m1.1.2"></eq><ci id="S3.E10.m1.1.1.cmml" xref="S3.E10.m1.1.1">𝑊</ci><apply id="S3.E10.m1.1.12.1.cmml" xref="S3.E10.m1.1.12.1"><plus id="S3.E10.m1.1.7.cmml" xref="S3.E10.m1.1.7"></plus><apply id="S3.E10.m1.1.12.1.1.cmml" xref="S3.E10.m1.1.12.1.1"><times id="S3.E10.m1.1.12.1.1.1.cmml" xref="S3.E10.m1.1.12.1.1.1"></times><apply id="S3.E10.m1.1.12.1.1.2.cmml" xref="S3.E10.m1.1.12.1.1.2"><csymbol cd="ambiguous" id="S3.E10.m1.1.12.1.1.2.1.cmml" xref="S3.E10.m1.1.12.1.1.2">subscript</csymbol><ci id="S3.E10.m1.1.3.cmml" xref="S3.E10.m1.1.3">𝑊</ci><apply id="S3.E10.m1.1.4.1.cmml" xref="S3.E10.m1.1.4.1"><times id="S3.E10.m1.1.4.1.3.cmml" xref="S3.E10.m1.1.4.1.3"></times><ci id="S3.E10.m1.1.4.1.1.cmml" xref="S3.E10.m1.1.4.1.1">𝑚</ci><ci id="S3.E10.m1.1.4.1.2.cmml" xref="S3.E10.m1.1.4.1.2">𝑛</ci></apply></apply><apply id="S3.E10.m1.1.12.1.1.3.cmml" xref="S3.E10.m1.1.12.1.1.3"><cos id="S3.E10.m1.1.5.cmml" xref="S3.E10.m1.1.5"></cos><ci id="S3.E10.m1.1.6.cmml" xref="S3.E10.m1.1.6">𝛾</ci></apply></apply><apply id="S3.E10.m1.1.12.1.2.cmml" xref="S3.E10.m1.1.12.1.2"><times id="S3.E10.m1.1.12.1.2.1.cmml" xref="S3.E10.m1.1.12.1.2.1"></times><apply id="S3.E10.m1.1.12.1.2.2.cmml" xref="S3.E10.m1.1.12.1.2.2"><csymbol cd="ambiguous" id="S3.E10.m1.1.12.1.2.2.1.cmml" xref="S3.E10.m1.1.12.1.2.2">subscript</csymbol><ci id="S3.E10.m1.1.8.cmml" xref="S3.E10.m1.1.8">𝑊</ci><apply id="S3.E10.m1.1.9.1.cmml" xref="S3.E10.m1.1.9.1"><times id="S3.E10.m1.1.9.1.3.cmml" xref="S3.E10.m1.1.9.1.3"></times><ci id="S3.E10.m1.1.9.1.1.cmml" xref="S3.E10.m1.1.9.1.1">𝑛</ci><ci id="S3.E10.m1.1.9.1.2.cmml" xref="S3.E10.m1.1.9.1.2">𝑚</ci></apply></apply><apply id="S3.E10.m1.1.12.1.2.3.cmml" xref="S3.E10.m1.1.12.1.2.3"><sin id="S3.E10.m1.1.10.cmml" xref="S3.E10.m1.1.10"></sin><ci id="S3.E10.m1.1.11.cmml" xref="S3.E10.m1.1.11">𝛾</ci></apply></apply></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S3.E10.m1.1c">italic-W RELOP:equals italic-W POSTSUBSCRIPT:start italic-m italic-n POSTSUBSCRIPT:end TRIGFUNCTION:cosine italic-gamma ADDOP:plus italic-W POSTSUBSCRIPT:start italic-n italic-m POSTSUBSCRIPT:end TRIGFUNCTION:sine italic-gamma</annotation><annotation encoding="application/x-tex" id="S3.E10.m1.1d">W=W_{mn}\cos{\gamma}+W_{nm}\sin{\gamma}</annotation></semantics></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(10)</span></td>
+</tr>
+</table>
+</div>
+<div id="S3.SS2.p20" class="ltx_para">
+<p id="S3.SS2.p20.1" class="ltx_p">Fig.<a href="#S3.F6" title="Fig. 6 ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">6</span></a> shows the example of degenerate mode shapes which is obtained by changing value of <math id="S3.SS2.p20.1.m1.1" class="ltx_Math" alttext="\gamma" display="inline"><semantics id="S3.SS2.p20.1.m1.1a"><mi id="S3.SS2.p20.1.m1.1.1" xref="S3.SS2.p20.1.m1.1.1.cmml">γ</mi><annotation-xml encoding="MathML-Content" id="S3.SS2.p20.1.m1.1b"><ci id="S3.SS2.p20.1.m1.1.1.cmml" xref="S3.SS2.p20.1.m1.1.1">𝛾</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S3.SS2.p20.1.m1.1c">italic-gamma</annotation><annotation encoding="application/x-tex" id="S3.SS2.p20.1.m1.1d">\gamma</annotation></semantics></math>.
+In this figure, each line means a nodal line of mode shapes.
+In fact, the modes change their direction or shape, determined by initial condition and vibration position.
+The degenerate modes exist for any boundary conditions.
+If the structure produces this kind of modes in water, it is considered that there is possibility to generate various movements corresponding to the mode shapes.
+We assume that we can produce the degenerate modes by using superposition of different actuations. That is, the cross-mode.</p>
+</div>
+<figure id="S3.F6" class="ltx_figure">
+<div id="S3.F6.1" class="ltx_block ltx_align_center" style="width:170.7pt;vertical-align:-0.0pt;">
+<img src="degenmodes.png" id="S3.F6.1.g1" class="ltx_graphics" width="658" height="487" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 6: </span>Degenerate modes</figcaption>
+</figure>
+<div id="S3.SS2.p21" class="ltx_para">
+<p id="S3.SS2.p21.1" class="ltx_p">When we put actuators to appropriate position such as leading edge, flapping motion as a creature-like, non-holonomic movement can be realized by synchronous actuation as shown in Fig.<a href="#S3.F7" title="Fig. 7 ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>(a).
+Also, asynchronous actuation, movements for multiple directions, holonomic movement can be realized as shown in Fig.<a href="#S3.F7" title="Fig. 7 ‣ III-B Actuation method ‣ III Propulsion method ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7</span></a>(b).
+That is, the propulsion method we proposed has possibility to realize both holonomic and non-holonomic movements by different actuation, using only one structure.</p>
+</div>
+<figure id="S3.F7" class="ltx_figure">
+<div id="S3.F7.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="gousein.png" id="S3.F7.1.g1" class="ltx_graphics" width="1332" height="439" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 7: </span>Actuation modes and movement types</figcaption>
+</figure>
+<div id="S3.SS2.p22" class="ltx_para">
+<p id="S3.SS2.p22.1" class="ltx_p">The features of the method are as follows.</p>
+</div>
+<div id="S3.SS2.p23" class="ltx_para">
+<ul id="S3.I1" class="ltx_itemize">
+<li id="S3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i1.p1" class="ltx_para">
+<p id="S3.I1.i1.p1.1" class="ltx_p">Many directions of movements and propulsive DOFs are available by few actuators.</p>
+</div>
+</li>
+<li id="S3.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i2.p1" class="ltx_para">
+<p id="S3.I1.i2.p1.1" class="ltx_p">Only flexible structures can be used for this method, and soft actuators are suitable for direct actuation on the structure.</p>
+</div>
+</li>
+<li id="S3.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I1.i3.p1" class="ltx_para">
+<p id="S3.I1.i3.p1.1" class="ltx_p">The structure is simple and it is easy to downsize.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S3.SS2.p24" class="ltx_para">
+<p id="S3.SS2.p24.1" class="ltx_p">To investigate the feasibility of our proposal, we designed the prototypes of underwater robot by considering following conditions.</p>
+</div>
+<div id="S3.SS2.p25" class="ltx_para">
+<ul id="S3.I2" class="ltx_itemize">
+<li id="S3.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i1.p1" class="ltx_para">
+<p id="S3.I2.i1.p1.1" class="ltx_p">Symmetric shape for degenerate mode.</p>
+</div>
+</li>
+<li id="S3.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_item">•</span> 
+<div id="S3.I2.i2.p1" class="ltx_para">
+<p id="S3.I2.i2.p1.1" class="ltx_p">Right-angled actuator location for the cross-mode and flapping motion.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">IV </span><span id="S4.1" class="ltx_text ltx_font_smallcaps">Prototypes of underwater robot</span>
+</h2>
+
+<div id="S4.p1" class="ltx_para">
+<p id="S4.p1.1" class="ltx_p">We developed two kinds of robots, both of them have symmetric shape for degenerate mode,
+and also have right-angled actuator location to achieve the cross-mode.
+One is rectangular shape shown in Fig.<a href="#S4.F8" title="Fig. 8 ‣ IV Prototypes of underwater robot ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">8</span></a>, and Tab.1 shows the specification.
+The other is circular shape shown in Fig.<a href="#S4.F9" title="Fig. 9 ‣ IV Prototypes of underwater robot ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">9</span></a>, and Tab.2 shows the specification.
+These robots have a float at the top of their body to balance.</p>
+</div>
+<figure id="S4.F8" class="ltx_figure">
+<div id="S4.F8.1" class="ltx_block ltx_align_center" style="width:184.9pt;vertical-align:-0.0pt;">
+<img src="robot320.png" id="S4.F8.1.g1" class="ltx_graphics" width="800" height="600" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 8: </span>Rectangular robot</figcaption>
+</figure>
+<figure id="S4.T1" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">TABLE I: </span>Specification of rectangular robot</figcaption>
+<table id="S4.T1.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S4.T1.1.1" class="ltx_tr">
+<th id="S4.T1.1.1.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_t">Length</th>
+<td id="S4.T1.1.1.2" class="ltx_td ltx_align_center ltx_border_t">226mm</td>
+</tr>
+<tr id="S4.T1.1.2" class="ltx_tr">
+<th id="S4.T1.1.2.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Width</th>
+<td id="S4.T1.1.2.2" class="ltx_td ltx_align_center">226mm</td>
+</tr>
+<tr id="S4.T1.1.3" class="ltx_tr">
+<th id="S4.T1.1.3.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Length of side</th>
+<td id="S4.T1.1.3.2" class="ltx_td ltx_align_center">160mm</td>
+</tr>
+<tr id="S4.T1.1.4" class="ltx_tr">
+<th id="S4.T1.1.4.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Weight</th>
+<td id="S4.T1.1.4.2" class="ltx_td ltx_align_center">13.5g</td>
+</tr>
+<tr id="S4.T1.1.5" class="ltx_tr">
+<th id="S4.T1.1.5.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Actuator overall dimensions</th>
+<td id="S4.T1.1.5.2" class="ltx_td ltx_align_center">101mm<math id="S4.T1.1.5.2.m1.1" class="ltx_Math" alttext="\times" display="inline"><semantics id="S4.T1.1.5.2.m1.1a"><mo id="S4.T1.1.5.2.m1.1.1" xref="S4.T1.1.5.2.m1.1.1.cmml">×</mo><annotation-xml encoding="MathML-Content" id="S4.T1.1.5.2.m1.1b"><times id="S4.T1.1.5.2.m1.1.1.cmml" xref="S4.T1.1.5.2.m1.1.1"></times></annotation-xml><annotation encoding="application/x-llamapun" id="S4.T1.1.5.2.m1.1c">MULOP:times</annotation><annotation encoding="application/x-tex" id="S4.T1.1.5.2.m1.1d">\times</annotation></semantics></math>13mm</td>
+</tr>
+<tr id="S4.T1.1.6" class="ltx_tr">
+<th id="S4.T1.1.6.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Actuator active area</th>
+<td id="S4.T1.1.6.2" class="ltx_td ltx_align_center">85mm<math id="S4.T1.1.6.2.m1.1" class="ltx_Math" alttext="\times" display="inline"><semantics id="S4.T1.1.6.2.m1.1a"><mo id="S4.T1.1.6.2.m1.1.1" xref="S4.T1.1.6.2.m1.1.1.cmml">×</mo><annotation-xml encoding="MathML-Content" id="S4.T1.1.6.2.m1.1b"><times id="S4.T1.1.6.2.m1.1.1.cmml" xref="S4.T1.1.6.2.m1.1.1"></times></annotation-xml><annotation encoding="application/x-llamapun" id="S4.T1.1.6.2.m1.1c">MULOP:times</annotation><annotation encoding="application/x-tex" id="S4.T1.1.6.2.m1.1d">\times</annotation></semantics></math>7mm</td>
+</tr>
+<tr id="S4.T1.1.7" class="ltx_tr">
+<th id="S4.T1.1.7.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Material for adhering</th>
+<td id="S4.T1.1.7.2" class="ltx_td ltx_align_center">Carbon plate 0.2mm</td>
+</tr>
+<tr id="S4.T1.1.8" class="ltx_tr">
+<th id="S4.T1.1.8.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b">Adhesion bond</th>
+<td id="S4.T1.1.8.2" class="ltx_td ltx_align_center ltx_border_b">Epoxy Adhesives DP460</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<figure id="S4.F9" class="ltx_figure">
+<div id="S4.F9.1" class="ltx_block ltx_align_center" style="width:184.9pt;vertical-align:-0.0pt;">
+<img src="enrobo.png" id="S4.F9.1.g1" class="ltx_graphics" width="800" height="600" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 9: </span>Circular robot</figcaption>
+</figure>
+<figure id="S4.T2" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">TABLE II: </span>Specification of circular robot</figcaption>
+<table id="S4.T2.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S4.T2.1.1" class="ltx_tr">
+<th id="S4.T2.1.1.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_t">Radius</th>
+<td id="S4.T2.1.1.2" class="ltx_td ltx_align_center ltx_border_t">80mm</td>
+</tr>
+<tr id="S4.T2.1.2" class="ltx_tr">
+<th id="S4.T2.1.2.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Weight</th>
+<td id="S4.T2.1.2.2" class="ltx_td ltx_align_center">9.68g</td>
+</tr>
+<tr id="S4.T2.1.3" class="ltx_tr">
+<th id="S4.T2.1.3.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Actuator overall dimensions</th>
+<td id="S4.T2.1.3.2" class="ltx_td ltx_align_center">101mm<math id="S4.T2.1.3.2.m1.1" class="ltx_Math" alttext="\times" display="inline"><semantics id="S4.T2.1.3.2.m1.1a"><mo id="S4.T2.1.3.2.m1.1.1" xref="S4.T2.1.3.2.m1.1.1.cmml">×</mo><annotation-xml encoding="MathML-Content" id="S4.T2.1.3.2.m1.1b"><times id="S4.T2.1.3.2.m1.1.1.cmml" xref="S4.T2.1.3.2.m1.1.1"></times></annotation-xml><annotation encoding="application/x-llamapun" id="S4.T2.1.3.2.m1.1c">MULOP:times</annotation><annotation encoding="application/x-tex" id="S4.T2.1.3.2.m1.1d">\times</annotation></semantics></math>13mm</td>
+</tr>
+<tr id="S4.T2.1.4" class="ltx_tr">
+<th id="S4.T2.1.4.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Actuator active area</th>
+<td id="S4.T2.1.4.2" class="ltx_td ltx_align_center">85mm<math id="S4.T2.1.4.2.m1.1" class="ltx_Math" alttext="\times" display="inline"><semantics id="S4.T2.1.4.2.m1.1a"><mo id="S4.T2.1.4.2.m1.1.1" xref="S4.T2.1.4.2.m1.1.1.cmml">×</mo><annotation-xml encoding="MathML-Content" id="S4.T2.1.4.2.m1.1b"><times id="S4.T2.1.4.2.m1.1.1.cmml" xref="S4.T2.1.4.2.m1.1.1"></times></annotation-xml><annotation encoding="application/x-llamapun" id="S4.T2.1.4.2.m1.1c">MULOP:times</annotation><annotation encoding="application/x-tex" id="S4.T2.1.4.2.m1.1d">\times</annotation></semantics></math>7mm</td>
+</tr>
+<tr id="S4.T2.1.5" class="ltx_tr">
+<th id="S4.T2.1.5.1" class="ltx_td ltx_align_center ltx_th ltx_th_row">Material for adhering</th>
+<td id="S4.T2.1.5.2" class="ltx_td ltx_align_center">Carbon plate 0.2mm</td>
+</tr>
+<tr id="S4.T2.1.6" class="ltx_tr">
+<th id="S4.T2.1.6.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b">Adhesion bond</th>
+<td id="S4.T2.1.6.2" class="ltx_td ltx_align_center ltx_border_b">Epoxy Adhesives DP460</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">V </span><span id="S5.1" class="ltx_text ltx_font_smallcaps">Experimental result</span>
+</h2>
+
+<div id="S5.p1" class="ltx_para">
+<p id="S5.p1.1" class="ltx_p">The experiments were conducted in a water tank which is filled by insulated fluid (Fluorinert FC-3283) for safety.
+At first, we confirmed non-holonomic movements such as forward movement and forward turning movement.
+The forward movement appeared at synchronous drive of the two actuators, and the forward turning movement appeared at driving one of the two actuators.
+Next, we tested and observed robotic movements to find holonomic movements by changing the driving condition such as frequency, phase difference between the two actuators, and voltage range.
+We used sine wave as an input wave form, and typical experiment condition is as follows.
+</p>
+</div>
+<figure id="S5.2" class="ltx_table">
+<table id="S5.2.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S5.2.1.1" class="ltx_tr">
+<th id="S5.2.1.1.1" class="ltx_td ltx_align_left ltx_th ltx_th_row"><span id="S5.2.1.1.1.1" class="ltx_text ltx_font_bold">(Experiment condition)</span></th>
+<td id="S5.2.1.1.2" class="ltx_td"></td>
+</tr>
+<tr id="S5.2.1.2" class="ltx_tr">
+<th id="S5.2.1.2.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">Voltage range</th>
+<td id="S5.2.1.2.2" class="ltx_td ltx_align_left">
+<math id="S5.2.1.2.2.m1.1" class="ltx_Math" alttext="-500" display="inline"><semantics id="S5.2.1.2.2.m1.1a"><mrow id="S5.2.1.2.2.m1.1.5" xref="S5.2.1.2.2.m1.1.5.cmml"><mo id="S5.2.1.2.2.m1.1.1" xref="S5.2.1.2.2.m1.1.1.cmml">-</mo><mn id="S5.2.1.2.2.m1.1.4" xref="S5.2.1.2.2.m1.1.4.cmml">500</mn></mrow><annotation-xml encoding="MathML-Content" id="S5.2.1.2.2.m1.1b"><apply id="S5.2.1.2.2.m1.1.5.cmml" xref="S5.2.1.2.2.m1.1.5"><minus id="S5.2.1.2.2.m1.1.1.cmml" xref="S5.2.1.2.2.m1.1.1"></minus><cn type="integer" id="S5.2.1.2.2.m1.1.4.cmml" xref="S5.2.1.2.2.m1.1.4">500</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S5.2.1.2.2.m1.1c">ADDOP:minus NUMBER:500</annotation><annotation encoding="application/x-tex" id="S5.2.1.2.2.m1.1d">-500</annotation></semantics></math>V<math id="S5.2.1.2.2.m2.1" class="ltx_Math" alttext="\sim+1500" display="inline"><semantics id="S5.2.1.2.2.m2.1a"><mrow id="S5.2.1.2.2.m2.1.7" xref="S5.2.1.2.2.m2.1.7.cmml"><mi id="S5.2.1.2.2.m2.1.7.1" xref="S5.2.1.2.2.m2.1.7.1.cmml"></mi><mo id="S5.2.1.2.2.m2.1.1" xref="S5.2.1.2.2.m2.1.1.cmml">∼</mo><mrow id="S5.2.1.2.2.m2.1.7.2" xref="S5.2.1.2.2.m2.1.7.2.cmml"><mo id="S5.2.1.2.2.m2.1.2" xref="S5.2.1.2.2.m2.1.2.cmml">+</mo><mn id="S5.2.1.2.2.m2.1.6" xref="S5.2.1.2.2.m2.1.6.cmml">1500</mn></mrow></mrow><annotation-xml encoding="MathML-Content" id="S5.2.1.2.2.m2.1b"><apply id="S5.2.1.2.2.m2.1.7.cmml" xref="S5.2.1.2.2.m2.1.7"><csymbol cd="latexml" id="S5.2.1.2.2.m2.1.1.cmml" xref="S5.2.1.2.2.m2.1.1">similar-to</csymbol><csymbol cd="latexml" id="S5.2.1.2.2.m2.1.7.1.cmml" xref="S5.2.1.2.2.m2.1.7.1">absent</csymbol><apply id="S5.2.1.2.2.m2.1.7.2.cmml" xref="S5.2.1.2.2.m2.1.7.2"><plus id="S5.2.1.2.2.m2.1.2.cmml" xref="S5.2.1.2.2.m2.1.2"></plus><cn type="integer" id="S5.2.1.2.2.m2.1.6.cmml" xref="S5.2.1.2.2.m2.1.6">1500</cn></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S5.2.1.2.2.m2.1c">RELOP:similar-to ADDOP:plus NUMBER:1500</annotation><annotation encoding="application/x-tex" id="S5.2.1.2.2.m2.1d">\sim+1500</annotation></semantics></math>V</td>
+</tr>
+<tr id="S5.2.1.3" class="ltx_tr">
+<th id="S5.2.1.3.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">Frequency</th>
+<td id="S5.2.1.3.2" class="ltx_td ltx_align_left">1Hz<math id="S5.2.1.3.2.m1.1" class="ltx_Math" alttext="\sim" display="inline"><semantics id="S5.2.1.3.2.m1.1a"><mo id="S5.2.1.3.2.m1.1.1" xref="S5.2.1.3.2.m1.1.1.cmml">∼</mo><annotation-xml encoding="MathML-Content" id="S5.2.1.3.2.m1.1b"><csymbol cd="latexml" id="S5.2.1.3.2.m1.1.1.cmml" xref="S5.2.1.3.2.m1.1.1">similar-to</csymbol></annotation-xml><annotation encoding="application/x-llamapun" id="S5.2.1.3.2.m1.1c">RELOP:similar-to</annotation><annotation encoding="application/x-tex" id="S5.2.1.3.2.m1.1d">\sim</annotation></semantics></math>
+</td>
+</tr>
+<tr id="S5.2.1.4" class="ltx_tr">
+<th id="S5.2.1.4.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">Phase difference</th>
+<td id="S5.2.1.4.2" class="ltx_td ltx_align_left">0deg<math id="S5.2.1.4.2.m1.1" class="ltx_Math" alttext="\sim" display="inline"><semantics id="S5.2.1.4.2.m1.1a"><mo id="S5.2.1.4.2.m1.1.1" xref="S5.2.1.4.2.m1.1.1.cmml">∼</mo><annotation-xml encoding="MathML-Content" id="S5.2.1.4.2.m1.1b"><csymbol cd="latexml" id="S5.2.1.4.2.m1.1.1.cmml" xref="S5.2.1.4.2.m1.1.1">similar-to</csymbol></annotation-xml><annotation encoding="application/x-llamapun" id="S5.2.1.4.2.m1.1c">RELOP:similar-to</annotation><annotation encoding="application/x-tex" id="S5.2.1.4.2.m1.1d">\sim</annotation></semantics></math>
+</td>
+</tr>
+<tr id="S5.2.1.5" class="ltx_tr">
+<th id="S5.2.1.5.1" class="ltx_td ltx_align_left ltx_th ltx_th_row">Input wave form</th>
+<td id="S5.2.1.5.2" class="ltx_td ltx_align_left">Sine wave</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<section id="S5.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S5.SS1.4" class="ltx_text">V-A</span> </span><span id="S5.SS1.5" class="ltx_text ltx_font_italic">Rectangular shape robot</span>
+</h3>
+
+<section id="S5.SS1.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S5.SS1.SSS1.4" class="ltx_text">V-A</span>1 </span>Backward movement</h4>
+
+<div id="S5.SS1.SSS1.p1" class="ltx_para">
+<p id="S5.SS1.SSS1.p1.1" class="ltx_p">Backward movement was observed at frequency of 6Hz with 0deg phase difference.
+Fig.<a href="#S5.F10" title="Fig. 10 ‣ V-A1 Backward movement ‣ V-A Rectangular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">10</span></a> shows the backward movement by the time <math id="S5.SS1.SSS1.p1.1.m1.1" class="ltx_Math" alttext="t" display="inline"><semantics id="S5.SS1.SSS1.p1.1.m1.1a"><mi id="S5.SS1.SSS1.p1.1.m1.1.1" xref="S5.SS1.SSS1.p1.1.m1.1.1.cmml">t</mi><annotation-xml encoding="MathML-Content" id="S5.SS1.SSS1.p1.1.m1.1b"><ci id="S5.SS1.SSS1.p1.1.m1.1.1.cmml" xref="S5.SS1.SSS1.p1.1.m1.1.1">𝑡</ci></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS1.SSS1.p1.1.m1.1c">italic-t</annotation><annotation encoding="application/x-tex" id="S5.SS1.SSS1.p1.1.m1.1d">t</annotation></semantics></math> (sec).
+And, same movement was observed when the voltage range was changed to <math id="S5.SS1.SSS1.p1.1.m2.1" class="ltx_Math" alttext="+1000" display="inline"><semantics id="S5.SS1.SSS1.p1.1.m2.1a"><mrow id="S5.SS1.SSS1.p1.1.m2.1.6" xref="S5.SS1.SSS1.p1.1.m2.1.6.cmml"><mo id="S5.SS1.SSS1.p1.1.m2.1.1" xref="S5.SS1.SSS1.p1.1.m2.1.1.cmml">+</mo><mn id="S5.SS1.SSS1.p1.1.m2.1.5" xref="S5.SS1.SSS1.p1.1.m2.1.5.cmml">1000</mn></mrow><annotation-xml encoding="MathML-Content" id="S5.SS1.SSS1.p1.1.m2.1b"><apply id="S5.SS1.SSS1.p1.1.m2.1.6.cmml" xref="S5.SS1.SSS1.p1.1.m2.1.6"><plus id="S5.SS1.SSS1.p1.1.m2.1.1.cmml" xref="S5.SS1.SSS1.p1.1.m2.1.1"></plus><cn type="integer" id="S5.SS1.SSS1.p1.1.m2.1.5.cmml" xref="S5.SS1.SSS1.p1.1.m2.1.5">1000</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS1.SSS1.p1.1.m2.1c">ADDOP:plus NUMBER:1000</annotation><annotation encoding="application/x-tex" id="S5.SS1.SSS1.p1.1.m2.1d">+1000</annotation></semantics></math>V<math id="S5.SS1.SSS1.p1.1.m3.1" class="ltx_Math" alttext="\sim+1500" display="inline"><semantics id="S5.SS1.SSS1.p1.1.m3.1a"><mrow id="S5.SS1.SSS1.p1.1.m3.1.7" xref="S5.SS1.SSS1.p1.1.m3.1.7.cmml"><mi id="S5.SS1.SSS1.p1.1.m3.1.7.1" xref="S5.SS1.SSS1.p1.1.m3.1.7.1.cmml"></mi><mo id="S5.SS1.SSS1.p1.1.m3.1.1" xref="S5.SS1.SSS1.p1.1.m3.1.1.cmml">∼</mo><mrow id="S5.SS1.SSS1.p1.1.m3.1.7.2" xref="S5.SS1.SSS1.p1.1.m3.1.7.2.cmml"><mo id="S5.SS1.SSS1.p1.1.m3.1.2" xref="S5.SS1.SSS1.p1.1.m3.1.2.cmml">+</mo><mn id="S5.SS1.SSS1.p1.1.m3.1.6" xref="S5.SS1.SSS1.p1.1.m3.1.6.cmml">1500</mn></mrow></mrow><annotation-xml encoding="MathML-Content" id="S5.SS1.SSS1.p1.1.m3.1b"><apply id="S5.SS1.SSS1.p1.1.m3.1.7.cmml" xref="S5.SS1.SSS1.p1.1.m3.1.7"><csymbol cd="latexml" id="S5.SS1.SSS1.p1.1.m3.1.1.cmml" xref="S5.SS1.SSS1.p1.1.m3.1.1">similar-to</csymbol><csymbol cd="latexml" id="S5.SS1.SSS1.p1.1.m3.1.7.1.cmml" xref="S5.SS1.SSS1.p1.1.m3.1.7.1">absent</csymbol><apply id="S5.SS1.SSS1.p1.1.m3.1.7.2.cmml" xref="S5.SS1.SSS1.p1.1.m3.1.7.2"><plus id="S5.SS1.SSS1.p1.1.m3.1.2.cmml" xref="S5.SS1.SSS1.p1.1.m3.1.2"></plus><cn type="integer" id="S5.SS1.SSS1.p1.1.m3.1.6.cmml" xref="S5.SS1.SSS1.p1.1.m3.1.6">1500</cn></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS1.SSS1.p1.1.m3.1c">RELOP:similar-to ADDOP:plus NUMBER:1500</annotation><annotation encoding="application/x-tex" id="S5.SS1.SSS1.p1.1.m3.1d">\sim+1500</annotation></semantics></math>V at driving frequency of 6Hz<math id="S5.SS1.SSS1.p1.1.m4.1" class="ltx_Math" alttext="\sim" display="inline"><semantics id="S5.SS1.SSS1.p1.1.m4.1a"><mo id="S5.SS1.SSS1.p1.1.m4.1.1" xref="S5.SS1.SSS1.p1.1.m4.1.1.cmml">∼</mo><annotation-xml encoding="MathML-Content" id="S5.SS1.SSS1.p1.1.m4.1b"><csymbol cd="latexml" id="S5.SS1.SSS1.p1.1.m4.1.1.cmml" xref="S5.SS1.SSS1.p1.1.m4.1.1">similar-to</csymbol></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS1.SSS1.p1.1.m4.1c">RELOP:similar-to</annotation><annotation encoding="application/x-tex" id="S5.SS1.SSS1.p1.1.m4.1d">\sim</annotation></semantics></math>10Hz.</p>
+</div>
+<figure id="S5.F10" class="ltx_figure">
+<div id="S5.F10.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="newusiro.png" id="S5.F10.1.g1" class="ltx_graphics" width="960" height="482" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 10: </span>Backward movement</figcaption>
+</figure>
+<div id="S5.SS1.SSS1.p2" class="ltx_para">
+<p id="S5.SS1.SSS1.p2.1" class="ltx_p">At this frequency of 6Hz, direction of robotic movements were changed by phase differences.
+Fig.<a href="#S5.F11" title="Fig. 11 ‣ V-A1 Backward movement ‣ V-A Rectangular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">11</span></a> shows the backward turning movement observed at 15deg phase difference.
+When the phase difference was reversed to <math id="S5.SS1.SSS1.p2.1.m1.1" class="ltx_Math" alttext="-" display="inline"><semantics id="S5.SS1.SSS1.p2.1.m1.1a"><mo id="S5.SS1.SSS1.p2.1.m1.1.1" xref="S5.SS1.SSS1.p2.1.m1.1.1.cmml">-</mo><annotation-xml encoding="MathML-Content" id="S5.SS1.SSS1.p2.1.m1.1b"><minus id="S5.SS1.SSS1.p2.1.m1.1.1.cmml" xref="S5.SS1.SSS1.p2.1.m1.1.1"></minus></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS1.SSS1.p2.1.m1.1c">ADDOP:minus</annotation><annotation encoding="application/x-tex" id="S5.SS1.SSS1.p2.1.m1.1d">-</annotation></semantics></math>15deg, the direction of the movement was also reversed.
+For other phase differences, turning rate of robotic movements were changed and translational.
+When the phase difference was 180deg, forward movement appeared.</p>
+</div>
+<figure id="S5.F11" class="ltx_figure">
+<div id="S5.F11.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="kouhousenkai.png" id="S5.F11.1.g1" class="ltx_graphics" width="960" height="480" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 11: </span>Backward turning movement</figcaption>
+</figure>
+</section>
+<section id="S5.SS1.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S5.SS1.SSS2.4" class="ltx_text">V-A</span>2 </span>Rotational movement</h4>
+
+<div id="S5.SS1.SSS2.p1" class="ltx_para">
+<p id="S5.SS1.SSS2.p1.1" class="ltx_p">Rotational movement was observed at frequency of 5Hz with 90deg phase difference, shown in Fig.<a href="#S5.F12" title="Fig. 12 ‣ V-A2 Rotational movement ‣ V-A Rectangular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">12</span></a>.
+When the phase difference was reversed, the movement was also reversed.
+The robot was static at 0deg and 180deg phase differences.
+For other phase differences, forward turning movements appeared.</p>
+</div>
+<figure id="S5.F12" class="ltx_figure">
+<div id="S5.F12.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="newkaiten.png" id="S5.F12.1.g1" class="ltx_graphics" width="960" height="479" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 12: </span>Rotational movement</figcaption>
+</figure>
+</section>
+<section id="S5.SS1.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S5.SS1.SSS3.4" class="ltx_text">V-A</span>3 </span>Translational movements</h4>
+
+<div id="S5.SS1.SSS3.p1" class="ltx_para">
+<p id="S5.SS1.SSS3.p1.1" class="ltx_p">Translational movement for sideways was observed at frequency of 8Hz with 60deg phase difference, shown in Fig.<a href="#S5.F13" title="Fig. 13 ‣ V-A3 Translational movements ‣ V-A Rectangular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">13</span></a>.
+When the phase difference was reversed, the movement was also reversed.</p>
+</div>
+<figure id="S5.F13" class="ltx_figure">
+<div id="S5.F13.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="newyoko.png" id="S5.F13.1.g1" class="ltx_graphics" width="960" height="480" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 13: </span>Translational movement for sideways</figcaption>
+</figure>
+<div id="S5.SS1.SSS3.p2" class="ltx_para">
+<p id="S5.SS1.SSS3.p2.1" class="ltx_p">At the frequency, the robot was static at 0deg phase difference.
+For other phase differences, turning movements and translational movements were observed.
+Fig.<a href="#S5.F14" title="Fig. 14 ‣ V-A3 Translational movements ‣ V-A Rectangular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">14</span></a> shows the translational movement for diagonal direction, which was observed at 120deg phase difference.
+When the phase difference was 180deg, forward movement appeared.</p>
+</div>
+<figure id="S5.F14" class="ltx_figure">
+<div id="S5.F14.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="newnaname.png" id="S5.F14.1.g1" class="ltx_graphics" width="961" height="481" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 14: </span>Translational movement for diagonal direction</figcaption>
+</figure>
+</section>
+</section>
+<section id="S5.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S5.SS2.4" class="ltx_text">V-B</span> </span><span id="S5.SS2.5" class="ltx_text ltx_font_italic">Circular shape robot</span>
+</h3>
+
+<section id="S5.SS2.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S5.SS2.SSS1.4" class="ltx_text">V-B</span>1 </span>Backward movement</h4>
+
+<div id="S5.SS2.SSS1.p1" class="ltx_para">
+<p id="S5.SS2.SSS1.p1.1" class="ltx_p">Backward movement was observed when the voltage range was changed to <math id="S5.SS2.SSS1.p1.1.m1.1" class="ltx_Math" alttext="+1000" display="inline"><semantics id="S5.SS2.SSS1.p1.1.m1.1a"><mrow id="S5.SS2.SSS1.p1.1.m1.1.6" xref="S5.SS2.SSS1.p1.1.m1.1.6.cmml"><mo id="S5.SS2.SSS1.p1.1.m1.1.1" xref="S5.SS2.SSS1.p1.1.m1.1.1.cmml">+</mo><mn id="S5.SS2.SSS1.p1.1.m1.1.5" xref="S5.SS2.SSS1.p1.1.m1.1.5.cmml">1000</mn></mrow><annotation-xml encoding="MathML-Content" id="S5.SS2.SSS1.p1.1.m1.1b"><apply id="S5.SS2.SSS1.p1.1.m1.1.6.cmml" xref="S5.SS2.SSS1.p1.1.m1.1.6"><plus id="S5.SS2.SSS1.p1.1.m1.1.1.cmml" xref="S5.SS2.SSS1.p1.1.m1.1.1"></plus><cn type="integer" id="S5.SS2.SSS1.p1.1.m1.1.5.cmml" xref="S5.SS2.SSS1.p1.1.m1.1.5">1000</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS2.SSS1.p1.1.m1.1c">ADDOP:plus NUMBER:1000</annotation><annotation encoding="application/x-tex" id="S5.SS2.SSS1.p1.1.m1.1d">+1000</annotation></semantics></math>V<math id="S5.SS2.SSS1.p1.1.m2.1" class="ltx_Math" alttext="\sim+1500" display="inline"><semantics id="S5.SS2.SSS1.p1.1.m2.1a"><mrow id="S5.SS2.SSS1.p1.1.m2.1.7" xref="S5.SS2.SSS1.p1.1.m2.1.7.cmml"><mi id="S5.SS2.SSS1.p1.1.m2.1.7.1" xref="S5.SS2.SSS1.p1.1.m2.1.7.1.cmml"></mi><mo id="S5.SS2.SSS1.p1.1.m2.1.1" xref="S5.SS2.SSS1.p1.1.m2.1.1.cmml">∼</mo><mrow id="S5.SS2.SSS1.p1.1.m2.1.7.2" xref="S5.SS2.SSS1.p1.1.m2.1.7.2.cmml"><mo id="S5.SS2.SSS1.p1.1.m2.1.2" xref="S5.SS2.SSS1.p1.1.m2.1.2.cmml">+</mo><mn id="S5.SS2.SSS1.p1.1.m2.1.6" xref="S5.SS2.SSS1.p1.1.m2.1.6.cmml">1500</mn></mrow></mrow><annotation-xml encoding="MathML-Content" id="S5.SS2.SSS1.p1.1.m2.1b"><apply id="S5.SS2.SSS1.p1.1.m2.1.7.cmml" xref="S5.SS2.SSS1.p1.1.m2.1.7"><csymbol cd="latexml" id="S5.SS2.SSS1.p1.1.m2.1.1.cmml" xref="S5.SS2.SSS1.p1.1.m2.1.1">similar-to</csymbol><csymbol cd="latexml" id="S5.SS2.SSS1.p1.1.m2.1.7.1.cmml" xref="S5.SS2.SSS1.p1.1.m2.1.7.1">absent</csymbol><apply id="S5.SS2.SSS1.p1.1.m2.1.7.2.cmml" xref="S5.SS2.SSS1.p1.1.m2.1.7.2"><plus id="S5.SS2.SSS1.p1.1.m2.1.2.cmml" xref="S5.SS2.SSS1.p1.1.m2.1.2"></plus><cn type="integer" id="S5.SS2.SSS1.p1.1.m2.1.6.cmml" xref="S5.SS2.SSS1.p1.1.m2.1.6">1500</cn></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS2.SSS1.p1.1.m2.1c">RELOP:similar-to ADDOP:plus NUMBER:1500</annotation><annotation encoding="application/x-tex" id="S5.SS2.SSS1.p1.1.m2.1d">\sim+1500</annotation></semantics></math>V which same to the case of recutanglar shape, at driving frequency of 8Hz<math id="S5.SS2.SSS1.p1.1.m3.1" class="ltx_Math" alttext="\sim" display="inline"><semantics id="S5.SS2.SSS1.p1.1.m3.1a"><mo id="S5.SS2.SSS1.p1.1.m3.1.1" xref="S5.SS2.SSS1.p1.1.m3.1.1.cmml">∼</mo><annotation-xml encoding="MathML-Content" id="S5.SS2.SSS1.p1.1.m3.1b"><csymbol cd="latexml" id="S5.SS2.SSS1.p1.1.m3.1.1.cmml" xref="S5.SS2.SSS1.p1.1.m3.1.1">similar-to</csymbol></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS2.SSS1.p1.1.m3.1c">RELOP:similar-to</annotation><annotation encoding="application/x-tex" id="S5.SS2.SSS1.p1.1.m3.1d">\sim</annotation></semantics></math>10Hz with 0deg phase difference, as shown in Fig.<a href="#S5.F15" title="Fig. 15 ‣ V-B1 Backward movement ‣ V-B Circular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">15</span></a>.
+In this frequency range, direction of robotic movements were changed by phase differences.
+Backward movement also appeared when the phase difference was 180deg.</p>
+</div>
+<figure id="S5.F15" class="ltx_figure">
+<div id="S5.F15.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="minikou.png" id="S5.F15.1.g1" class="ltx_graphics" width="961" height="482" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 15: </span>Backward movement</figcaption>
+</figure>
+</section>
+<section id="S5.SS2.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S5.SS2.SSS2.4" class="ltx_text">V-B</span>2 </span>Rotational movement</h4>
+
+<div id="S5.SS2.SSS2.p1" class="ltx_para">
+<p id="S5.SS2.SSS2.p1.1" class="ltx_p">Rotational movement was observed at frequency of 5Hz and 6Hz with 75deg phase difference, as shown in Fig.<a href="#S5.F16" title="Fig. 16 ‣ V-B2 Rotational movement ‣ V-B Circular shape robot ‣ V Experimental result ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">16</span></a>.
+The direction of the movement was reversed when the phase difference was reversed to <math id="S5.SS2.SSS2.p1.1.m1.1" class="ltx_Math" alttext="-" display="inline"><semantics id="S5.SS2.SSS2.p1.1.m1.1a"><mo id="S5.SS2.SSS2.p1.1.m1.1.1" xref="S5.SS2.SSS2.p1.1.m1.1.1.cmml">-</mo><annotation-xml encoding="MathML-Content" id="S5.SS2.SSS2.p1.1.m1.1b"><minus id="S5.SS2.SSS2.p1.1.m1.1.1.cmml" xref="S5.SS2.SSS2.p1.1.m1.1.1"></minus></annotation-xml><annotation encoding="application/x-llamapun" id="S5.SS2.SSS2.p1.1.m1.1c">ADDOP:minus</annotation><annotation encoding="application/x-tex" id="S5.SS2.SSS2.p1.1.m1.1d">-</annotation></semantics></math>75deg.
+When the phase difference was 0deg, forward movement appeared.
+For other phase differences, forward turning movements were observed.</p>
+</div>
+<figure id="S5.F16" class="ltx_figure">
+<div id="S5.F16.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="hidari.png" id="S5.F16.1.g1" class="ltx_graphics" width="961" height="481" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 16: </span>Rotational movement</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">VI </span><span id="S6.1" class="ltx_text ltx_font_smallcaps">Analysis and discussion</span>
+</h2>
+
+<section id="S6.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S6.SS1.4" class="ltx_text">VI-A</span> </span><span id="S6.SS1.5" class="ltx_text ltx_font_italic">Parameter determination using beam model</span>
+</h3>
+
+<div id="S6.SS1.p1" class="ltx_para">
+<p id="S6.SS1.p1.1" class="ltx_p">The experimental results indicated that most observed movements were placed on low frequency area, and they appeared at particular frequency.
+It can be said that there is possibility of driving using eigenmodes.
+Therefore, we tried to investigate the propulsion principle of those movements, based on structural vibration modes.
+In order to do this, eigenmode and its frequency of robots in fluid are investigated.
+We used ANSYS, an FEM software for simulation.</p>
+</div>
+<div id="S6.SS1.p2" class="ltx_para">
+<p id="S6.SS1.p2.1" class="ltx_p">First we made a basic beam model to determine parameters.
+Fig.<a href="#S6.F17" title="Fig. 17 ‣ VI-A Parameter determination using beam model ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">17</span></a>(a) shows the beam (96.0<math id="S6.SS1.p2.1.m1.1" class="ltx_Math" alttext="\times" display="inline"><semantics id="S6.SS1.p2.1.m1.1a"><mo id="S6.SS1.p2.1.m1.1.1" xref="S6.SS1.p2.1.m1.1.1.cmml">×</mo><annotation-xml encoding="MathML-Content" id="S6.SS1.p2.1.m1.1b"><times id="S6.SS1.p2.1.m1.1.1.cmml" xref="S6.SS1.p2.1.m1.1.1"></times></annotation-xml><annotation encoding="application/x-llamapun" id="S6.SS1.p2.1.m1.1c">MULOP:times</annotation><annotation encoding="application/x-tex" id="S6.SS1.p2.1.m1.1d">\times</annotation></semantics></math>12.4<math id="S6.SS1.p2.1.m2.1" class="ltx_Math" alttext="\times" display="inline"><semantics id="S6.SS1.p2.1.m2.1a"><mo id="S6.SS1.p2.1.m2.1.1" xref="S6.SS1.p2.1.m2.1.1.cmml">×</mo><annotation-xml encoding="MathML-Content" id="S6.SS1.p2.1.m2.1b"><times id="S6.SS1.p2.1.m2.1.1.cmml" xref="S6.SS1.p2.1.m2.1.1"></times></annotation-xml><annotation encoding="application/x-llamapun" id="S6.SS1.p2.1.m2.1c">MULOP:times</annotation><annotation encoding="application/x-tex" id="S6.SS1.p2.1.m2.1d">\times</annotation></semantics></math>0.55mm) which consists of pizoelectic fiber composite, carbon plate and epoxy adhesive.
+Fig.<a href="#S6.F17" title="Fig. 17 ‣ VI-A Parameter determination using beam model ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">17</span></a>(b) is the model of the beam by FEM.
+To consider influence of fluid, we also made structural-fluid model, shown in Fig.<a href="#S6.F17" title="Fig. 17 ‣ VI-A Parameter determination using beam model ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">17</span></a>(c).
+This model consists of structural elements and fluid elements, and both of elements are coupled as acoustic analysis.</p>
+</div>
+<figure id="S6.F17" class="ltx_figure">
+<div id="S6.F17.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="272B.png" id="S6.F17.1.g1" class="ltx_graphics" width="1149" height="1173" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 17: </span>Piezoelectric beam and its model</figcaption>
+</figure>
+<div id="S6.SS1.p3" class="ltx_para">
+<p id="S6.SS1.p3.1" class="ltx_p">Fig.<a href="#S6.F18" title="Fig. 18 ‣ VI-A Parameter determination using beam model ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">18</span></a> and Fig.<a href="#S6.F19" title="Fig. 19 ‣ VI-A Parameter determination using beam model ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">19</span></a> are results of frequency response about the beam and the model.
+We used a laser displacement gauge for measuring the beam displacement.
+Tab.3 shows the comparison of measured eigenfrequency and calculated eigenfrequency.
+Tab.4 shows the material properties of the beam and they are same as the robots, and thickness of these material are approximate measured value.
+The property of the insulated fluid we used is, 1830kg/m<math id="S6.SS1.p3.1.m1.1" class="ltx_Math" alttext="{}^{3}" display="inline"><semantics id="S6.SS1.p3.1.m1.1a"><msup id="S6.SS1.p3.1.m1.1.1" xref="S6.SS1.p3.1.m1.1.1.cmml"><mi id="S6.SS1.p3.1.m1.1.1a" xref="S6.SS1.p3.1.m1.1.1.cmml"></mi><mn id="S6.SS1.p3.1.m1.1.1.1" xref="S6.SS1.p3.1.m1.1.1.1.cmml">3</mn></msup><annotation-xml encoding="MathML-Content" id="S6.SS1.p3.1.m1.1b"><apply id="S6.SS1.p3.1.m1.1.1.cmml" xref="S6.SS1.p3.1.m1.1.1"><cn type="integer" id="S6.SS1.p3.1.m1.1.1.1.cmml" xref="S6.SS1.p3.1.m1.1.1.1">3</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S6.SS1.p3.1.m1.1c">FLOATSUPERSCRIPT:start NUMBER:3 FLOATSUPERSCRIPT:end</annotation><annotation encoding="application/x-tex" id="S6.SS1.p3.1.m1.1d">{}^{3}</annotation></semantics></math> for the density, 600m/s for the acoustic velocity.</p>
+</div>
+<figure id="S6.F18" class="ltx_figure">
+<div id="S6.F18.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="shuhikaku2.png" id="S6.F18.1.g1" class="ltx_graphics" width="1457" height="1080" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 18: </span>Frequency response results in air</figcaption>
+</figure>
+<figure id="S6.F19" class="ltx_figure">
+<div id="S6.F19.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="0124WBA.png" id="S6.F19.1.g1" class="ltx_graphics" width="1468" height="1084" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 19: </span>Frequency response results in fluid</figcaption>
+</figure>
+<figure id="S6.T3" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">TABLE III: </span>Comparison of eigenfrequencies</figcaption>
+<table id="S6.T3.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S6.T3.1.1" class="ltx_tr">
+<th id="S6.T3.1.1.1" class="ltx_td ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t"></th>
+<td id="S6.T3.1.1.2" class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t" colspan="2">Frequency in air (Hz)</td>
+<td id="S6.T3.1.1.3" class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t" colspan="2">Frequency in fluid (Hz)</td>
+</tr>
+<tr id="S6.T3.1.2" class="ltx_tr">
+<th id="S6.T3.1.2.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Order</th>
+<td id="S6.T3.1.2.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><span id="S6.T3.1.2.2.1" class="ltx_text" style="width:40.0pt;">1</span></td>
+<td id="S6.T3.1.2.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2</td>
+<td id="S6.T3.1.2.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t"><span id="S6.T3.1.2.4.1" class="ltx_text" style="width:40.0pt;">1</span></td>
+<td id="S6.T3.1.2.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2</td>
+</tr>
+<tr id="S6.T3.1.3" class="ltx_tr">
+<th id="S6.T3.1.3.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Beam</th>
+<td id="S6.T3.1.3.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">23</td>
+<td id="S6.T3.1.3.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">141</td>
+<td id="S6.T3.1.3.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">3</td>
+<td id="S6.T3.1.3.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">27</td>
+</tr>
+<tr id="S6.T3.1.4" class="ltx_tr">
+<th id="S6.T3.1.4.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b ltx_border_l ltx_border_r ltx_border_t">Model</th>
+<td id="S6.T3.1.4.2" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">22.7</td>
+<td id="S6.T3.1.4.3" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">142.4</td>
+<td id="S6.T3.1.4.4" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">4.2</td>
+<td id="S6.T3.1.4.5" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">26.6</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<figure id="S6.T4" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">TABLE IV: </span>Material properties</figcaption>
+<table id="S6.T4.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr id="S6.T4.1.1" class="ltx_tr">
+<th id="S6.T4.1.1.1" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t">Properties</th>
+<th id="S6.T4.1.1.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Carbon plate</th>
+<th id="S6.T4.1.1.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">PZT fiber</th>
+<th id="S6.T4.1.1.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">Adhesive</th>
+</tr>
+<tr id="S6.T4.1.2" class="ltx_tr">
+<th id="S6.T4.1.2.1" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t">Density (kg/m<math id="S6.T4.1.2.1.m1.1" class="ltx_Math" alttext="{}^{3}" display="inline"><semantics id="S6.T4.1.2.1.m1.1a"><msup id="S6.T4.1.2.1.m1.1.1" xref="S6.T4.1.2.1.m1.1.1.cmml"><mi id="S6.T4.1.2.1.m1.1.1a" xref="S6.T4.1.2.1.m1.1.1.cmml"></mi><mn id="S6.T4.1.2.1.m1.1.1.1" xref="S6.T4.1.2.1.m1.1.1.1.cmml">3</mn></msup><annotation-xml encoding="MathML-Content" id="S6.T4.1.2.1.m1.1b"><apply id="S6.T4.1.2.1.m1.1.1.cmml" xref="S6.T4.1.2.1.m1.1.1"><cn type="integer" id="S6.T4.1.2.1.m1.1.1.1.cmml" xref="S6.T4.1.2.1.m1.1.1.1">3</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S6.T4.1.2.1.m1.1c">FLOATSUPERSCRIPT:start NUMBER:3 FLOATSUPERSCRIPT:end</annotation><annotation encoding="application/x-tex" id="S6.T4.1.2.1.m1.1d">{}^{3}</annotation></semantics></math>)</th>
+<th id="S6.T4.1.2.2" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">1643</th>
+<th id="S6.T4.1.2.3" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">4750</th>
+<th id="S6.T4.1.2.4" class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_r ltx_border_t">1140</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr id="S6.T4.1.3" class="ltx_tr">
+<td id="S6.T4.1.3.1" class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t">Elastic modulus (GPa)</td>
+<td id="S6.T4.1.3.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">20.5</td>
+<td id="S6.T4.1.3.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">15.9</td>
+<td id="S6.T4.1.3.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">3.2</td>
+</tr>
+<tr id="S6.T4.1.4" class="ltx_tr">
+<td id="S6.T4.1.4.1" class="ltx_td ltx_align_center ltx_border_l ltx_border_r ltx_border_t">Poisson’s ratio</td>
+<td id="S6.T4.1.4.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">0.3</td>
+<td id="S6.T4.1.4.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">0.31</td>
+<td id="S6.T4.1.4.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">0.34</td>
+</tr>
+<tr id="S6.T4.1.5" class="ltx_tr">
+<td id="S6.T4.1.5.1" class="ltx_td ltx_align_center ltx_border_b ltx_border_l ltx_border_r ltx_border_t">Thickness (mm)</td>
+<td id="S6.T4.1.5.2" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">0.2</td>
+<td id="S6.T4.1.5.3" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">0.3</td>
+<td id="S6.T4.1.5.4" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">0.05</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</section>
+<section id="S6.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S6.SS2.4" class="ltx_text">VI-B</span> </span><span id="S6.SS2.5" class="ltx_text ltx_font_italic">Robot models</span>
+</h3>
+
+<div id="S6.SS2.p1" class="ltx_para">
+<p id="S6.SS2.p1.1" class="ltx_p">Fig.<a href="#S6.F20" title="Fig. 20 ‣ VI-B Robot models ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">20</span></a> shows the models of the robots. The models consist of structural elements and fluid elements using determined parameters.</p>
+</div>
+<figure id="S6.F20" class="ltx_figure">
+<div id="S6.F20.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="robotsmodel.png" id="S6.F20.1.g1" class="ltx_graphics" width="1992" height="800" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 20: </span>Robot models</figcaption>
+</figure>
+</section>
+<section id="S6.SS3" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection"><span id="S6.SS3.4" class="ltx_text">VI-C</span> </span><span id="S6.SS3.5" class="ltx_text ltx_font_italic">Discussion on movements</span>
+</h3>
+
+<div id="S6.SS3.p1" class="ltx_para">
+<p id="S6.SS3.p1.1" class="ltx_p">The calculated eigenfrequency by simulation of the robots are shown in Tab.5 and Tab.6.</p>
+</div>
+<figure id="S6.T5" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">TABLE V: </span>Eigenfrequency of rectangular robot</figcaption>
+<table id="S6.T5.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S6.T5.1.1" class="ltx_tr">
+<th id="S6.T5.1.1.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Order</th>
+<td id="S6.T5.1.1.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">1</td>
+<td id="S6.T5.1.1.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2</td>
+<td id="S6.T5.1.1.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">3</td>
+<td id="S6.T5.1.1.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">4</td>
+<td id="S6.T5.1.1.6" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">5</td>
+</tr>
+<tr id="S6.T5.1.2" class="ltx_tr">
+<th id="S6.T5.1.2.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Frequency (Hz)</th>
+<td id="S6.T5.1.2.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">1.38</td>
+<td id="S6.T5.1.2.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2.35</td>
+<td id="S6.T5.1.2.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2.50</td>
+<td id="S6.T5.1.2.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">4.80</td>
+<td id="S6.T5.1.2.6" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">5.55</td>
+</tr>
+<tr id="S6.T5.1.3" class="ltx_tr">
+<th id="S6.T5.1.3.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Order</th>
+<td id="S6.T5.1.3.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">6</td>
+<td id="S6.T5.1.3.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">7</td>
+<td id="S6.T5.1.3.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">8</td>
+<td id="S6.T5.1.3.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">9</td>
+<td id="S6.T5.1.3.6" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">10</td>
+</tr>
+<tr id="S6.T5.1.4" class="ltx_tr">
+<th id="S6.T5.1.4.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b ltx_border_l ltx_border_r ltx_border_t">Frequency (Hz)</th>
+<td id="S6.T5.1.4.2" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">7.00</td>
+<td id="S6.T5.1.4.3" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">7.02</td>
+<td id="S6.T5.1.4.4" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">10.00</td>
+<td id="S6.T5.1.4.5" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">10.68</td>
+<td id="S6.T5.1.4.6" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">12.18</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<figure id="S6.T6" class="ltx_table">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">TABLE VI: </span>Eigenfrequency of circular robot</figcaption>
+<table id="S6.T6.1" class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr id="S6.T6.1.1" class="ltx_tr">
+<th id="S6.T6.1.1.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Order</th>
+<td id="S6.T6.1.1.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">1</td>
+<td id="S6.T6.1.1.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2</td>
+<td id="S6.T6.1.1.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">3</td>
+<td id="S6.T6.1.1.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">4</td>
+<td id="S6.T6.1.1.6" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">5</td>
+</tr>
+<tr id="S6.T6.1.2" class="ltx_tr">
+<th id="S6.T6.1.2.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Frequency (Hz)</th>
+<td id="S6.T6.1.2.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">1.87</td>
+<td id="S6.T6.1.2.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">2.06</td>
+<td id="S6.T6.1.2.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">3.02</td>
+<td id="S6.T6.1.2.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">5.23</td>
+<td id="S6.T6.1.2.6" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">5.31</td>
+</tr>
+<tr id="S6.T6.1.3" class="ltx_tr">
+<th id="S6.T6.1.3.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_l ltx_border_r ltx_border_t">Order</th>
+<td id="S6.T6.1.3.2" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">6</td>
+<td id="S6.T6.1.3.3" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">7</td>
+<td id="S6.T6.1.3.4" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">8</td>
+<td id="S6.T6.1.3.5" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">9</td>
+<td id="S6.T6.1.3.6" class="ltx_td ltx_align_center ltx_border_r ltx_border_t">10</td>
+</tr>
+<tr id="S6.T6.1.4" class="ltx_tr">
+<th id="S6.T6.1.4.1" class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b ltx_border_l ltx_border_r ltx_border_t">Frequency (Hz)</th>
+<td id="S6.T6.1.4.2" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">7.98</td>
+<td id="S6.T6.1.4.3" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">8.44</td>
+<td id="S6.T6.1.4.4" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">10.58</td>
+<td id="S6.T6.1.4.5" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">11.19</td>
+<td id="S6.T6.1.4.6" class="ltx_td ltx_align_center ltx_border_b ltx_border_r ltx_border_t">15.92</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div id="S6.SS3.p2" class="ltx_para">
+<p id="S6.SS3.p2.1" class="ltx_p">In these tables, degenerate modes appear as combination of near two frequencies.
+Then, we consider the movements of the rectangular shape robot as follows.</p>
+</div>
+<section id="S6.SS3.SSS1" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S6.SS3.SSS1.4" class="ltx_text">VI-C</span>1 </span>Rotational movement</h4>
+
+<div id="S6.SS3.SSS1.p1" class="ltx_para">
+<p id="S6.SS3.SSS1.p1.1" class="ltx_p">The rotational movement was observed at 5Hz.
+Therefore, from Tab.5, it is considered that order of corresponding modes are 4th and 5th.
+Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(a) shows the 4th mode. In this figure, different colors mean distribution of structural deformation: ”red” is upward, ”blue” is downward, and ”green” is middle.
+When the phase difference is 0deg, structural deformation is balanced as shown in Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(b), and fluid-flows are also balanced or too little to generate a movement.
+Therefore, the robot is static.
+When the phase difference is 90deg, structural deformation is changed as a degenerate mode, shown as Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(c).
+In this case fluid-flows are changed their directions, and contour of flows shifted from center of mass. As a result, a moment for rotation was generated and rotational movement appeared.
+In other cases, forward turning movements appeared since fluid-flows are unbalanced like Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(d).</p>
+</div>
+</section>
+<section id="S6.SS3.SSS2" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S6.SS3.SSS2.4" class="ltx_text">VI-C</span>2 </span>Backward movement</h4>
+
+<div id="S6.SS3.SSS2.p1" class="ltx_para">
+<p id="S6.SS3.SSS2.p1.1" class="ltx_p">The backward movement was observed at 6Hz.
+It is considered that order of corresponding modes are 6th and 7th. Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(e) shows the 6th mode.
+When the phase difference is 0deg, at the head structural deformation is enhanced by actuation, where fluid-flow is greater than back like Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(f).
+Therefore, backward movement appeared.
+When the phase difference is 15deg, structural deformation is changed as a degenerate mode, and backward turning movement appeared as shown in Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(g).
+This case is similar to the rotational movement.
+When the phase difference is 180deg, structural deformation as shown in Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(h) appeared and forward movement appeared.
+In this case, deformation of the head is small due to asynchronous actuation.</p>
+</div>
+</section>
+<section id="S6.SS3.SSS3" class="ltx_subsubsection">
+<h4 class="ltx_title ltx_title_subsubsection">
+<span class="ltx_tag ltx_tag_subsubsection"><span id="S6.SS3.SSS3.4" class="ltx_text">VI-C</span>3 </span>Translational movements</h4>
+
+<div id="S6.SS3.SSS3.p1" class="ltx_para">
+<p id="S6.SS3.SSS3.p1.1" class="ltx_p">The translational movement was observed at 8Hz.
+It is considered that orders of corresponding modes are 8th and 9th. Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(i) shows the 6th mode.
+When the phase difference is 0deg, structural deformation is balanced as shown in Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(j), and fluid-flows are also balanced or too little to generate a movement.
+Therefore, the robot is static. This case is similar to the rotational movement.
+Because of this mode has complex structural deformation, it is difficult to estimate the movements clearly.
+It is considered that there is phenomenon same as rotational and backward movement at each phase differences such as 60deg and 120deg, shown as Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(k) and Fig.<a href="#S6.F21" title="Fig. 21 ‣ VI-C3 Translational movements ‣ VI-C Discussion on movements ‣ VI Analysis and discussion ‣ A Novel Propulsion Method of Flexible Underwater Robots" class="ltx_ref"><span class="ltx_text ltx_ref_tag">21</span></a>(l).
+When the phase difference is 180deg, there is also phenomenon similar to the case of backward movement. As a result, forward movement appeared.</p>
+</div>
+<figure id="S6.F21" class="ltx_figure">
+<div id="S6.F21.1" class="ltx_block ltx_align_center" style="width:241.8pt;vertical-align:-0.0pt;">
+<img src="matome1.png" id="S6.F21.1.g1" class="ltx_graphics" width="1437" height="1573" alt="">
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Fig. 21: </span>Modes and estimated structural deformations</figcaption>
+</figure>
+<div id="S6.SS3.SSS3.p2" class="ltx_para">
+<p id="S6.SS3.SSS3.p2.1" class="ltx_p">The reason why movements were not observed at other frequencies is that, a low frequency can not make sufficient speed of the structural deformation to generate an effective fluid-flow.
+On the other hand, a high frequency has sufficient speed but has not sufficient structural displacement to generate an effective fluid-flow.
+We thought that the backward movement by changing voltage range to <math id="S6.SS3.SSS3.p2.1.m1.1" class="ltx_Math" alttext="+1000" display="inline"><semantics id="S6.SS3.SSS3.p2.1.m1.1a"><mrow id="S6.SS3.SSS3.p2.1.m1.1.6" xref="S6.SS3.SSS3.p2.1.m1.1.6.cmml"><mo id="S6.SS3.SSS3.p2.1.m1.1.1" xref="S6.SS3.SSS3.p2.1.m1.1.1.cmml">+</mo><mn id="S6.SS3.SSS3.p2.1.m1.1.5" xref="S6.SS3.SSS3.p2.1.m1.1.5.cmml">1000</mn></mrow><annotation-xml encoding="MathML-Content" id="S6.SS3.SSS3.p2.1.m1.1b"><apply id="S6.SS3.SSS3.p2.1.m1.1.6.cmml" xref="S6.SS3.SSS3.p2.1.m1.1.6"><plus id="S6.SS3.SSS3.p2.1.m1.1.1.cmml" xref="S6.SS3.SSS3.p2.1.m1.1.1"></plus><cn type="integer" id="S6.SS3.SSS3.p2.1.m1.1.5.cmml" xref="S6.SS3.SSS3.p2.1.m1.1.5">1000</cn></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S6.SS3.SSS3.p2.1.m1.1c">ADDOP:plus NUMBER:1000</annotation><annotation encoding="application/x-tex" id="S6.SS3.SSS3.p2.1.m1.1d">+1000</annotation></semantics></math>V<math id="S6.SS3.SSS3.p2.1.m2.1" class="ltx_Math" alttext="\sim+1500" display="inline"><semantics id="S6.SS3.SSS3.p2.1.m2.1a"><mrow id="S6.SS3.SSS3.p2.1.m2.1.7" xref="S6.SS3.SSS3.p2.1.m2.1.7.cmml"><mi id="S6.SS3.SSS3.p2.1.m2.1.7.1" xref="S6.SS3.SSS3.p2.1.m2.1.7.1.cmml"></mi><mo id="S6.SS3.SSS3.p2.1.m2.1.1" xref="S6.SS3.SSS3.p2.1.m2.1.1.cmml">∼</mo><mrow id="S6.SS3.SSS3.p2.1.m2.1.7.2" xref="S6.SS3.SSS3.p2.1.m2.1.7.2.cmml"><mo id="S6.SS3.SSS3.p2.1.m2.1.2" xref="S6.SS3.SSS3.p2.1.m2.1.2.cmml">+</mo><mn id="S6.SS3.SSS3.p2.1.m2.1.6" xref="S6.SS3.SSS3.p2.1.m2.1.6.cmml">1500</mn></mrow></mrow><annotation-xml encoding="MathML-Content" id="S6.SS3.SSS3.p2.1.m2.1b"><apply id="S6.SS3.SSS3.p2.1.m2.1.7.cmml" xref="S6.SS3.SSS3.p2.1.m2.1.7"><csymbol cd="latexml" id="S6.SS3.SSS3.p2.1.m2.1.1.cmml" xref="S6.SS3.SSS3.p2.1.m2.1.1">similar-to</csymbol><csymbol cd="latexml" id="S6.SS3.SSS3.p2.1.m2.1.7.1.cmml" xref="S6.SS3.SSS3.p2.1.m2.1.7.1">absent</csymbol><apply id="S6.SS3.SSS3.p2.1.m2.1.7.2.cmml" xref="S6.SS3.SSS3.p2.1.m2.1.7.2"><plus id="S6.SS3.SSS3.p2.1.m2.1.2.cmml" xref="S6.SS3.SSS3.p2.1.m2.1.2"></plus><cn type="integer" id="S6.SS3.SSS3.p2.1.m2.1.6.cmml" xref="S6.SS3.SSS3.p2.1.m2.1.6">1500</cn></apply></apply></annotation-xml><annotation encoding="application/x-llamapun" id="S6.SS3.SSS3.p2.1.m2.1c">RELOP:similar-to ADDOP:plus NUMBER:1500</annotation><annotation encoding="application/x-tex" id="S6.SS3.SSS3.p2.1.m2.1d">\sim+1500</annotation></semantics></math>V
+is not the result of the particular eigenmode because this movement is distributed to certain frequency area,
+but it is considered that there is particular structural deformation since this movement was also observed on the circular robot with same condition.
+And it is also considered that to realize the movements, it needs some unbalance in robot shape.
+A circle is symmetric to any direction but rectangular is not.
+That is the reason why the circular robot has no movements on particular frequency.
+From the results, it can be considered that the phase difference is the factor for controlling the degenerate modes.
+</p>
+</div>
+</section>
+</section>
+</section>
+<section id="S7" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">VII </span><span id="S7.1" class="ltx_text ltx_font_smallcaps">Conclusion</span>
+</h2>
+
+<div id="S7.p1" class="ltx_para">
+<p id="S7.p1.1" class="ltx_p">In this paper, we proposed a novel propulsion method of flexible underwater robots.
+The prototypes based on the method has been developed,
+and unique movements such as movements with multiple DOFs, holonomic and non-holonomic movements have been demonstrated successfully.
+The experimental results indicated that the possibility of driving using eigenmodes and was also shown by FEM analysis result.
+Further work will be done on the quantitative analysis about the relation between movement and structural modes for designing such flexible robots.</p>
+</div>
+</section>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+<li id="bib.bib1" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[1]</span>
+<span class="ltx_bibblock">
+E. Kim, Y. Youm, Design and Dynamic Analysis of Fish Robot:Potuna, Proceedings of the IEEE International Conference on Robotics
+and Automation, pp.4887-4892, 2004.
+
+</span>
+</li>
+<li id="bib.bib2" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[2]</span>
+<span class="ltx_bibblock">
+Jamie M. Anderson, The Vorticity Control Unmanned Undersea Vehicle, Proceeding of the Inernational Symposium on Seawater Drag
+Reduction, pp.479-483, 1998.
+
+</span>
+</li>
+<li id="bib.bib3" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[3]</span>
+<span class="ltx_bibblock">
+Xinyan Deng, Srinath Avadhanula, Biomimetic Micro Underwater Vehicle with Oscillating Fin Propulsion : System Design and Force
+Measurement, Proceedings of the IEEE International Conference on Robotics and Automation, pp.3312-3317, 2005.
+
+</span>
+</li>
+<li id="bib.bib4" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[4]</span>
+<span class="ltx_bibblock">
+K.H.Low, A.Willy, Biomimetic Motion Planning of an Undulating Robotic Fish Fin, Journal of Vibration and Control, No.12(12),
+pp.1337-1395, 2006.
+
+</span>
+</li>
+<li id="bib.bib5" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[5]</span>
+<span class="ltx_bibblock">
+M.NakashimaCK.OnoCLingfei Li and Sheng Liu, Dynamics of Two Joint Dolphinlike Propulsion Mechanism, Transactions of the Japan Society of
+Mechanical Engineers, Series B, pp.136-143, 1996.
+
+</span>
+</li>
+<li id="bib.bib6" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[6]</span>
+<span class="ltx_bibblock">
+Pablo Valdivia y Alvarado, Kamal Youcef-Toumi, Design of Machines With Compliant Bodies for Biomimetic Locomotion in Liquid Environments,
+Journal of Dynamic Systems, Measurement, and Control, pp.3-15, Vol.128, 2006.
+
+</span>
+</li>
+<li id="bib.bib7" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[7]</span>
+<span class="ltx_bibblock">
+Mehran Mojarrad, Mohsen Shahinpoor, ShahinpoorCBiomimetic Robotic Propulsion Using Polymetric Artificial Muscles, Proceedings of the IEEE
+International Conference on Robotics and Automation, pp.2152-2157, 1997.
+
+</span>
+</li>
+<li id="bib.bib8" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[8]</span>
+<span class="ltx_bibblock">
+Shuxiang Guo, Toshio Fukuda, Norihiko Kato, Keisuke Oguro, OguroCDevelopment of Underwater Microbot Using ICPF Actuator, ActuatorCProceedings
+of the IEEE International Conference on Robotics and Automation, pp.1829-1834, 1998.
+
+</span>
+</li>
+<li id="bib.bib9" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[9]</span>
+<span class="ltx_bibblock">
+M. Yamakita, et al, Snake-Like Swimming Robot Using IPMC Actuator and Verification of Doping Effect,
+Proceedigs of the IEEE/RSJ International Conference on Intelligent Robots and Systems, pp.2035-2040, 2005.
+
+</span>
+</li>
+<li id="bib.bib10" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[10]</span>
+<span class="ltx_bibblock">
+Shuxiang GuoCYaming GeCLingfei LiCSheng Liu, Underwater Swimming Micro Robot Using IPMC Actuator,
+Proceedings of the IEEE International Conference on Mechatronics and Automation pp. 249-254, 2006.
+
+</span>
+</li>
+<li id="bib.bib11" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[11]</span>
+<span class="ltx_bibblock">
+Aiguo Ming, Seokyong Park, Yoshinori Nagata, Makoto Shimojo,
+Development of underwater robots using piezoelectric fiber composite, Proceedings of the IEEE International Conference on Robotics and Automation, pp.955-960, 2009.
+
+</span>
+</li>
+<li id="bib.bib12" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[12]</span>
+<span class="ltx_bibblock">
+Jun Shintake, Aiguo Ming, Makoto Shimojo,
+Development of flexible underwater robots with caudal fin propulsion,
+Proceedigs of the IEEE/RSJ International Conference on Intelligent Robots and Systems, pp.940, 2010.
+
+</span>
+</li>
+<li id="bib.bib13" class="ltx_bibitem">
+<span class="ltx_tag ltx_tag_bibitem">[13]</span>
+<span class="ltx_bibblock">
+R.Brett Williams, Daniel J.Inman, An overview of Composite Actuators With Pizeoceramic Fibers, http://www.smart-material.com/Whatis.php
+
+</span>
+</li>
+</ul>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Mon Jul  1 18:22:41 2019 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>
