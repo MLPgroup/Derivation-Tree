@@ -5,15 +5,16 @@
             "Author": "Vishesh Prasad",
             "Modification Log": {
                 "October 2, 2023": "Created file and populated with first few articles",
-                "December 31, 2023": "Added 5 articles",
-                "January 8, 2024": "Added 11 articles",
-                "January 13, 2024": "Added 20 articles",
+                "December 31, 2023": "Added 5 articles (Total = 5)",
+                "January 8, 2024": "Added 11 articles (Total = 16)",
+                "January 13, 2024": "Added 20 articles (Total = 36)",
                 "January 29, 2024": "Added Most Important Equation for all Manually Parsed Articles",
-                "February 3, 2024": "Added 10 articles",
-                "February 5, 2024": "Added 8 articles, Fixed previous article edges",
-                "February 10, 2024": "Added 10 articles",
-                "February 26, 2024": "Added 10 articles",
-                "March 4. 2024": "Added 10 articles"
+                "February 3, 2024": "Added 10 articles (Total = 46)",
+                "February 5, 2024": "Added 8 articles, Fixed previous article edges (Total = 54)",
+                "February 10, 2024": "Added 10 articles (Total = 64)",
+                "February 26, 2024": "Added 10 articles (Total = 74)",
+                "March 4, 2024": "Added 10 articles (Total = 84)",
+                "March 12, 2024": "Added 10 articles (Total = 94)"
             },
             "Notes": {
                 "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
