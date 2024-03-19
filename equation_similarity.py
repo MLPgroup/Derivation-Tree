@@ -92,7 +92,7 @@ def extract_equations(html_content):
 
 
     
-        """Playground: """
+        """Playground"""
         # elif len(equations) == 0 and match_2:
         #     # Extract section and equation numbers from the matched pattern
         #     section_number, equation_number = match_2.groups()
@@ -326,19 +326,22 @@ def find_equation_neighbors_str(predicted_adjacency_list):
             cur_value_string += cur_char
         # Error
         else:
-            print(cur_char)
-            print(cur_key_read)
-            print(cur_value_read)
-            print(cur_key_string)
-            print(cur_value_string)
-            print(predicted_adjacency_list)
-            print(predicted_neighbors)
-            return 0
-    print("start")
-    print(predicted_adjacency_list)
-    print("middle")
-    print(predicted_neighbors)
-    print("end\n")
+            """Playground"""
+            # print(cur_char)
+            # print(cur_key_read)
+            # print(cur_value_read)
+            # print(cur_key_string)
+            # print(cur_value_string)
+            # print(predicted_adjacency_list)
+            # print(predicted_neighbors)
+            raise ValueError("Unexpected character or state encountered")
+
+    """Playground"""
+    # print("start")
+    # print(predicted_adjacency_list)
+    # print("middle")
+    # print(predicted_neighbors)
+    # print("end\n")
     return predicted_neighbors
 
 
@@ -354,6 +357,7 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    num_skipped = 0
 
     for true_adjacency_list, cur_predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
         # If predicted adjacency list is a string, then it is from the bayes implementation
@@ -361,6 +365,11 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
             predicted_adjacency_list = find_equation_neighbors_str(cur_predicted_adjacency_list)
         else:
             predicted_adjacency_list = cur_predicted_adjacency_list
+        
+        # Skip bad parsings
+        if predicted_adjacency_list is None:
+            num_skipped += 1
+            continue
         
         # Calculate Error
         for equation, true_neighbors in true_adjacency_list.items():
@@ -384,7 +393,7 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
     f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
-    return accuracy, precision, recall, f1_score
+    return accuracy, precision, recall, f1_score, num_skipped
 
 
 
@@ -451,11 +460,11 @@ def run_equation_similarity(algorithm_option):
         true_adjacency_lists, predicted_adjacency_lists = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations)
     
     # Get accuracy numbers
-    similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
+    similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
     print("*-----------------------------------------------------------*")
     print("Equation Similarity Algorithm Correctness: ")
-    print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists)}")
+    print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists) - similarity_num_skipped}")
     if algorithm_option == 'string':
         print(f"Method used: String Similarity")
     elif algorithm_option == 'bayes':
@@ -476,14 +485,12 @@ Runs run_derivation_algo()
 if __name__ == '__main__':
     # Read in argument for which equation similarity algorithm to run
     if len(sys.argv) != 2:
-        print("Incorrect call, Usage: python3 equation_similarity.py <algorithm>")
-        sys.exit(1)
+        raise ValueError("Incorrect call, Usage: python3 equation_similarity.py <algorithm>")
 
     algorithm_option = sys.argv[1].lower()
 
     if algorithm_option not in ['bayes', 'string']:
-        print("Invalid algorithm option. Choose 'bayes' or 'string'.")
-        sys.exit(1)
+        raise ValueError("Invalid algorithm option. Choose 'bayes' or 'string'.")
     
     # Call corresponding equation similarity function
     run_equation_similarity(algorithm_option)
