@@ -92,7 +92,7 @@ def extract_equations(html_content):
 
 
     
-        """Playground: """
+        """Playground"""
         # elif len(equations) == 0 and match_2:
         #     # Extract section and equation numbers from the matched pattern
         #     section_number, equation_number = match_2.groups()
@@ -180,19 +180,19 @@ def equation_similarity_percentages(equations):
     return similarity_matrix, equation_order
 
 
+"""Playground"""
+# "Check if cycle formed with new add"
+# def has_cycle(adj_list, visited, current, parent):
+#     visited[current] = True
 
-"Check if cycle formed with new add"
-def has_cycle(adj_list, visited, current, parent):
-    visited[current] = True
+#     for neighbor in adj_list[current]:
+#         if not visited[neighbor]:
+#             if has_cycle(adj_list, visited, neighbor, current):
+#                 return True
+#         elif neighbor != parent:
+#             return True
 
-    for neighbor in adj_list[current]:
-        if not visited[neighbor]:
-            if has_cycle(adj_list, visited, neighbor, current):
-                return True
-        elif neighbor != parent:
-            return True
-
-    return False
+#     return False
 
 
 
@@ -251,19 +251,20 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
     # Train the naive Bayes classifier
     vectorizer = CountVectorizer()
     X_train = vectorizer.fit_transform(training_data)
-    y_train = [int(label) for label in training_labels]
+    y_train = training_labels
 
     classifier = MultinomialNB()
     classifier.fit(X_train, y_train)
 
     # Predict adjacency lists for the remaining articles
     for article_id in article_ids:
-        if article_id not in train_selected_articles:
+        if article_id not in train_selected_articles and article_id in articles_used:
             equations = extracted_equations[articles_used.index(article_id)]
             words_between_eqs = extracted_words_between_equations[articles_used.index(article_id)]
 
-            # Convert equations and words between equations to a single string
-            text_data = ' '.join(equations + words_between_eqs)
+            # Convert equations dictionary to list and concatenate it with words_between_eqs
+            equations_list = [equation for sublist in equations.values() for equation in sublist]
+            text_data = ' '.join(equations_list + words_between_eqs)
 
             # Transform the data using the same vectorizer used during training
             X_test = vectorizer.transform([text_data])
@@ -278,6 +279,71 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
     return true_adjacency_lists, predicted_adjacency_lists
 
 
+"""
+find_equation_neighbors_str(predicted_adjacency_list)
+Input: predicted_adjacency_list -- labeled adjacency list as a string 
+Return: dictionary with equations and predicted neighbors
+Function: Convert the string of the predicted adjacency list from the bayes classifier into a dictionary
+"""
+def find_equation_neighbors_str(predicted_adjacency_list):
+    predicted_neighbors = {}
+    cur_key_read = False
+    cur_value_read = False
+    cur_value_string = ""
+    cur_key_string = ""
+
+    for cur_char in predicted_adjacency_list:
+        # Ignore
+        if cur_char in ["{", "}", ":", " ", ","]:
+            continue
+        # Start reading in key
+        elif cur_char == "'" and not cur_key_read and not cur_value_read:
+            cur_key_read = True
+            cur_key_string = ""
+        # Stop reading key
+        elif cur_char == "'" and cur_key_read and not cur_value_read:
+            cur_key_read = False
+            predicted_neighbors[cur_key_string] = []
+        # Start reading in values
+        elif cur_char == "[" and not cur_value_read and not cur_key_read:
+            cur_value_read = True
+        # Stop reading in values
+        elif cur_char == "]" and cur_value_read and not cur_key_read:
+            cur_value_read = False
+            cur_value_string = ""
+        # Start read new value
+        elif cur_char == "'" and len(cur_value_string) == 0:
+            continue
+        # End read new value
+        elif cur_char == "'" and len(cur_value_string) != 0:
+            predicted_neighbors[cur_key_string].append(cur_value_string)
+            cur_value_string = ""
+        # Read char of key
+        elif cur_key_read and not cur_value_read:
+            cur_key_string += cur_char
+        # Read char of value
+        elif cur_value_read and not cur_key_read:
+            cur_value_string += cur_char
+        # Error
+        else:
+            """Playground"""
+            # print(cur_char)
+            # print(cur_key_read)
+            # print(cur_value_read)
+            # print(cur_key_string)
+            # print(cur_value_string)
+            # print(predicted_adjacency_list)
+            # print(predicted_neighbors)
+            raise ValueError("Unexpected character or state encountered")
+
+    """Playground"""
+    # print("start")
+    # print(predicted_adjacency_list)
+    # print("middle")
+    # print(predicted_neighbors)
+    # print("end\n")
+    return predicted_neighbors
+
 
 """
 evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
@@ -291,8 +357,21 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    num_skipped = 0
 
-    for true_adjacency_list, predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
+    for true_adjacency_list, cur_predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
+        # If predicted adjacency list is a string, then it is from the bayes implementation
+        if (isinstance(cur_predicted_adjacency_list, str)):
+            predicted_adjacency_list = find_equation_neighbors_str(cur_predicted_adjacency_list)
+        else:
+            predicted_adjacency_list = cur_predicted_adjacency_list
+        
+        # Skip bad parsings
+        if predicted_adjacency_list is None:
+            num_skipped += 1
+            continue
+        
+        # Calculate Error
         for equation, true_neighbors in true_adjacency_list.items():
             predicted_neighbors = predicted_adjacency_list.get(equation, [])
 
@@ -305,13 +384,16 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
             for neighbor in predicted_neighbors:
                 if neighbor not in true_neighbors:
                     false_positive += 1
+        for equation, predicted_neighbors in predicted_adjacency_list.items():
+            if equation not in true_adjacency_list:
+                false_positive += len(predicted_neighbors)
 
     accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
     precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
     recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
     f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
-    return accuracy, precision, recall, f1_score
+    return accuracy, precision, recall, f1_score, num_skipped
 
 
 
@@ -378,11 +460,11 @@ def run_equation_similarity(algorithm_option):
         true_adjacency_lists, predicted_adjacency_lists = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations)
     
     # Get accuracy numbers
-    similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
+    similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
     print("*-----------------------------------------------------------*")
     print("Equation Similarity Algorithm Correctness: ")
-    print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists)}")
+    print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists) - similarity_num_skipped}")
     if algorithm_option == 'string':
         print(f"Method used: String Similarity")
     elif algorithm_option == 'bayes':
@@ -403,14 +485,12 @@ Runs run_derivation_algo()
 if __name__ == '__main__':
     # Read in argument for which equation similarity algorithm to run
     if len(sys.argv) != 2:
-        print("Incorrect call, Usage: python3 equation_similarity.py <algorithm>")
-        sys.exit(1)
+        raise ValueError("Incorrect call, Usage: python3 equation_similarity.py <algorithm>")
 
     algorithm_option = sys.argv[1].lower()
 
     if algorithm_option not in ['bayes', 'string']:
-        print("Invalid algorithm option. Choose 'bayes' or 'string'.")
-        sys.exit(1)
+        raise ValueError("Invalid algorithm option. Choose 'bayes' or 'string'.")
     
     # Call corresponding equation similarity function
     run_equation_similarity(algorithm_option)
