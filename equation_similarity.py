@@ -5,14 +5,16 @@ Modification Log:
     February 10, 2024: create file and extract equations from html successfully 
     February 26, 2024: use the words between equations to build the derivation tree
     March 4, 2024: implement naive bayes equation similarity
+    March 22, 2024: improve upon naive bayes
 '''
 
 from bs4 import BeautifulSoup
 import os
 import re
 import article_parser
-import sys
 import random
+import argparse
+import numpy as np
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -30,6 +32,9 @@ def extract_equations(html_content):
 
     # Dictionary to store equations
     equations = {}
+
+    # List to store equations at each index
+    equation_indexing = []
     
     # List to store words that occur between equations
     words_between_equations = []
@@ -64,6 +69,7 @@ def extract_equations(html_content):
                         'equation_number': int(equation_number),
                         'equations': [],
                     }
+                    equation_indexing.append(equation_key)
 
                 # Add the equation details to the list of equations for the current key
                 equations[equation_key]['equations'].append({
@@ -113,7 +119,7 @@ def extract_equations(html_content):
         #         'alttext': alttext,
         #     })
 
-    return equations, words_between_equations
+    return equations, words_between_equations, equation_indexing
 
 
 
@@ -197,6 +203,7 @@ def equation_similarity_percentages(equations):
 
 
 """
+----------- FIX: ----------
 equation_similarity_percentages(equations)
 Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
         equation_order -- order of equations in matrix
@@ -219,6 +226,16 @@ def equation_similarity_adjacency_list(similarity_matrix, equation_order, simila
     return equation_adjacency_list
 
 
+def extract_features(equations, words_between_equations, equation_indexing):
+    features = []
+    for i in range(len(equations)):
+        for j in range(i+1, len(equations)):
+            print(equations[equation_indexing[i]])
+            feature_vector = equations[equation_indexing[i]]['mathml'] + " " + words_between_equations[i] + " " + equations[equation_indexing[j ]]['mathml']
+            features.append(feature_vector)
+    return features
+
+
 
 """
 bayes_classifier(article_ids, articles_used, extract_equations, extracted_words_between_equations)
@@ -226,54 +243,105 @@ Input: article_ids -- dictionary with info on all articles from articles.json
        articles_used -- list of articles where equations were extracted correctly
        extracted_equations -- list of equations that were successfully extracted
        extracted_words_between_equation -- list of list of words that occur between equations
+       extracted_equation_indexing -- list of list of equations in the order they were found from the article
 Return: true_adjacency_lists -- list of labeled adjacency lists used in the test phase of the naive bayes algorithm
         predicted_adjacency_lists -- list of predicted adjacency lists resulting from the test phase of the naive bayes algorithm
 Function: Predict adjacency list using the naive bayes algorithm
 """
-def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations):
+def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing):
     # Initialize lists to store true and predicted adjacency lists
     true_adjacency_lists = []
     predicted_adjacency_lists = []
 
     # Split the data set into test and train
     num_articles = len(articles_used)
-    train_random_indices = random.sample(range(num_articles), num_articles // 2)
+    train_random_indices = range(int(num_articles * 0.9))
+    # train_random_indices = random.sample(range(num_articles), num_articles // 2)
 
-    # Prepare data for the naive Bayes algorithm
-    training_data = []
-    training_labels = []
-    train_selected_articles = set()
-    for i in train_random_indices:
-        training_labels.append(str(article_ids[articles_used[i]]["Adjacency List"]))
-        training_data.append(' '.join([combine_sub_equations(extracted_equations[i][cur_equation]) for cur_equation in extracted_equations[i]] + extracted_words_between_equations[i]))
-        train_selected_articles.add(articles_used[i])
+
+    # # Prepare data for the naive Bayes algorithm
+    # training_data = []
+    # training_labels = []
+    # train_selected_articles = set()
+    # for i in train_random_indices:
+    #     training_labels.append(str(article_ids[articles_used[i]]["Adjacency List"]))
+    #     training_data.append(' '.join([combine_sub_equations(extracted_equations[i][cur_equation]) for cur_equation in extracted_equations[i]] + extracted_words_between_equations[i]))
+    #     train_selected_articles.add(articles_used[i])
     
-    # Train the naive Bayes classifier
+    # # Train the naive Bayes classifier
+    # vectorizer = CountVectorizer()
+    # X_train = vectorizer.fit_transform(training_data)
+    # y_train = training_labels
+
+    # classifier = MultinomialNB()
+    # classifier.fit(X_train, y_train)
+
+    # # Predict adjacency lists for the remaining articles
+    # for article_id in article_ids:
+    #     if article_id not in train_selected_articles and article_id in articles_used:
+    #         equations = extracted_equations[articles_used.index(article_id)]
+    #         words_between_eqs = extracted_words_between_equations[articles_used.index(article_id)]
+
+    #         # Convert equations dictionary to list and concatenate it with words_between_eqs
+    #         equations_list = [equation for sublist in equations.values() for equation in sublist]
+    #         text_data = ' '.join(equations_list + words_between_eqs)
+
+    #         # Transform the data using the same vectorizer used during training
+    #         X_test = vectorizer.transform([text_data])
+
+    #         # Predict the adjacency list using the trained classifier
+    #         predicted_adjacency_list = classifier.predict(X_test)[0]
+
+    #         # Append the true and predicted adjacency lists to the result
+    #         true_adjacency_lists.append(article_ids[article_id]["Adjacency List"])
+    #         predicted_adjacency_lists.append(predicted_adjacency_list)
+
+
+    train_features = []
+    train_labels = []
+
+    for i in train_random_indices:
+        equations = extracted_equations[i]
+        words_between_eqs = extracted_words_between_equations[i]
+        equation_indexing = extracted_equation_indexing[i]
+
+        features = extract_features(equations, words_between_eqs, equation_indexing)
+        labels = label_data(article_ids[articles_used[i]]["Adjacency List"])
+
+        train_features.extend(features)
+        train_labels.extend(labels)
+
+    # Train the Naive Bayes classifier
     vectorizer = CountVectorizer()
-    X_train = vectorizer.fit_transform(training_data)
-    y_train = training_labels
+    X_train = vectorizer.fit_transform(train_features)
+    y_train = train_labels
 
     classifier = MultinomialNB()
     classifier.fit(X_train, y_train)
 
-    # Predict adjacency lists for the remaining articles
-    for article_id in article_ids:
-        if article_id not in train_selected_articles and article_id in articles_used:
-            equations = extracted_equations[articles_used.index(article_id)]
-            words_between_eqs = extracted_words_between_equations[articles_used.index(article_id)]
+    # Predict connections for the remaining articles
+    for i in range(num_articles):
+        if i not in train_random_indices:
+            equations = extracted_equations[i]
+            words_between_eqs = extracted_words_between_equations[i]
+            equation_indexing = extracted_equation_indexing[i]
 
-            # Convert equations dictionary to list and concatenate it with words_between_eqs
-            equations_list = [equation for sublist in equations.values() for equation in sublist]
-            text_data = ' '.join(equations_list + words_between_eqs)
+            features = extract_features(equations, words_between_eqs, equation_indexing)
+            X_test = vectorizer.transform(features)
 
-            # Transform the data using the same vectorizer used during training
-            X_test = vectorizer.transform([text_data])
+            predictions = classifier.predict(X_test)
 
-            # Predict the adjacency list using the trained classifier
-            predicted_adjacency_list = classifier.predict(X_test)[0]
+            predicted_adjacency_list = {}
+            equation_id = 0
+            for j in range(len(equations)):
+                neighbors = []
+                for k in range(j+1, len(equations)):
+                    if predictions[equation_id] == 1:
+                        neighbors.append(equations[k]['equation_id'])
+                    equation_id += 1
+                predicted_adjacency_list[equations[j]['equation_id']] = neighbors
 
-            # Append the true and predicted adjacency lists to the result
-            true_adjacency_lists.append(article_ids[article_id]["Adjacency List"])
+            true_adjacency_lists.append(article_ids[articles_used[i]]["Adjacency List"])
             predicted_adjacency_lists.append(predicted_adjacency_list)
 
     return true_adjacency_lists, predicted_adjacency_lists
@@ -408,6 +476,7 @@ def run_equation_similarity(algorithm_option):
     article_ids = article_parser.get_manually_parsed_articles()
 
     extracted_equations = []
+    extracted_equation_indexing = []
     computed_similarities = []
     equation_orders = []
     true_adjacency_lists = []
@@ -428,13 +497,14 @@ def run_equation_similarity(algorithm_option):
                 html_content = file.read()
                 
             # Extract equations from the HTML content
-            equations, words_between_equations = extract_equations(html_content)
+            equations, words_between_equations, equation_indexing = extract_equations(html_content)
 
             # If extracted correctly, compute similarity
             if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
                 extracted_equations.append(equations)
                 extracted_words_between_equations.append(words_between_equations)
                 articles_used.append(cur_article_id)
+                extracted_equation_indexing.append(equation_indexing)
 
                 if algorithm_option == 'string':
                     computed_similarity, equation_order = equation_similarity_percentages(equations)
@@ -457,7 +527,7 @@ def run_equation_similarity(algorithm_option):
 
     # Run Bayes algorithm
     if algorithm_option == 'bayes':
-        true_adjacency_lists, predicted_adjacency_lists = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations)
+        true_adjacency_lists, predicted_adjacency_lists = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing)
     
     # Get accuracy numbers
     similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
@@ -483,14 +553,9 @@ Entry point for equation_similarity.py
 Runs run_derivation_algo()
 """
 if __name__ == '__main__':
-    # Read in argument for which equation similarity algorithm to run
-    if len(sys.argv) != 2:
-        raise ValueError("Incorrect call, Usage: python3 equation_similarity.py <algorithm>")
-
-    algorithm_option = sys.argv[1].lower()
-
-    if algorithm_option not in ['bayes', 'string']:
-        raise ValueError("Invalid algorithm option. Choose 'bayes' or 'string'.")
+    parser = argparse.ArgumentParser(description="Algorithms to find derivation trees")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'string'], help="Type of algorithm to compute derivation tree: ['bayes', 'string']")
+    args = parser.parse_args()
     
     # Call corresponding equation similarity function
-    run_equation_similarity(algorithm_option)
+    run_equation_similarity(args.algorithm.lower())

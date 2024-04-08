@@ -55,7 +55,11 @@ Python 3.5 (can run on earlier versions but is untested and requires a few chang
 
 ## Instructions to Run Algorithm
 ```
-python3 equation_similarity.py [bayes, string]
+python3 equation_similarity.py -a [bayes, string]
+```
+or
+```
+python3 equation_similarity.py --algorithm [bayes, string]
 ```
 'bayes' - will run the Naive Bayes model
 'string' - will run the string similarity analytical model
