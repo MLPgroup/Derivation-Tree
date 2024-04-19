@@ -19,7 +19,7 @@
     "Gemini Data": [
         {
             "Article ID": "0907.2648",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     null
                 ],
@@ -61,7 +61,7 @@
         },
         {
             "Article ID": "0907.2720",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     "S0.E3"
                 ],
@@ -97,7 +97,7 @@
         },
         {
             "Article ID": "0907.2872",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     "S0.E2",
                     "S0.E8"
@@ -138,7 +138,7 @@
         },
         {
             "Article ID": "0907.2959",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     null
                 ],
@@ -201,7 +201,7 @@
         },
         {
             "Article ID": "0907.3017",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     null
                 ],
@@ -238,7 +238,7 @@
         },
         {
             "Article ID": "0907.3028",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S2.E1": [
                     null
                 ],
@@ -265,7 +265,7 @@
         },
         {
             "Article ID": "0907.3172",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S2.E1": [
                     "S2.E3",
                     "S2.E4"
@@ -290,7 +290,7 @@
         },
         {
             "Article ID": "0907.3206",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     null
                 ],
@@ -326,7 +326,7 @@
         },
         {
             "Article ID": "0907.3283",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     null
                 ],
@@ -360,7 +360,7 @@
         },
         {
             "Article ID": "0907.3284",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S2.E1": [
                     "S2.E2"
                 ],
@@ -410,7 +410,7 @@
         },
         {
             "Article ID": "0907.3505",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     null
                 ],
@@ -458,7 +458,7 @@
         },
         {
             "Article ID": "0908.0117",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S4.E1": [
                     null
                 ],
@@ -509,7 +509,7 @@
         },
         {
             "Article ID": "0908.0155",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     "S0.E3"
                 ],
@@ -539,7 +539,7 @@
         },
         {
             "Article ID": "0908.0159",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S0.E1": [
                     "S0.E3",
                     "S0.E4"
@@ -576,7 +576,7 @@
         },
         {
             "Article ID": "0908.0180",
-            "Bard's Adjacency List": {
+            "Gemini's Adjacency List": {
                 "S1.E1": [
                     null
                 ],

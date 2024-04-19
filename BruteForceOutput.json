@@ -1,0 +1,131 @@
+{
+    "Comments": [
+        {
+            "Description": "Json file to verify Brute Force Algorithm's Output on Creating Derivation Trees.",
+            "Author": "Brian Kim",
+            "Modification Log": {},
+            "Notes": {}
+        }
+    ],
+    "Brute Force Data": [
+        {
+            "Article ID": "0907.2648",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "S0.E3",
+                    "S0.E4"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E5",
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    "S0.E8",
+                    "S0.E9",
+                    "S0.E10"
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.6,
+            "Precision": 0.8,
+            "Recall": 0.6,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2870",
+            "Brute Force's Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S1.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S3.E8"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    "S3.E9"
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.25,
+            "Precision": 0.7,
+            "Recall": 0.25,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2720",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    "S0.E7"
+                ],
+                "S0.E4": [
+                    "S0.E5",
+                    "S0.E6"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.2,
+            "Precision": 0.5555555555555556,
+            "Recall": 0.2,
+            "Tested by": "Brian Kim"
+        }
+    ]
+}
