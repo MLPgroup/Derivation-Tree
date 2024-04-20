@@ -140,7 +140,7 @@ def eqExtract(url):
     text = soup.get_text(' ', strip=True)  # Get text with some whitespace
 
     # Remove References OR Acknowledgments (Last) section
-    text = text.split("References")[0]  # Split string at "References" and take only string before it
+    text = (text.rsplit("References", 1))[0]
     text = text.split("Acknowledgments")[0]  # Split string at "Acknowledgments" and take only string before it
     return ret, text
 
@@ -253,7 +253,7 @@ def endInterval(eqno, wordCount):
         while wordCount[wordIDX] < startIdx:                        # Iterate through wordCount array until total words exceed current index (startIdx)
             wordIDX +=1                                             # Interval will go one more then necessary so
         sentenceEndIdx = wordCount[wordIDX]                         # Set end interval to wordCount[wordIDX-1]
-        exten.append([str(eqno[idx][0])+'end', sentenceEndIdx+5])   # Append current index as end of section
+        exten.append([str(eqno[idx][0])+'end', sentenceEndIdx+10])   # Append current index as end of section
     return exten
   
 
@@ -262,7 +262,7 @@ def endInterval(eqno, wordCount):
 # --------------------------------------------------------------------------------------------
 
 def main():
-    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2720.html'      # Original Mathematical Document
+    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/1701.01531.html'      # Original Mathematical Document
     mathML, text = eqExtract(url)                   # Extract Block Equations, text holds processed HTML
     # print(text)
     eqIDs = idExtract(mathML)                       # Extract all Block Equation IDs

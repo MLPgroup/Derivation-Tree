@@ -126,6 +126,1166 @@
             "Precision": 0.5555555555555556,
             "Recall": 0.2,
             "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2872",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    "S0.E2",
+                    "S0.E8"
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    "S0.E8",
+                    "S0.E10"
+                ],
+                "S0.E8": [
+                    "S0.E9",
+                    "S0.E10"
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.5,
+            "Precision": 0.7,
+            "Recall": 0.5,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2959",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E14"
+                ],
+                "S0.E7": [
+                    "S0.E12"
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    "S0.E12"
+                ],
+                "S0.E12": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    "S0.E15"
+                ],
+                "S0.E15": [
+                    null
+                ],
+                "S0.E16": [
+                    null
+                ],
+                "S0.E17": [
+                    "S0.E18"
+                ],
+                "S0.E18": [
+                    null
+                ]
+            },
+            "Accuracy": 0.3333333333333333,
+            "Precision": 0.5555555555555556,
+            "Recall": 0.3333333333333333,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2967",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ],
+                "S2.E13": [
+                    null
+                ],
+                "S2.E14": [
+                    null
+                ],
+                "S4.E15": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.6666666666666666,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.2994",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    "S0.E5"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E8",
+                    "S0.E16"
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    "S0.E13",
+                    "S0.E14"
+                ],
+                "S0.E12": [
+                    "S0.E13",
+                    "S0.E14"
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    "S0.E17"
+                ],
+                "S0.E15": [
+                    "S0.E16"
+                ],
+                "S0.E16": [
+                    null
+                ],
+                "S0.E17": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.5882352941176471,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3017",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.6666666666666666,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3028",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.5,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3040",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    "S3.E12"
+                ],
+                "S3.E12": [
+                    null
+                ]
+            },
+            "Accuracy": 0.2,
+            "Precision": 0.6666666666666666,
+            "Recall": 0.2,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3145",
+            "Brute Force's Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.9,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3172",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    "S2.E2",
+                    "S2.E3",
+                    "S2.E4"
+                ],
+                "S2.E2": [
+                    "S2.E5"
+                ],
+                "S2.E3": [
+                    "S2.E4"
+                ],
+                "S2.E4": [
+                    "S2.E5"
+                ],
+                "S2.E5": [
+                    null
+                ]
+            },
+            "Accuracy": 0.25,
+            "Precision": 0.4,
+            "Recall": 0.25,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3206",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    "S0.E7",
+                    "S0.E8"
+                ],
+                "S0.E6": [
+                    "S0.E7",
+                    "S0.E8"
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.7777777777777778,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3283",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "A0.E7",
+                    "A0.E8"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "A0.E4": [
+                    null
+                ],
+                "A0.E5": [
+                    null
+                ],
+                "A0.E6": [
+                    null
+                ],
+                "A0.E7": [
+                    null
+                ],
+                "A0.E8": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.75,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3284",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ],
+                "S2.E13": [
+                    null
+                ],
+                "S3.E14": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.42857142857142855,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "0907.3505",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    "S0.E5",
+                    "S0.E6"
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E7",
+                    "S0.E8",
+                    "S0.E9"
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    null
+                ],
+                "S0.E12": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.5384615384615384,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00003",
+            "Brute Force's Adjacency List": {
+                "S4.E1": [
+                    "S4.E11"
+                ],
+                "S4.E2": [
+                    "S4.E12"
+                ],
+                "S4.E3": [
+                    "S4.E11"
+                ],
+                "S4.E4": [
+                    null
+                ],
+                "S4.E5": [
+                    null
+                ],
+                "S4.E6": [
+                    null
+                ],
+                "S4.E7": [
+                    null
+                ],
+                "S4.E8": [
+                    null
+                ],
+                "S4.E9": [
+                    null
+                ],
+                "S4.E10": [
+                    null
+                ],
+                "S4.E11": [
+                    null
+                ],
+                "S4.E12": [
+                    null
+                ],
+                "S5.E13": [
+                    null
+                ],
+                "S5.E14": [
+                    null
+                ],
+                "S5.E15": [
+                    null
+                ],
+                "S5.E16": [
+                    null
+                ]
+            },
+            "Accuracy": 0.08333333333333333,
+            "Precision": 0.3125,
+            "Recall": 0.08333333333333333,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00176",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.4,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00226",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.3333333333333333,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00357",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S2.E8"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S4.E12": [
+                    null
+                ],
+                "S4.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.125,
+            "Precision": 0.46153846153846156,
+            "Recall": 0.125,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00692",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    "S2.E7"
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    "S2.E11",
+                    "S2.E12"
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ],
+                "S3.E13": [
+                    null
+                ],
+                "S3.E14": [
+                    null
+                ]
+            },
+            "Accuracy": 0.08333333333333333,
+            "Precision": 0.21428571428571427,
+            "Recall": 0.08333333333333333,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00847",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    "S0.E2"
+                ],
+                "S0.E2": [
+                    "S0.E6"
+                ],
+                "S0.E3": [
+                    "S0.E6"
+                ],
+                "S0.E4": [
+                    "S0.E5",
+                    "S0.E7"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    "S0.E7"
+                ],
+                "S0.E7": [
+                    "S0.E8"
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.42857142857142855,
+            "Precision": 0.6,
+            "Recall": 0.42857142857142855,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00898",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    "S2.E2",
+                    "S2.E3",
+                    "S2.E4",
+                    "S2.E5"
+                ],
+                "S2.E2": [
+                    "S2.E3",
+                    "S2.E4",
+                    "S2.E5"
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    "S3.E7",
+                    "S3.E8",
+                    "S3.E9",
+                    "S3.E10",
+                    "S3.E11",
+                    "S3.E12",
+                    "S3.E13"
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S3.E12": [
+                    null
+                ],
+                "S3.E13": [
+                    null
+                ],
+                "S4.E14": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.07142857142857142,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.00986",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S3.E10"
+                ],
+                "S2.E5": [
+                    "S3.E8"
+                ],
+                "S3.E6": [
+                    "S3.E7"
+                ],
+                "S3.E7": [
+                    "S3.E8",
+                    "S3.E9",
+                    "S3.E10"
+                ],
+                "S3.E8": [
+                    "S3.E9"
+                ],
+                "S3.E9": [
+                    "S3.E10"
+                ],
+                "S3.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.5,
+            "Precision": 0.5454545454545454,
+            "Recall": 0.4444444444444444,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.01008",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S3.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    "S3.E6"
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ]
+            },
+            "Accuracy": 0.3333333333333333,
+            "Precision": 0.7142857142857143,
+            "Recall": 0.3333333333333333,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.01071",
+            "Brute Force's Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    "S0.E9"
+                ],
+                "S0.E8": [
+                    "S0.E9"
+                ],
+                "S0.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.3333333333333333,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.01109",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    "S2.E2"
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    "S3.E14"
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    "S2.E6",
+                    "S2.E8"
+                ],
+                "S2.E6": [
+                    "S2.E8"
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    "S3.E13"
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S3.E12": [
+                    null
+                ],
+                "S3.E13": [
+                    null
+                ],
+                "S3.E14": [
+                    null
+                ]
+            },
+            "Accuracy": 0.16666666666666666,
+            "Precision": 0.2857142857142857,
+            "Recall": 0.16666666666666666,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.01408",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    "S2.E2",
+                    "S2.E3"
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.18181818181818182,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.01521",
+            "Brute Force's Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.3333333333333333,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
+        },
+        {
+            "Article ID": "1701.01531",
+            "Brute Force's Adjacency List": {
+                "S3.E1": [
+                    null
+                ],
+                "S3.E2": [
+                    null
+                ],
+                "S3.E3": [
+                    "S3.E4",
+                    "S6.E9"
+                ],
+                "S3.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S6.E8": [
+                    null
+                ],
+                "S6.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.0,
+            "Precision": 0.4444444444444444,
+            "Recall": 0.0,
+            "Tested by": "Brian Kim"
         }
     ]
 }

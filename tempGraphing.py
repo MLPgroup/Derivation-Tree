@@ -3,7 +3,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 # Words that mean no equation is present
-keywords = ['Fig', 'Lemma', 'Theorem']
+keywords = ['Fig', 'Lemma', 'Theorem', 'Section', 'FIG', 'Tab']
 
 # Class for Adjacency List for Directed Graphs
 class directGraph:
@@ -33,6 +33,11 @@ class directGraph:
         for keys in self.graph:
             temp.append(keys)
         return temp
+    def hasEdge(self, node1, node2):
+        if node1 not in self.graph:
+            return False
+        elif node2 in self.graph[node1]:
+            return True
 
 # ------------------------------ # Prevent Repetitive Edges -----------------------------------
 # Description:  BFS function for removing repetitive edges. 
@@ -209,40 +214,16 @@ def bruteForce_Segmentation(eqno, paraBreak, output, results, exten):
         for idx in range(i):                                    # Scanning for possible edges ex. 1 to 3; 1 to 7 (-1 since not looking for current equation number)
             eqNum = eqno[idx][0]                                        # eqNum = current possible edge
             for j in range (paraBreak[i][1]+1, eqno[i][1]-1):           # Iterating through the strings between start and actual equation ex. 433 to 573; 573 to 643
-                if ((j >= 2) and (str(eqNum) == output[j]) and ('equationlink' in output[j-1]) and (not any(keyword in output[j-2] for keyword in keywords))):            # If correct eq number is in curr element/ 'edgee' marker in previous element/ 'equationlink' is NOT in element before that 
-                    if (eqNum == 1 and ('equationlink' in output[j-1])):
-                        print(idx, i)
-                        print(output[j-2])
-                    adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
-                    G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i
-                    # start_index = j - 5                                # Ensure start_index is within list bounds
-                    # end_index = j + 5                                  # Ensure end_index is within list bounds
-                    # FigFlag = False
-                    # eqLinkFlag = False
-                    # for k in range(start_index, end_index):
-                    #     if 'equationlink' in output[k]:
-                    #         eqLinkFlag = True
-                    #     if any(keyword in output[k] for keyword in keywords):
-                    #         FigFlag = True      
-                    # if (FigFlag == False and eqLinkFlag == True):
-                    #     adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
-                    #     G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i
+                if ((j >= 2) and (str(eqNum) == output[j]) and ('equationlink' in output[j-1]) and (not any(keyword in output[j-2] for keyword in keywords))):            # Inside bounds, output[j] == eq#, equationlink marker is before, and there are no keywords at j-2 position
+                    if (not adjList.hasEdge(eqno[idx][0], eqno[i][0])):         # If edge does not already exist   
+                        adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
+                        G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i
             for j in range (eqno[i][1]+1, exten[i][1]-1):                 # Iterating through the strings between each equation ex. 433 to 573; 573 to 643
-                if ((j >= 2) and (str(eqNum) == output[j]) and ('equationlink' in output[j-1]) and (not any(keyword in output[j-2] for keyword in keywords))):          
-                    adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
-                    G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i         
-                    # start_index = j - 5                                # Ensure start_index is within list bounds
-                    # end_index = j + 5                                  # Ensure end_index is within list bounds
-                    # FigFlag = False
-                    # eqLinkFlag = False
-                    # for k in range(start_index, end_index):
-                    #     if 'equationlink' in output[k]:
-                    #         eqLinkFlag = True
-                    #     if any(keyword in output[k] for keyword in keywords):
-                    #         FigFlag = True      
-                    # if (FigFlag == False and eqLinkFlag == True):
-                    #     adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
-                    #     G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i
+                # print(output[j])
+                if ((j >= 2) and (str(eqNum) == output[j]) and ('equationlink' in output[j-1]) and (not any(keyword in output[j-2] for keyword in keywords))):     
+                    if (not adjList.hasEdge(eqno[idx][0], eqno[i][0])):         # If edge does not already exist
+                        adjList.addEdge(eqno[idx][0], eqno[i][0])               # Create an edge
+                        G.add_edge(eqno[idx][0], eqno[i][0])                    # Edge from idx to i         
     # Draw graph and put onto png
     nx.draw_shell(G, with_labels = True)                                        # Taking graph G, add labels
     plt.savefig("DerivationTree.png")                                           # Output onto DerivationTree.png
