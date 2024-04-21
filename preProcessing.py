@@ -262,7 +262,7 @@ def endInterval(eqno, wordCount):
 # --------------------------------------------------------------------------------------------
 
 def main():
-    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/1701.01531.html'      # Original Mathematical Document
+    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/1908.01505.html'      # Original Mathematical Document
     mathML, text = eqExtract(url)                   # Extract Block Equations, text holds processed HTML
     # print(text)
     eqIDs = idExtract(mathML)                       # Extract all Block Equation IDs
