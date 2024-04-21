@@ -200,7 +200,7 @@ def GeminiTest():
 
 def brute_force_test():
      # Get JSON file name from user input
-    json_file_name = input("Enter the name of your JSON file that holds Manually Parsed Articles (e.g., articles.json): ")
+    json_file_name = 'articles.json'
 
     # Construct the full path to the JSON file (assuming it's in the same directory as the script)
     script_directory = os.path.dirname(os.path.realpath(__file__))
@@ -244,10 +244,10 @@ def brute_force_test():
     precision, accuracy, recall = APR(json_file_name, target_article_id, adjList)  # Compares outputted adjacency list with manually parsed derivation links
 
     # Get JSON file name from user input
-    existing_file = input("Enter the name of your JSON file to hold Brute Force Data (e.g., BruteForceOutput.json): ")
+    existing_file = 'BruteForceOutput.json'
 
     # Who Tested 
-    labeled_by = input("Enter Labeled By: ")
+    labeled_by = 'Brian Kim'
 
     graphs = {
             "Article ID": target_article_id,
@@ -258,28 +258,23 @@ def brute_force_test():
             "Tested by": labeled_by
         }
 
+    # Read existing JSON data from the file
+    with open(existing_file, 'r') as file:
+        data = json.load(file)
 
+        # Check if "Gemini Data" key exists in the data. Changed from "Bard Data" (February 15th 2024)"
+        if "Brute Force Data" in data:
+            data["Brute Force Data"].append(graphs)  # Append the current graph to the existing data
+        else:
+            print("The existing JSON file does not contain 'Brute Force Data'. Initializing it.")
+            data["Brute Force Data"] = [graphs]  # Initialize "Gemini Data" with the current graph
 
-    # Check if the file exists
-    if os.path.exists(existing_file):
-        # Read existing JSON data from the file
-        with open(existing_file, 'r') as file:
-            data = json.load(file)
+        # Write the updated JSON data to the specified file
+        with open(existing_file, 'w') as file:
+            json.dump(data, file, indent=4)
 
-            # Check if "Gemini Data" key exists in the data. Changed from "Bard Data" (February 15th 2024)"
-            if "Brute Force Data" in data:
-                data["Brute Force Data"].append(graphs)  # Append the current graph to the existing data
-            else:
-                print("The existing JSON file does not contain 'Brute Force Data'. Initializing it.")
-                data["Brute Force Data"] = [graphs]  # Initialize "Gemini Data" with the current graph
+        print(f"JSON data has been written to {existing_file}.")
 
-            # Write the updated JSON data to the specified file
-            with open(existing_file, 'w') as file:
-                json.dump(data, file, indent=4)
-
-            print(f"JSON data has been written to {existing_file}.")
-    else:
-        print(f"The specified file '{existing_file}' does not exist.")
 
 # --------------------------------------------------------------------------------------------
 # Main Function 

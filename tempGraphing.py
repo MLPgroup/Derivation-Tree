@@ -3,7 +3,10 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 # Words that mean no equation is present
-keywords = ['Fig', 'Lemma', 'Theorem', 'Section', 'FIG', 'Tab']
+keywords = ['Fig', 'fig', 'FIG', 'Figure', 'FIGURE', 'figure', 'Lemma', 'LEMMA', 
+            'lemma', 'Theorem', 'THEOREM', 'theorem', 'Section', 'SECTION', 'section'
+            'Sec', 'SEC', 'sec', 'Table', 'TABLE', 'table', 'Ref', 'REF', 'ref', 
+            'Reference', 'REFERENCE', 'reference']
 
 # Class for Adjacency List for Directed Graphs
 class directGraph:
@@ -232,5 +235,4 @@ def bruteForce_Segmentation(eqno, paraBreak, output, results, exten):
     adjList.printGraph()    # Printing Adjacency List
     return adjList
 
-# TODO LIST:
-#               
+# Assumptions: Created offset for end of interval + accuracy does not take into account empty edges             
