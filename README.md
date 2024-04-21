@@ -51,22 +51,28 @@ Python 3.5 (can run on earlier versions but is untested and requires a few chang
 - - - -
 &nbsp;
 - - - -
-# Building the Derivation Tree Using Equation Similarity
+# Building the Derivation Tree Using Equation Similarity and Naive Bayes
 
 ## Instructions to Run Algorithm
 ```
-python3 equation_similarity.py
+python3 equation_similarity.py -a [bayes, string]
 ```
+or
+```
+python3 equation_similarity.py --algorithm [bayes, string]
+```
+'bayes' - will run the Naive Bayes model
+'string' - will run the string similarity analytical model
 - - - -
 ## Output
 Running the above command will output results of the correctness script with metrics used to test the correctness of the algorithm which was computed using the labeled adjacency list and the predicted adjacency list.
 - - - -
 ## File System
 ### equation_similarity.py
-- Entry point that runs all the code written in the file. It first extracts the equations from the html, then computes the similarities between all equations in that were extracted, and finally constructs an adjacency list and compares it to the labeled adjacency list provided in articles.json.
+- Entry point that runs all the code written in the file. It first extracts the equations from the html, then either computes the similarities between all equations in that were extracted or trains a Naive Bayes model, depending on the type specified by the command line argument. It finally constructs an adjacency list and compares it to the labeled adjacency list provided in articles.json.
 ### /articles (folder)
 - Holds the html for the articles that are in the articles.json file
 - - - - 
 ## System Requirements
-Python 3.5 (can run on earlier versions but is untested and requires a few changes). Requires the BeautifulSoup library.
+Python 3.5 (can run on earlier versions but is untested and requires a few changes). Requires the BeautifulSoup library and the sklearn library.
 - - - -
