@@ -3,7 +3,7 @@ import preProcessing
 import os
 
 # ------------------------------- # False Pos / False Neg --------------------------------
-# Description: Compares Adjacency List (Manually Parsed Data) with Bard's output to output false pos/neg
+# Description: Compares Adjacency List (Manually Parsed Data) with Algorithm output to output false pos/neg
 # @Param    json_data = Data from specified json file
 #           target_article_id = ID of specified article
 # ------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ def find_eqID_list(json_data, target_article_id):
             return article.get("Equation ID", [])
     return []
 
-# -------------------------- # Accuracy, Precision, Recall for Bard ---------------------------
+# ----------------------------- # Accuracy, Precision, Recall  ------------------------------
 # Description: Identifies Accuracy, Precision, Recall for a specific article
 # @Param        json_file_name: .json name
 #               target_article_id: article ID
@@ -91,7 +91,7 @@ def APR(json_file_name, target_article_id, adjList):
     
     total_examples = len(result_article)
 
-    # Compare Correct Adjacency List with Bard's data
+    # Compare Correct Adjacency List 
     TP, TN, FP, FN= compare_adjacency_lists(result_article, adjList)
     
     # Calculating Accuracy, Precision, Recall
@@ -107,87 +107,177 @@ def APR(json_file_name, target_article_id, adjList):
     return precision, accuracy, recall
 
 # --------------------------------------------------------------------------------------------
-# Main Function
+# (Gemini Testing)
 # --------------------------------------------------------------------------------------------  
 
-# Get JSON file name from user input
-json_file_name = input("Enter the name of your JSON file that holds Manually Parsed Articles (e.g., articles.json): ")
+def GeminiTest():
 
-# Construct the full path to the JSON file (assuming it's in the same directory as the script)
-script_directory = os.path.dirname(os.path.realpath(__file__))
-json_file_path = os.path.join(script_directory, json_file_name)
+    # Get JSON file name from user input
+    json_file_name = input("Enter the name of your JSON file that holds Manually Parsed Articles (e.g., articles.json): ")
 
-# Check if the file exists
-if not os.path.exists(json_file_path):
-    print(f"Error: File '{json_file_name}' not found in the script's directory.")
-    exit()
+    # Construct the full path to the JSON file (assuming it's in the same directory as the script)
+    script_directory = os.path.dirname(os.path.realpath(__file__))
+    json_file_path = os.path.join(script_directory, json_file_name)
 
-# Load JSON data from the file
-with open(json_file_path, 'r') as file:
-    data = json.load(file)
+    # Check if the file exists
+    if not os.path.exists(json_file_path):
+        print(f"Error: File '{json_file_name}' not found in the script's directory.")
+        exit()
 
-# Get target Article ID from user input
-target_article_id = input("Enter the target Article ID: ")
+    # Load JSON data from the file
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
 
-# Find the eqeID list based on the target Article ID
-eqIDs = find_eqID_list(data, target_article_id)
+    # Get target Article ID from user input
+    target_article_id = input("Enter the target Article ID: ")
 
-'''
-# Find the adjacency list based on the target Article ID
-adjacency_list = find_adjacency_list(data, target_article_id)
-'''
+    # Find the eqeID list based on the target Article ID
+    eqIDs = find_eqID_list(data, target_article_id)
 
-print("Enter Bard Data: ")
-adjList = {}
-while True:
-    node = input("Enter Equation # (or 'done' to finish): ")
-    if node.lower() == 'done':
-        break
-    neighbors = input("Enter Derivation Links (comma-separated, or 'none'): ").split(", ")
-    if neighbors[0] == 'none':
-        adjList[eqIDs[int(node)-1]] = [None]
-    elif eqIDs[int(node)-1] in adjList:
-        for n in neighbors:
-            adjList[eqIDs[int(node)-1]].append(eqIDs[int(n)-1])
-    else:           
-        adjList[eqIDs[int(node)-1]] = [eqIDs[int(n)-1] for n in neighbors]
+    '''
+    # Find the adjacency list based on the target Article ID
+    adjacency_list = find_adjacency_list(data, target_article_id)
+    '''
 
-precision, accuracy, recall = APR(json_file_name, target_article_id, adjList)  # Compares outputted adjacency list with manually parsed derivation links
+    print("Enter Gemini Data: ")
+    adjList = {}
+    while True:
+        node = input("Enter Equation # (or 'done' to finish): ")
+        if node.lower() == 'done':
+            break
+        neighbors = input("Enter Derivation Links (comma-separated, or 'none'): ").split(", ")
+        if neighbors[0] == 'none':
+            adjList[eqIDs[int(node)-1]] = [None]
+        elif eqIDs[int(node)-1] in adjList:
+            for n in neighbors:
+                adjList[eqIDs[int(node)-1]].append(eqIDs[int(n)-1])
+        else:           
+            adjList[eqIDs[int(node)-1]] = [eqIDs[int(n)-1] for n in neighbors]
 
-# Get JSON file name from user input
-existing_file = input("Enter the name of your JSON file to hold Bard Data (e.g., bardOutput.json): ")
+    precision, accuracy, recall = APR(json_file_name, target_article_id, adjList)  # Compares outputted adjacency list with manually parsed derivation links
 
-# Who Tested 
-labeled_by = input("Enter Labeled By: ")
+    # Get JSON file name from user input
+    existing_file = input("Enter the name of your JSON file to hold Gemini Data (e.g., GeminiOutput.json): ")
 
-graphs = {
-        "Article ID": target_article_id,
-        "Bard's Adjacency List": adjList,
-        "Accuracy": precision,
-        "Precision": accuracy,
-        "Recall": recall,
-        "Tested by": labeled_by
-    }
+    # Who Tested 
+    labeled_by = input("Enter Labeled By: ")
+
+    graphs = {
+            "Article ID": target_article_id,
+            "Gemini's Adjacency List": adjList,
+            "Accuracy": precision,
+            "Precision": accuracy,
+            "Recall": recall,
+            "Tested by": labeled_by
+        }
 
 
 
-# Check if the file exists
-if os.path.exists(existing_file):
+    # Check if the file exists
+    if os.path.exists(existing_file):
+        # Read existing JSON data from the file
+        with open(existing_file, 'r') as file:
+            data = json.load(file)
+
+            # Check if "Gemini Data" key exists in the data. Changed from "Bard Data" (February 15th 2024)"
+            if "Gemini Data" in data:
+                data["Gemini Data"].append(graphs)  # Append the current graph to the existing data
+            else:
+                print("The existing JSON file does not contain 'Gemini Data'. Initializing it.")
+                data["Gemini Data"] = [graphs]  # Initialize "Gemini Data" with the current graph
+
+            # Write the updated JSON data to the specified file
+            with open(existing_file, 'w') as file:
+                json.dump(data, file, indent=4)
+
+            print(f"JSON data has been written to {existing_file}.")
+    else:
+        print(f"The specified file '{existing_file}' does not exist.")
+
+# --------------------------------------------------------------------------------------------
+# (Brute Force Testing)
+# --------------------------------------------------------------------------------------------  
+
+def brute_force_test():
+     # Get JSON file name from user input
+    json_file_name = 'articles.json'
+
+    # Construct the full path to the JSON file (assuming it's in the same directory as the script)
+    script_directory = os.path.dirname(os.path.realpath(__file__))
+    json_file_path = os.path.join(script_directory, json_file_name)
+
+    # Check if the file exists
+    if not os.path.exists(json_file_path):
+        print(f"Error: File '{json_file_name}' not found in the script's directory.")
+        exit()
+
+    # Load JSON data from the file
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+
+    # Get target Article ID from user input
+    target_article_id = input("Enter the target Article ID: ")
+
+    # Find the eqeID list based on the target Article ID
+    eqIDs = find_eqID_list(data, target_article_id)
+
+    '''
+    # Find the adjacency list based on the target Article ID
+    adjacency_list = find_adjacency_list(data, target_article_id)
+    '''
+
+    print("Enter Brute Force Data: ")
+    adjList = {}
+    while True:
+        node = input("Enter Equation # (or 'done' to finish): ")
+        if node.lower() == 'done':
+            break
+        neighbors = input("Enter Derivation Links (comma-separated, or 'none'): ").split(", ")
+        if neighbors[0] == 'none':
+            adjList[eqIDs[int(node)-1]] = [None]
+        elif eqIDs[int(node)-1] in adjList:
+            for n in neighbors:
+                adjList[eqIDs[int(node)-1]].append(eqIDs[int(n)-1])
+        else:           
+            adjList[eqIDs[int(node)-1]] = [eqIDs[int(n)-1] for n in neighbors]
+
+    precision, accuracy, recall = APR(json_file_name, target_article_id, adjList)  # Compares outputted adjacency list with manually parsed derivation links
+
+    # Get JSON file name from user input
+    existing_file = 'BruteForceOutput.json'
+
+    # Who Tested 
+    labeled_by = 'Brian Kim'
+
+    graphs = {
+            "Article ID": target_article_id,
+            "Brute Force's Adjacency List": adjList,
+            "Accuracy": precision,
+            "Precision": accuracy,
+            "Recall": recall,
+            "Tested by": labeled_by
+        }
+
     # Read existing JSON data from the file
     with open(existing_file, 'r') as file:
         data = json.load(file)
 
         # Check if "Gemini Data" key exists in the data. Changed from "Bard Data" (February 15th 2024)"
-        if "Gemini Data" in data:
-            data["Gemini Data"].append(graphs)  # Append the current graph to the existing data
+        if "Brute Force Data" in data:
+            data["Brute Force Data"].append(graphs)  # Append the current graph to the existing data
         else:
-            print("The existing JSON file does not contain 'Gemini Data'. Initializing it.")
-            data["Gemini Data"] = [graphs]  # Initialize "Gemini Data" with the current graph
+            print("The existing JSON file does not contain 'Brute Force Data'. Initializing it.")
+            data["Brute Force Data"] = [graphs]  # Initialize "Gemini Data" with the current graph
 
         # Write the updated JSON data to the specified file
         with open(existing_file, 'w') as file:
             json.dump(data, file, indent=4)
 
         print(f"JSON data has been written to {existing_file}.")
-else:
-    print(f"The specified file '{existing_file}' does not exist.")
+
+
+# --------------------------------------------------------------------------------------------
+# Main Function 
+# --------------------------------------------------------------------------------------------  
+brute_force_test()
+# GeminiTest()

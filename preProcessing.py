@@ -68,10 +68,11 @@ def cleanUp(url):
         if script.get('class') == ['ltx_p']:        # If class tag is labelled with 'ltx_p'
             script.insert_before("parabreak")       # Insert marker before each paragraph
 
-    # Adding edge markers (edge) before each equation
-    for script in soup(['a']):                          # For all the tags that have 'a'
-        if script.get('class') == ['ltx_ref']:          # If class tag is labelled with 'ltx_ref'
-            script.insert_before("equationlink")        # Insert marker before each equation
+    equationlink_marker = "equationlink"
+    # Adding edge markers (equationlink) before each equation link
+    for script in soup.find_all(['a']):  # For all the tags that are anchor links
+        if script.get('class') == ['ltx_ref']:  # If class tag is labelled with 'ltx_ref'
+            script.insert_before(equationlink_marker)  # Insert marker before each equation link
 
     # Get final processed text
     text = soup.get_text(' ', strip=True)           # Strip whitespace from the beginning and end of each bit of text; No more '\n' in text
@@ -101,15 +102,47 @@ def eqExtract(url):
         ancestor_table_or_tbody = td_tag.find_parent(['table', 'tbody'])
 
         while ancestor_table_or_tbody:
-            # Get the id attribute of the found table or body tag
-            tag_id = ancestor_table_or_tbody.get('id')
-            if tag_id:
+            # Create a new element with the insert text
+            marker = soup.new_tag("span", text='mathmarker', **{'class': 'mathmarker'})
+
+            if ancestor_table_or_tbody.get('id'):
+                ancestor_table_or_tbody.insert_before(marker)
                 ret.append(ancestor_table_or_tbody)
                 break
             else:
                 # If id not found, go to the next ancestor
                 ancestor_table_or_tbody = ancestor_table_or_tbody.find_parent(['table', 'body'])
-    return ret
+    
+    # Replace MathML with the text "unicodeError"
+    for script in soup(['math']):
+        script.string = "unicodeError"              # All block equations have unique string prior 
+
+    # Get rid of annoying citations
+    for script in soup(['cite']):
+        script.extract()            # Removed
+
+    # Adding paragraph break markers (parabreak) before each paragraph
+    for script in soup(['p']):                      # For all the tags that have 'p'
+        if script.get('class') == ['ltx_p']:        # If class tag is labelled with 'ltx_p'
+            script.insert_before("parabreak")       # Insert marker before each paragraph
+
+    # Adding edge markers (edge) before each equation
+    for script in soup(['a']):                          # For all the tags that have 'a'
+        if script.get('class') == ['ltx_ref']:          # If class tag is labelled with 'ltx_ref'
+            script.insert_before("equationlink")        # Insert marker before each equation
+        
+    # Check for elements with class "mathmarker" and skip processing them
+    for script in soup.find_all(recursive=True):
+        if script.get('class') == ['mathmarker']:
+            script.insert_before("mathmarker")
+
+    # Get final processed text (including markers)
+    text = soup.get_text(' ', strip=True)  # Get text with some whitespace
+
+    # Remove References OR Acknowledgments (Last) section
+    text = (text.rsplit("References", 1))[0]
+    text = text.split("Acknowledgments")[0]  # Split string at "Acknowledgments" and take only string before it
+    return ret, text
 
 
 '''
@@ -179,17 +212,12 @@ def sentenceCount(text):
 # --------------------------------------------------------------------------------------------
 def eqTuples(output):
     eqno = []
+    count = 1
     # Checking for equations + line number
     for i in range(len(output)):
-        if output[i] == 'mathequation' and i+2 < len(output):          # There is a block equation; i+2 for bound checking
-            fullEqNum = output[i+2]
-            if (fullEqNum == 'parabreak'):
-                continue
-            eqNum = ''
-            for j in range(len(fullEqNum)):
-                if (ord(fullEqNum[j]) <= 122 and ord(fullEqNum[j]) >= 97) or (ord(fullEqNum[j]) <= 57 and ord(fullEqNum[j]) >= 48):
-                    eqNum = eqNum + fullEqNum[j]
-            eqno.append([eqNum, i+1])                            # i+2 since i = mathequation, i+1 = equation location, i+2 = equation #
+        if output[i] == 'mathmarker':          # There is a block equation
+            eqno.append([count, i+1])                            # i+2 since i = mathequation, i+1 = equation location, i+2 = equation #
+            count += 1
     return eqno
 
 # ------------------------------ # Starting Paragraph Intervals ------------------------------
@@ -225,7 +253,7 @@ def endInterval(eqno, wordCount):
         while wordCount[wordIDX] < startIdx:                        # Iterate through wordCount array until total words exceed current index (startIdx)
             wordIDX +=1                                             # Interval will go one more then necessary so
         sentenceEndIdx = wordCount[wordIDX]                         # Set end interval to wordCount[wordIDX-1]
-        exten.append([str(eqno[idx][0])+'end', sentenceEndIdx])     # Append current index as end of section
+        exten.append([str(eqno[idx][0])+'end', sentenceEndIdx+10])   # Append current index as end of section
     return exten
   
 
@@ -234,26 +262,23 @@ def endInterval(eqno, wordCount):
 # --------------------------------------------------------------------------------------------
 
 def main():
-    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/0907.2648.html'      # Original Mathematical Document
-    mathML = eqExtract(url)                         # Extract Block Equations
+    url = 'file:///C:/Users/brian/Desktop/MLP/Derivation-Tree/articles/1908.01505.html'      # Original Mathematical Document
+    mathML, text = eqExtract(url)                   # Extract Block Equations, text holds processed HTML
+    # print(text)
     eqIDs = idExtract(mathML)                       # Extract all Block Equation IDs
     print(eqIDs)
-    text = cleanUp(url)                             # Text holds Processed HTML
     wordCount = sentenceCount(text)                 # Calculate # of words per sentence
-    # Debugging for number of words in each sentence
     # print('# of Words per sentence: ', wordCount)
     stringArr = arrOfStrings(text)                  # Convert text to array of strings
-    # Debugging for printing string array
     # print('Text to Array of Strings: ', stringArr)
     equations = eqTuples(stringArr)                 # Create Tuples of (Eq#, Idx#)
     start = startInterval(equations, stringArr)     # Start Paragraph interval per equation
     end = endInterval(equations, wordCount)         # End Paragraph interval per equation
-    # Debugging for paragraph intervals
-    
-    # print("Paragraph breaks: ", start)
-    # print("No Paragraph breaks: ", equations)
-    # print("Paragraph extension: ", end)
-    adjList = derivationTree(equations, start, stringArr, mathML, end)  # Returns adjacency list of outputted PNG
+    print("Paragraph breaks: ", start)
+    print("No Paragraph breaks: ", equations)
+    print("Paragraph extension: ", end)
+    # adjList = subTreeSimilarity(equations, start, stringArr, mathML, end)         # Returns adjacency list of outputted PNG
+    adjList = bruteForce_Segmentation(equations, start, stringArr, mathML, end)     # Returns adjacency list of outputted PNG
 
 if __name__ == "__main__":
     main()
