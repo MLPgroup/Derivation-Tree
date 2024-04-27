@@ -137,31 +137,31 @@ def combine_sub_equations(equation):
 
 
 """
-compute_symbol_percentage(equation1, equation2)
+compute_symbol_proportion(equation1, equation2)
 Input: equation1 -- mathml for one equation
        equation2 -- mathml for another equation
-Return: percentage_equation1_in_equation2, percentage_equation2_in_equation1 - equation similarity percentages
-Function: Compute the percentages of symbols in equation1 that are found in equation2 and vice verse
+Return: proportion_equation1_in_equation2, proportion_equation2_in_equation1 - equation similarity proportions
+Function: Compute the proportions of symbols in equation1 that are found in equation2 and vice verse
 """
-def compute_symbol_percentage(equation1, equation2):
+def compute_symbol_proportion(equation1, equation2):
     set_equation1 = set(equation1)
     set_equation2 = set(equation2)
 
-    percentage_equation1_in_equation2 = (len(set_equation1.intersection(set_equation2)) / len(set_equation1)) * 100
-    percentage_equation2_in_equation1 = (len(set_equation2.intersection(set_equation1)) / len(set_equation2)) * 100
+    proportion_equation1_in_equation2 = (len(set_equation1.intersection(set_equation2)) / len(set_equation1)) * 100
+    proportion_equation2_in_equation1 = (len(set_equation2.intersection(set_equation1)) / len(set_equation2)) * 100
 
-    return percentage_equation1_in_equation2, percentage_equation2_in_equation1
+    return proportion_equation1_in_equation2, proportion_equation2_in_equation1
 
 
 
 """
-equation_similarity_percentages(equations)
+equation_similarity_proportions(equations)
 Input: equations -- equations found in article
-Return: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
+Return: similarity_matrix -- [i][j] = proportion of equation i that is found in equation j
         equation_order -- order of equations in matrix
-Function: Find similarity percentages between all equations
+Function: Find similarity proportions between all equations
 """
-def equation_similarity_percentages(equations):
+def equation_similarity_proportions(equations):
     # Set up similarity matrix
     num_equations = len(equations)
     similarity_matrix = [[0.0] * num_equations for _ in range(num_equations)]
@@ -170,18 +170,18 @@ def equation_similarity_percentages(equations):
     combined_mathml = [combine_sub_equations(equations[cur_equation]) for cur_equation in equations]
     equation_order = [cur_equation for cur_equation in equations]
 
-    # Compute similarity percentages
+    # Compute similarity proportions
     for i in range(num_equations - 1):
         equation_i = combined_mathml[i]
         for j in range(i + 1, num_equations):
             equation_j = combined_mathml[j]
 
-            # Compute percentage similar
-            percentage_i_in_j, percentage_j_in_i = compute_symbol_percentage(equation_i, equation_j)
+            # Compute proportion similar
+            proportion_i_in_j, proportion_j_in_i = compute_symbol_proportion(equation_i, equation_j)
 
-            # Store percentages in matrix
-            similarity_matrix[i][j] = percentage_i_in_j
-            similarity_matrix[j][i] = percentage_j_in_i
+            # Store proportions in matrix
+            similarity_matrix[i][j] = proportion_i_in_j
+            similarity_matrix[j][i] = proportion_j_in_i
 
     return similarity_matrix, equation_order
 
@@ -203,9 +203,8 @@ def equation_similarity_percentages(equations):
 
 
 """
------------ FIX: ----------
 equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold)
-Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
+Input: similarity_matrix -- [i][j] = proportion of equation i that is found in equation j
         equation_order -- order of equations in matrix
         similarity_threshold -- threshold of matrix to determine if two equations are similar or not
 Return: equation_adjacency_list -- adjacency list computed using 
@@ -543,11 +542,11 @@ def run_equation_similarity(algorithm_option):
                 extracted_equation_indexing.append(equation_indexing)
 
                 if algorithm_option == 'string':
-                    computed_similarity, equation_order = equation_similarity_percentages(equations)
+                    computed_similarity, equation_order = equation_similarity_proportions(equations)
                     # print(cur_article_id)
                     # print(equation_order)
                     # for row in computed_similarity:
-                    #     print(' '.join(f'{percentage:.2f}' for percentage in row))
+                    #     print(' '.join(f'{proportion:.2f}' for proportion in row))
                     
                     computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, 85)
                     # print(computed_adjacency_list)
