@@ -203,7 +203,6 @@ def equation_similarity_percentages(equations):
 
 
 """
------------ FIX: ----------
 equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold)
 Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
         equation_order -- order of equations in matrix
@@ -262,7 +261,7 @@ def extract_features_and_labels(equations, words_between_equations, equation_ind
                 if equation_indexing[j] in adjacency_list[equation_indexing[i]]:
                     label = 1
                 elif equation_indexing[i] in adjacency_list[equation_indexing[j]]:
-                    label -1
+                    label = -1
                 labels.append(label)
             features.append(feature_vector)
 
@@ -467,6 +466,7 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
         # If predicted adjacency list is a string, then it is from the bayes implementation
         if (isinstance(cur_predicted_adjacency_list, str)):
             predicted_adjacency_list = find_equation_neighbors_str(cur_predicted_adjacency_list)
+            ''' ----------- CAN GET RID OF DUE TO CHANGE -----------'''
         else:
             predicted_adjacency_list = cur_predicted_adjacency_list
         
@@ -549,7 +549,8 @@ def run_equation_similarity(algorithm_option):
                     # for row in computed_similarity:
                     #     print(' '.join(f'{percentage:.2f}' for percentage in row))
                     
-                    computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, 85)
+                    string_similarity_threshold = 85
+                    computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, string_similarity_threshold)
                     # print(computed_adjacency_list)
 
                     computed_similarities.append(computed_similarity)
