@@ -81,20 +81,20 @@ def get_most_important_equation(article, ret_list):
     for start_node in start_nodes:
         node_weights[start_node] = ((num_outgoing[start_node] / tot_outgoing) * starting_weight)
 
-    # BFS from each node to distribute out the weights to sub nodes
+    # DFS from each node to distribute out the weights to sub nodes
     for start_node in start_nodes:
-        # Use current start_node as starting node for BFS
+        # Use current start_node as starting node for DFS
         cur_node = start_node
 
         # Temporary weight dictionary to measure flow from current start node
         cur_node_weights = dict.fromkeys(equation_list, 0)
         cur_node_weights[start_node] = node_weights[start_node]
 
-        # BFS set up
+        # DFS set up
         queue = deque()
         queue.append(cur_node)
 
-        # Iterative BFS
+        # Iterative DFS
         while queue:
             cur_node = queue.popleft()
 
