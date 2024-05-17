@@ -107,6 +107,23 @@ def APR(json_file_name, target_article_id, adjList):
     return precision, accuracy, recall
 
 # --------------------------------------------------------------------------------------------
+# Conveniently Check number of articles in articles.json vs any other database
+# --------------------------------------------------------------------------------------------  
+
+# Load the JSON data from the file
+with open('articles.json', 'r') as file:    # Change to whichever json
+    data = json.load(file)
+
+# Get the list of manually parsed articles
+articles = data.get('Manually Parsed Articles', [])     # Change to whichever section
+
+# Get the count of items in the list
+num_articles = len(articles)
+
+# Print the count
+print("Number of items in 'Manually Parsed Articles' section:", num_articles)
+
+# --------------------------------------------------------------------------------------------
 # (Gemini Testing)
 # --------------------------------------------------------------------------------------------  
 
