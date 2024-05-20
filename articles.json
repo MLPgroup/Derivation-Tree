@@ -15,7 +15,8 @@
                 "February 26, 2024": "Added 10 articles (Total = 74)",
                 "March 4, 2024": "Added 10 articles (Total = 84)",
                 "March 12, 2024": "Added 10 articles (Total = 94)",
-                "April 27, 2204": "Added 5 articles (Total = 99)"
+                "April 27, 2204": "Added 5 articles (Total = 99)",
+                "May 19, 2024": "Added 8 articles (Total = 107)"
             },
             "Notes": {
                 "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
