@@ -6,6 +6,7 @@ Modification Log:
     February 26, 2024: use the words between equations to build the derivation tree
     March 4, 2024: implement naive bayes equation similarity
     March 22, 2024: improve upon naive bayes
+    May 26, 2024: output results to respective files
 '''
 
 from bs4 import BeautifulSoup
@@ -230,7 +231,7 @@ extract_features_and_labels(equations, words_between_equations, equation_indexin
 Input: equations -- list of equations that were successfully extracted
        words_between_equations -- list of words that occur between equations
        equation_indexing -- list of equations in the order they were found from the article
-       adjacency_list -- 
+       adjacency_list (optional) -- adjacency list used to extract labels
 Return: features -- extracted features of equations and words between equations 
         labels -- labels of if one equation is connected to another and the direction (+1 if 'i' points to 'j', -1 if 'j' points to 'i', and 0 for no connection)
 Function: Feature and label extraction for naive bayes where a feature contains all words that occur between two equations and the two equations themselves amd label specifies their connection
