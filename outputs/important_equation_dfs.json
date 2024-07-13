@@ -1,0 +1,775 @@
+{
+    "Results": {
+        "Article ID: 0907.2648": {
+            "Labeled Equations": "S0.E7",
+            "Algorithm Predicted Equations": [
+                "S0.E7"
+            ]
+        },
+        "Article ID: 0907.2720": {
+            "Labeled Equations": "S0.E8",
+            "Algorithm Predicted Equations": [
+                "S0.E3",
+                "S0.E7"
+            ]
+        },
+        "Article ID: 0907.2870": {
+            "Labeled Equations": "S1.E2",
+            "Algorithm Predicted Equations": [
+                "S2.E4"
+            ]
+        },
+        "Article ID: 0907.2872": {
+            "Labeled Equations": "S0.E7",
+            "Algorithm Predicted Equations": [
+                "S0.E9"
+            ]
+        },
+        "Article ID: 0907.2959": {
+            "Labeled Equations": "S0.E6",
+            "Algorithm Predicted Equations": [
+                "S0.E12"
+            ]
+        },
+        "Article ID: 0907.2967": {
+            "Labeled Equations": "S2.E14",
+            "Algorithm Predicted Equations": [
+                "A1.E20"
+            ]
+        },
+        "Article ID: 0907.2994": {
+            "Labeled Equations": "S0.E15",
+            "Algorithm Predicted Equations": [
+                "S0.E13",
+                "S0.E14"
+            ]
+        },
+        "Article ID: 0907.3017": {
+            "Labeled Equations": "S0.E6",
+            "Algorithm Predicted Equations": [
+                "S0.E8"
+            ]
+        },
+        "Article ID: 0907.3028": {
+            "Labeled Equations": "S2.E1",
+            "Algorithm Predicted Equations": [
+                "S2.E2"
+            ]
+        },
+        "Article ID: 0907.3040": {
+            "Labeled Equations": "S3.E11",
+            "Algorithm Predicted Equations": [
+                "S2.E9",
+                "S2.E10"
+            ]
+        },
+        "Article ID: 0907.3145": {
+            "Labeled Equations": "S2.E7",
+            "Algorithm Predicted Equations": [
+                "S2.E2",
+                "S2.E3"
+            ]
+        },
+        "Article ID: 0907.3172": {
+            "Labeled Equations": "S2.E4",
+            "Algorithm Predicted Equations": [
+                "S2.E1",
+                "S2.E4",
+                "S2.E5"
+            ]
+        },
+        "Article ID: 0907.3206": {
+            "Labeled Equations": "S0.E9",
+            "Algorithm Predicted Equations": [
+                "S0.E8"
+            ]
+        },
+        "Article ID: 0907.3283": {
+            "Labeled Equations": "S0.E3",
+            "Algorithm Predicted Equations": [
+                "S0.E2",
+                "A0.E7",
+                "A0.E8"
+            ]
+        },
+        "Article ID: 0907.3284": {
+            "Labeled Equations": "S2.E12",
+            "Algorithm Predicted Equations": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S2.E6",
+                "S2.E7",
+                "S2.E8",
+                "S2.E10",
+                "S2.E11",
+                "S2.E12"
+            ]
+        },
+        "Article ID: 0907.3505": {
+            "Labeled Equations": "S0.E12",
+            "Algorithm Predicted Equations": [
+                "S0.E9",
+                "S0.E12"
+            ]
+        },
+        "Article ID: 1701.00003": {
+            "Labeled Equations": "S4.E10",
+            "Algorithm Predicted Equations": [
+                "S4.E10"
+            ]
+        },
+        "Article ID: 1701.00176": {
+            "Labeled Equations": "S2.E9",
+            "Algorithm Predicted Equations": [
+                "S2.E8",
+                "S2.E9"
+            ]
+        },
+        "Article ID: 1701.00226": {
+            "Labeled Equations": "S0.E4",
+            "Algorithm Predicted Equations": [
+                "S0.E4"
+            ]
+        },
+        "Article ID: 1701.00357": {
+            "Labeled Equations": "S2.E10",
+            "Algorithm Predicted Equations": [
+                "S2.E10"
+            ]
+        },
+        "Article ID: 1701.00692": {
+            "Labeled Equations": "S2.E9",
+            "Algorithm Predicted Equations": [
+                "S2.E9"
+            ]
+        },
+        "Article ID: 1701.00847": {
+            "Labeled Equations": "S0.E10",
+            "Algorithm Predicted Equations": [
+                "S0.E10"
+            ]
+        },
+        "Article ID: 1701.00898": {
+            "Labeled Equations": "S3.E7",
+            "Algorithm Predicted Equations": [
+                "S3.E7"
+            ]
+        },
+        "Article ID: 1701.00986": {
+            "Labeled Equations": "S3.E10",
+            "Algorithm Predicted Equations": [
+                "S3.E10"
+            ]
+        },
+        "Article ID: 1701.01008": {
+            "Labeled Equations": "S3.E7",
+            "Algorithm Predicted Equations": [
+                "S2.E2",
+                "S2.E3",
+                "S3.E5",
+                "S3.E6",
+                "S3.E7"
+            ]
+        },
+        "Article ID: 1701.01071": {
+            "Labeled Equations": "S0.E7",
+            "Algorithm Predicted Equations": [
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8",
+                "S0.E9"
+            ]
+        },
+        "Article ID: 1701.01109": {
+            "Labeled Equations": "S3.E13",
+            "Algorithm Predicted Equations": [
+                "S3.E13"
+            ]
+        },
+        "Article ID: 1701.01408": {
+            "Labeled Equations": "S3.E10",
+            "Algorithm Predicted Equations": [
+                "S3.E10"
+            ]
+        },
+        "Article ID: 1701.01521": {
+            "Labeled Equations": "S2.E6",
+            "Algorithm Predicted Equations": [
+                "S2.E6"
+            ]
+        },
+        "Article ID: 1701.01531": {
+            "Labeled Equations": "S3.E7",
+            "Algorithm Predicted Equations": [
+                "S3.E7"
+            ]
+        },
+        "Article ID: 1701.01567": {
+            "Labeled Equations": "S3.E11",
+            "Algorithm Predicted Equations": [
+                "S3.E11"
+            ]
+        },
+        "Article ID: 1701.01647": {
+            "Labeled Equations": "S2.E5",
+            "Algorithm Predicted Equations": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5"
+            ]
+        },
+        "Article ID: 1701.01686": {
+            "Labeled Equations": "S2.E4",
+            "Algorithm Predicted Equations": [
+                "S2.E4"
+            ]
+        },
+        "Article ID: 1701.01815": {
+            "Labeled Equations": "S0.E4",
+            "Algorithm Predicted Equations": [
+                "S0.E1",
+                "S0.E4"
+            ]
+        },
+        "Article ID: 1701.01921": {
+            "Labeled Equations": "S0.Ex10",
+            "Algorithm Predicted Equations": [
+                "S0.Ex6",
+                "S0.Ex10"
+            ]
+        },
+        "Article ID: 1701.03108": {
+            "Labeled Equations": "S0.E4",
+            "Algorithm Predicted Equations": [
+                "S0.E4"
+            ]
+        },
+        "Article ID: 1810.00215": {
+            "Labeled Equations": "S3.E8",
+            "Algorithm Predicted Equations": [
+                "S3.E8"
+            ]
+        },
+        "Article ID: 1810.00264": {
+            "Labeled Equations": "S1.E3",
+            "Algorithm Predicted Equations": [
+                "S1.E3"
+            ]
+        },
+        "Article ID: 1810.00524": {
+            "Labeled Equations": "S0.E3",
+            "Algorithm Predicted Equations": [
+                "S0.E2",
+                "S0.E3"
+            ]
+        },
+        "Article ID: 1810.00641": {
+            "Labeled Equations": "S3.E19",
+            "Algorithm Predicted Equations": [
+                "S3.E13",
+                "S3.E16",
+                "S3.E17",
+                "S3.E18",
+                "S3.E19"
+            ]
+        },
+        "Article ID: 1810.00929": {
+            "Labeled Equations": "S4.E9",
+            "Algorithm Predicted Equations": [
+                "S2.E2",
+                "S4.E9"
+            ]
+        },
+        "Article ID: 1810.01085": {
+            "Labeled Equations": "S3.E10",
+            "Algorithm Predicted Equations": [
+                "S3.E10"
+            ]
+        },
+        "Article ID: 1810.01153": {
+            "Labeled Equations": "S2.E12",
+            "Algorithm Predicted Equations": [
+                "S2.E12"
+            ]
+        },
+        "Article ID: 1810.01819": {
+            "Labeled Equations": "S1.E1",
+            "Algorithm Predicted Equations": [
+                "S1.E1"
+            ]
+        },
+        "Article ID: 1810.01821": {
+            "Labeled Equations": "S0.E1",
+            "Algorithm Predicted Equations": [
+                "S0.E1"
+            ]
+        },
+        "Article ID: 1810.01936": {
+            "Labeled Equations": "S0.E5",
+            "Algorithm Predicted Equations": [
+                "S0.E1",
+                "S0.E5"
+            ]
+        },
+        "Article ID: 0908.0117": {
+            "Labeled Equations": "S5.E6",
+            "Algorithm Predicted Equations": [
+                "S5.E4",
+                "S5.E5",
+                "S5.E6",
+                "S6.E12",
+                "S6.E13",
+                "S6.E14"
+            ]
+        },
+        "Article ID: 0908.0155": {
+            "Labeled Equations": "S0.E3",
+            "Algorithm Predicted Equations": [
+                "S0.E1",
+                "S0.E3",
+                "S0.E4"
+            ]
+        },
+        "Article ID: 0908.0159": {
+            "Labeled Equations": "S0.E5",
+            "Algorithm Predicted Equations": [
+                "S0.E1"
+            ]
+        },
+        "Article ID: 0908.0260": {
+            "Labeled Equations": "S0.E4",
+            "Algorithm Predicted Equations": [
+                "S0.E2",
+                "S0.E4",
+                "S0.E6",
+                "S0.E7"
+            ]
+        },
+        "Article ID: 0908.0304": {
+            "Labeled Equations": "S2.E5",
+            "Algorithm Predicted Equations": [
+                "S2.E6"
+            ]
+        },
+        "Article ID: 0908.0314": {
+            "Labeled Equations": "S3.E6",
+            "Algorithm Predicted Equations": [
+                "S2.E1",
+                "S2.E2",
+                "S2.E3"
+            ]
+        },
+        "Article ID: 0908.0219": {
+            "Labeled Equations": "S2.E9",
+            "Algorithm Predicted Equations": [
+                "S2.E8"
+            ]
+        },
+        "Article ID: 0908.0180": {
+            "Labeled Equations": "S4.E9",
+            "Algorithm Predicted Equations": [
+                "S1.E1",
+                "S4.E2",
+                "S4.E3",
+                "S4.E4",
+                "S4.E5",
+                "S4.E6",
+                "S4.E7",
+                "S4.E8",
+                "S4.E9",
+                "S5.E10",
+                "S5.E11",
+                "S5.E12"
+            ]
+        },
+        "Article ID: 1908.00040": {
+            "Labeled Equations": "S1.E3",
+            "Algorithm Predicted Equations": [
+                "S1.E2",
+                "S1.E3"
+            ]
+        },
+        "Article ID: 1908.00186": {
+            "Labeled Equations": "S3.E6",
+            "Algorithm Predicted Equations": [
+                "S3.E6"
+            ]
+        },
+        "Article ID: 1908.00372": {
+            "Labeled Equations": "S2.E4",
+            "Algorithm Predicted Equations": [
+                "S2.E4",
+                "S2.E6",
+                "S2.E7"
+            ]
+        },
+        "Article ID: 1908.00596": {
+            "Labeled Equations": "S2.E6",
+            "Algorithm Predicted Equations": [
+                "S2.E3",
+                "S2.E5",
+                "S2.E6"
+            ]
+        },
+        "Article ID: 1908.00647": {
+            "Labeled Equations": "S2.E8",
+            "Algorithm Predicted Equations": [
+                "S2.E8"
+            ]
+        },
+        "Article ID: 1908.00778": {
+            "Labeled Equations": "S2.E2",
+            "Algorithm Predicted Equations": [
+                "S2.E2"
+            ]
+        },
+        "Article ID: 1908.01025": {
+            "Labeled Equations": "S0.E6",
+            "Algorithm Predicted Equations": [
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7",
+                "S0.E8"
+            ]
+        },
+        "Article ID: 1908.01254": {
+            "Labeled Equations": "S0.E12",
+            "Algorithm Predicted Equations": [
+                "S0.E12"
+            ]
+        },
+        "Article ID: 1908.01434": {
+            "Labeled Equations": "S4.E13",
+            "Algorithm Predicted Equations": [
+                "S1.E1",
+                "S2.E2",
+                "S2.E3",
+                "S2.E4",
+                "S2.E5",
+                "S3.E6",
+                "S3.E7",
+                "S3.E8",
+                "S3.E9",
+                "S4.E10",
+                "S4.E11",
+                "S4.E12",
+                "S4.E13"
+            ]
+        },
+        "Article ID: 1908.01505": {
+            "Labeled Equations": "S2.E10",
+            "Algorithm Predicted Equations": [
+                "S2.E10"
+            ]
+        },
+        "Article ID: 1612.00053": {
+            "Labeled Equations": "S3.E10",
+            "Algorithm Predicted Equations": [
+                "S3.E10"
+            ]
+        },
+        "Article ID: 1612.00217": {
+            "Labeled Equations": "S5.E3",
+            "Algorithm Predicted Equations": [
+                "S5.E2",
+                "S5.E3"
+            ]
+        },
+        "Article ID: 1612.00231": {
+            "Labeled Equations": "S5.E8",
+            "Algorithm Predicted Equations": [
+                "S5.E8"
+            ]
+        },
+        "Article ID: 1612.00257": {
+            "Labeled Equations": "S3.E5",
+            "Algorithm Predicted Equations": [
+                "S2.E4",
+                "S3.E5"
+            ]
+        },
+        "Article ID: 1612.00288": {
+            "Labeled Equations": "S2.E15",
+            "Algorithm Predicted Equations": [
+                "S2.E15"
+            ]
+        },
+        "Article ID: 1612.00392": {
+            "Labeled Equations": "S2.E12",
+            "Algorithm Predicted Equations": [
+                "S2.E12"
+            ]
+        },
+        "Article ID: 1612.00446": {
+            "Labeled Equations": "S3.E15",
+            "Algorithm Predicted Equations": [
+                "S3.E15"
+            ]
+        },
+        "Article ID: 1612.00463": {
+            "Labeled Equations": "S5.E14",
+            "Algorithm Predicted Equations": [
+                "S5.E14"
+            ]
+        },
+        "Article ID: 1612.00522": {
+            "Labeled Equations": "S4.E6",
+            "Algorithm Predicted Equations": [
+                "S3.E3",
+                "S3.E4",
+                "S4.E5",
+                "S4.E6",
+                "S5.E7"
+            ]
+        },
+        "Article ID: 1612.00629": {
+            "Labeled Equations": "S3.E10",
+            "Algorithm Predicted Equations": [
+                "S2.E1",
+                "S3.E9",
+                "S3.E10",
+                "S3.E11"
+            ]
+        },
+        "Article ID: 1510.00210": {
+            "Labeled Equations": "S0.E8",
+            "Algorithm Predicted Equations": [
+                "S0.E7",
+                "S0.E8"
+            ]
+        },
+        "Article ID: 1510.00400": {
+            "Labeled Equations": "S6.E12",
+            "Algorithm Predicted Equations": [
+                "S2.E4",
+                "S3.E9",
+                "S3.E10",
+                "S6.E11",
+                "S6.E12"
+            ]
+        },
+        "Article ID: 1510.00417": {
+            "Labeled Equations": "S2.E1",
+            "Algorithm Predicted Equations": [
+                "S2.E1"
+            ]
+        },
+        "Article ID: 1510.00543": {
+            "Labeled Equations": "S2.E7",
+            "Algorithm Predicted Equations": [
+                "S2.E7"
+            ]
+        },
+        "Article ID: 1510.00670": {
+            "Labeled Equations": "S2.E3",
+            "Algorithm Predicted Equations": [
+                "S2.E3",
+                "S2.E4",
+                "S2.E5"
+            ]
+        },
+        "Article ID: 1510.00710": {
+            "Labeled Equations": "S4.E9",
+            "Algorithm Predicted Equations": [
+                "S2.E3",
+                "S3.E5",
+                "S3.E7",
+                "S3.E8",
+                "S4.E9",
+                "S4.E10"
+            ]
+        },
+        "Article ID: 1510.00716": {
+            "Labeled Equations": "S0.E7",
+            "Algorithm Predicted Equations": [
+                "S0.E1",
+                "S0.E2",
+                "S0.E3",
+                "S0.E4",
+                "S0.E5",
+                "S0.E6",
+                "S0.E7"
+            ]
+        },
+        "Article ID: 1510.00770": {
+            "Labeled Equations": "S3.E17",
+            "Algorithm Predicted Equations": [
+                "S3.E17"
+            ]
+        },
+        "Article ID: 1510.01138": {
+            "Labeled Equations": "S3.E9",
+            "Algorithm Predicted Equations": [
+                "S3.E9"
+            ]
+        },
+        "Article ID: 1510.01448": {
+            "Labeled Equations": "S0.E3",
+            "Algorithm Predicted Equations": [
+                "S0.E3"
+            ]
+        },
+        "Article ID: 1409.0010": {
+            "Labeled Equations": "Sx1.E6",
+            "Algorithm Predicted Equations": [
+                "Sx1.E6"
+            ]
+        },
+        "Article ID: 1409.0082": {
+            "Labeled Equations": "S0.E10",
+            "Algorithm Predicted Equations": [
+                "S0.E8",
+                "S0.E9",
+                "S0.E10"
+            ]
+        },
+        "Article ID: 1409.0094": {
+            "Labeled Equations": "S0.E19",
+            "Algorithm Predicted Equations": [
+                "S0.E19"
+            ]
+        },
+        "Article ID: 1409.0101": {
+            "Labeled Equations": "S2.E8",
+            "Algorithm Predicted Equations": [
+                "S2.E8"
+            ]
+        },
+        "Article ID: 1409.0104": {
+            "Labeled Equations": "S3.E16",
+            "Algorithm Predicted Equations": [
+                "S3.E16"
+            ]
+        },
+        "Article ID: 1409.0110": {
+            "Labeled Equations": "S3.E7",
+            "Algorithm Predicted Equations": [
+                "S3.E7"
+            ]
+        },
+        "Article ID: 1409.0188": {
+            "Labeled Equations": "S2.E2",
+            "Algorithm Predicted Equations": [
+                "S2.E2"
+            ]
+        },
+        "Article ID: 1409.0220": {
+            "Labeled Equations": "S2.E9",
+            "Algorithm Predicted Equations": [
+                "S2.E9"
+            ]
+        },
+        "Article ID: 1409.0380": {
+            "Labeled Equations": "S2.E7",
+            "Algorithm Predicted Equations": [
+                "S2.E6",
+                "S2.E7"
+            ]
+        },
+        "Article ID: 1409.0466": {
+            "Labeled Equations": "S3.E5",
+            "Algorithm Predicted Equations": [
+                "S3.E3",
+                "S3.E5"
+            ]
+        },
+        "Article ID: astro-ph9211002": {
+            "Labeled Equations": "S4.E12",
+            "Algorithm Predicted Equations": [
+                "S4.E12"
+            ]
+        },
+        "Article ID: astro-ph9211005": {
+            "Labeled Equations": "S1.E9",
+            "Algorithm Predicted Equations": [
+                "S1.E9"
+            ]
+        },
+        "Article ID: cond-mat9211006": {
+            "Labeled Equations": "S0.E5",
+            "Algorithm Predicted Equations": [
+                "S0.E3",
+                "S0.E5"
+            ]
+        },
+        "Article ID: hep-lat9211009": {
+            "Labeled Equations": "S0.E13",
+            "Algorithm Predicted Equations": [
+                "S0.E13"
+            ]
+        },
+        "Article ID: hep-ph9211257": {
+            "Labeled Equations": "S4.E7",
+            "Algorithm Predicted Equations": [
+                "S4.E7"
+            ]
+        },
+        "Article ID: physics9704005": {
+            "Labeled Equations": "S3.E16",
+            "Algorithm Predicted Equations": [
+                "S3.E16"
+            ]
+        },
+        "Article ID: physics9704022": {
+            "Labeled Equations": "S5.E13",
+            "Algorithm Predicted Equations": [
+                "S5.E13"
+            ]
+        },
+        "Article ID: quant-ph9704026": {
+            "Labeled Equations": "S0.E10",
+            "Algorithm Predicted Equations": [
+                "S0.E10"
+            ]
+        },
+        "Article ID: cond-mat9704033": {
+            "Labeled Equations": "S0.E16",
+            "Algorithm Predicted Equations": [
+                "S0.E16"
+            ]
+        },
+        "Article ID: cond-mat9704044": {
+            "Labeled Equations": "S3.E11",
+            "Algorithm Predicted Equations": [
+                "S3.E11"
+            ]
+        },
+        "Article ID: cond-mat9704058": {
+            "Labeled Equations": "S0.E5",
+            "Algorithm Predicted Equations": [
+                "S0.E3",
+                "S0.E5"
+            ]
+        },
+        "Article ID: cond-mat9704091": {
+            "Labeled Equations": "S0.E7",
+            "Algorithm Predicted Equations": [
+                "S0.E7"
+            ]
+        },
+        "Article ID: cond-mat9704179": {
+            "Labeled Equations": "S0.E11",
+            "Algorithm Predicted Equations": [
+                "S0.E11"
+            ]
+        }
+    },
+    "Correctness": {
+        "Number of articles used": 107,
+        "Accuracy": 0.37142857142857144,
+        "Precision": 0.39737991266375544,
+        "Recall": 0.8504672897196262,
+        "F1 Score": 0.5416666666666666
+    }
+}
