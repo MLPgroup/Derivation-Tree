@@ -1,4 +1,11 @@
 {
+    "Correctness": {
+        "Number of articles used": 107,
+        "Accuracy": 0.37142857142857144,
+        "Precision": 0.39737991266375544,
+        "Recall": 0.8504672897196262,
+        "F1 Score": 0.5416666666666666
+    },
     "Results": {
         "Article ID: 0907.2648": {
             "Labeled Equations": "S0.E7",
@@ -764,12 +771,5 @@
                 "S0.E11"
             ]
         }
-    },
-    "Correctness": {
-        "Number of articles used": 107,
-        "Accuracy": 0.37142857142857144,
-        "Precision": 0.39737991266375544,
-        "Recall": 0.8504672897196262,
-        "F1 Score": 0.5416666666666666
     }
 }

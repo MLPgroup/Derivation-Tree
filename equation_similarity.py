@@ -13,12 +13,13 @@ Modification Log:
 from bs4 import BeautifulSoup
 import os
 import re
-import article_parser
 import random
 import argparse
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
+import article_parser
+import results_output
 
 
 """
@@ -281,19 +282,22 @@ Input: article_ids -- dictionary with info on all articles from articles.json
        extracted_equations -- list of equations that were successfully extracted
        extracted_words_between_equation -- list of list of words that occur between equations
        extracted_equation_indexing -- list of list of equations in the order they were found from the article
+       bayes_training_percentage -- percentage of dataset to use for training of Naive Bayes model
 Return: true_adjacency_lists -- list of labeled adjacency lists used in the test phase of the naive bayes algorithm
         predicted_adjacency_lists -- list of predicted adjacency lists resulting from the test phase of the naive bayes algorithm
+        train_article_ids -- list of article ids used to train the classifier
 Function: Predict adjacency list using the naive bayes algorithm
 """
-def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing):
+def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, bayes_training_percentage):
     # Initialize lists to store true and predicted adjacency lists
     true_adjacency_lists = []
     predicted_adjacency_lists = []
 
     # Split the data set into test and train
     num_articles = len(articles_used)
-    train_random_indices = range(int(num_articles * 0.9))
-    # train_random_indices = random.sample(range(num_articles), num_articles // 2)
+    # train_random_indices = range(int(num_articles * (bayes_training_percentage * 1.0 / 100)))
+    train_size = int(num_articles * (bayes_training_percentage / 100))
+    train_random_indices = random.sample(range(num_articles), train_size)
 
 
     # # Prepare data for the naive Bayes algorithm
@@ -336,6 +340,7 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
 
     train_features = []
     train_labels = []
+    train_article_ids = []
 
     for i in train_random_indices:
         equations = extracted_equations[i]
@@ -346,6 +351,8 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
 
         train_features.extend(features)
         train_labels.extend(labels)
+
+        train_article_ids.append(article_ids[articles_used[i]]["Article ID"])
 
     # Train the Naive Bayes classifier
     vectorizer = CountVectorizer()
@@ -381,7 +388,7 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
             predicted_adjacency_lists.append(predicted_adjacency_list)
             true_adjacency_lists.append(article_ids[articles_used[i]]["Adjacency List"])
 
-    return true_adjacency_lists, predicted_adjacency_lists
+    return true_adjacency_lists, predicted_adjacency_lists, train_article_ids
 
 
 """
@@ -454,14 +461,18 @@ def find_equation_neighbors_str(predicted_adjacency_list):
 evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 Input: true_adjacency_lists -- labeled adjacency list
        predicted_adjacency_lists -- predicted adjacency list for algorithm
-Return: accuracy, precision, recall, f1_score
+Return: accuracy, precision, recall, and f1_score for each article tested on and the overall accuracy, precision, recall, and f1_score for the algorithm as a whole
 Function: Evaluate accuracy of classification
 """
 def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
-    true_positive = 0
-    true_negative = 0
-    false_positive = 0
-    false_negative = 0
+    accuracies = []
+    precisions = []
+    recalls = []
+    f1_scores = []
+    overall_true_positive = 0
+    overall_true_negative = 0
+    overall_false_positive = 0
+    overall_false_negative = 0
     num_skipped = 0
 
     for true_adjacency_list, cur_predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
@@ -476,6 +487,10 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
         if predicted_adjacency_list is None:
             num_skipped += 1
             continue
+        true_positive = 0
+        true_negative = 0
+        false_positive = 0
+        false_negative = 0
         
         # Calculate Error
         for equation, true_neighbors in true_adjacency_list.items():
@@ -484,22 +499,36 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
             for neighbor in true_neighbors:
                 if neighbor in predicted_neighbors:
                     true_positive += 1
+                    overall_true_positive += 1
                 else:
                     false_negative += 1
+                    overall_false_negative += 1
 
             for neighbor in predicted_neighbors:
                 if neighbor not in true_neighbors:
                     false_positive += 1
+                    overall_false_positive += 1
         for equation, predicted_neighbors in predicted_adjacency_list.items():
             if equation not in true_adjacency_list:
                 false_positive += len(predicted_neighbors)
+                overall_false_positive += len(predicted_neighbors)
 
-    accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
-    precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
-    recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
-    f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
+        accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
+        precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
+        recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
+        f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
-    return accuracy, precision, recall, f1_score, num_skipped
+        accuracies.append(accuracy)
+        precisions.append(precision)
+        recalls.append(recall)
+        f1_scores.append(f1_score)
+
+    overall_accuracy = (overall_true_positive + overall_true_negative) / (overall_true_positive + overall_true_negative + overall_false_positive + overall_false_negative) if (overall_true_positive + overall_true_negative + overall_false_positive + overall_false_negative) != 0 else 0
+    overall_precision = overall_true_positive / (overall_true_positive + overall_false_positive) if (overall_true_positive + overall_false_positive) != 0 else 0
+    overall_recall = overall_true_positive / (overall_true_positive + overall_false_negative) if (overall_true_positive + overall_false_negative) != 0 else 0
+    overall_f1_score = 2 * (overall_precision * overall_recall) / (overall_precision + overall_recall) if (overall_precision + overall_recall) != 0 else 0
+
+    return accuracies, precisions, recalls, f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped
 
 
 
@@ -512,6 +541,12 @@ Function: Find the equations in articles and construct a tree depending on equat
 def run_equation_similarity(algorithm_option):
     # Get a list of manually parsed article IDs
     article_ids = article_parser.get_manually_parsed_articles()
+
+    '''HYPER-PARAMETERS'''
+    # string_similarity_threshold - threshold of matrix to determine if two equations are similar or not
+    string_similarity_threshold = 85
+    # bayes_training_percentage - percentage of dataset to use for training of Naive Bayes model
+    bayes_training_percentage = 90
 
     extracted_equations = []
     extracted_equation_indexing = []
@@ -551,7 +586,6 @@ def run_equation_similarity(algorithm_option):
                     # for row in computed_similarity:
                     #     print(' '.join(f'{percentage:.2f}' for percentage in row))
                     
-                    string_similarity_threshold = 85
                     computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, string_similarity_threshold)
                     # print(computed_adjacency_list)
 
@@ -559,6 +593,7 @@ def run_equation_similarity(algorithm_option):
                     equation_orders.append(equation_order)
                     true_adjacency_lists.append(cur_article["Adjacency List"])
                     predicted_adjacency_lists.append(computed_adjacency_list)
+                    train_article_ids = []
 
         else:
             # No html for article found
@@ -566,25 +601,28 @@ def run_equation_similarity(algorithm_option):
 
     # Run Bayes algorithm
     if algorithm_option == 'bayes':
-        true_adjacency_lists, predicted_adjacency_lists = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing)
+        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, bayes_training_percentage)
     
     # Get accuracy numbers
-    similarity_accuracy, similarity_precision, similarity_recall, similarity_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
+    similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
-    print("*-----------------------------------------------------------*")
-    print("Equation Similarity Algorithm Correctness: ")
-    print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists) - similarity_num_skipped}")
-    if algorithm_option == 'string':
-        print(f"Method used: String Similarity")
-    elif algorithm_option == 'bayes':
-        print(f"Method used: Bayes Classifier")
-    print(f"Accuracy: {similarity_accuracy:.8f}")
-    print(f"Precision: {similarity_precision:.8f}")
-    print(f"Recall: {similarity_recall:.8f}")
-    print(f"F1 Score: {similarity_f1_score:.8f}")
-    print("*-----------------------------------------------------------*")
+    # print("*-----------------------------------------------------------*")
+    # print("Equation Similarity Algorithm Correctness: ")
+    # print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists) - similarity_num_skipped}")
+    # if algorithm_option == 'string':
+    #     print(f"Method used: String Similarity")
+    # elif algorithm_option == 'bayes':
+    #     print(f"Method used: Bayes Classifier")
+    # print(f"Accuracy: {similarity_accuracy:.8f}")
+    # print(f"Precision: {similarity_precision:.8f}")
+    # print(f"Recall: {similarity_recall:.8f}")
+    # print(f"F1 Score: {similarity_f1_score:.8f}")
+    # print("*-----------------------------------------------------------*")
 
-    return 0
+    output_name = f"string_similarity_{string_similarity_threshold}" if algorithm_option == 'string' else f"naive_bayes_{bayes_training_percentage}"
+    results_output.save_equation_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - similarity_num_skipped, train_article_ids)
+
+
 
 
 """
