@@ -104,7 +104,7 @@ def save_equation_results(algo_type, name, article_ids, predicted_adjacency_list
     timestamp = current_time.strftime('%Y-%m-%d_%H-%M-%S_%Z')
 
     # Output file path
-    output_file_path = os.path.join(cur_output_path, f'{name}.json') if algo_type == 'string' else os.path.join(cur_output_path, f'{name}_{timestamp}.json')
+    output_file_path = os.path.join(cur_output_path, f'{name}.json') if algo_type == 'equation' else os.path.join(cur_output_path, f'{name}_{timestamp}.json')
 
     # Clear output file
     open(output_file_path, 'w').close()
@@ -169,7 +169,7 @@ def save_equation_results(algo_type, name, article_ids, predicted_adjacency_list
     # Write to data to file
     try: 
         with open(output_file_path, 'w') as json_file:
-            if algo_type == 'string':
+            if algo_type == 'equation':
                 json.dump({"Correctness": overall_correctness, "Results": important_equation_data}, json_file, indent=4)
             else:
                 json.dump({"Correctness": overall_correctness, "Results": important_equation_data, "Training": training_set}, json_file, indent=4)

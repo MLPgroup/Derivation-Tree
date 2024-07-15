@@ -210,20 +210,55 @@ equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity
 Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
         equation_order -- order of equations in matrix
         similarity_threshold -- threshold of matrix to determine if two equations are similar or not
+        similarity_direction -- direction of similarity check to add edge
+        similarity_strictness -- integer value (x = 0, 1, 2) to force minimum x number of similarity values to be greater than the threshold in edge determination
 Return: equation_adjacency_list -- adjacency list computed using 
 Function: Construct an adjacency list from the similarity matrix
 """
-def equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold):
+def equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold, similarity_direction, similarity_strictness):
     num_equations = len(equation_order)
     equation_adjacency_list = {equation_order[i]: [] for i in range(num_equations)}
 
     for i in range(num_equations - 2, -1, -1):
         for j in range(num_equations - 1, i - 1, -1):
-            if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
-                if similarity_matrix[i][j] > similarity_matrix[j][i]:
-                    equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                else:
-                    equation_adjacency_list[equation_order[j]].append(equation_order[i])
+            match similarity_strictness:
+                case 0:
+                    if similarity_direction == 'greater':
+                        if similarity_matrix[i][j] > similarity_matrix[j][i]:
+                            equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                        else:
+                            equation_adjacency_list[equation_order[j]].append(equation_order[i])
+                    else:
+                        if similarity_matrix[i][j] < similarity_matrix[j][i]:
+                            equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                        else:
+                            equation_adjacency_list[equation_order[j]].append(equation_order[i])
+                
+                case 1: 
+                    if similarity_matrix[i][j] > similarity_threshold or similarity_matrix[j][i] > similarity_threshold:
+                        if similarity_direction == 'greater':
+                            if similarity_matrix[i][j] > similarity_matrix[j][i]:
+                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                            else:
+                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
+                        else:
+                            if similarity_matrix[i][j] < similarity_matrix[j][i]:
+                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                            else:
+                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
+                case 2:
+                    if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
+                        if similarity_direction == 'greater':
+                            if similarity_matrix[i][j] > similarity_matrix[j][i]:
+                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                            else:
+                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
+                        else:
+                            if similarity_matrix[i][j] < similarity_matrix[j][i]:
+                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
+                            else:
+                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
+
 
     return equation_adjacency_list
 
@@ -533,20 +568,25 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
 
 
 """
-run_equation_similarity()
+run_derivation_algo(algorithm_option)
 Input: algorithm_option -- type of equation similarity to run
 Return: none
 Function: Find the equations in articles and construct a tree depending on equation similarity
 """
-def run_equation_similarity(algorithm_option):
+def run_derivation_algo(algorithm_option):
     # Get a list of manually parsed article IDs
     article_ids = article_parser.get_manually_parsed_articles()
 
     '''HYPER-PARAMETERS'''
-    # string_similarity_threshold - threshold of matrix to determine if two equations are similar or not
-    string_similarity_threshold = 85
+    # equation_similarity_threshold - threshold of matrix to determine if two equations are similar or not
+    equation_similarity_threshold = 97.5
+    # equation_similarity_direction - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
+    equation_similarity_direction = 'lesser'
+    # equation_similarity_direction - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
+    equation_similarity_strictness = 2
     # bayes_training_percentage - percentage of dataset to use for training of Naive Bayes model
     bayes_training_percentage = 90
+    '''HYPER-PARAMETERS'''
 
     extracted_equations = []
     extracted_equation_indexing = []
@@ -579,14 +619,14 @@ def run_equation_similarity(algorithm_option):
                 articles_used.append(cur_article_id)
                 extracted_equation_indexing.append(equation_indexing)
 
-                if algorithm_option == 'string':
+                if algorithm_option == 'equation':
                     computed_similarity, equation_order = equation_similarity_percentages(equations)
                     # print(cur_article_id)
                     # print(equation_order)
                     # for row in computed_similarity:
                     #     print(' '.join(f'{percentage:.2f}' for percentage in row))
                     
-                    computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, string_similarity_threshold)
+                    computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, equation_similarity_threshold, equation_similarity_direction, equation_similarity_strictness)
                     # print(computed_adjacency_list)
 
                     computed_similarities.append(computed_similarity)
@@ -609,8 +649,8 @@ def run_equation_similarity(algorithm_option):
     # print("*-----------------------------------------------------------*")
     # print("Equation Similarity Algorithm Correctness: ")
     # print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists) - similarity_num_skipped}")
-    # if algorithm_option == 'string':
-    #     print(f"Method used: String Similarity")
+    # if algorithm_option == 'equation':
+    #     print(f"Method used: equation Similarity")
     # elif algorithm_option == 'bayes':
     #     print(f"Method used: Bayes Classifier")
     # print(f"Accuracy: {similarity_accuracy:.8f}")
@@ -619,7 +659,7 @@ def run_equation_similarity(algorithm_option):
     # print(f"F1 Score: {similarity_f1_score:.8f}")
     # print("*-----------------------------------------------------------*")
 
-    output_name = f"string_similarity_{string_similarity_threshold}" if algorithm_option == 'string' else f"naive_bayes_{bayes_training_percentage}"
+    output_name = f"equation_similarity_{equation_similarity_strictness}_{equation_similarity_threshold}_{equation_similarity_direction}" if algorithm_option == 'equation' else f"naive_bayes_{bayes_training_percentage}"
     results_output.save_equation_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - similarity_num_skipped, train_article_ids)
 
 
@@ -631,8 +671,8 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation trees")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'string'], help="Type of algorithm to compute derivation tree: ['bayes', 'string']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'equation'], help="Type of algorithm to compute derivation tree: ['bayes', 'equation']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
-    run_equation_similarity(args.algorithm.lower())
+    run_derivation_algo(args.algorithm.lower())
