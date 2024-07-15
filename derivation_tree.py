@@ -579,13 +579,13 @@ def run_derivation_algo(algorithm_option):
 
     '''HYPER-PARAMETERS'''
     # equation_similarity_threshold - threshold of matrix to determine if two equations are similar or not
-    equation_similarity_threshold = 97.5
+    equation_similarity_threshold = 94.5
     # equation_similarity_direction - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
-    equation_similarity_direction = 'lesser'
+    equation_similarity_direction = 'greater'
     # equation_similarity_direction - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
-    equation_similarity_strictness = 2
+    equation_similarity_strictness = 1
     # bayes_training_percentage - percentage of dataset to use for training of Naive Bayes model
-    bayes_training_percentage = 90
+    bayes_training_percentage = 95
     '''HYPER-PARAMETERS'''
 
     extracted_equations = []
