@@ -1,6 +1,6 @@
 # Summarizing and Extracting Derivation Trees from Mathematical Texts
 
-## Instructions to Run Algorithm
+## Instructions to Run Sub-Tree Similarity Algorithm
 ```
 python preProcessing.py
 ```
@@ -27,7 +27,11 @@ Python 3
 
 ## Instructions to Run Algorithm
 ```
-python3 important_equation.py
+python3 important_equation.py -a [bfs, dfs]
+```
+or
+```
+python3 important_equation.py --algorithm [bfs, dfs]
 ```
 - - - -
 ## Output
@@ -45,7 +49,7 @@ Running the above command will output 2 sections into the terminal. The first se
 - JSON file to hold information about articles that don't have a corresponding html file on the corpus
 - - - - 
 ## System Requirements
-Python 3.5 (can run on earlier versions but is untested and requires a few changes)
+Python 3.10. See requirements.txt.
 - - - -
 &nbsp;
 - - - -
@@ -53,11 +57,11 @@ Python 3.5 (can run on earlier versions but is untested and requires a few chang
 
 ## Instructions to Run Algorithm
 ```
-python3 equation_similarity.py -a [bayes, string]
+python3 derivation_graph.py -a [bayes, equation]
 ```
 or
 ```
-python3 equation_similarity.py --algorithm [bayes, string]
+python3 derivation_graph.py --algorithm [bayes, equation]
 ```
 'bayes' - will run the Naive Bayes model
 'string' - will run the string similarity analytical model
@@ -72,5 +76,5 @@ Running the above command will output results of the correctness script with met
 - Holds the html for the articles that are in the articles.json file
 - - - - 
 ## System Requirements
-Python 3.5 (can run on earlier versions but is untested and requires a few changes). Requires the BeautifulSoup library and the sklearn library.
+Python 3.10. See requirements.txt
 - - - -

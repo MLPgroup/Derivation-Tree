@@ -3,7 +3,7 @@ Description: Python code to parse article html and extract equations
 Author: Vishesh Prasad
 Modification Log:
     February 10, 2024: create file and extract equations from html successfully 
-    February 26, 2024: use the words between equations to build the derivation tree
+    February 26, 2024: use the words between equations to build the derivation graph
     March 4, 2024: implement naive bayes equation similarity
     March 22, 2024: improve upon naive bayes
     May 26, 2024: output results to respective files
@@ -571,7 +571,7 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
 run_derivation_algo(algorithm_option)
 Input: algorithm_option -- type of equation similarity to run
 Return: none
-Function: Find the equations in articles and construct a tree depending on equation similarity
+Function: Find the equations in articles and construct a graph depending on equation similarity
 """
 def run_derivation_algo(algorithm_option):
     # Get a list of manually parsed article IDs
@@ -670,8 +670,8 @@ Entry point for equation_similarity.py
 Runs run_derivation_algo()
 """
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Algorithms to find derivation trees")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'equation'], help="Type of algorithm to compute derivation tree: ['bayes', 'equation']")
+    parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'equation'], help="Type of algorithm to compute derivation graph: ['bayes', 'equation']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function

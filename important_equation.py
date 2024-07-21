@@ -411,7 +411,7 @@ def run_important_algo(type):
 
 
 """
-Entry point for derivation_tree_algo.py
+Entry point for important_equation.py
 Runs run_important_algo()
 """
 if __name__ == '__main__':
