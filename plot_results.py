@@ -6,18 +6,18 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 
-EQUATION_SIMILARITY_PATH = './outputs/Equation_Similarity'
+TOKEN_SIMILARITY_PATH = './outputs/Token_Similarity'
 NAIVE_BAYES_PATH = './outputs/Naive_Bayes'
 PLOT_PATH = './outputs/plots'
 
 
-# Plot equation similarity results
-def plot_equation_similarity(alg_num_threshold, alg_direction):
+# Plot token similarity results
+def plot_token_similarity(alg_num_threshold, alg_direction):
 
     # Extract threshold 
     def extract_threshold(filename):
         # Extract the numeric value from the filename
-        match = re.search(fr'equation_similarity_{alg_num_threshold}_(\d+\.?\d*)_{alg_direction}', filename)
+        match = re.search(fr'token_similarity_{alg_num_threshold}_(\d+\.?\d*)_{alg_direction}', filename)
         if match:
             return float(match.group(1))
         return None
@@ -31,9 +31,9 @@ def plot_equation_similarity(alg_num_threshold, alg_direction):
     thresholds = []
     data_files = []
 
-    for filename in os.listdir(EQUATION_SIMILARITY_PATH):
-        if filename.endswith('.json') and f'equation_similarity_{alg_num_threshold}_' in filename and f'{alg_direction}' in filename:
-            file_path = os.path.join(EQUATION_SIMILARITY_PATH, filename)
+    for filename in os.listdir(TOKEN_SIMILARITY_PATH):
+        if filename.endswith('.json') and f'token_similarity_{alg_num_threshold}_' in filename and f'{alg_direction}' in filename:
+            file_path = os.path.join(TOKEN_SIMILARITY_PATH, filename)
             with open(file_path, 'r') as file:
                 data = json.load(file)
                 accuracy = data["Correctness"]["Overall Correctness"]["Overall Accuracy"]
@@ -72,12 +72,12 @@ def plot_equation_similarity(alg_num_threshold, alg_direction):
     plt.plot(sorted_thresholds, sorted_f1_scores, linestyle='-', marker='.', markersize=5, color='purple', label='Overall F1 Score')
     plt.xlabel('Threshold')
     plt.ylabel('Metrics')
-    plt.title(f'Equation Similarity ({alg_num_threshold}, {alg_direction}): Metrics vs Threshold')
+    plt.title(f'Token Similarity ({alg_num_threshold}, {alg_direction}): Metrics vs Threshold')
     plt.xticks(range(int(min(thresholds)), int(max(thresholds))+1, 5))
     plt.yticks(y_ticks)
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
-    plot_filename = os.path.join(PLOT_PATH, f'equation_similarity_{alg_num_threshold}_{alg_direction}_metrics_plot.png')
+    plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_metrics_plot.png')
     plt.savefig(plot_filename)
     plt.show()
 
@@ -133,10 +133,10 @@ def plot_equation_similarity(alg_num_threshold, alg_direction):
     # Plot box plot
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.bxp(box_plot_data)
-    ax.set_title(f'Aggregate Correctness Statistics Box Plot at Threshold {max_f1_threshold}')
+    ax.set_title(f'Aggregate Token Similarity Correctness Statistics Box Plot at Threshold {max_f1_threshold}')
     ax.set_ylabel('Values')
     ax.grid(True, linestyle='--', linewidth=0.5)
-    box_plot_filename = os.path.join(PLOT_PATH, f'equation_similarity_{alg_num_threshold}_{alg_direction}_box_plot.png')
+    box_plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_box_plot.png')
     plt.savefig(box_plot_filename)
     plt.show()
 
@@ -166,8 +166,8 @@ def plot_equation_similarity(alg_num_threshold, alg_direction):
     ax.set_xlabel('Values')
     ax.set_yticks([1, 2, 3, 4])
     ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
-    ax.set_title(f'Aggregate Correctness Statistics Line Plot at Threshold {max_f1_threshold}')
-    line_plot_filename = os.path.join(PLOT_PATH, f'equation_similarity_{alg_num_threshold}_{alg_direction}_line_plot.png')
+    ax.set_title(f'Aggregate Token Similarity Correctness Statistics Line Plot at Threshold {max_f1_threshold}')
+    line_plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_line_plot.png')
     plt.savefig(line_plot_filename)
     plt.show()
     plt.show()
@@ -313,7 +313,7 @@ def plot_naive_bayes():
     # Plot box plot
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.bxp(box_plot_data)
-    ax.set_title(f'Aggregate Correctness Statistics Box Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
+    ax.set_title(f'Aggregate Naive Bayes Correctness Statistics Box Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
     ax.set_ylabel('Values')
     ax.grid(True, linestyle='--', linewidth=0.5)
     box_plot_filename = os.path.join(PLOT_PATH, f'naive_bayes_box_plot.png')
@@ -346,7 +346,7 @@ def plot_naive_bayes():
     ax.set_xlabel('Values')
     ax.set_yticks([1, 2, 3, 4])
     ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
-    ax.set_title(f'Aggregate Correctness Statistics Line Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
+    ax.set_title(f'Aggregate Naive Bayes Correctness Statistics Line Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
     line_plot_filename = os.path.join(PLOT_PATH, f'naive_bayes_line_plot.png')
     plt.savefig(line_plot_filename)
     plt.show()
@@ -358,21 +358,20 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Which results to plot")
     parser.add_argument("-r", "--results", required=True,
-    choices=['equation_similarity_1_greater', 'equation_similarity_1_lesser',
-             'equation_similarity_2_greater', 'equation_similarity_2_lesser',
+    choices=['token_similarity_1_greater', 'token_similarity_1_lesser',
+             'token_similarity_2_greater', 'token_similarity_2_lesser',
              'naive_bayes'],
-    help="Which results to plot : ['equation_similarity_1_greater', 'equation_similarity_1_lesser', 'equation_similarity_2_greater', 'equation_similarity_2_lesser', 'naive_bayes']")
+    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes']")
     args = parser.parse_args()
 
     argument = args.results
-    if argument == 'equation_similarity_1_greater':
-        # equation_similarity_1_greater()
-        plot_equation_similarity(1, 'greater')
-    elif argument == 'equation_similarity_1_lesser':
-        plot_equation_similarity(1, 'lesser')
-    elif argument == 'equation_similarity_2_greater':
-        plot_equation_similarity(2, 'greater')
-    elif argument == 'equation_similarity_2_lesser':
-        plot_equation_similarity(2, 'lesser')
+    if argument == 'token_similarity_1_greater':
+        plot_token_similarity(1, 'greater')
+    elif argument == 'token_similarity_1_lesser':
+        plot_token_similarity(1, 'lesser')
+    elif argument == 'token_similarity_2_greater':
+        plot_token_similarity(2, 'greater')
+    elif argument == 'token_similarity_2_lesser':
+        plot_token_similarity(2, 'lesser')
     elif argument == 'naive_bayes':
         plot_naive_bayes()
