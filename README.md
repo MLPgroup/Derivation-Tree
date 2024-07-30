@@ -53,24 +53,24 @@ Python 3.10. See requirements.txt.
 - - - -
 &nbsp;
 - - - -
-# Building the Derivation Tree Using Equation Similarity and Naive Bayes
+# Building the Derivation Tree Using Token Similarity and Naive Bayes
 
 ## Instructions to Run Algorithm
 ```
-python3 derivation_graph.py -a [bayes, equation]
+python3 derivation_graph.py -a [bayes, token]
 ```
 or
 ```
-python3 derivation_graph.py --algorithm [bayes, equation]
+python3 derivation_graph.py --algorithm [bayes, token]
 ```
 'bayes' - will run the Naive Bayes model
-'string' - will run the string similarity analytical model
+'token' - will run the string similarity analytical model
 - - - -
 ## Output
 Running the above command will output results of the correctness script with metrics used to test the correctness of the algorithm which was computed using the labeled adjacency list and the predicted adjacency list.
 - - - -
 ## File System
-### equation_similarity.py
+### derivation_graph.py
 - Entry point that runs all the code written in the file. It first extracts the equations from the html, then either computes the similarities between all equations in that were extracted or trains a Naive Bayes model, depending on the type specified by the command line argument. It finally constructs an adjacency list and compares it to the labeled adjacency list provided in articles.json.
 ### /articles (folder)
 - Holds the html for the articles that are in the articles.json file

@@ -14,7 +14,7 @@ from datetime import datetime
 
 # Path to output folder
 OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = 'outputs/Important_Equation'
-OUTPUT_FOLDER_PATH_EQUATION_SIMILARITY = 'outputs/Equation_Similarity'
+OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY = 'outputs/Token_Similarity'
 OUTPUT_FOLDER_PATH_NAIVE_BAYES = 'outputs/Naive_Bayes'
 
 # Time Zone
@@ -73,7 +73,7 @@ def save_important_equation_results(name, article_ids, predicted_equations, labe
 
 
 """
-save_important_equation_results(name, article_ids, predicted_equations, labeled_equations, algo_accuracy, algo_precision, algo_recall, algo_f1_score, algo_num_articles_used)
+save_derivation_graph_results(algo_type, name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_articles_used, train_article_ids=[])
 Input: algo_type -- Which algorithm to print the results for
        name -- Name of the output JSON file to write to
        article_ids -- List of article ids for which adjacency lists are outputted
@@ -91,9 +91,9 @@ Input: algo_type -- Which algorithm to print the results for
 Return: none
 Function: Output the results of the given algorithm into a JSON file
 """
-def save_equation_results(algo_type, name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_articles_used, train_article_ids=[]):
+def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_articles_used, train_article_ids=[]):
     # Specific output file path
-    cur_output_path = OUTPUT_FOLDER_PATH_NAIVE_BAYES if algo_type == 'bayes' else OUTPUT_FOLDER_PATH_EQUATION_SIMILARITY
+    cur_output_path = OUTPUT_FOLDER_PATH_NAIVE_BAYES if algo_type == 'bayes' else OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY
 
     # Check output folder existence
     if not os.path.exists(cur_output_path):
@@ -104,7 +104,7 @@ def save_equation_results(algo_type, name, article_ids, predicted_adjacency_list
     timestamp = current_time.strftime('%Y-%m-%d_%H-%M-%S_%Z')
 
     # Output file path
-    output_file_path = os.path.join(cur_output_path, f'{name}.json') if algo_type == 'equation' else os.path.join(cur_output_path, f'{name}_{timestamp}.json')
+    output_file_path = os.path.join(cur_output_path, f'{name}.json') if algo_type == 'token' else os.path.join(cur_output_path, f'{name}_{timestamp}.json')
 
     # Clear output file
     open(output_file_path, 'w').close()

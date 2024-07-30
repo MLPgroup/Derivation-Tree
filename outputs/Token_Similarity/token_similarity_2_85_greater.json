@@ -5577,5 +5577,8 @@
             "Recall": 0.36363636363636365,
             "F1 Score": 0.1951219512195122
         }
+    },
+    "Training": {
+        "Training Articles": []
     }
 }

@@ -22,6 +22,26 @@ import article_parser
 import results_output
 
 
+
+'''HYPER-PARAMETERS'''
+# NOTE: for all hyper-parameters ONLY INCLUDE DECIMAL IF THRESHOLD IS NOT AN INTEGER
+
+# TOKEN_SIMILARITY_THRESHOLD - threshold of matrix to determine if two equations are similar or not
+TOKEN_SIMILARITY_THRESHOLD = 85
+
+# TOKEN_SIMILARITY_DIRECTION - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
+TOKEN_SIMILARITY_DIRECTION = 'greater'
+
+# TOKEN_SIMILARITY_STRICTNESS - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
+TOKEN_SIMILARITY_STRICTNESS = 2
+
+# BAYES_TRAINING_PERCENTAGE - percentage of dataset to use for training of Naive Bayes model
+BAYES_TRAINING_PERCENTAGE = 80
+
+'''HYPER-PARAMETERS'''
+
+
+
 """
 extract_equations(html_content)
 Input: html_content -- html content for current article that needs to be parsed
@@ -99,29 +119,6 @@ def extract_equations(html_content):
             # Equation when updated
             last_update_id = last_eq_id
 
-
-    
-        """Playground"""
-        # elif len(equations) == 0 and match_2:
-        #     # Extract section and equation numbers from the matched pattern
-        #     section_number, equation_number = match_2.groups()
-        #     equation_key = f"S{section_number}.E{equation_number}"
-
-        #     # Create an entry in the dictionary for the equation if not present
-        #     if equation_key not in equations:
-        #         equations[equation_key] = {
-        #             'section_number': int(section_number),
-        #             'equation_number': int(equation_number),
-        #             'equations': [],
-        #         }
-
-        #     # Add the equation details to the list of equations for the current key
-        #     equations[equation_key]['equations'].append({
-        #         'mathml': str(mathml),
-        #         'equation_id': equation_id,
-        #         'alttext': alttext,
-        #     })
-
     return equations, words_between_equations, equation_indexing
 
 
@@ -158,13 +155,13 @@ def compute_symbol_percentage(equation1, equation2):
 
 
 """
-equation_similarity_percentages(equations)
+token_similarity_percentages(equations)
 Input: equations -- equations found in article
 Return: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
         equation_order -- order of equations in matrix
 Function: Find similarity percentages between all equations
 """
-def equation_similarity_percentages(equations):
+def token_similarity_percentages(equations):
     # Set up similarity matrix
     num_equations = len(equations)
     similarity_matrix = [[0.0] * num_equations for _ in range(num_equations)]
@@ -189,24 +186,9 @@ def equation_similarity_percentages(equations):
     return similarity_matrix, equation_order
 
 
-"""Playground"""
-# "Check if cycle formed with new add"
-# def has_cycle(adj_list, visited, current, parent):
-#     visited[current] = True
-
-#     for neighbor in adj_list[current]:
-#         if not visited[neighbor]:
-#             if has_cycle(adj_list, visited, neighbor, current):
-#                 return True
-#         elif neighbor != parent:
-#             return True
-
-#     return False
-
-
 
 """
-equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold)
+token_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold)
 Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
         equation_order -- order of equations in matrix
         similarity_threshold -- threshold of matrix to determine if two equations are similar or not
@@ -215,7 +197,7 @@ Input: similarity_matrix -- [i][j] = percentage of equation i that is found in e
 Return: equation_adjacency_list -- adjacency list computed using 
 Function: Construct an adjacency list from the similarity matrix
 """
-def equation_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold, similarity_direction, similarity_strictness):
+def token_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold, similarity_direction, similarity_strictness):
     num_equations = len(equation_order)
     equation_adjacency_list = {equation_order[i]: [] for i in range(num_equations)}
 
@@ -334,45 +316,6 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
     train_size = int(num_articles * (bayes_training_percentage / 100))
     train_random_indices = random.sample(range(num_articles), train_size)
 
-
-    # # Prepare data for the naive Bayes algorithm
-    # training_data = []
-    # training_labels = []
-    # train_selected_articles = set()
-    # for i in train_random_indices:
-    #     training_labels.append(str(article_ids[articles_used[i]]["Adjacency List"]))
-    #     training_data.append(' '.join([combine_sub_equations(extracted_equations[i][cur_equation]) for cur_equation in extracted_equations[i]] + extracted_words_between_equations[i]))
-    #     train_selected_articles.add(articles_used[i])
-    
-    # # Train the naive Bayes classifier
-    # vectorizer = CountVectorizer()
-    # X_train = vectorizer.fit_transform(training_data)
-    # y_train = training_labels
-
-    # classifier = MultinomialNB()
-    # classifier.fit(X_train, y_train)
-
-    # # Predict adjacency lists for the remaining articles
-    # for article_id in article_ids:
-    #     if article_id not in train_selected_articles and article_id in articles_used:
-    #         equations = extracted_equations[articles_used.index(article_id)]
-    #         words_between_eqs = extracted_words_between_equations[articles_used.index(article_id)]
-
-    #         # Convert equations dictionary to list and concatenate it with words_between_eqs
-    #         equations_list = [equation for sublist in equations.values() for equation in sublist]
-    #         text_data = ' '.join(equations_list + words_between_eqs)
-
-    #         # Transform the data using the same vectorizer used during training
-    #         X_test = vectorizer.transform([text_data])
-
-    #         # Predict the adjacency list using the trained classifier
-    #         predicted_adjacency_list = classifier.predict(X_test)[0]
-
-    #         # Append the true and predicted adjacency lists to the result
-    #         true_adjacency_lists.append(article_ids[article_id]["Adjacency List"])
-    #         predicted_adjacency_lists.append(predicted_adjacency_list)
-
-
     train_features = []
     train_labels = []
     train_article_ids = []
@@ -473,22 +416,9 @@ def find_equation_neighbors_str(predicted_adjacency_list):
             cur_value_string += cur_char
         # Error
         else:
-            """Playground"""
-            # print(cur_char)
-            # print(cur_key_read)
-            # print(cur_value_read)
-            # print(cur_key_string)
-            # print(cur_value_string)
-            # print(predicted_adjacency_list)
-            # print(predicted_neighbors)
             raise ValueError("Unexpected character or state encountered")
 
     """Playground"""
-    # print("start")
-    # print(predicted_adjacency_list)
-    # print("middle")
-    # print(predicted_neighbors)
-    # print("end\n")
     return predicted_neighbors
 
 
@@ -577,17 +507,6 @@ def run_derivation_algo(algorithm_option):
     # Get a list of manually parsed article IDs
     article_ids = article_parser.get_manually_parsed_articles()
 
-    '''HYPER-PARAMETERS'''
-    # equation_similarity_threshold - threshold of matrix to determine if two equations are similar or not
-    equation_similarity_threshold = 85.0
-    # equation_similarity_direction - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
-    equation_similarity_direction = 'greater'
-    # equation_similarity_direction - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
-    equation_similarity_strictness = 2
-    # bayes_training_percentage - percentage of dataset to use for training of Naive Bayes model
-    bayes_training_percentage = 80
-    '''HYPER-PARAMETERS'''
-
     extracted_equations = []
     extracted_equation_indexing = []
     computed_similarities = []
@@ -619,15 +538,10 @@ def run_derivation_algo(algorithm_option):
                 articles_used.append(cur_article_id)
                 extracted_equation_indexing.append(equation_indexing)
 
-                if algorithm_option == 'equation':
-                    computed_similarity, equation_order = equation_similarity_percentages(equations)
-                    # print(cur_article_id)
-                    # print(equation_order)
-                    # for row in computed_similarity:
-                    #     print(' '.join(f'{percentage:.2f}' for percentage in row))
+                if algorithm_option == 'token':
+                    computed_similarity, equation_order = token_similarity_percentages(equations)
                     
-                    computed_adjacency_list = equation_similarity_adjacency_list(computed_similarity, equation_order, equation_similarity_threshold, equation_similarity_direction, equation_similarity_strictness)
-                    # print(computed_adjacency_list)
+                    computed_adjacency_list = token_similarity_adjacency_list(computed_similarity, equation_order, TOKEN_SIMILARITY_THRESHOLD, TOKEN_SIMILARITY_DIRECTION, TOKEN_SIMILARITY_STRICTNESS)
 
                     computed_similarities.append(computed_similarity)
                     equation_orders.append(equation_order)
@@ -641,37 +555,24 @@ def run_derivation_algo(algorithm_option):
 
     # Run Bayes algorithm
     if algorithm_option == 'bayes':
-        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, bayes_training_percentage)
+        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
     
     # Get accuracy numbers
     similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
-    # print("*-----------------------------------------------------------*")
-    # print("Equation Similarity Algorithm Correctness: ")
-    # print(f"Articles used for equation similarity correctness calculations: {len(true_adjacency_lists) - similarity_num_skipped}")
-    # if algorithm_option == 'equation':
-    #     print(f"Method used: equation Similarity")
-    # elif algorithm_option == 'bayes':
-    #     print(f"Method used: Bayes Classifier")
-    # print(f"Accuracy: {similarity_accuracy:.8f}")
-    # print(f"Precision: {similarity_precision:.8f}")
-    # print(f"Recall: {similarity_recall:.8f}")
-    # print(f"F1 Score: {similarity_f1_score:.8f}")
-    # print("*-----------------------------------------------------------*")
-
-    output_name = f"equation_similarity_{equation_similarity_strictness}_{equation_similarity_threshold}_{equation_similarity_direction}" if algorithm_option == 'equation' else f"naive_bayes_{bayes_training_percentage}"
-    results_output.save_equation_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - similarity_num_skipped, train_article_ids)
+    output_name = f"token_similarity_{TOKEN_SIMILARITY_STRICTNESS}_{TOKEN_SIMILARITY_THRESHOLD}_{TOKEN_SIMILARITY_DIRECTION}" if algorithm_option == 'token' else f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
+    results_output.save_derivation_graph_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - similarity_num_skipped, train_article_ids)
 
 
 
 
 """
-Entry point for equation_similarity.py
+Entry point for derivation_graph.py
 Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'equation'], help="Type of algorithm to compute derivation graph: ['bayes', 'equation']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token'], help="Type of algorithm to compute derivation graph: ['bayes', 'token']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
