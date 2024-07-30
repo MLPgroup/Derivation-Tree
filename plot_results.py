@@ -133,7 +133,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     # Plot box plot
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.bxp(box_plot_data)
-    ax.set_title(f'Aggregate Token Similarity Correctness Statistics Box Plot at Threshold {max_f1_threshold}')
+    ax.set_title(f'Aggregate Token Similarity Correctness Statistics Box Plot at Threshold {max_f1_threshold} ({alg_direction})')
     ax.set_ylabel('Values')
     ax.grid(True, linestyle='--', linewidth=0.5)
     box_plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_box_plot.png')
@@ -166,7 +166,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     ax.set_xlabel('Values')
     ax.set_yticks([1, 2, 3, 4])
     ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
-    ax.set_title(f'Aggregate Token Similarity Correctness Statistics Line Plot at Threshold {max_f1_threshold}')
+    ax.set_title(f'Aggregate Token Similarity Correctness Statistics Line Plot at Threshold {max_f1_threshold} ({alg_direction})')
     line_plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_line_plot.png')
     plt.savefig(line_plot_filename)
     plt.show()
