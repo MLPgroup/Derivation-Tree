@@ -16,6 +16,7 @@ from datetime import datetime
 OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = 'outputs/Important_Equation'
 OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY = 'outputs/Token_Similarity'
 OUTPUT_FOLDER_PATH_NAIVE_BAYES = 'outputs/Naive_Bayes'
+OUTPUT_FOLDER_PATH_BRUTE = 'outputs/Brute_Force'
 
 # Time Zone
 TIME_ZONE = 'UTC'
@@ -93,7 +94,14 @@ Function: Output the results of the given algorithm into a JSON file
 """
 def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_articles_used, train_article_ids=[]):
     # Specific output file path
-    cur_output_path = OUTPUT_FOLDER_PATH_NAIVE_BAYES if algo_type == 'bayes' else OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY
+
+    cur_output_path = ""
+    if algo_type == 'bayes':
+        cur_output_path = OUTPUT_FOLDER_PATH_NAIVE_BAYES 
+    elif algo_type == 'token':
+        cur_output_path = OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY
+    elif algo_type == 'brute':
+        cur_output_path = OUTPUT_FOLDER_PATH_BRUTE
 
     # Check output folder existence
     if not os.path.exists(cur_output_path):
@@ -104,7 +112,13 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
     timestamp = current_time.strftime('%Y-%m-%d_%H-%M-%S_%Z')
 
     # Output file path
-    output_file_path = os.path.join(cur_output_path, f'{name}.json') if algo_type == 'token' else os.path.join(cur_output_path, f'{name}_{timestamp}.json')
+    output_file_path = ""
+    if algo_type == 'bayes':
+        output_file_path = os.path.join(cur_output_path, f'{name}_{timestamp}.json')
+    elif algo_type == 'token':
+        output_file_path = os.path.join(cur_output_path, f'{name}.json')
+    elif algo_type == 'brute':
+        output_file_path = os.path.join(cur_output_path, f'{name}.json')
 
     # Clear output file
     open(output_file_path, 'w').close()
@@ -153,7 +167,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
             }
         }
     }
-    important_equation_data = {
+    article_data = {
         f"Article ID: {cur_article_id}": {
             "Adjacency List": cur_predicted_adjacency_lists,
             "Accuracy": cur_accuracy,
@@ -169,10 +183,13 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
     # Write to data to file
     try: 
         with open(output_file_path, 'w') as json_file:
-            if algo_type == 'equation':
-                json.dump({"Correctness": overall_correctness, "Results": important_equation_data}, json_file, indent=4)
-            else:
-                json.dump({"Correctness": overall_correctness, "Results": important_equation_data, "Training": training_set}, json_file, indent=4)
+            if algo_type == 'token':
+                json.dump({"Correctness": overall_correctness, "Results": article_data}, json_file, indent=4)
+            elif algo_type == 'bayes':
+                json.dump({"Correctness": overall_correctness, "Results": article_data, "Training": training_set}, json_file, indent=4)
+            elif algo_type == 'brute':
+                json.dump({"Correctness": overall_correctness, "Results": article_data}, json_file, indent=4)
+
         print(f"Successfully wrote outputs to {output_file_path}")
     except Exception as e:
         raise IOError(f"Failed to write to {output_file_path}: {e}")

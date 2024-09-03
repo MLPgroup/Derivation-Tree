@@ -1,5 +1,5 @@
 '''
-Description: Python code to parse article html and extract equations
+Description: Python code to get derivation graphs
 Author: Vishesh Prasad
 Modification Log:
     February 10, 2024: create file and extract equations from html successfully 
@@ -7,19 +7,21 @@ Modification Log:
     March 4, 2024: implement naive bayes equation similarity
     March 22, 2024: improve upon naive bayes
     May 26, 2024: output results to respective files
+    August 18, 2024: reformat file system
 '''
+
+
 
 # Import Modules
 from bs4 import BeautifulSoup
 import os
 import re
-import random
 import argparse
-import numpy as np
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer
 import article_parser
 import results_output
+import token_similarity
+import naive_bayes
+import brute_force
 
 
 
@@ -27,14 +29,13 @@ import results_output
 # NOTE: for all hyper-parameters ONLY INCLUDE DECIMAL IF THRESHOLD IS NOT AN INTEGER
 
 # TOKEN_SIMILARITY_THRESHOLD - threshold of matrix to determine if two equations are similar or not
-TOKEN_SIMILARITY_THRESHOLD = 85
+TOKEN_SIMILARITY_THRESHOLD = 10
 
 # TOKEN_SIMILARITY_DIRECTION - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
-TOKEN_SIMILARITY_DIRECTION = 'greater'
+TOKEN_SIMILARITY_DIRECTION = 'lesser'
 
 # TOKEN_SIMILARITY_STRICTNESS - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
-TOKEN_SIMILARITY_STRICTNESS = 2
-
+TOKEN_SIMILARITY_STRICTNESS = 1
 # BAYES_TRAINING_PERCENTAGE - percentage of dataset to use for training of Naive Bayes model
 BAYES_TRAINING_PERCENTAGE = 80
 
@@ -121,252 +122,6 @@ def extract_equations(html_content):
 
     return equations, words_between_equations, equation_indexing
 
-
-
-"""
-combine_sub_equations(equation)
-Input: equation -- one equation in the article and all of its sub equations
-Return: combined_mathml -- string with combined mathml for one equation
-Function: Combine mathml for equation and all sub equations to compare with other equations
-"""
-def combine_sub_equations(equation):
-    # Combine MathMLs of all sub-equations
-    combined_mathml = ''.join(sub_equation['mathml'] for sub_equation in equation['equations'])
-    return combined_mathml
-
-
-
-"""
-compute_symbol_percentage(equation1, equation2)
-Input: equation1 -- mathml for one equation
-       equation2 -- mathml for another equation
-Return: percentage_equation1_in_equation2, percentage_equation2_in_equation1 - equation similarity percentages
-Function: Compute the percentages of symbols in equation1 that are found in equation2 and vice verse
-"""
-def compute_symbol_percentage(equation1, equation2):
-    set_equation1 = set(equation1)
-    set_equation2 = set(equation2)
-
-    percentage_equation1_in_equation2 = (len(set_equation1.intersection(set_equation2)) / len(set_equation1)) * 100
-    percentage_equation2_in_equation1 = (len(set_equation2.intersection(set_equation1)) / len(set_equation2)) * 100
-
-    return percentage_equation1_in_equation2, percentage_equation2_in_equation1
-
-
-
-"""
-token_similarity_percentages(equations)
-Input: equations -- equations found in article
-Return: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
-        equation_order -- order of equations in matrix
-Function: Find similarity percentages between all equations
-"""
-def token_similarity_percentages(equations):
-    # Set up similarity matrix
-    num_equations = len(equations)
-    similarity_matrix = [[0.0] * num_equations for _ in range(num_equations)]
-
-    # Combine mathml
-    combined_mathml = [combine_sub_equations(equations[cur_equation]) for cur_equation in equations]
-    equation_order = [cur_equation for cur_equation in equations]
-
-    # Compute similarity percentages
-    for i in range(num_equations - 1):
-        equation_i = combined_mathml[i]
-        for j in range(i + 1, num_equations):
-            equation_j = combined_mathml[j]
-
-            # Compute percentage similar
-            percentage_i_in_j, percentage_j_in_i = compute_symbol_percentage(equation_i, equation_j)
-
-            # Store percentages in matrix
-            similarity_matrix[i][j] = percentage_i_in_j
-            similarity_matrix[j][i] = percentage_j_in_i
-
-    return similarity_matrix, equation_order
-
-
-
-"""
-token_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold)
-Input: similarity_matrix -- [i][j] = percentage of equation i that is found in equation j
-        equation_order -- order of equations in matrix
-        similarity_threshold -- threshold of matrix to determine if two equations are similar or not
-        similarity_direction -- direction of similarity check to add edge
-        similarity_strictness -- integer value (x = 0, 1, 2) to force minimum x number of similarity values to be greater than the threshold in edge determination
-Return: equation_adjacency_list -- adjacency list computed using 
-Function: Construct an adjacency list from the similarity matrix
-"""
-def token_similarity_adjacency_list(similarity_matrix, equation_order, similarity_threshold, similarity_direction, similarity_strictness):
-    num_equations = len(equation_order)
-    equation_adjacency_list = {equation_order[i]: [] for i in range(num_equations)}
-
-    for i in range(num_equations - 2, -1, -1):
-        for j in range(num_equations - 1, i - 1, -1):
-            match similarity_strictness:
-                case 0:
-                    if similarity_direction == 'greater':
-                        if similarity_matrix[i][j] > similarity_matrix[j][i]:
-                            equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                        else:
-                            equation_adjacency_list[equation_order[j]].append(equation_order[i])
-                    else:
-                        if similarity_matrix[i][j] < similarity_matrix[j][i]:
-                            equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                        else:
-                            equation_adjacency_list[equation_order[j]].append(equation_order[i])
-                
-                case 1: 
-                    if similarity_matrix[i][j] > similarity_threshold or similarity_matrix[j][i] > similarity_threshold:
-                        if similarity_direction == 'greater':
-                            if similarity_matrix[i][j] > similarity_matrix[j][i]:
-                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                            else:
-                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
-                        else:
-                            if similarity_matrix[i][j] < similarity_matrix[j][i]:
-                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                            else:
-                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
-                case 2:
-                    if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
-                        if similarity_direction == 'greater':
-                            if similarity_matrix[i][j] > similarity_matrix[j][i]:
-                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                            else:
-                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
-                        else:
-                            if similarity_matrix[i][j] < similarity_matrix[j][i]:
-                                equation_adjacency_list[equation_order[i]].append(equation_order[j])
-                            else:
-                                equation_adjacency_list[equation_order[j]].append(equation_order[i])
-
-
-    return equation_adjacency_list
-
-
-"""
-extract_features_and_labels(equations, words_between_equations, equation_indexing, adjacency_list)
-Input: equations -- list of equations that were successfully extracted
-       words_between_equations -- list of words that occur between equations
-       equation_indexing -- list of equations in the order they were found from the article
-       adjacency_list (optional) -- adjacency list used to extract labels
-Return: features -- extracted features of equations and words between equations 
-        labels -- labels of if one equation is connected to another and the direction (+1 if 'i' points to 'j', -1 if 'j' points to 'i', and 0 for no connection)
-Function: Feature and label extraction for naive bayes where a feature contains all words that occur between two equations and the two equations themselves amd label specifies their connection
-"""
-def extract_features_and_labels(equations, words_between_equations, equation_indexing, adjacency_list=None):
-    features = []
-    labels = []
-    for i in range(len(equation_indexing)):
-        for j in range(i+1, len(equation_indexing)):
-            # Feature extraction
-            # Words before 1st equation
-            feature_vector = words_between_equations[j] + " "
-            # 1st equation
-            for k in range(len(equations[equation_indexing[i]]['equations'])):
-                feature_vector += equations[equation_indexing[i]]['equations'][k]['mathml'] + " " 
-            # Words between the equations
-            for k in range(i + 1, j):
-                feature_vector += words_between_equations[k] + " "
-            # 2nd equation
-            for k in range(len(equations[equation_indexing[j]]['equations'])):
-                feature_vector += equations[equation_indexing[j]]['equations'][k]['mathml'] + " "
-            # Words after the 2nd equation
-            feature_vector += words_between_equations[j + 1] if j + 1 < len(words_between_equations) else ""
-
-            if adjacency_list is not None:
-                # Label extraction
-                label = 0
-                if equation_indexing[j] in adjacency_list[equation_indexing[i]]:
-                    label = 1
-                elif equation_indexing[i] in adjacency_list[equation_indexing[j]]:
-                    label = -1
-                labels.append(label)
-            features.append(feature_vector)
-
-    if adjacency_list is not None:
-        return features, labels
-    else:
-        return features
-
-
-
-"""
-bayes_classifier(article_ids, articles_used, extract_equations, extracted_words_between_equations)
-Input: article_ids -- dictionary with info on all articles from articles.json
-       articles_used -- list of articles where equations were extracted correctly
-       extracted_equations -- list of equations that were successfully extracted
-       extracted_words_between_equation -- list of list of words that occur between equations
-       extracted_equation_indexing -- list of list of equations in the order they were found from the article
-       bayes_training_percentage -- percentage of dataset to use for training of Naive Bayes model
-Return: true_adjacency_lists -- list of labeled adjacency lists used in the test phase of the naive bayes algorithm
-        predicted_adjacency_lists -- list of predicted adjacency lists resulting from the test phase of the naive bayes algorithm
-        train_article_ids -- list of article ids used to train the classifier
-Function: Predict adjacency list using the naive bayes algorithm
-"""
-def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, bayes_training_percentage):
-    # Initialize lists to store true and predicted adjacency lists
-    true_adjacency_lists = []
-    predicted_adjacency_lists = []
-
-    # Split the data set into test and train
-    num_articles = len(articles_used)
-    # train_random_indices = range(int(num_articles * (bayes_training_percentage * 1.0 / 100)))
-    train_size = int(num_articles * (bayes_training_percentage / 100))
-    train_random_indices = random.sample(range(num_articles), train_size)
-
-    train_features = []
-    train_labels = []
-    train_article_ids = []
-
-    for i in train_random_indices:
-        equations = extracted_equations[i]
-        words_between_eqs = extracted_words_between_equations[i]
-        equation_indexing = extracted_equation_indexing[i]
-
-        features, labels = extract_features_and_labels (equations, words_between_eqs, equation_indexing, article_ids[articles_used[i]]["Adjacency List"])
-
-        train_features.extend(features)
-        train_labels.extend(labels)
-
-        train_article_ids.append(article_ids[articles_used[i]]["Article ID"])
-
-    # Train the Naive Bayes classifier
-    vectorizer = CountVectorizer()
-    X_train = vectorizer.fit_transform(train_features)
-    y_train = train_labels
-
-    classifier = MultinomialNB()
-    classifier.fit(X_train, y_train)
-
-    # Predict connections for the remaining articles
-    for i in range(num_articles):
-        if i not in train_random_indices:
-            equations = extracted_equations[i]
-            words_between_eqs = extracted_words_between_equations[i]
-            equation_indexing = extracted_equation_indexing[i]
-
-            features = extract_features_and_labels(equations, words_between_eqs, equation_indexing)
-            X_test = vectorizer.transform(features)
-
-            # Predict labels
-            predictions = classifier.predict(X_test)
-            predicted_adjacency_list = {equation_id: [] for equation_id in equation_indexing}
-            predicted_index = 0
-            # Extract predictions to form adjacency list
-            for j in range(len(equation_indexing)):
-                for k in range(j+1, len(equation_indexing)):
-                    if predictions[predicted_index] == 1:
-                        predicted_adjacency_list[equation_indexing[j]].append(equation_indexing[k])
-                    elif predictions[predicted_index] == -1:
-                        predicted_adjacency_list[equation_indexing[k]].append(equation_indexing[j])
-                    predicted_index += 1
-
-            predicted_adjacency_lists.append(predicted_adjacency_list)
-            true_adjacency_lists.append(article_ids[articles_used[i]]["Adjacency List"])
-
-    return true_adjacency_lists, predicted_adjacency_lists, train_article_ids
 
 
 """
@@ -518,50 +273,59 @@ def run_derivation_algo(algorithm_option):
     
 
     # Iterate through article IDs
-    for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
-        # Construct the HTML file path for the current article
-        html_path = f'articles/{cur_article_id}.html'
-    
-        # Check if the HTML file exists
-        if os.path.exists(html_path):
-            # Read the content of the HTML file
-            with open(f'articles/{cur_article_id}.html', 'r', encoding='utf-8') as file:
-                html_content = file.read()
-                
-            # Extract equations from the HTML content
-            equations, words_between_equations, equation_indexing = extract_equations(html_content)
-
-            # If extracted correctly, compute similarity
-            if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
-                extracted_equations.append(equations)
-                extracted_words_between_equations.append(words_between_equations)
-                articles_used.append(cur_article_id)
-                extracted_equation_indexing.append(equation_indexing)
-
-                if algorithm_option == 'token':
-                    computed_similarity, equation_order = token_similarity_percentages(equations)
+    if algorithm_option != 'brute':
+        for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
+            # Construct the HTML file path for the current article
+            html_path = f'articles/{cur_article_id}.html'
+        
+            # Check if the HTML file exists
+            if os.path.exists(html_path):
+                # Read the content of the HTML file
+                with open(f'articles/{cur_article_id}.html', 'r', encoding='utf-8') as file:
+                    html_content = file.read()
                     
-                    computed_adjacency_list = token_similarity_adjacency_list(computed_similarity, equation_order, TOKEN_SIMILARITY_THRESHOLD, TOKEN_SIMILARITY_DIRECTION, TOKEN_SIMILARITY_STRICTNESS)
+                # Extract equations from the HTML content
+                equations, words_between_equations, equation_indexing = extract_equations(html_content)
 
-                    computed_similarities.append(computed_similarity)
-                    equation_orders.append(equation_order)
-                    true_adjacency_lists.append(cur_article["Adjacency List"])
-                    predicted_adjacency_lists.append(computed_adjacency_list)
-                    train_article_ids = []
+                # If extracted correctly, compute similarity
+                if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
+                    extracted_equations.append(equations)
+                    extracted_words_between_equations.append(words_between_equations)
+                    articles_used.append(cur_article_id)
+                    extracted_equation_indexing.append(equation_indexing)
 
-        else:
-            # No html for article found
-            print(f"HTML file {html_path} not found")
+                    if algorithm_option == 'token':
+                        computed_similarity, equation_order = token_similarity.token_similarity_percentages(equations)
+                        
+                        computed_adjacency_list = token_similarity.token_similarity_adjacency_list(computed_similarity, equation_order, TOKEN_SIMILARITY_THRESHOLD, TOKEN_SIMILARITY_DIRECTION, TOKEN_SIMILARITY_STRICTNESS)
+
+                        computed_similarities.append(computed_similarity)
+                        equation_orders.append(equation_order)
+                        true_adjacency_lists.append(cur_article["Adjacency List"])
+                        predicted_adjacency_lists.append(computed_adjacency_list)
+                        train_article_ids = []
+
+            else:
+                # No html for article found
+                print(f"HTML file {html_path} not found")
 
     # Run Bayes algorithm
     if algorithm_option == 'bayes':
-        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
+        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
+    elif algorithm_option == 'brute':
+        train_article_ids, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
     
     # Get accuracy numbers
-    similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
+    similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
-    output_name = f"token_similarity_{TOKEN_SIMILARITY_STRICTNESS}_{TOKEN_SIMILARITY_THRESHOLD}_{TOKEN_SIMILARITY_DIRECTION}" if algorithm_option == 'token' else f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
-    results_output.save_derivation_graph_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - similarity_num_skipped, train_article_ids)
+    if algorithm_option == 'token':
+        output_name = f"token_similarity_{TOKEN_SIMILARITY_STRICTNESS}_{TOKEN_SIMILARITY_THRESHOLD}_{TOKEN_SIMILARITY_DIRECTION}"
+    elif algorithm_option == 'bayes':
+        output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
+    elif algorithm_option == 'brute':
+        output_name = f'brute_force'
+
+    results_output.save_derivation_graph_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - num_skipped, train_article_ids)
 
 
 
@@ -572,7 +336,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token'], help="Type of algorithm to compute derivation graph: ['bayes', 'token']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
