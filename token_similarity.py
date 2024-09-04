@@ -89,9 +89,14 @@ def token_similarity_adjacency_list(similarity_matrix, equation_order, similarit
     num_equations = len(equation_order)
     equation_adjacency_list = {equation_order[i]: [] for i in range(num_equations)}
 
+    # Iterate through similarity matrix
     for i in range(num_equations - 2, -1, -1):
         for j in range(num_equations - 1, i - 1, -1):
             match similarity_strictness:
+                # Strictness
+                # Case 0 = no restriction
+                # Case 1 = at least one cell has to be greater than the threshold
+                # Case 2 = both cells have to be greater than the threshold
                 case 0:
                     if similarity_direction == 'greater':
                         if similarity_matrix[i][j] > similarity_matrix[j][i]:
@@ -105,7 +110,7 @@ def token_similarity_adjacency_list(similarity_matrix, equation_order, similarit
                             equation_adjacency_list[equation_order[j]].append(equation_order[i])
                 
                 case 1: 
-                    if similarity_matrix[i][j] > similarity_threshold or similarity_matrix[j][i] > similarity_threshold:
+                    if similarity_matrix[i][j] >= similarity_threshold or similarity_matrix[j][i] >= similarity_threshold:
                         if similarity_direction == 'greater':
                             if similarity_matrix[i][j] > similarity_matrix[j][i]:
                                 equation_adjacency_list[equation_order[i]].append(equation_order[j])
@@ -117,7 +122,7 @@ def token_similarity_adjacency_list(similarity_matrix, equation_order, similarit
                             else:
                                 equation_adjacency_list[equation_order[j]].append(equation_order[i])
                 case 2:
-                    if similarity_matrix[i][j] > similarity_threshold and similarity_matrix[j][i] > similarity_threshold:
+                    if similarity_matrix[i][j] >= similarity_threshold and similarity_matrix[j][i] >= similarity_threshold:
                         if similarity_direction == 'greater':
                             if similarity_matrix[i][j] > similarity_matrix[j][i]:
                                 equation_adjacency_list[equation_order[i]].append(equation_order[j])
@@ -129,4 +134,10 @@ def token_similarity_adjacency_list(similarity_matrix, equation_order, similarit
                             else:
                                 equation_adjacency_list[equation_order[j]].append(equation_order[i])
 
+    # Formatting
+    for i in range(num_equations):
+        if len(equation_adjacency_list[equation_order[i]]) == 0:
+            equation_adjacency_list[equation_order[i]] = [None]
+
+    # Return adjacency list
     return equation_adjacency_list

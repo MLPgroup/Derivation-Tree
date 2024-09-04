@@ -29,13 +29,13 @@ import brute_force
 # NOTE: for all hyper-parameters ONLY INCLUDE DECIMAL IF THRESHOLD IS NOT AN INTEGER
 
 # TOKEN_SIMILARITY_THRESHOLD - threshold of matrix to determine if two equations are similar or not
-TOKEN_SIMILARITY_THRESHOLD = 10
+TOKEN_SIMILARITY_THRESHOLD = 80
 
 # TOKEN_SIMILARITY_DIRECTION - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
-TOKEN_SIMILARITY_DIRECTION = 'lesser'
+TOKEN_SIMILARITY_DIRECTION = 'greater'
 
 # TOKEN_SIMILARITY_STRICTNESS - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
-TOKEN_SIMILARITY_STRICTNESS = 1
+TOKEN_SIMILARITY_STRICTNESS = 2
 # BAYES_TRAINING_PERCENTAGE - percentage of dataset to use for training of Naive Bayes model
 BAYES_TRAINING_PERCENTAGE = 80
 
@@ -288,7 +288,7 @@ def run_derivation_algo(algorithm_option):
                 equations, words_between_equations, equation_indexing = extract_equations(html_content)
 
                 # If extracted correctly, compute similarity
-                if len(cur_article["Equation ID"]) == len(equations) and all(cur_equation in cur_article["Equation ID"] for cur_equation in equations):
+                if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
                     extracted_equations.append(equations)
                     extracted_words_between_equations.append(words_between_equations)
                     articles_used.append(cur_article_id)
@@ -325,7 +325,7 @@ def run_derivation_algo(algorithm_option):
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
 
-    results_output.save_derivation_graph_results(algorithm_option, output_name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - num_skipped, train_article_ids)
+    results_output.save_derivation_graph_results(algorithm_option, output_name, articles_used, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - num_skipped, train_article_ids)
 
 
 
