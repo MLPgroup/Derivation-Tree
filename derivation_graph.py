@@ -16,7 +16,6 @@ Modification Log:
 from bs4 import BeautifulSoup
 import os
 import re
-import time
 import argparse
 import article_parser
 import results_output

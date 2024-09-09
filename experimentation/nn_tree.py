@@ -4,7 +4,7 @@ import torch.optim as optim
 from bs4 import BeautifulSoup
 import spacy
 
-# Sample HTML file with LaTeX equations
+# Sample HTML file
 html_content = """
 <html>
   <head>
