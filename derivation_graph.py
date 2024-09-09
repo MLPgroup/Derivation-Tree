@@ -22,6 +22,9 @@ import results_output
 import token_similarity
 import naive_bayes
 import brute_force
+import gemini
+import google.generativeai as genai
+import os
 
 
 
@@ -291,7 +294,6 @@ def run_derivation_algo(algorithm_option):
                 if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
                     extracted_equations.append(equations)
                     extracted_words_between_equations.append(words_between_equations)
-                    articles_used.append(cur_article_id)
                     extracted_equation_indexing.append(equation_indexing)
 
                     if algorithm_option == 'token':
@@ -303,7 +305,15 @@ def run_derivation_algo(algorithm_option):
                         equation_orders.append(equation_order)
                         true_adjacency_lists.append(cur_article["Adjacency List"])
                         predicted_adjacency_lists.append(computed_adjacency_list)
+                        articles_used.append(cur_article_id)
                         train_article_ids = []
+
+                    elif algorithm_option == 'gemini':
+                        genai.configure(api_key=os.environ["API_KEY"])
+                        model = genai.GenerativeModel("gemini-1.5-flash")
+
+                        gemini.get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
+
 
             else:
                 # No html for article found
@@ -336,7 +346,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
