@@ -16,6 +16,7 @@ Modification Log:
 from bs4 import BeautifulSoup
 import os
 import re
+import time
 import argparse
 import article_parser
 import results_output
@@ -24,7 +25,7 @@ import naive_bayes
 import brute_force
 import gemini
 import google.generativeai as genai
-import os
+from collections import deque
 
 
 
@@ -273,6 +274,11 @@ def run_derivation_algo(algorithm_option):
     predicted_adjacency_lists = []
     extracted_words_between_equations = []
     articles_used = []
+    train_article_ids = []
+
+    # Reset api tracking 
+    if algorithm_option == 'gemini':
+        gemini.api_call_times = deque()
     
 
     # Iterate through article IDs
@@ -312,7 +318,20 @@ def run_derivation_algo(algorithm_option):
                         genai.configure(api_key=os.environ["API_KEY"])
                         model = genai.GenerativeModel("gemini-1.5-flash")
 
-                        gemini.get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
+                        computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
+                        
+                        # No error
+                        if error == 0:
+                            predicted_adjacency_lists.append(computed_adjacency_list)
+                            true_adjacency_lists.append(cur_article["Adjacency List"])
+                            articles_used.append(cur_article_id)
+                        # Response parsing error
+                        elif error == -1:
+                            train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
+                        # Unknown error
+                        elif error == 1:
+                            train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
+
 
 
             else:
@@ -334,6 +353,8 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
+    elif algorithm_option == 'gemini':
+        output_name = f"gemini"
 
     results_output.save_derivation_graph_results(algorithm_option, output_name, articles_used, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - num_skipped, train_article_ids)
 

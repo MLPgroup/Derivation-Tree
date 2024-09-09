@@ -17,6 +17,7 @@ OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = 'outputs/Important_Equation'
 OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY = 'outputs/Token_Similarity'
 OUTPUT_FOLDER_PATH_NAIVE_BAYES = 'outputs/Naive_Bayes'
 OUTPUT_FOLDER_PATH_BRUTE = 'outputs/Brute_Force'
+OUTPUT_FOLDER_PATH_GEMINI = 'outputs/Gemini'
 
 # Time Zone
 TIME_ZONE = 'UTC'
@@ -102,6 +103,8 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         cur_output_path = OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY
     elif algo_type == 'brute':
         cur_output_path = OUTPUT_FOLDER_PATH_BRUTE
+    elif algo_type == 'gemini':
+        cur_output_path = OUTPUT_FOLDER_PATH_GEMINI
 
     # Check output folder existence
     if not os.path.exists(cur_output_path):
@@ -119,6 +122,8 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
     elif algo_type == 'brute':
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
+    elif algo_type == 'gemini':
+        output_file_path = os.path.join(cur_output_path, f'{name}_{timestamp}.json')
 
     # Clear output file
     open(output_file_path, 'w').close()
@@ -179,6 +184,13 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
     training_set = {
         "Training Articles": train_article_ids
     }
+    if algo_type == 'gemini':
+        training_set = {
+            f"Article ID: {cur_article_id}": {
+                "Parsing Error": cur_parse_error,
+                "Gemini Text Response": cur_text_response
+            } for cur_article_id, cur_parse_error, cur_text_response in train_article_ids
+        }
 
     # Write to data to file
     try: 
@@ -189,6 +201,8 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Training": training_set}, json_file, indent=4)
             elif algo_type == 'brute':
                 json.dump({"Correctness": overall_correctness, "Results": article_data}, json_file, indent=4)
+            elif algo_type == 'gemini':
+                json.dump({"Correctness": overall_correctness, "Results": article_data, "Errors": training_set}, json_file, indent=4)
 
         print(f"Successfully wrote outputs to {output_file_path}")
     except Exception as e:
