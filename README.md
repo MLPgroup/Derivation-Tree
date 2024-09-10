@@ -19,11 +19,11 @@ python3 derivation_graph.py --algorithm [bayes, token, brute, gemini]
 ## Instructions to Plot Results
 To plot how results shift with certain hyper-parameters for some models:
 ```
-python3 plot_results.py -r [token_similarity_1_greater, token_similarity_1_lesser, token_similarity_2_greater, token_similarity_2_lesser, naive_bayes] 
+python3 plot_results.py -r [token_similarity_1_greater, token_similarity_1_lesser, token_similarity_2_greater, token_similarity_2_lesser, naive_bayes, gemini] 
 ```
 or 
 ```
-python3 plot_results.py --results [token_similarity_1_greater, token_similarity_1_lesser, token_similarity_2_greater, token_similarity_2_lesser, naive_bayes]
+python3 plot_results.py --results [token_similarity_1_greater, token_similarity_1_lesser, token_similarity_2_greater, token_similarity_2_lesser, naive_bayes, gemini]
 ```
 - - - -
 ## Output
@@ -48,6 +48,8 @@ Running the above command will output the results of the model specified, which 
 - Util file that writes output of the models to the correct location and with correct formatting
 ### plot_results.py
 - Util file that aggregates the outputs of certain algorithms and places them in the outputs folder
+### multiple_runner.py
+- Util file that modifies the hyper-parameters for certain models and runs the specified model for hyper-parameter tuning
 ### /articles (folder)
 - Holds the html for the articles that are in the articles.json file
 ### /outputs (folder)

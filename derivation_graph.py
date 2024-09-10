@@ -32,7 +32,7 @@ from collections import deque
 # NOTE: for all hyper-parameters ONLY INCLUDE DECIMAL IF THRESHOLD IS NOT AN INTEGER
 
 # TOKEN_SIMILARITY_THRESHOLD - threshold of matrix to determine if two equations are similar or not
-TOKEN_SIMILARITY_THRESHOLD = 80
+TOKEN_SIMILARITY_THRESHOLD = 98
 
 # TOKEN_SIMILARITY_DIRECTION - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
 TOKEN_SIMILARITY_DIRECTION = 'greater'
@@ -40,7 +40,7 @@ TOKEN_SIMILARITY_DIRECTION = 'greater'
 # TOKEN_SIMILARITY_STRICTNESS - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
 TOKEN_SIMILARITY_STRICTNESS = 2
 # BAYES_TRAINING_PERCENTAGE - percentage of dataset to use for training of Naive Bayes model
-BAYES_TRAINING_PERCENTAGE = 80
+BAYES_TRAINING_PERCENTAGE = 90
 
 '''HYPER-PARAMETERS'''
 
@@ -265,6 +265,7 @@ def run_derivation_algo(algorithm_option):
     # Get a list of manually parsed article IDs
     article_ids = article_parser.get_manually_parsed_articles()
 
+    # Variables to be tracked
     extracted_equations = []
     extracted_equation_indexing = []
     computed_similarities = []
@@ -275,9 +276,11 @@ def run_derivation_algo(algorithm_option):
     articles_used = []
     train_article_ids = []
 
-    # Reset api tracking 
+    # Reset api tracking and setup model
     if algorithm_option == 'gemini':
         gemini.api_call_times = deque()
+        genai.configure(api_key=os.environ["API_KEY"])
+        model = genai.GenerativeModel("gemini-1.5-flash")
     
 
     # Iterate through article IDs
@@ -295,31 +298,34 @@ def run_derivation_algo(algorithm_option):
                 # Extract equations from the HTML content
                 equations, words_between_equations, equation_indexing = extract_equations(html_content)
 
-                # If extracted correctly, compute similarity
+                # If extracted correctly, continue
                 if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
+                    # Save variables
                     extracted_equations.append(equations)
                     extracted_words_between_equations.append(words_between_equations)
                     extracted_equation_indexing.append(equation_indexing)
 
+                    # Gather articles for naive bayes
                     if algorithm_option == 'bayes':
                         articles_used.append(cur_article_id)
-
+                    # Token Similarity
                     elif algorithm_option == 'token':
+                        # Get similarity matrices
                         computed_similarity, equation_order = token_similarity.token_similarity_percentages(equations)
                         
+                        # Get resulting adjacency list
                         computed_adjacency_list = token_similarity.token_similarity_adjacency_list(computed_similarity, equation_order, TOKEN_SIMILARITY_THRESHOLD, TOKEN_SIMILARITY_DIRECTION, TOKEN_SIMILARITY_STRICTNESS)
 
+                        # Save variables
                         computed_similarities.append(computed_similarity)
                         equation_orders.append(equation_order)
                         true_adjacency_lists.append(cur_article["Adjacency List"])
                         predicted_adjacency_lists.append(computed_adjacency_list)
                         articles_used.append(cur_article_id)
                         train_article_ids = []
-
+                    # Gemini model
                     elif algorithm_option == 'gemini':
-                        genai.configure(api_key=os.environ["API_KEY"])
-                        model = genai.GenerativeModel("gemini-1.5-flash")
-
+                        # Call Gemini API and get resulting adjacency list
                         computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
                         
                         # No error
@@ -334,8 +340,6 @@ def run_derivation_algo(algorithm_option):
                         elif error == 1:
                             train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
 
-
-
             else:
                 # No html for article found
                 print(f"HTML file {html_path} not found")
@@ -349,6 +353,7 @@ def run_derivation_algo(algorithm_option):
     # Get accuracy numbers
     similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
+    # Name formatting
     if algorithm_option == 'token':
         output_name = f"token_similarity_{TOKEN_SIMILARITY_STRICTNESS}_{TOKEN_SIMILARITY_THRESHOLD}_{TOKEN_SIMILARITY_DIRECTION}"
     elif algorithm_option == 'bayes':
@@ -358,8 +363,8 @@ def run_derivation_algo(algorithm_option):
     elif algorithm_option == 'gemini':
         output_name = f"gemini"
 
+    # Save results
     results_output.save_derivation_graph_results(algorithm_option, output_name, articles_used, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - num_skipped, train_article_ids)
-
 
 
 

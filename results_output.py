@@ -5,12 +5,16 @@ Modification Log:
     July 10, 2024: created file and wrote working algorithm
 '''
 
+
+
 # Import modules
 import os
 import json
 import pytz
 import numpy as np
 from datetime import datetime
+
+
 
 # Path to output folder
 OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = 'outputs/Important_Equation'
@@ -21,6 +25,7 @@ OUTPUT_FOLDER_PATH_GEMINI = 'outputs/Gemini'
 
 # Time Zone
 TIME_ZONE = 'UTC'
+
 
 
 """
@@ -70,7 +75,6 @@ def save_important_equation_results(name, article_ids, predicted_equations, labe
         print(f"Successfully wrote outputs to {output_file_path}")
     except Exception as e:
         raise IOError(f"Failed to write to {output_file_path}: {e}")
-
 
 
 

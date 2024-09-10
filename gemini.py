@@ -1,13 +1,27 @@
+# Import modules
 import time
 from collections import deque
 
-# Model Configuration
-# model = genai.GenerativeModel("text-embedding-004")
 
-# Global variable
+
+'''Model Configuration'''
+# genai.configure(api_key=os.environ["API_KEY"])
+# model = genai.GenerativeModel("gemini-1.5-flash")
+'''Model Configuration'''
+
+
+# Global variable for rate limiting
 api_call_times_queue = deque()
 
 
+
+"""
+parse_adjacency_list(text_response, equation_indexing)
+Input: text_response -- text response of Gemini LLM
+       equation_indexing -- list storing the equation mathml tag for each index
+Return: adjacency_list -- parsed adjacency list or error string
+Function: Parse the text response from Gemini and construct the correctly formatted adjacency list
+"""
 def parse_adjacency_list(text_response, equation_indexing):
     adjacency_list = {}
     
@@ -56,6 +70,17 @@ def parse_adjacency_list(text_response, equation_indexing):
 
 
 
+"""
+get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
+Input: model -- Gemini model to send API request to
+       equations -- list storing the equations for current equation
+       words_between_equations -- list of article text occurring between each equation
+       equation_indexing -- ist storing the equation mathml tag for each index
+Return: adjacency_list -- parsed adjacency list or error string
+        error -- integer value if run correctly, 0 = run correctly, -1 = parsing error when parsing text response, 1 = other
+        error_string -- string explaining current error
+Function: Construct a prompt for the current article, ask the API for the response, and return the constructed adjacency list for the current article
+"""
 def get_gemini_adj_list(model, equations, words_between_equations, equation_indexing):
     global api_call_times_queue
 

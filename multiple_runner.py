@@ -1,9 +1,18 @@
+# Import modules
 import subprocess
 import argparse
 import re
 
 
 
+"""
+modify_and_run_token(file_path, similarity_directions, similarity_strictness)
+Input: file_path -- file that is to be modified
+       similarity_directions -- token similarity direction values to set
+       similarity_strictness -- range of similarity strictness values to set
+Return: None
+Function: Modify and run for a range of hyper-parameters for token similarity and run the model
+"""
 def modify_and_run_token(file_path, similarity_directions, similarity_strictness):
     # Read the original file
     with open(file_path, 'r') as file:
@@ -62,6 +71,14 @@ def modify_and_run_token(file_path, similarity_directions, similarity_strictness
 
 
 
+"""
+modify_and_run_bayes(file_path, percentage_values, repetitions)
+Input: file_path -- file that is to be modified
+       percentage_values -- training percentage values range for which to run the naive bayes model
+       repetitions -- number of times to run the model for each hyper-parameter value
+Return: None
+Function: Modify and run for a range of hyper-parameters for naive bayes and run the model
+"""
 def modify_and_run_bayes(file_path, percentage_values, repetitions):
     # Read the original file
     with open(file_path, 'r') as file:
@@ -78,7 +95,6 @@ def modify_and_run_bayes(file_path, percentage_values, repetitions):
             # Write the modified code back to the file
             with open(file_path, 'w') as file:
                 file.write(modified_code)
-
 
             # Run the script the specified times for the current combination
             for run_num in range(repetitions):
@@ -108,13 +124,19 @@ def modify_and_run_bayes(file_path, percentage_values, repetitions):
 
 
 
+"""
+Entry point for multiple_runner.py
+Runs multiple runner algorithm for specified algorithm
+"""
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to run multiple times")
     parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token'], help="Type of algorithm to compute derivation graph: ['bayes', 'token']")
     args = parser.parse_args()
 
+    # File to modify hyper-parameters
     file = 'derivation_graph.py'
     
+    # Run specified algo
     algo = args.algorithm.lower()
     if algo == 'bayes':
         percentage_values = range(10, 95, 5)
@@ -124,5 +146,3 @@ if __name__ == '__main__':
         similarity_directions = ['greater', 'lesser']
         similarity_strictness = [0, 1, 2]
         modify_and_run_token(file, similarity_directions, similarity_strictness)
-
-    

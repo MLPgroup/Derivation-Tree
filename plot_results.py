@@ -1,3 +1,4 @@
+# Import modules
 import os
 import json
 import re
@@ -6,14 +7,23 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 
+
+# File paths to output folders
 TOKEN_SIMILARITY_PATH = './outputs/Token_Similarity'
 NAIVE_BAYES_PATH = './outputs/Naive_Bayes'
+GEMINI_PATH = './outputs/Gemini'
 PLOT_PATH = './outputs/plots'
 
 
-# Plot token similarity results
-def plot_token_similarity(alg_num_threshold, alg_direction):
 
+"""
+plot_token_similarity(alg_num_threshold, alg_direction)
+Input: alg_num_threshold -- token similarity strictness value for token similarity run to the plotted
+       alg_direction -- token similarity direction for the token similarity run to be plotted
+Return: Plots
+Function: Plot the results for the specified token similarity run
+"""
+def plot_token_similarity(alg_num_threshold, alg_direction):
     # Extract threshold 
     def extract_threshold(filename):
         # Extract the numeric value from the filename
@@ -21,7 +31,6 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
         if match:
             return float(match.group(1))
         return None
-
 
     # Extract data from json files
     accuracies = []
@@ -31,6 +40,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     thresholds = []
     data_files = []
 
+    # Gather specified data
     for filename in os.listdir(TOKEN_SIMILARITY_PATH):
         if filename.endswith('.json') and f'token_similarity_{alg_num_threshold}_' in filename and f'{alg_direction}' in filename:
             file_path = os.path.join(TOKEN_SIMILARITY_PATH, filename)
@@ -50,7 +60,6 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
                     f1_scores.append(f1_score)
                     data_files.append(data)
 
-
     # Sort values by threshold
     sorted_indices = sorted(range(len(thresholds)), key=lambda k: thresholds[k])
     sorted_thresholds = [thresholds[i] for i in sorted_indices]
@@ -59,7 +68,6 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     sorted_recalls = [recalls[i] for i in sorted_indices]
     sorted_f1_scores = [f1_scores[i] for i in sorted_indices]
     sorted_data_files = [data_files[i] for i in sorted_indices]
-
 
     # Plot threshold vs values
     y_min = min(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
@@ -81,12 +89,10 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     plt.savefig(plot_filename)
     plt.show()
 
-
     # Find the threshold with the maximum F1 score
     max_f1_index = sorted_f1_scores.index(max(sorted_f1_scores))
     max_f1_threshold = sorted_thresholds[max_f1_index]
     max_f1_data = sorted_data_files[max_f1_index]
-
 
     # Extract box plot data from the JSON file with the maximum F1 score threshold
     aggregate_stats = max_f1_data["Correctness"]["Aggregate Correctness Statistics"]
@@ -129,7 +135,6 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
         }
     ]
 
-
     # Plot box plot
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.bxp(box_plot_data)
@@ -140,7 +145,6 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     plt.savefig(box_plot_filename)
     plt.show()
 
-
     # Prepare data for number line plots
     accuracy_data = []
     precision_data = []
@@ -149,13 +153,13 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     article_ids = []
     articles = max_f1_data["Results"]
 
+    # Congregate data
     for article_id, stats in articles.items():
         article_ids.append(article_id)
         accuracy_data.append(stats["Accuracy"])
         precision_data.append(stats["Precision"])
         recall_data.append(stats["Recall"])
         f1_score_data.append(stats["F1 Score"])
-
 
     # Plot line plots
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -174,9 +178,13 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
 
 
 
-# Plot naive bayes results
+"""
+plot_naive_bayes()
+Input: None
+Return: Plots
+Function: Plot the results for the naive bayes runs
+"""
 def plot_naive_bayes():
-
     # Extract threshold 
     def extract_threshold(filename):
         # Extract the numeric value from the filename
@@ -185,11 +193,10 @@ def plot_naive_bayes():
             return float(match.group(1))
         return None
 
-
     # Extract data from json files
     threshold_data = defaultdict(lambda: {'accuracy': [], 'precision': [], 'recall': [], 'f1_score': []})
 
-
+    # Gather data
     for filename in os.listdir(NAIVE_BAYES_PATH):
         if filename.endswith('.json'):
             file_path = os.path.join(NAIVE_BAYES_PATH, filename)
@@ -234,7 +241,6 @@ def plot_naive_bayes():
     sorted_recalls = [d['recall'] for d in sorted_averaged_data]
     sorted_f1_scores = [d['f1_score'] for d in sorted_averaged_data]
 
-
     # Plot threshold vs values
     y_min = min(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_max = max(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
@@ -255,7 +261,6 @@ def plot_naive_bayes():
     plt.savefig(plot_filename)
     plt.show()
 
-
     # Find the threshold with the maximum F1 score
     max_f1_index = sorted_f1_scores.index(max(sorted_f1_scores))
     max_f1_percentage = sorted_thresholds[max_f1_index]
@@ -266,7 +271,6 @@ def plot_naive_bayes():
             with open(file_path, 'r') as file:
                 data = json.load(file)
                 max_f1_data = data
-            
 
     # Extract box plot data from the JSON file with the maximum F1 score threshold
     aggregate_stats = max_f1_data["Correctness"]["Aggregate Correctness Statistics"]
@@ -309,7 +313,6 @@ def plot_naive_bayes():
         }
     ]
 
-
     # Plot box plot
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.bxp(box_plot_data)
@@ -320,7 +323,6 @@ def plot_naive_bayes():
     plt.savefig(box_plot_filename)
     plt.show()
 
-
     # Prepare data for number line plots
     accuracy_data = []
     precision_data = []
@@ -329,13 +331,13 @@ def plot_naive_bayes():
     article_ids = []
     articles = max_f1_data["Results"]
 
+    # Congregate data
     for article_id, stats in articles.items():
         article_ids.append(article_id)
         accuracy_data.append(stats["Accuracy"])
         precision_data.append(stats["Precision"])
         recall_data.append(stats["Recall"])
         f1_score_data.append(stats["F1 Score"])
-
 
     # Plot line plots
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -354,16 +356,145 @@ def plot_naive_bayes():
 
 
 
+"""
+plot_gemini()
+Input: None
+Return: Plots
+Function: Plot the results for the Gemini runs
+"""
+def plot_gemini():
+    # Extract date 
+    def extract_date(filename):
+        # Extract the numeric value from the filename
+        match = re.search(r'gemini_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})_UTC', filename)
+        if match:
+            return match.group(1)
+        return None
+
+    # Extract data from json files
+    f1_data = {}
+
+    # Gather data
+    for filename in os.listdir(GEMINI_PATH):
+        if filename.endswith('.json'):
+            file_path = os.path.join(GEMINI_PATH, filename)
+            with open(file_path, 'r') as file:
+                data = json.load(file)
+                f1_score = data["Correctness"]["Overall Correctness"]["Overall F1 Score"]
+                file_date = extract_date(filename)
+                
+                if file_date:
+                    f1_data[file_date] = {
+                        'filename': filename,
+                        'f1_score': f1_score,
+                        'data': data
+                    }
+
+    # Find the date with the maximum F1 score
+    max_f1_data = max(f1_data.values(), key=lambda x: x['f1_score'])
+    max_f1_filename = max_f1_data['filename']
+    max_f1_json_data = max_f1_data['data']
+    max_f1_score = max_f1_data['f1_score']
+    max_f1_date = extract_date(max_f1_filename)
+
+    # Extract box plot data from the JSON file with the maximum F1 score
+    aggregate_stats = max_f1_json_data["Correctness"]["Aggregate Correctness Statistics"]
+    box_plot_data = [
+        {
+            'label': "Accuracy",
+            'whislo': aggregate_stats["Accuracy"]["Lowest"],
+            'q1': aggregate_stats["Accuracy"]["25th Quartile (Q1)"],
+            'med': aggregate_stats["Accuracy"]["Median"],
+            'q3': aggregate_stats["Accuracy"]["75th Quartile (Q3)"],
+            'whishi': aggregate_stats["Accuracy"]["Highest"],
+            'fliers': []
+        },
+        {
+            'label': "Precision",
+            'whislo': aggregate_stats["Precision"]["Lowest"],
+            'q1': aggregate_stats["Precision"]["25th Quartile (Q1)"],
+            'med': aggregate_stats["Precision"]["Median"],
+            'q3': aggregate_stats["Precision"]["75th Quartile (Q3)"],
+            'whishi': aggregate_stats["Precision"]["Highest"],
+            'fliers': []
+        },
+        {
+            'label': "Recall",
+            'whislo': aggregate_stats["Recall"]["Lowest"],
+            'q1': aggregate_stats["Recall"]["25th Quartile (Q1)"],
+            'med': aggregate_stats["Recall"]["Median"],
+            'q3': aggregate_stats["Recall"]["75th Quartile (Q3)"],
+            'whishi': aggregate_stats["Recall"]["Highest"],
+            'fliers': []
+        },
+        {
+            'label': "F1 Score",
+            'whislo': aggregate_stats["F1 Score"]["Lowest"],
+            'q1': aggregate_stats["F1 Score"]["25th Quartile (Q1)"],
+            'med': aggregate_stats["F1 Score"]["Median"],
+            'q3': aggregate_stats["F1 Score"]["75th Quartile (Q3)"],
+            'whishi': aggregate_stats["F1 Score"]["Highest"],
+            'fliers': []
+        }
+    ]
+
+    # Plot box plot
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.bxp(box_plot_data)
+    ax.set_title(f'Aggregate Gemini Correctness Statistics Box Plot for {max_f1_date} ({max_f1_json_data["Correctness"]["Number of articles used"]} articles tested)')
+    ax.set_ylabel('Values')
+    ax.grid(True, linestyle='--', linewidth=0.5)
+    box_plot_filename = os.path.join(PLOT_PATH, f'gemini_box_plot_{max_f1_date}.png')
+    plt.savefig(box_plot_filename)
+    plt.show()
+
+    # Prepare data for number line plots
+    accuracy_data = []
+    precision_data = []
+    recall_data = []
+    f1_score_data = []
+    article_ids = []
+    articles = max_f1_json_data["Results"]
+
+    # Congregate data
+    for article_id, stats in articles.items():
+        article_ids.append(article_id)
+        accuracy_data.append(stats["Accuracy"])
+        precision_data.append(stats["Precision"])
+        recall_data.append(stats["Recall"])
+        f1_score_data.append(stats["F1 Score"])
+
+    # Plot line plots
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.plot(accuracy_data, [1]*len(accuracy_data), 'x', label='Accuracy', color='blue')
+    ax.plot(precision_data, [2]*len(precision_data), 'x', label='Precision', color='green')
+    ax.plot(recall_data, [3]*len(recall_data), 'x', label='Recall', color='red')
+    ax.plot(f1_score_data, [4]*len(f1_score_data), 'x', label='F1 Score', color='purple')
+    ax.set_xlabel('Values')
+    ax.set_yticks([1, 2, 3, 4])
+    ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
+    ax.set_title(f'Gemini Correctness Statistics Line Plot for {max_f1_date} ({max_f1_json_data["Correctness"]["Number of articles used"]} articles tested)')
+    line_plot_filename = os.path.join(PLOT_PATH, f'gemini_line_plot_{max_f1_date}.png')
+    plt.savefig(line_plot_filename)
+    plt.show()
+
+
+
+"""
+Entry point for plot_results.py
+Plots the results for the specified model and run
+"""
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Which results to plot")
     parser.add_argument("-r", "--results", required=True,
     choices=['token_similarity_1_greater', 'token_similarity_1_lesser',
              'token_similarity_2_greater', 'token_similarity_2_lesser',
-             'naive_bayes'],
-    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes']")
+             'naive_bayes', 'gemini'],
+    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes', 'gemini']")
     args = parser.parse_args()
 
+    # Plot specified algorithms
     argument = args.results
     if argument == 'token_similarity_1_greater':
         plot_token_similarity(1, 'greater')
@@ -375,3 +506,5 @@ if __name__ == '__main__':
         plot_token_similarity(2, 'lesser')
     elif argument == 'naive_bayes':
         plot_naive_bayes()
+    elif argument == 'gemini':
+        plot_gemini()
