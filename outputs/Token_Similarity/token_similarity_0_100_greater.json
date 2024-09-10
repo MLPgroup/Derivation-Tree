@@ -2,42 +2,42 @@
     "Correctness": {
         "Number of articles used": 100,
         "Overall Correctness": {
-            "Overall Accuracy": 0.051629726205997394,
-            "Overall Precision": 0.05759162303664921,
-            "Overall Recall": 0.33277310924369746,
-            "Overall F1 Score": 0.09818993305231836
+            "Overall Accuracy": 0.05250814332247557,
+            "Overall Precision": 0.058516044721939886,
+            "Overall Recall": 0.33837111670864817,
+            "Overall F1 Score": 0.0997771725674672
         },
         "Aggregate Correctness Statistics": {
             "Accuracy": {
-                "Mean": 0.060120681772180745,
+                "Mean": 0.06199034480999236,
                 "Lowest": 0.0,
                 "25th Quartile (Q1)": 0.029484029484029485,
-                "Median": 0.052058876648004335,
-                "75th Quartile (Q3)": 0.0808108478290645,
+                "Median": 0.05333438685208597,
+                "75th Quartile (Q3)": 0.08171629307460689,
                 "Highest": 0.3
             },
             "Precision": {
-                "Mean": 0.06798299731133894,
+                "Mean": 0.07000411290598395,
                 "Lowest": 0.0,
                 "25th Quartile (Q1)": 0.03290239172592114,
-                "Median": 0.056623931623931624,
-                "75th Quartile (Q3)": 0.0893939393939394,
+                "Median": 0.057692307692307696,
+                "75th Quartile (Q3)": 0.09325396825396826,
                 "Highest": 0.3333333333333333
             },
             "Recall": {
-                "Mean": 0.3188295354056661,
+                "Mean": 0.3275740409001716,
                 "Lowest": 0.0,
-                "25th Quartile (Q1)": 0.17803030303030304,
-                "Median": 0.3431372549019608,
-                "75th Quartile (Q3)": 0.42857142857142855,
+                "25th Quartile (Q1)": 0.19545454545454546,
+                "Median": 0.36363636363636365,
+                "75th Quartile (Q3)": 0.4444444444444444,
                 "Highest": 0.7894736842105263
             },
             "F1 Score": {
-                "Mean": 0.1098848733124094,
+                "Mean": 0.11313807564458539,
                 "Lowest": 0.0,
                 "25th Quartile (Q1)": 0.05727554179566564,
-                "Median": 0.09896385738761523,
-                "75th Quartile (Q3)": 0.14953709129262863,
+                "Median": 0.10126762569434553,
+                "75th Quartile (Q3)": 0.1510863350485992,
                 "Highest": 0.46153846153846156
             }
         }
@@ -120,10 +120,10 @@
                     "S0.E4"
                 ]
             },
-            "Accuracy": 0.06349206349206349,
-            "Precision": 0.07407407407407407,
-            "Recall": 0.3076923076923077,
-            "F1 Score": 0.11940298507462686
+            "Accuracy": 0.046153846153846156,
+            "Precision": 0.05555555555555555,
+            "Recall": 0.21428571428571427,
+            "F1 Score": 0.08823529411764706
         },
         "Article ID: 0907.2720": {
             "Adjacency List": {
@@ -573,7 +573,7 @@
             "Recall": 0.3684210526315789,
             "F1 Score": 0.07407407407407407
         },
-        "Article ID: 0907.2967": {
+        "Article ID: 0907.2994": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E16",
@@ -767,7 +767,7 @@
             "Recall": 0.058823529411764705,
             "F1 Score": 0.011834319526627217
         },
-        "Article ID: 0907.2994": {
+        "Article ID: 0907.3017": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E5",
@@ -837,7 +837,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 0907.3017": {
+        "Article ID: 0907.3028": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E6",
@@ -869,14 +869,16 @@
                     "S2.E3",
                     "S2.E2"
                 ],
-                "S2.E6": []
+                "S2.E6": [
+                    null
+                ]
             },
-            "Accuracy": 0.038461538461538464,
-            "Precision": 0.05,
-            "Recall": 0.14285714285714285,
-            "F1 Score": 0.07407407407407408
+            "Accuracy": 0.07692307692307693,
+            "Precision": 0.09523809523809523,
+            "Recall": 0.2857142857142857,
+            "F1 Score": 0.14285714285714285
         },
-        "Article ID: 0907.3028": {
+        "Article ID: 0907.3040": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E1"
@@ -985,7 +987,7 @@
             "Recall": 0.25,
             "F1 Score": 0.06741573033707865
         },
-        "Article ID: 0907.3040": {
+        "Article ID: 0907.3145": {
             "Adjacency List": {
                 "S1.E1": [
                     "S2.E9",
@@ -1067,7 +1069,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 0907.3145": {
+        "Article ID: 0907.3172": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E5",
@@ -1091,14 +1093,16 @@
                     "S2.E2",
                     "S2.E1"
                 ],
-                "S2.E5": []
+                "S2.E5": [
+                    null
+                ]
             },
-            "Accuracy": 0.05555555555555555,
-            "Precision": 0.07142857142857142,
-            "Recall": 0.2,
-            "F1 Score": 0.10526315789473682
+            "Accuracy": 0.1111111111111111,
+            "Precision": 0.13333333333333333,
+            "Recall": 0.4,
+            "F1 Score": 0.2
         },
-        "Article ID: 0907.3172": {
+        "Article ID: 0907.3206": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E9",
@@ -1160,14 +1164,16 @@
                     "S0.E2",
                     "S0.E1"
                 ],
-                "S0.E9": []
+                "S0.E9": [
+                    null
+                ]
             },
-            "Accuracy": 0.0392156862745098,
-            "Precision": 0.045454545454545456,
-            "Recall": 0.2222222222222222,
-            "F1 Score": 0.07547169811320754
+            "Accuracy": 0.058823529411764705,
+            "Precision": 0.06666666666666667,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.1111111111111111
         },
-        "Article ID: 0907.3206": {
+        "Article ID: 0907.3284": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E13",
@@ -1307,7 +1313,7 @@
             "Recall": 0.21428571428571427,
             "F1 Score": 0.05084745762711864
         },
-        "Article ID: 0907.3283": {
+        "Article ID: 0907.3505": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E12",
@@ -1431,7 +1437,7 @@
             "Recall": 0.2857142857142857,
             "F1 Score": 0.07692307692307693
         },
-        "Article ID: 0907.3284": {
+        "Article ID: 1701.00003": {
             "Adjacency List": {
                 "S4.E1": [
                     "S5.E16",
@@ -1606,7 +1612,7 @@
             "Recall": 0.42105263157894735,
             "F1 Score": 0.1038961038961039
         },
-        "Article ID: 0907.3505": {
+        "Article ID: 1701.00176": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E9",
@@ -1688,7 +1694,7 @@
             "Recall": 0.4117647058823529,
             "F1 Score": 0.19718309859154928
         },
-        "Article ID: 1701.00003": {
+        "Article ID: 1701.00226": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E6",
@@ -1728,7 +1734,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 1701.00176": {
+        "Article ID: 1701.00357": {
             "Adjacency List": {
                 "S2.E1": [
                     "S4.E13",
@@ -1852,7 +1858,7 @@
             "Recall": 0.38461538461538464,
             "F1 Score": 0.0970873786407767
         },
-        "Article ID: 1701.00226": {
+        "Article ID: 1701.00692": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E14",
@@ -1984,14 +1990,16 @@
                     "S2.E3",
                     "S2.E2"
                 ],
-                "S3.E14": []
+                "S3.E14": [
+                    null
+                ]
             },
-            "Accuracy": 0.05309734513274336,
-            "Precision": 0.057692307692307696,
+            "Accuracy": 0.05263157894736842,
+            "Precision": 0.05714285714285714,
             "Recall": 0.4,
-            "F1 Score": 0.10084033613445378
+            "F1 Score": 0.09999999999999999
         },
-        "Article ID: 1701.00357": {
+        "Article ID: 1701.00847": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E10",
@@ -2073,7 +2081,7 @@
             "Recall": 0.42857142857142855,
             "F1 Score": 0.17647058823529413
         },
-        "Article ID: 1701.00692": {
+        "Article ID: 1701.00898": {
             "Adjacency List": {
                 "S2.E1": [
                     "S4.E14",
@@ -2213,7 +2221,7 @@
             "Recall": 0.5,
             "F1 Score": 0.11864406779661017
         },
-        "Article ID: 1701.00847": {
+        "Article ID: 1701.00986": {
             "Adjacency List": {
                 "S2.E1": [
                     "S4.E11",
@@ -2308,7 +2316,7 @@
             "Recall": 0.36363636363636365,
             "F1 Score": 0.10526315789473685
         },
-        "Article ID: 1701.00898": {
+        "Article ID: 1701.01008": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E6",
@@ -2357,7 +2365,7 @@
             "Recall": 0.14285714285714285,
             "F1 Score": 0.058823529411764705
         },
-        "Article ID: 1701.00986": {
+        "Article ID: 1701.01071": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E9",
@@ -2427,7 +2435,7 @@
             "Recall": 0.4444444444444444,
             "F1 Score": 0.1509433962264151
         },
-        "Article ID: 1701.01008": {
+        "Article ID: 1701.01109": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E13",
@@ -2567,7 +2575,7 @@
             "Recall": 0.42857142857142855,
             "F1 Score": 0.10169491525423728
         },
-        "Article ID: 1701.01071": {
+        "Article ID: 1701.01408": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E6",
@@ -2662,7 +2670,7 @@
             "Recall": 0.3333333333333333,
             "F1 Score": 0.1038961038961039
         },
-        "Article ID: 1701.01109": {
+        "Article ID: 1701.01521": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E1"
@@ -2702,7 +2710,7 @@
             "Recall": 0.5,
             "F1 Score": 0.23076923076923075
         },
-        "Article ID: 1701.01408": {
+        "Article ID: 1701.01531": {
             "Adjacency List": {
                 "S3.E1": [
                     "S6.E9",
@@ -2764,14 +2772,16 @@
                     "S6.E8",
                     "S3.E7"
                 ],
-                "S6.E9": []
+                "S6.E9": [
+                    null
+                ]
             },
-            "Accuracy": 0.06,
-            "Precision": 0.06818181818181818,
-            "Recall": 0.3333333333333333,
-            "F1 Score": 0.11320754716981131
+            "Accuracy": 0.08,
+            "Precision": 0.08888888888888889,
+            "Recall": 0.4444444444444444,
+            "F1 Score": 0.14814814814814814
         },
-        "Article ID: 1701.01521": {
+        "Article ID: 1701.01567": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E11",
@@ -2911,7 +2921,7 @@
             "Recall": 0.3333333333333333,
             "F1 Score": 0.08403361344537814
         },
-        "Article ID: 1701.01531": {
+        "Article ID: 1701.01647": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E12",
@@ -3020,7 +3030,7 @@
             "Recall": 0.26666666666666666,
             "F1 Score": 0.08695652173913043
         },
-        "Article ID: 1701.01567": {
+        "Article ID: 1701.01686": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E5",
@@ -3052,7 +3062,7 @@
             "Recall": 0.6,
             "F1 Score": 0.3157894736842105
         },
-        "Article ID: 1701.01647": {
+        "Article ID: 1701.01815": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E6",
@@ -3092,7 +3102,7 @@
             "Recall": 0.5,
             "F1 Score": 0.28571428571428575
         },
-        "Article ID: 1701.01686": {
+        "Article ID: 1701.03108": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E5",
@@ -3132,7 +3142,7 @@
             "Recall": 0.16666666666666666,
             "F1 Score": 0.07692307692307691
         },
-        "Article ID: 1701.01815": {
+        "Article ID: 1810.00215": {
             "Adjacency List": {
                 "S1.E1": [
                     "S2.E7",
@@ -3191,7 +3201,7 @@
             "Recall": 0.375,
             "F1 Score": 0.1395348837209302
         },
-        "Article ID: 1701.01921": {
+        "Article ID: 1810.00264": {
             "Adjacency List": {
                 "S1.E1": [
                     "S1.E4",
@@ -3216,7 +3226,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 1701.03108": {
+        "Article ID: 1810.00524": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E15",
@@ -3373,7 +3383,7 @@
             "Recall": 0.2,
             "F1 Score": 0.04477611940298508
         },
-        "Article ID: 1810.00215": {
+        "Article ID: 1810.00641": {
             "Adjacency List": {
                 "S3.E1": [
                     "S3.E19",
@@ -3608,7 +3618,7 @@
             "Recall": 0.4,
             "F1 Score": 0.07655502392344497
         },
-        "Article ID: 1810.00264": {
+        "Article ID: 1810.00929": {
             "Adjacency List": {
                 "S2.E1": [
                     "S4.E7",
@@ -3690,7 +3700,7 @@
             "Recall": 0.4,
             "F1 Score": 0.125
         },
-        "Article ID: 1810.00524": {
+        "Article ID: 1810.01085": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E1"
@@ -3785,7 +3795,7 @@
             "Recall": 0.45454545454545453,
             "F1 Score": 0.13157894736842107
         },
-        "Article ID: 1810.00641": {
+        "Article ID: 1810.01153": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E12",
@@ -3894,7 +3904,7 @@
             "Recall": 0.6470588235294118,
             "F1 Score": 0.23404255319148934
         },
-        "Article ID: 1810.00929": {
+        "Article ID: 1810.01819": {
             "Adjacency List": {
                 "S1.E1": [
                     "S2.E5",
@@ -3926,7 +3936,7 @@
             "Recall": 0.4,
             "F1 Score": 0.21052631578947364
         },
-        "Article ID: 1810.01085": {
+        "Article ID: 1810.01821": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E13",
@@ -4042,14 +4052,16 @@
                     "S0.E2",
                     "S0.E1"
                 ],
-                "S0.E13": []
+                "S0.E13": [
+                    null
+                ]
             },
-            "Accuracy": 0.05102040816326531,
-            "Precision": 0.05555555555555555,
+            "Accuracy": 0.050505050505050504,
+            "Precision": 0.054945054945054944,
             "Recall": 0.38461538461538464,
-            "F1 Score": 0.0970873786407767
+            "F1 Score": 0.09615384615384616
         },
-        "Article ID: 1810.01153": {
+        "Article ID: 1810.01936": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E7",
@@ -4098,7 +4110,7 @@
             "Recall": 0.5,
             "F1 Score": 0.22857142857142856
         },
-        "Article ID: 1810.01819": {
+        "Article ID: 0908.0117": {
             "Adjacency List": {
                 "S4.E1": [
                     "S6.E13",
@@ -4238,7 +4250,7 @@
             "Recall": 0.21428571428571427,
             "F1 Score": 0.05084745762711864
         },
-        "Article ID: 1810.01821": {
+        "Article ID: 0908.0155": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E1"
@@ -4287,7 +4299,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 1810.01936": {
+        "Article ID: 0908.0159": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E8",
@@ -4357,7 +4369,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 0908.0117": {
+        "Article ID: 0908.0260": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E8",
@@ -4427,7 +4439,7 @@
             "Recall": 0.1111111111111111,
             "F1 Score": 0.03773584905660377
         },
-        "Article ID: 0908.0155": {
+        "Article ID: 0908.0304": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E9",
@@ -4489,14 +4501,16 @@
                     "S2.E2",
                     "S2.E1"
                 ],
-                "S3.E9": []
+                "S3.E9": [
+                    null
+                ]
             },
-            "Accuracy": 0.0,
-            "Precision": 0.0,
-            "Recall": 0.0,
-            "F1 Score": 0
+            "Accuracy": 0.018518518518518517,
+            "Precision": 0.022222222222222223,
+            "Recall": 0.1,
+            "F1 Score": 0.03636363636363636
         },
-        "Article ID: 0908.0159": {
+        "Article ID: 0908.0314": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E8",
@@ -4547,14 +4561,16 @@
                     "S3.E8",
                     "S3.E7"
                 ],
-                "S3.E8": []
+                "S3.E8": [
+                    null
+                ]
             },
-            "Accuracy": 0.07317073170731707,
-            "Precision": 0.08571428571428572,
-            "Recall": 0.3333333333333333,
-            "F1 Score": 0.13636363636363638
+            "Accuracy": 0.0975609756097561,
+            "Precision": 0.1111111111111111,
+            "Recall": 0.4444444444444444,
+            "F1 Score": 0.17777777777777776
         },
-        "Article ID: 0908.0260": {
+        "Article ID: 0908.0219": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E10",
@@ -4636,7 +4652,7 @@
             "Recall": 0.09090909090909091,
             "F1 Score": 0.030769230769230767
         },
-        "Article ID: 0908.0304": {
+        "Article ID: 0908.0180": {
             "Adjacency List": {
                 "S1.E1": [
                     "S5.E12",
@@ -4745,7 +4761,7 @@
             "Recall": 0.07692307692307693,
             "F1 Score": 0.022222222222222227
         },
-        "Article ID: 0908.0314": {
+        "Article ID: 1908.00040": {
             "Adjacency List": {
                 "S1.E1": [
                     "S1.E2",
@@ -4770,7 +4786,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 0908.0219": {
+        "Article ID: 1908.00186": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E7",
@@ -4811,14 +4827,16 @@
                     "S3.E7",
                     "S3.E6"
                 ],
-                "S3.E7": []
+                "S3.E7": [
+                    null
+                ]
             },
-            "Accuracy": 0.16666666666666666,
-            "Precision": 0.18518518518518517,
+            "Accuracy": 0.16129032258064516,
+            "Precision": 0.17857142857142858,
             "Recall": 0.625,
-            "F1 Score": 0.2857142857142857
+            "F1 Score": 0.2777777777777778
         },
-        "Article ID: 0908.0180": {
+        "Article ID: 1908.00372": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E2",
@@ -4927,7 +4945,7 @@
             "Recall": 0.16666666666666666,
             "F1 Score": 0.0449438202247191
         },
-        "Article ID: 1908.00040": {
+        "Article ID: 1908.00596": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E6",
@@ -4997,7 +5015,7 @@
             "Recall": 0.2222222222222222,
             "F1 Score": 0.07547169811320754
         },
-        "Article ID: 1908.00186": {
+        "Article ID: 1908.00647": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E4",
@@ -5079,7 +5097,7 @@
             "Recall": 0.36363636363636365,
             "F1 Score": 0.12307692307692307
         },
-        "Article ID: 1908.00372": {
+        "Article ID: 1908.00778": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E4",
@@ -5104,7 +5122,7 @@
             "Recall": 0.75,
             "F1 Score": 0.46153846153846156
         },
-        "Article ID: 1908.00596": {
+        "Article ID: 1908.01025": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E8",
@@ -5163,7 +5181,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 1908.00647": {
+        "Article ID: 1908.01254": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E13",
@@ -5303,7 +5321,7 @@
             "Recall": 0.4,
             "F1 Score": 0.10084033613445378
         },
-        "Article ID: 1908.00778": {
+        "Article ID: 1908.01434": {
             "Adjacency List": {
                 "S1.E1": [
                     "S4.E13",
@@ -5427,7 +5445,7 @@
             "Recall": 0.46153846153846156,
             "F1 Score": 0.11650485436893204
         },
-        "Article ID: 1908.01025": {
+        "Article ID: 1908.01505": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E10",
@@ -5509,7 +5527,7 @@
             "Recall": 0.4166666666666667,
             "F1 Score": 0.1515151515151515
         },
-        "Article ID: 1908.01254": {
+        "Article ID: 1612.00053": {
             "Adjacency List": {
                 "S3.E1": [
                     "S3.E1"
@@ -5591,7 +5609,7 @@
             "Recall": 0.36363636363636365,
             "F1 Score": 0.12307692307692307
         },
-        "Article ID: 1908.01434": {
+        "Article ID: 1612.00217": {
             "Adjacency List": {
                 "S3.E1": [
                     "S6.E4",
@@ -5616,7 +5634,7 @@
             "Recall": 0.25,
             "F1 Score": 0.15384615384615383
         },
-        "Article ID: 1908.01505": {
+        "Article ID: 1612.00231": {
             "Adjacency List": {
                 "S2.E1": [
                     "S5.E9",
@@ -5698,7 +5716,7 @@
             "Recall": 0.0,
             "F1 Score": 0
         },
-        "Article ID: 1612.00053": {
+        "Article ID: 1612.00257": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E4",
@@ -5738,7 +5756,7 @@
             "Recall": 0.16666666666666666,
             "F1 Score": 0.07692307692307691
         },
-        "Article ID: 1612.00217": {
+        "Article ID: 1612.00288": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E15",
@@ -5895,7 +5913,7 @@
             "Recall": 0.7894736842105263,
             "F1 Score": 0.2173913043478261
         },
-        "Article ID: 1612.00231": {
+        "Article ID: 1612.00392": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E11",
@@ -6019,7 +6037,7 @@
             "Recall": 0.4666666666666667,
             "F1 Score": 0.13333333333333333
         },
-        "Article ID: 1612.00257": {
+        "Article ID: 1612.00446": {
             "Adjacency List": {
                 "S1.E1": [
                     "S3.E15",
@@ -6176,7 +6194,7 @@
             "Recall": 0.26666666666666666,
             "F1 Score": 0.05970149253731343
         },
-        "Article ID: 1612.00288": {
+        "Article ID: 1612.00463": {
             "Adjacency List": {
                 "S2.E1": [
                     "S5.E14",
@@ -6316,7 +6334,7 @@
             "Recall": 0.1,
             "F1 Score": 0.03225806451612903
         },
-        "Article ID: 1612.00392": {
+        "Article ID: 1612.00522": {
             "Adjacency List": {
                 "S3.E1": [
                     "S5.E7",
@@ -6365,7 +6383,7 @@
             "Recall": 0.42857142857142855,
             "F1 Score": 0.17647058823529413
         },
-        "Article ID: 1612.00446": {
+        "Article ID: 1510.00210": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E8",
@@ -6416,14 +6434,16 @@
                     "S0.E3",
                     "S0.E2"
                 ],
-                "S0.E8": []
+                "S0.E8": [
+                    null
+                ]
             },
-            "Accuracy": 0.13157894736842105,
-            "Precision": 0.14285714285714285,
-            "Recall": 0.625,
-            "F1 Score": 0.23255813953488372
+            "Accuracy": 0.15789473684210525,
+            "Precision": 0.16666666666666666,
+            "Recall": 0.75,
+            "F1 Score": 0.27272727272727276
         },
-        "Article ID: 1612.00463": {
+        "Article ID: 1510.00400": {
             "Adjacency List": {
                 "S1.E1": [
                     "S6.E12",
@@ -6532,7 +6552,7 @@
             "Recall": 0.3076923076923077,
             "F1 Score": 0.0888888888888889
         },
-        "Article ID: 1612.00522": {
+        "Article ID: 1510.00417": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E8",
@@ -6614,7 +6634,7 @@
             "Recall": 0.25,
             "F1 Score": 0.0909090909090909
         },
-        "Article ID: 1612.00629": {
+        "Article ID: 1510.00670": {
             "Adjacency List": {
                 "S2.E1": [
                     "S2.E1"
@@ -6723,7 +6743,7 @@
             "Recall": 0.08333333333333333,
             "F1 Score": 0.02247191011235955
         },
-        "Article ID: 1510.00210": {
+        "Article ID: 1510.00710": {
             "Adjacency List": {
                 "S2.E1": [
                     "S4.E9",
@@ -6818,7 +6838,7 @@
             "Recall": 0.09090909090909091,
             "F1 Score": 0.026315789473684213
         },
-        "Article ID: 1510.00400": {
+        "Article ID: 1510.00716": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E8",
@@ -6913,7 +6933,7 @@
             "Recall": 0.18181818181818182,
             "F1 Score": 0.052631578947368425
         },
-        "Article ID: 1510.00417": {
+        "Article ID: 1510.00770": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E14",
@@ -7107,7 +7127,7 @@
             "Recall": 0.32,
             "F1 Score": 0.0903954802259887
         },
-        "Article ID: 1510.00543": {
+        "Article ID: 1510.01138": {
             "Adjacency List": {
                 "S1.E1": [
                     "S3.E11",
@@ -7202,7 +7222,7 @@
             "Recall": 0.5,
             "F1 Score": 0.17721518987341772
         },
-        "Article ID: 1510.00670": {
+        "Article ID: 1510.01448": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E1"
@@ -7261,7 +7281,7 @@
             "Recall": 0.3333333333333333,
             "F1 Score": 0.13636363636363638
         },
-        "Article ID: 1510.00710": {
+        "Article ID: 1409.0094": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E19",
@@ -7496,7 +7516,7 @@
             "Recall": 0.391304347826087,
             "F1 Score": 0.08490566037735849
         },
-        "Article ID: 1510.00716": {
+        "Article ID: 1409.0101": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E15",
@@ -7645,14 +7665,16 @@
                     "S2.E2",
                     "S2.E1"
                 ],
-                "S3.E15": []
+                "S3.E15": [
+                    null
+                ]
             },
-            "Accuracy": 0.046875,
-            "Precision": 0.05042016806722689,
-            "Recall": 0.4,
-            "F1 Score": 0.08955223880597016
+            "Accuracy": 0.0546875,
+            "Precision": 0.058333333333333334,
+            "Recall": 0.4666666666666667,
+            "F1 Score": 0.1037037037037037
         },
-        "Article ID: 1510.00770": {
+        "Article ID: 1409.0104": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E16",
@@ -7827,7 +7849,7 @@
             "Recall": 0.5882352941176471,
             "F1 Score": 0.13157894736842105
         },
-        "Article ID: 1510.01138": {
+        "Article ID: 1409.0110": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E7",
@@ -7922,7 +7944,7 @@
             "Recall": 0.6363636363636364,
             "F1 Score": 0.1842105263157895
         },
-        "Article ID: 1510.01448": {
+        "Article ID: 1409.0188": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E11",
@@ -8017,7 +8039,7 @@
             "Recall": 0.5333333333333333,
             "F1 Score": 0.2
         },
-        "Article ID: 1409.0010": {
+        "Article ID: 1409.0220": {
             "Adjacency List": {
                 "S1.E1": [
                     "S2.E15",
@@ -8174,7 +8196,7 @@
             "Recall": 0.13333333333333333,
             "F1 Score": 0.029850746268656716
         },
-        "Article ID: 1409.0082": {
+        "Article ID: 1409.0380": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E10",
@@ -8269,7 +8291,7 @@
             "Recall": 0.5625,
             "F1 Score": 0.22222222222222224
         },
-        "Article ID: 1409.0094": {
+        "Article ID: 1409.0466": {
             "Adjacency List": {
                 "S3.E1": [
                     "S5.E7",
@@ -8318,7 +8340,7 @@
             "Recall": 0.375,
             "F1 Score": 0.17142857142857143
         },
-        "Article ID: 1409.0101": {
+        "Article ID: astro-ph9211002": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E6",
@@ -8442,7 +8464,7 @@
             "Recall": 0.38461538461538464,
             "F1 Score": 0.0970873786407767
         },
-        "Article ID: 1409.0104": {
+        "Article ID: astro-ph9211005": {
             "Adjacency List": {
                 "S1.E1": [
                     "S1.E9",
@@ -8512,7 +8534,7 @@
             "Recall": 0.4444444444444444,
             "F1 Score": 0.1509433962264151
         },
-        "Article ID: 1409.0110": {
+        "Article ID: cond-mat9211006": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E5",
@@ -8561,7 +8583,7 @@
             "Recall": 0.2857142857142857,
             "F1 Score": 0.11764705882352941
         },
-        "Article ID: 1409.0188": {
+        "Article ID: hep-lat9211009": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E13",
@@ -8685,7 +8707,7 @@
             "Recall": 0.4,
             "F1 Score": 0.1142857142857143
         },
-        "Article ID: 1409.0220": {
+        "Article ID: hep-ph9211257": {
             "Adjacency List": {
                 "S3.E1": [
                     "S3.E3",
@@ -8734,7 +8756,7 @@
             "Recall": 0.5,
             "F1 Score": 0.22857142857142856
         },
-        "Article ID: 1409.0380": {
+        "Article ID: physics9704005": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E16",
@@ -8909,7 +8931,7 @@
             "Recall": 0.35294117647058826,
             "F1 Score": 0.07894736842105264
         },
-        "Article ID: 1409.0466": {
+        "Article ID: physics9704022": {
             "Adjacency List": {
                 "S2.E1": [
                     "S9.E21",
@@ -9189,7 +9211,7 @@
             "Recall": 0.25,
             "F1 Score": 0.04724409448818897
         },
-        "Article ID: astro-ph9211002": {
+        "Article ID: quant-ph9704026": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E10",
@@ -9271,7 +9293,7 @@
             "Recall": 0.3333333333333333,
             "F1 Score": 0.12121212121212122
         },
-        "Article ID: astro-ph9211005": {
+        "Article ID: cond-mat9704033": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E16",
@@ -9446,7 +9468,7 @@
             "Recall": 0.46153846153846156,
             "F1 Score": 0.14906832298136646
         },
-        "Article ID: cond-mat9211006": {
+        "Article ID: cond-mat9704044": {
             "Adjacency List": {
                 "S2.E1": [
                     "S3.E12",
@@ -9570,7 +9592,7 @@
             "Recall": 0.6,
             "F1 Score": 0.17142857142857143
         },
-        "Article ID: hep-lat9211009": {
+        "Article ID: cond-mat9704058": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E1"
@@ -9602,7 +9624,7 @@
             "Recall": 0.4,
             "F1 Score": 0.21052631578947364
         },
-        "Article ID: hep-ph9211257": {
+        "Article ID: cond-mat9704091": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E15",
@@ -9759,7 +9781,7 @@
             "Recall": 0.35294117647058826,
             "F1 Score": 0.08823529411764705
         },
-        "Article ID: physics9704005": {
+        "Article ID: cond-mat9704179": {
             "Adjacency List": {
                 "S0.E1": [
                     "S0.E9",

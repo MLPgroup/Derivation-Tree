@@ -301,7 +301,10 @@ def run_derivation_algo(algorithm_option):
                     extracted_words_between_equations.append(words_between_equations)
                     extracted_equation_indexing.append(equation_indexing)
 
-                    if algorithm_option == 'token':
+                    if algorithm_option == 'bayes':
+                        articles_used.append(cur_article_id)
+
+                    elif algorithm_option == 'token':
                         computed_similarity, equation_order = token_similarity.token_similarity_percentages(equations)
                         
                         computed_adjacency_list = token_similarity.token_similarity_adjacency_list(computed_similarity, equation_order, TOKEN_SIMILARITY_THRESHOLD, TOKEN_SIMILARITY_DIRECTION, TOKEN_SIMILARITY_STRICTNESS)

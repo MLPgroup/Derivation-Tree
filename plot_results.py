@@ -65,7 +65,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     y_min = min(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_max = max(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_ticks = [y * 0.01 for y in range(int(y_min // 0.01), int(y_max // 0.01) + 2)]
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(12, 6))
     plt.plot(sorted_thresholds, sorted_accuracies, linestyle='-', marker='.', markersize=5, color='blue', label='Overall Accuracy')
     plt.plot(sorted_thresholds, sorted_precisions, linestyle='-', marker='.', markersize=5, color='green', label='Overall Precision')
     plt.plot(sorted_thresholds, sorted_recalls, linestyle='-', marker='.', markersize=5, color='red', label='Overall Recall')
@@ -73,7 +73,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     plt.xlabel('Threshold')
     plt.ylabel('Metrics')
     plt.title(f'Token Similarity ({alg_num_threshold}, {alg_direction}): Metrics vs Threshold')
-    plt.xticks(range(int(min(thresholds)), int(max(thresholds))+1, 5))
+    plt.xticks(range(0, 101, 5))
     plt.yticks(y_ticks)
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
@@ -131,7 +131,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
 
 
     # Plot box plot
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(12, 6))
     ax.bxp(box_plot_data)
     ax.set_title(f'Aggregate Token Similarity ({alg_num_threshold}, {alg_direction}) Correctness Statistics Box Plot at Threshold {max_f1_threshold}')
     ax.set_ylabel('Values')
@@ -158,7 +158,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
 
 
     # Plot line plots
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(12, 6))
     ax.plot(accuracy_data, [1]*len(accuracy_data), 'x', label='Accuracy', color='blue')
     ax.plot(precision_data, [2]*len(precision_data), 'x', label='Precision', color='green')
     ax.plot(recall_data, [3]*len(recall_data), 'x', label='Recall', color='red')
@@ -239,7 +239,7 @@ def plot_naive_bayes():
     y_min = min(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_max = max(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_ticks = [y * 0.01 for y in range(int(y_min // 0.01), int(y_max // 0.01) + 2)]
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(12, 6))
     plt.plot(sorted_thresholds, sorted_accuracies, linestyle='-', marker='.', markersize=5, color='blue', label='Overall Accuracy')
     plt.plot(sorted_thresholds, sorted_precisions, linestyle='-', marker='.', markersize=5, color='green', label='Overall Precision')
     plt.plot(sorted_thresholds, sorted_recalls, linestyle='-', marker='.', markersize=5, color='red', label='Overall Recall')
@@ -247,7 +247,7 @@ def plot_naive_bayes():
     plt.xlabel('Threshold')
     plt.ylabel('Metrics')
     plt.title(f'Naive Bayes: Metrics vs Training Set Percentage')
-    plt.xticks(range(int(0), int(100)+1, 5))
+    plt.xticks(range(0, 101, 5))
     plt.yticks(y_ticks)
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
@@ -311,7 +311,7 @@ def plot_naive_bayes():
 
 
     # Plot box plot
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(12, 6))
     ax.bxp(box_plot_data)
     ax.set_title(f'Aggregate Naive Bayes Correctness Statistics Box Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
     ax.set_ylabel('Values')
@@ -338,7 +338,7 @@ def plot_naive_bayes():
 
 
     # Plot line plots
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(12, 6))
     ax.plot(accuracy_data, [1]*len(accuracy_data), 'x', label='Accuracy', color='blue')
     ax.plot(precision_data, [2]*len(precision_data), 'x', label='Precision', color='green')
     ax.plot(recall_data, [3]*len(recall_data), 'x', label='Recall', color='red')
