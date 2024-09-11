@@ -40,7 +40,7 @@ TOKEN_SIMILARITY_DIRECTION = 'greater'
 # TOKEN_SIMILARITY_STRICTNESS - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
 TOKEN_SIMILARITY_STRICTNESS = 2
 # BAYES_TRAINING_PERCENTAGE - percentage of dataset to use for training of Naive Bayes model
-BAYES_TRAINING_PERCENTAGE = 90
+BAYES_TRAINING_PERCENTAGE = 85
 
 '''HYPER-PARAMETERS'''
 
