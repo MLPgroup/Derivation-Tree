@@ -77,7 +77,7 @@ Function: Predict adjacency list using the naive bayes algorithm
 def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, bayes_training_percentage):
     # Initialize lists to store true and predicted adjacency lists
     true_adjacency_lists = []
-    predicted_adjacency_lists = []
+    uncleaned_predicted_adjacency_lists = []
 
     # Split the data set into test and train
     num_articles = len(articles_used)
@@ -132,7 +132,18 @@ def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_
                         predicted_adjacency_list[equation_indexing[k]].append(equation_indexing[j])
                     predicted_index += 1
 
-            predicted_adjacency_lists.append(predicted_adjacency_list)
+            uncleaned_predicted_adjacency_lists.append(predicted_adjacency_list)
             true_adjacency_lists.append(article_ids[articles_used[i]]["Adjacency List"])
+    
+    # Format the predicted adjacency list correctly for correctness checking
+    cleaned_predicted_adjacency_lists = []
+    for cur_predicted_adjacency_list in uncleaned_predicted_adjacency_lists:
+        cur_cleaned_adjacency_list = {}
+        for cur_equation, cur_adjacency in cur_predicted_adjacency_list.items():
+            if len(cur_adjacency) == 0:
+                cur_cleaned_adjacency_list[cur_equation] = [None]
+            else: 
+                cur_cleaned_adjacency_list[cur_equation] = cur_adjacency
+        cleaned_predicted_adjacency_lists.append(cur_cleaned_adjacency_list)
 
-    return true_adjacency_lists, predicted_adjacency_lists, train_article_ids
+    return true_adjacency_lists, cleaned_predicted_adjacency_lists, train_article_ids
