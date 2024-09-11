@@ -3,9 +3,6 @@ lxml==5.2.1
 matplotlib==3.8.4
 networkx==3.2.1
 nltk==3.8.1
-numpy==2.0.0
-old==0.01
-PyPDF2==3.0.1
+numpy==1.26.4
 pytz==2024.1
 scikit_learn==1.4.2
-

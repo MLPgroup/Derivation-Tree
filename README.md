@@ -56,7 +56,10 @@ Running the above command will output the results of the model specified, which 
 - Holds the output for the programs being run
 - - - - 
 ## System Requirements
-Python 3.10. See requirements.txt \
+Python 3.10. See requirements.txt
+```
+pip install -r requirements.txt
+```
 For running the Gemini model, first install the Gemini API SDK
 ```
 pip install -q -U google-generativeai
