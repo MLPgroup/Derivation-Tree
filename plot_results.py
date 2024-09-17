@@ -3,6 +3,7 @@ import os
 import json
 import re
 import argparse
+import numpy as np
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
@@ -72,7 +73,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     # Plot threshold vs values
     y_min = min(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_max = max(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
-    y_ticks = [y * 0.01 for y in range(int(y_min // 0.01), int(y_max // 0.01) + 2)]
+    # y_ticks = [y * 0.01 for y in range(int(y_min // 0.01), int(y_max // 0.01) + 2)]
     plt.figure(figsize=(12, 6))
     plt.plot(sorted_thresholds, sorted_accuracies, linestyle='-', marker='.', markersize=5, color='blue', label='Overall Accuracy')
     plt.plot(sorted_thresholds, sorted_precisions, linestyle='-', marker='.', markersize=5, color='green', label='Overall Precision')
@@ -82,7 +83,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     plt.ylabel('Metrics')
     plt.title(f'Token Similarity ({alg_num_threshold}, {alg_direction}): Metrics vs Threshold')
     plt.xticks(range(0, 101, 5))
-    plt.yticks(y_ticks)
+    plt.yticks(np.arange(0, 1.05, 0.05))
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
     plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_metrics_plot.png')
@@ -244,7 +245,7 @@ def plot_naive_bayes():
     # Plot threshold vs values
     y_min = min(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
     y_max = max(sorted_accuracies + sorted_precisions + sorted_recalls + sorted_f1_scores)
-    y_ticks = [y * 0.01 for y in range(int(y_min // 0.01), int(y_max // 0.01) + 2)]
+    # y_ticks = [y * 0.01 for y in range(int(y_min // 0.01), int(y_max // 0.01) + 2)]
     plt.figure(figsize=(12, 6))
     plt.plot(sorted_thresholds, sorted_accuracies, linestyle='-', marker='.', markersize=5, color='blue', label='Overall Accuracy')
     plt.plot(sorted_thresholds, sorted_precisions, linestyle='-', marker='.', markersize=5, color='green', label='Overall Precision')
@@ -254,7 +255,7 @@ def plot_naive_bayes():
     plt.ylabel('Metrics')
     plt.title(f'Naive Bayes: Metrics vs Training Set Percentage')
     plt.xticks(range(0, 101, 5))
-    plt.yticks(y_ticks)
+    plt.yticks(np.arange(0, 1.05, 0.05))
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
     plot_filename = os.path.join(PLOT_PATH, f'naive_bayes_metrics_plot.png')

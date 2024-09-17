@@ -198,7 +198,7 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
     overall_false_negative = 0
     num_skipped = 0
 
-    for true_adjacency_list, cur_predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
+    for cur_true_adjacency_list, cur_predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
         # If predicted adjacency list is a string, then it is from the bayes implementation
         if (isinstance(cur_predicted_adjacency_list, str)):
             predicted_adjacency_list = find_equation_neighbors_str(cur_predicted_adjacency_list)
@@ -214,27 +214,46 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
         true_negative = 0
         false_positive = 0
         false_negative = 0
+
+        # All equations
+        all_equations = set(cur_true_adjacency_list.keys()).union(set(predicted_adjacency_list.keys()))
         
         # Calculate Error
-        for equation, true_neighbors in true_adjacency_list.items():
+        for equation, true_neighbors in cur_true_adjacency_list.items():
             predicted_neighbors = predicted_adjacency_list.get(equation, [])
 
             for neighbor in true_neighbors:
                 if neighbor in predicted_neighbors:
+                    # True edge is identified by algorithm
                     true_positive += 1
                     overall_true_positive += 1
                 else:
+                    # True edge is not identified by algorithm
                     false_negative += 1
                     overall_false_negative += 1
 
             for neighbor in predicted_neighbors:
                 if neighbor not in true_neighbors:
+                    # Edge identified by algorithm but edge not labeled by ground truth
                     false_positive += 1
                     overall_false_positive += 1
+
+            for neighbor in all_equations - set(true_neighbors):
+                if neighbor not in predicted_neighbors:
+                    # No edge detected by algorithm and no edge labeled by ground truth
+                    true_negative += 1
+                    overall_true_negative += 1
+
+        # Handling extra equations in predicted that are not in true
         for equation, predicted_neighbors in predicted_adjacency_list.items():
-            if equation not in true_adjacency_list:
+            if equation not in cur_true_adjacency_list:
+                # Extra equations - no true neighbors exist
                 false_positive += len(predicted_neighbors)
                 overall_false_positive += len(predicted_neighbors)
+                # No true neighbors means every other node in all_equations is a true negative
+                true_negative += len(all_equations - set(predicted_neighbors))
+                overall_true_negative += len(all_equations - set(predicted_neighbors))
+
 
         accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
         precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
@@ -348,7 +367,7 @@ def run_derivation_algo(algorithm_option):
     if algorithm_option == 'bayes':
         true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
     elif algorithm_option == 'brute':
-        train_article_ids, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
+        articles_used, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
     
     # Get accuracy numbers
     similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)

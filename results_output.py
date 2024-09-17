@@ -183,7 +183,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
             "Precision": cur_precision,
             "Recall": cur_recall,
             "F1 Score": cur_f1
-        } for cur_article_id, cur_predicted_adjacency_lists, cur_accuracy , cur_precision, cur_recall, cur_f1 in zip(article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores)
+        } for cur_article_id, cur_predicted_adjacency_lists, cur_accuracy, cur_precision, cur_recall, cur_f1 in zip(article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores)
     }
     training_set = {
         "Training Articles": train_article_ids

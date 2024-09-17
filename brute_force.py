@@ -18,8 +18,6 @@ filter_keywords = ['Fig', 'fig', 'FIG', 'Figure', 'FIGURE', 'figure', 'Lemma', '
                   'Sec', 'SEC', 'sec', 'Table', 'TABLE', 'table', 'Ref', 'REF', 'ref', 
                   'Reference', 'REFERENCE', 'reference']
 
-flip_keywords = []
-
 
 
 """
@@ -94,82 +92,124 @@ def get_end_interval(equations, word_counts):
     # Return extended words
     return extended_words
 
-# ------------------------------ # Starting Paragraph Intervals ------------------------------
-# Description: Outputs initial paragraph interval index into (Eq #, idx #) output array 
-# @Param    eqno = Tuples of (Eq#, Idx# of Eq#)
-#           output = Array of strings/words of original HTML doc
-# --------------------------------------------------------------------------------------------
-def startInterval(equations, output):
-    paraBreak = []                                      # New array with paragraph breaks
-    counter = 0                                         # Counter for current Word in PDF
-    temp = 0                                            # Placeholder for latest occurence of a paragraph break before equation
-    paragraph = 'parabreak'                             # Marker placed to locate paragraph breaks
-    for i in range(len(equations)):                          # Iterating through (Eq, idx number) pairs
-        for idx in range(counter, equations[i][1]-1):        # Iterating through idx between previous Eq and current Eq
-            currWord = output[idx]
-            if paragraph == currWord:                   # If there is a parabreak marker...
-                temp = idx                              # Set latest occurence of paragraph break
-        paraBreak.append([(str(equations[i][0])+'start'), temp])    # Append index to paragraph break list
-        counter = equations[i][1]                            # Set counter to start of next equation
-        temp = equations[i][1]                               # Set latest occurence of paragraph break to start of next equation
-    return paraBreak
 
-# ----------------------------------- # Tuples (Eq#, Idx#) -----------------------------------
-# Description: Creating an array of tuples (equation #, line number) 
-# @Param output = Array of strings/words of original HTML doc
-# --------------------------------------------------------------------------------------------
-def eqTuples(output):
-    eqno = []
+
+"""
+get_start_interval(equations, string_array)
+Inputs: equations -- tuples of (Eq#, Idx# of Eq#)
+        string_array -- array of words in article
+Returns: paragraph_breaks -- list of initial paragraph interval index into (Eq #, idx #) output array
+Function: Get paragraph intervals for each equation
+"""
+def get_start_interval(equations, string_array):
+    paragraph_breaks = []                                     
+    counter = 0
+    # Placeholder for latest occurence of a paragraph break before equation
+    temp = 0
+    # Marker placed to locate paragraph breaks
+    paragraph = 'parabreak'
+
+    # Iterating through (Eq, idx number) pairs
+    for i in range(len(equations)):
+        # Iterating through index between previous equation and current equation
+        for idx in range(counter, equations[i][1]-1):
+            currWord = string_array[idx]
+            # If there is a paragraph break marker, Set latest occurrence of paragraph break
+            if paragraph == currWord:
+                temp = idx
+        # Append index to paragraph break list
+        paragraph_breaks.append([(str(equations[i][0])+'start'), temp])
+        # Set counter to start of next equation
+        counter = equations[i][1]
+        # Set latest occurrence of paragraph break to start of next equation
+        temp = equations[i][1]
+    
+    # Return paragraph intervals
+    return paragraph_breaks
+
+
+
+"""
+get_equation_tuples(string_array)
+Inputs: string_array -- array of words in article
+Returns: equations -- list of tuples (equation #, line number) 
+Function: get tuples of (equation number, index number)
+"""
+def get_equation_tuples(string_array):
+    equations = []
     count = 1
     # Checking for equations + line number
-    for i in range(len(output)):
-        if output[i] == 'mathmarker':          # There is a block equation
-            eqno.append([count, i+1])                            # i+2 since i = mathequation, i+1 = equation location, i+2 = equation #
+    for i in range(len(string_array)):
+        # If there is a block equation
+        if string_array[i] == 'mathmarker':
+            equations.append([count, i+1])
             count += 1
-    return eqno
+        
+    # Return tuples
+    return equations
 
-# ----------------------------------- # Words per Sentence -----------------------------------
-# Description: Keeps track of # of words in each sentence; Use for para interval extension
-# @Param text = Original text of HTML Document
-# --------------------------------------------------------------------------------------------
-def sentenceCount(text):
-    # Split String on Sentences
+
+
+"""
+get_sentence_count(text)
+Inputs: text -- original text from article
+Returns: word_count -- list with number of words for each sentence
+Function: Get the number of words for each sentence
+"""
+def get_sentence_count(text):
+    # Split String on sentences
     tokenized = sent_tokenize(text)
-    # Debugging for printing entire text w/o references AND split into sentences
-    # print('Text Split into Sentences: ', tokenized)
 
-    wordCount = []                                                  # Keeps track of # of words in each sentence; Use for para interval extension
-    for sentence in tokenized:                                      # For Each sentence in the text:
-        totalWordCount = len(sentence.split())                      # Split the sentence on spaces and count # of words
-        if len(wordCount) > 0:                                      # If sentence idx > 0,
-            wordCount.append(totalWordCount+wordCount[-1])          # Add current word count with word count of setence previous
+    # Keeps track of # of words in each sentence
+    word_count = []
+    # For Each sentence in the text:
+    for sentence in tokenized:          
+        # Split the sentence on spaces and count # of words
+        total_word_count = len(sentence.split())     
+        # Add current word count with word count of previous sentence
+        if len(word_count) > 0:
+            word_count.append(total_word_count + word_count[-1])          
         else:           
-            wordCount.append(totalWordCount)                        # Else, append normally
-    return wordCount
+            word_count.append(total_word_count)
+
+    # Return word count
+    return word_count
 
 
-# ----------------------------------- Array of Strings/Words -----------------------------------
-# Description: Converting entire text to an array of strings/words
-# @Param text = Original text of HTML Document
-# ----------------------------------------------------------------------------------------------
-def arrOfStrings(text):
-    output = []
+
+"""
+get_array_of_strings(text)
+Inputs: text -- original text from article
+Returns: list_of_strings -- list with all strings in text
+Function: Convert entire text to an array of strings/words
+"""
+def get_array_of_strings(text):
+    list_of_strings = []
     temp = ''
+
     # Converting to array of strings
     for i in range(len(text)):
-        temp += (text[i])                   # Adding chars together until find a space
-        if text[i] == ' ':                  # Once space is found,
-            output.append(temp[:-1])        # Add string to output array 
+        # Adding chars together until find a space
+        temp += (text[i])
+        if text[i] == ' ':
+            list_of_strings.append(temp[:-1])
             temp = ''
             continue
-    # print(len(output))
-    return output
+
+    # Return list of each string
+    return list_of_strings
 
 
-# ----------------------------- Block Equation Extraction -----------------------------
-# Description: Extracts all Block/Numbered Equations from a Mathematical Text
-# @Param url = url of Mathematical Document
-# -------------------------------------------------------------------------------------
+
+"""
+parse_html(html_path, cur_article_id)
+Inputs: html_path -- path to current article's html
+        cur_article_id -- current article's id
+Returns: mathMl -- MathML for equation 
+         text -- original text of article
+         equation_ids -- equation ids for each equation
+Function: Extract required information from article html
+"""
 def parse_html(html_path, cur_article_id):
     # Check if the HTML file exists
     if os.path.exists(html_path):
@@ -200,21 +240,21 @@ def parse_html(html_path, cur_article_id):
             
             # Replace MathML with the text "unicodeError"
             for script in soup(['math']):
-                script.string = "unicodeError"              # All block equations have unique string prior 
+                script.string = "unicodeError"
 
             # Get rid of annoying citations
             for script in soup(['cite']):
-                script.extract()            # Removed
+                script.extract()
 
             # Adding paragraph break markers (parabreak) before each paragraph
-            for script in soup(['p']):                      # For all the tags that have 'p'
-                if script.get('class') == ['ltx_p']:        # If class tag is labelled with 'ltx_p'
-                    script.insert_before("parabreak")       # Insert marker before each paragraph
+            for script in soup(['p']):                      
+                if script.get('class') == ['ltx_p']:        
+                    script.insert_before("parabreak")
 
             # Adding edge markers (edge) before each equation
-            for script in soup(['a']):                          # For all the tags that have 'a'
-                if script.get('class') == ['ltx_ref']:          # If class tag is labelled with 'ltx_ref'
-                    script.insert_before("equationlink")        # Insert marker before each equation
+            for script in soup(['a']):                          
+                if script.get('class') == ['ltx_ref']:
+                    script.insert_before("equationlink")
                 
             # Check for elements with class "mathmarker" and skip processing them
             for script in soup.find_all(recursive=True):
@@ -222,39 +262,57 @@ def parse_html(html_path, cur_article_id):
                     script.insert_before("mathmarker")
 
             # Get final processed text (including markers)
-            text = soup.get_text(' ', strip=True)  # Get text with some whitespace
+            text = soup.get_text(' ', strip=True)
 
             # Remove References OR Acknowledgments (Last) section
             text = (text.rsplit("References", 1))[0]
-            text = text.split("Acknowledgments")[0]  # Split string at "Acknowledgments" and take only string before it
+            text = text.split("Acknowledgments")[0]
 
-        # ----------------------------- Block Equation id Extraction -----------------------------
-        # Description: Extracts all Block/Numbered Equation ID's from a Mathematical Text
-        # @Param mathML = list of mathML equation elements
-        # -------------------------------------------------------------------------------------
-            math_ids = []
+        # Extracts all Block/Numbered Equation ID's from a Mathematical Text
+            mathMl, text, equation_ids = []
             for tag in mathMl:
                 if tag.get('id'):
-                    math_ids.append(tag.get('id'))
+                    mathMl, text, equation_ids.append(tag.get('id'))
 
-            return mathMl, text, math_ids
+            # Return parsing outputs
+            return mathMl, text, equation_ids
 
 
+
+"""
+get_full_adj_list(old_adj_list, conversion)
+Inputs: old_adj_list -- old adjacency list
+        conversion -- list of conversions for each key in old adjacency list
+Returns: new_adj_list -- newly formatted adjacency list
+Function: Format adjacency list correctly
+"""
 def get_full_adj_list(old_adj_list, conversion):
-
+    # Cleaned up adjacency list
     new_adj_list = {}
 
+    # Iterate through equation ids
     for i, cur_eq in enumerate(conversion):
         new_adj_list[str(cur_eq)] = []
-        if i+1 in old_adj_list:
+        # Format correctly
+        if i + 1 in old_adj_list:
             for j, next_eq in enumerate(old_adj_list[i+1]):
                 new_adj_list[str(cur_eq)].append(str(conversion[next_eq - 1]))
         else:
             new_adj_list[str(cur_eq)] = [None]
 
+    # Return correctly formatted adjacency list
     return new_adj_list
 
 
+
+"""
+brute_force_algo()
+Inputs: none
+Returns: article_ids -- list of article ids used by algorithm
+         true_adjacency_lists -- list of true adjacency lists
+         predicted_adjacency_lists -- list of predicted adjacency lists
+Function: Run all code to run the brute force algorithm
+"""
 def brute_force_algo():
     # Get a list of manually parsed article IDs
     articles = article_parser.get_manually_parsed_articles()
@@ -266,21 +324,27 @@ def brute_force_algo():
     # Iterate through article IDs
     for i, (cur_article_id, cur_article) in enumerate(articles.items()):
         # Construct the HTML file path for the current article
-        #if cur_article_id == '1409.0380':
-        # if cur_article_id == '0907.2648':
         html_path = f'articles/{cur_article_id}.html'
-        mathML, text, eqIds = parse_html(html_path, cur_article_id)
-        wordCount = sentenceCount(text)
-        stringArr = arrOfStrings(text)
+        mathML, text, equation_ids = parse_html(html_path, cur_article_id)
+        word_count = get_sentence_count(text)
+        string_array = get_array_of_strings(text)
 
-        equations = eqTuples(stringArr)                 # Create Tuples of (Eq#, Idx#)
-        start = startInterval(equations, stringArr)     # Start Paragraph interval per equation
-        extended_words = get_end_interval(equations, wordCount)         # End Paragraph interval per equation
+        # Create Tuples of (Eq#, Idx#)
+        equations = get_equation_tuples(string_array)
+        # Start of paragraph interval per equation                 
+        start = get_start_interval(equations, string_array)
+        # End of paragraph interval per equation
+        extended_words = get_end_interval(equations, word_count)
 
-        adjList = get_adj_list(equations, start, stringArr, extended_words)
+        # Get adjacency list
+        adjList = get_adj_list(equations, start, string_array, extended_words)
 
+        # Append article id
         article_ids.append(cur_article_id)
-        predicted_adjacency_lists.append(get_full_adj_list(adjList, eqIds))
+        # Clean up adjacency list for formatting and append
+        predicted_adjacency_lists.append(get_full_adj_list(adjList, equation_ids))
+        # Append tru adjacency list
         true_adjacency_lists.append(cur_article['Adjacency List'])
     
+    # Return outputs of brute force algorithm
     return article_ids, true_adjacency_lists, predicted_adjacency_lists
