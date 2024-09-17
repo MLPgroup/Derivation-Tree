@@ -6,8 +6,11 @@ Modification Log:
     October 22, 2023: Create function to use parser code
 '''
 
+
+
 # Import modules
 import json
+
 
 
 """
@@ -19,7 +22,7 @@ Return: dict -- dictionary of articles from the articles.json file: key = articl
 Function: Parse the articles.json file and extract the article information
 """
 def get_manually_parsed_articles():
-    # Open json file and store into dicionary
+    # Open json file and store into dictionary
     with open('articles.json') as json_file:
         # Load list of articles
         json_data = json.load(json_file)

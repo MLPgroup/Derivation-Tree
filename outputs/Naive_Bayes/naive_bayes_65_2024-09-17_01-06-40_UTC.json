@@ -1,0 +1,1533 @@
+{
+    "Correctness": {
+        "Number of articles used": 35,
+        "Overall Correctness": {
+            "Overall Accuracy": 0.8768606224627875,
+            "Overall Precision": 0.3182897862232779,
+            "Overall Recall": 0.34096692111959287,
+            "Overall F1 Score": 0.32923832923832924
+        },
+        "Aggregate Correctness Statistics": {
+            "Accuracy": {
+                "Mean": 0.851458104960514,
+                "Lowest": 0.6296296296296297,
+                "25th Quartile (Q1)": 0.831439393939394,
+                "Median": 0.8620689655172413,
+                "75th Quartile (Q3)": 0.8909090909090909,
+                "Highest": 0.9743589743589743
+            },
+            "Precision": {
+                "Mean": 0.33129347844721774,
+                "Lowest": 0.0,
+                "25th Quartile (Q1)": 0.1846590909090909,
+                "Median": 0.3333333333333333,
+                "75th Quartile (Q3)": 0.4,
+                "Highest": 0.8333333333333334
+            },
+            "Recall": {
+                "Mean": 0.34559050193503976,
+                "Lowest": 0.0,
+                "25th Quartile (Q1)": 0.20714285714285713,
+                "Median": 0.3333333333333333,
+                "75th Quartile (Q3)": 0.4641025641025641,
+                "Highest": 0.8333333333333334
+            },
+            "F1 Score": {
+                "Mean": 0.3355211873944123,
+                "Lowest": 0.0,
+                "25th Quartile (Q1)": 0.19090909090909092,
+                "Median": 0.3333333333333333,
+                "75th Quartile (Q3)": 0.40588235294117647,
+                "Highest": 0.8333333333333334
+            }
+        }
+    },
+    "Results": {
+        "Article ID: 0907.2648": {
+            "Adjacency List": {
+                "S0.E1": [
+                    "S0.E2",
+                    "S0.E3"
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    "S0.E6"
+                ],
+                "S0.E6": [
+                    "S0.E7",
+                    "S0.E8",
+                    "S0.E9"
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    "S0.E9"
+                ],
+                "S0.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8620689655172413,
+            "Precision": 0.4166666666666667,
+            "Recall": 0.5,
+            "F1 Score": 0.45454545454545453
+        },
+        "Article ID: 0907.2720": {
+            "Adjacency List": {
+                "S0.E1": [
+                    "S0.E2"
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    null
+                ],
+                "S0.E12": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    null
+                ],
+                "S0.E15": [
+                    null
+                ],
+                "S0.E16": [
+                    null
+                ],
+                "S0.E17": [
+                    null
+                ]
+            },
+            "Accuracy": 0.9673202614379085,
+            "Precision": 0.7058823529411765,
+            "Recall": 0.7058823529411765,
+            "F1 Score": 0.7058823529411765
+        },
+        "Article ID: 0907.2870": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8095238095238095,
+            "Precision": 0.3333333333333333,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.3333333333333333
+        },
+        "Article ID: 0907.2872": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S2.E5",
+                    "S2.E6",
+                    "S2.E8",
+                    "S2.E9"
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S4.E12": [
+                    null
+                ],
+                "S4.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.9060773480662984,
+            "Precision": 0.375,
+            "Recall": 0.46153846153846156,
+            "F1 Score": 0.41379310344827586
+        },
+        "Article ID: 0907.2959": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S3.E12": [
+                    null
+                ],
+                "S3.E13": [
+                    null
+                ],
+                "S3.E14": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8952380952380953,
+            "Precision": 0.21428571428571427,
+            "Recall": 0.21428571428571427,
+            "F1 Score": 0.21428571428571427
+        },
+        "Article ID: 0907.2994": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    "S2.E4"
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    "S2.E4",
+                    "S2.E5"
+                ]
+            },
+            "Accuracy": 0.7317073170731707,
+            "Precision": 0.14285714285714285,
+            "Recall": 0.16666666666666666,
+            "F1 Score": 0.15384615384615383
+        },
+        "Article ID: 0907.3017": {
+            "Adjacency List": {
+                "S2.E1": [
+                    "S2.E3",
+                    "S3.E4"
+                ],
+                "S2.E2": [
+                    "S2.E3",
+                    "S3.E4",
+                    "S3.E5"
+                ],
+                "S2.E3": [
+                    "S3.E4",
+                    "S3.E5"
+                ],
+                "S3.E4": [
+                    "S3.E5"
+                ],
+                "S3.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    "S3.E8",
+                    "S3.E9",
+                    "S3.E11",
+                    "S3.E13"
+                ],
+                "S3.E8": [
+                    "S3.E9"
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    "S3.E12",
+                    "S3.E13",
+                    "S3.E14"
+                ],
+                "S3.E12": [
+                    "S3.E13"
+                ],
+                "S3.E13": [
+                    "S3.E14"
+                ],
+                "S3.E14": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8529411764705882,
+            "Precision": 0.17391304347826086,
+            "Recall": 0.26666666666666666,
+            "F1 Score": 0.2105263157894737
+        },
+        "Article ID: 0907.3028": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8910256410256411,
+            "Precision": 0.4166666666666667,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.3703703703703704
+        },
+        "Article ID: 0907.3040": {
+            "Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S1.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8333333333333334,
+            "Precision": 0.25,
+            "Recall": 0.25,
+            "F1 Score": 0.25
+        },
+        "Article ID: 0907.3145": {
+            "Adjacency List": {
+                "S3.E1": [
+                    null
+                ],
+                "S3.E2": [
+                    null
+                ],
+                "S3.E3": [
+                    null
+                ],
+                "S3.E4": [
+                    "S3.E5",
+                    "S3.E7",
+                    "S3.E10"
+                ],
+                "S3.E5": [
+                    "S3.E7",
+                    "S3.E10"
+                ],
+                "S3.E6": [
+                    "S3.E7",
+                    "S3.E8",
+                    "S3.E10",
+                    "S3.E11",
+                    "S3.E12"
+                ],
+                "S3.E7": [
+                    "S3.E8",
+                    "S3.E9",
+                    "S3.E10",
+                    "S3.E11",
+                    "S3.E12",
+                    "S3.E13"
+                ],
+                "S3.E8": [
+                    "S3.E9",
+                    "S3.E10",
+                    "S3.E11",
+                    "S3.E12",
+                    "S3.E13"
+                ],
+                "S3.E9": [
+                    "S3.E10",
+                    "S3.E11",
+                    "S3.E12",
+                    "S3.E13"
+                ],
+                "S3.E10": [
+                    "S3.E11",
+                    "S3.E12",
+                    "S3.E13"
+                ],
+                "S3.E11": [
+                    "S3.E12",
+                    "S3.E13"
+                ],
+                "S3.E12": [
+                    "S3.E13"
+                ],
+                "S3.E13": [
+                    null
+                ],
+                "S3.E14": [
+                    null
+                ],
+                "S3.E15": [
+                    "S3.E16",
+                    "S3.E17",
+                    "S3.E18",
+                    "S3.E19"
+                ],
+                "S3.E16": [
+                    "S3.E17",
+                    "S3.E18",
+                    "S3.E19"
+                ],
+                "S3.E17": [
+                    "S3.E18",
+                    "S3.E19"
+                ],
+                "S3.E18": [
+                    "S3.E19"
+                ],
+                "S3.E19": [
+                    null
+                ]
+            },
+            "Accuracy": 0.845108695652174,
+            "Precision": 0.10638297872340426,
+            "Recall": 0.25,
+            "F1 Score": 0.1492537313432836
+        },
+        "Article ID: 0907.3172": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S3.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    null
+                ],
+                "S4.E6": [
+                    null
+                ],
+                "S4.E7": [
+                    null
+                ],
+                "S4.E8": [
+                    null
+                ],
+                "S4.E9": [
+                    null
+                ],
+                "S4.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8909090909090909,
+            "Precision": 0.4,
+            "Recall": 0.4,
+            "F1 Score": 0.4000000000000001
+        },
+        "Article ID: 0907.3206": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8636363636363636,
+            "Precision": 0.18181818181818182,
+            "Recall": 0.18181818181818182,
+            "F1 Score": 0.18181818181818182
+        },
+        "Article ID: 0907.3284": {
+            "Adjacency List": {
+                "S1.E1": [
+                    "S2.E5"
+                ],
+                "S2.E2": [
+                    "S2.E5"
+                ],
+                "S2.E3": [
+                    "S2.E5"
+                ],
+                "S2.E4": [
+                    "S2.E5"
+                ],
+                "S2.E5": [
+                    null
+                ]
+            },
+            "Accuracy": 0.6296296296296297,
+            "Precision": 0.0,
+            "Recall": 0.0,
+            "F1 Score": 0
+        },
+        "Article ID: 0907.3505": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    null
+                ],
+                "S0.E12": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8791208791208791,
+            "Precision": 0.15384615384615385,
+            "Recall": 0.15384615384615385,
+            "F1 Score": 0.15384615384615385
+        },
+        "Article ID: 1701.00003": {
+            "Adjacency List": {
+                "S2.E1": [
+                    "S2.E2",
+                    "S2.E3",
+                    "S2.E4"
+                ],
+                "S2.E2": [
+                    "S2.E3",
+                    "S2.E4"
+                ],
+                "S2.E3": [
+                    "S2.E4"
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    "S3.E9"
+                ],
+                "S2.E7": [
+                    "S2.E8",
+                    "S3.E9"
+                ],
+                "S2.E8": [
+                    "S3.E9"
+                ],
+                "S3.E9": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8295454545454546,
+            "Precision": 0.3076923076923077,
+            "Recall": 0.4,
+            "F1 Score": 0.34782608695652173
+        },
+        "Article ID: 1701.00176": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    "S3.E8"
+                ],
+                "S3.E8": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8472222222222222,
+            "Precision": 0.375,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.35294117647058826
+        },
+        "Article ID: 1701.00226": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    "S0.E4",
+                    "S0.E5"
+                ],
+                "S0.E4": [
+                    "S0.E5"
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    "S0.E8"
+                ],
+                "S0.E8": [
+                    null
+                ]
+            },
+            "Accuracy": 0.927536231884058,
+            "Precision": 0.6666666666666666,
+            "Recall": 0.75,
+            "F1 Score": 0.7058823529411765
+        },
+        "Article ID: 1701.00357": {
+            "Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ],
+                "S3.E7": [
+                    null
+                ],
+                "S3.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    null
+                ],
+                "S4.E10": [
+                    null
+                ],
+                "S4.E11": [
+                    null
+                ],
+                "S4.E12": [
+                    null
+                ],
+                "S4.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8901098901098901,
+            "Precision": 0.23076923076923078,
+            "Recall": 0.23076923076923078,
+            "F1 Score": 0.23076923076923078
+        },
+        "Article ID: 1701.00692": {
+            "Adjacency List": {
+                "S3.E1": [
+                    "S5.E2",
+                    "S5.E3",
+                    "S6.E4"
+                ],
+                "S5.E2": [
+                    null
+                ],
+                "S5.E3": [
+                    null
+                ],
+                "S6.E4": [
+                    null
+                ]
+            },
+            "Accuracy": 0.7,
+            "Precision": 0.3333333333333333,
+            "Recall": 0.5,
+            "F1 Score": 0.4
+        },
+        "Article ID: 1701.00847": {
+            "Adjacency List": {
+                "S2.E1": [
+                    "S2.E2"
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S4.E5": [
+                    null
+                ],
+                "S4.E6": [
+                    null
+                ],
+                "S4.E7": [
+                    null
+                ],
+                "S5.E8": [
+                    null
+                ],
+                "S5.E9": [
+                    null
+                ],
+                "S5.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8909090909090909,
+            "Precision": 0.4,
+            "Recall": 0.4,
+            "F1 Score": 0.4000000000000001
+        },
+        "Article ID: 1701.00898": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    null
+                ],
+                "S3.E6": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8095238095238095,
+            "Precision": 0.3333333333333333,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.3333333333333333
+        },
+        "Article ID: 1701.00986": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    "S2.E11"
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ],
+                "S3.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8895027624309392,
+            "Precision": 0.3076923076923077,
+            "Recall": 0.26666666666666666,
+            "F1 Score": 0.28571428571428575
+        },
+        "Article ID: 1701.01008": {
+            "Adjacency List": {
+                "S1.E1": [
+                    null
+                ],
+                "S1.E2": [
+                    null
+                ],
+                "S1.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    "S2.E5",
+                    "S2.E6"
+                ],
+                "S2.E5": [
+                    "S2.E6"
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    "S2.E10",
+                    "S3.E11",
+                    "S3.E12"
+                ],
+                "S2.E10": [
+                    "S3.E11",
+                    "S3.E12"
+                ],
+                "S3.E11": [
+                    "S3.E12"
+                ],
+                "S3.E12": [
+                    null
+                ],
+                "S3.E13": [
+                    null
+                ],
+                "S3.E14": [
+                    null
+                ],
+                "S3.E15": [
+                    null
+                ]
+            },
+            "Accuracy": 0.9156118143459916,
+            "Precision": 0.3684210526315789,
+            "Recall": 0.4666666666666667,
+            "F1 Score": 0.4117647058823529
+        },
+        "Article ID: 1701.01071": {
+            "Adjacency List": {
+                "S3.E1": [
+                    null
+                ],
+                "S3.E2": [
+                    null
+                ],
+                "S3.E3": [
+                    null
+                ],
+                "S3.E4": [
+                    null
+                ],
+                "S4.E5": [
+                    null
+                ],
+                "S4.E6": [
+                    null
+                ],
+                "S5.E7": [
+                    null
+                ]
+            },
+            "Accuracy": 0.7857142857142857,
+            "Precision": 0.14285714285714285,
+            "Recall": 0.14285714285714285,
+            "F1 Score": 0.14285714285714285
+        },
+        "Article ID: 1701.01109": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8028169014084507,
+            "Precision": 0.125,
+            "Recall": 0.125,
+            "F1 Score": 0.125
+        },
+        "Article ID: 1701.01408": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S2.E10": [
+                    null
+                ],
+                "S2.E11": [
+                    null
+                ],
+                "S2.E12": [
+                    null
+                ]
+            },
+            "Accuracy": 0.9743589743589743,
+            "Precision": 0.8333333333333334,
+            "Recall": 0.8333333333333334,
+            "F1 Score": 0.8333333333333334
+        },
+        "Article ID: 1701.01521": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8472222222222222,
+            "Precision": 0.375,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.35294117647058826
+        },
+        "Article ID: 1701.01531": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    "S3.E10"
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8333333333333334,
+            "Precision": 0.18181818181818182,
+            "Recall": 0.13333333333333333,
+            "F1 Score": 0.15384615384615383
+        },
+        "Article ID: 1701.01567": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    "S2.E8"
+                ],
+                "S2.E3": [
+                    "S2.E8"
+                ],
+                "S2.E4": [
+                    "S2.E5",
+                    "S2.E6",
+                    "S2.E7",
+                    "S2.E8"
+                ],
+                "S2.E5": [
+                    "S2.E6",
+                    "S2.E7",
+                    "S2.E8"
+                ],
+                "S2.E6": [
+                    "S2.E7",
+                    "S2.E8"
+                ],
+                "S2.E7": [
+                    "S2.E8"
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S2.E9": [
+                    null
+                ],
+                "S3.E10": [
+                    null
+                ],
+                "S3.E11": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8671875,
+            "Precision": 0.47058823529411764,
+            "Recall": 0.5,
+            "F1 Score": 0.48484848484848486
+        },
+        "Article ID: 1701.01647": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    "S0.E3"
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ]
+            },
+            "Accuracy": 0.9272727272727272,
+            "Precision": 0.7142857142857143,
+            "Recall": 0.7142857142857143,
+            "F1 Score": 0.7142857142857143
+        },
+        "Article ID: 1701.01686": {
+            "Adjacency List": {
+                "S3.E1": [
+                    "S3.E4"
+                ],
+                "S3.E2": [
+                    "S3.E3",
+                    "S3.E4"
+                ],
+                "S3.E3": [
+                    "S3.E4"
+                ],
+                "S3.E4": [
+                    null
+                ],
+                "S3.E5": [
+                    null
+                ],
+                "S4.E6": [
+                    null
+                ],
+                "S4.E7": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8545454545454545,
+            "Precision": 0.5,
+            "Recall": 0.5,
+            "F1 Score": 0.5
+        },
+        "Article ID: 1701.01815": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    "S0.E9",
+                    "S0.E10"
+                ],
+                "S0.E9": [
+                    "S0.E10"
+                ],
+                "S0.E10": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8611111111111112,
+            "Precision": 0.36363636363636365,
+            "Recall": 0.3333333333333333,
+            "F1 Score": 0.34782608695652173
+        },
+        "Article ID: 1701.03108": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ],
+                "S0.E6": [
+                    null
+                ],
+                "S0.E7": [
+                    null
+                ],
+                "S0.E8": [
+                    null
+                ],
+                "S0.E9": [
+                    null
+                ],
+                "S0.E10": [
+                    null
+                ],
+                "S0.E11": [
+                    null
+                ],
+                "S0.E12": [
+                    null
+                ],
+                "S0.E13": [
+                    null
+                ],
+                "S0.E14": [
+                    null
+                ],
+                "S0.E15": [
+                    null
+                ],
+                "S0.E16": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8676470588235294,
+            "Precision": 0.1875,
+            "Recall": 0.11538461538461539,
+            "F1 Score": 0.14285714285714285
+        },
+        "Article ID: 1810.00215": {
+            "Adjacency List": {
+                "S2.E1": [
+                    null
+                ],
+                "S2.E2": [
+                    null
+                ],
+                "S2.E3": [
+                    null
+                ],
+                "S2.E4": [
+                    null
+                ],
+                "S2.E5": [
+                    null
+                ],
+                "S2.E6": [
+                    null
+                ],
+                "S2.E7": [
+                    null
+                ],
+                "S2.E8": [
+                    null
+                ],
+                "S3.E9": [
+                    "S3.E10"
+                ],
+                "S3.E10": [
+                    "S3.E11"
+                ],
+                "S3.E11": [
+                    null
+                ],
+                "S3.E12": [
+                    null
+                ],
+                "S4.E13": [
+                    null
+                ]
+            },
+            "Accuracy": 0.8888888888888888,
+            "Precision": 0.3076923076923077,
+            "Recall": 0.26666666666666666,
+            "F1 Score": 0.28571428571428575
+        },
+        "Article ID: 1810.00264": {
+            "Adjacency List": {
+                "S0.E1": [
+                    null
+                ],
+                "S0.E2": [
+                    null
+                ],
+                "S0.E3": [
+                    null
+                ],
+                "S0.E4": [
+                    null
+                ],
+                "S0.E5": [
+                    null
+                ]
+            },
+            "Accuracy": 0.7333333333333333,
+            "Precision": 0.2,
+            "Recall": 0.2,
+            "F1 Score": 0.20000000000000004
+        }
+    },
+    "Training": {
+        "Training Articles": [
+            "0907.3172",
+            "0907.2870",
+            "1908.00040",
+            "1510.00716",
+            "1409.0466",
+            "1701.01531",
+            "0908.0117",
+            "1701.01408",
+            "1701.00986",
+            "0908.0219",
+            "1612.00463",
+            "1810.01153",
+            "1701.00003",
+            "1701.00176",
+            "0908.0180",
+            "1908.01254",
+            "0907.3040",
+            "1409.0110",
+            "1908.00778",
+            "1701.00692",
+            "astro-ph9211005",
+            "1510.00710",
+            "1908.00596",
+            "0907.2959",
+            "1409.0094",
+            "0907.3028",
+            "0907.3017",
+            "1510.00417",
+            "1908.00647",
+            "1701.01815",
+            "cond-mat9704091",
+            "1510.00770",
+            "1409.0104",
+            "1510.01138",
+            "1701.01686",
+            "0908.0260",
+            "1701.00847",
+            "physics9704005",
+            "1701.00898",
+            "1810.00524",
+            "1409.0101",
+            "1612.00053",
+            "1908.00372",
+            "0908.0159",
+            "0907.3505",
+            "0908.0155",
+            "1810.00264",
+            "0907.2648",
+            "1908.01505",
+            "physics9704022",
+            "0907.3206",
+            "1701.03108",
+            "1510.00400",
+            "1701.01071",
+            "hep-lat9211009",
+            "1409.0220",
+            "0907.2872",
+            "astro-ph9211002",
+            "0907.3284",
+            "cond-mat9704179",
+            "1908.00186",
+            "1701.01008",
+            "1612.00288",
+            "1810.01936",
+            "0907.3145"
+        ]
+    }
+}
