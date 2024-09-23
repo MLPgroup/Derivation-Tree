@@ -19,7 +19,7 @@
                 "May 19, 2024": "Added 8 articles (Total = 107)"
             },
             "Notes": {
-                "(1)": "Note that due to current assumptions used by the important_equation algorithm, ensure that any inputted article graphs are directed and acyclic"
+                "(1)": "Note that due to current assumptions. ensure that any inputted article graphs are directed and acyclic (DAG)"
             }
         }
     ],
@@ -3080,20 +3080,20 @@
                 ]
             },
             "Equation Number": {
-                "S4.E1": 1,
-                "S4.E2": 2,
-                "S4.E3": 3,
-                "S5.E4": 4,
-                "S5.E5": 5,
-                "S5.E6": 6,
-                "S5.E7": 7,
-                "S6.E8": 8,
-                "S6.E9": 9,
-                "S6.E10": 10,
-                "S6.E11": 11,
-                "S6.E12": 12,
-                "S6.E13": 13,
-                "S6.E14": 14
+                "S4.E1": "1",
+                "S4.E2": "2",
+                "S4.E3": "3",
+                "S5.E4": "4",
+                "S5.E5": "5",
+                "S5.E6": "6",
+                "S5.E7": "7",
+                "S6.E8": "8",
+                "S6.E9": "9",
+                "S6.E10": "10",
+                "S6.E11": "11",
+                "S6.E12": "12",
+                "S6.E13": "13",
+                "S6.E14": "14"
             },
             "Most Important Equation": "S5.E6",
             "Labeled by": "Brian"
@@ -3133,13 +3133,13 @@
                 ]
             },
             "Equation Number": {
-                "S0.E1": 1,
-                "S0.E2": 2,
-                "S0.E3": 3,
-                "S0.E4": 4,
-                "S0.E5": 5,
-                "S0.E6": 6,
-                "S0.E7": 7
+                "S0.E1": "1",
+                "S0.E2": "2",
+                "S0.E3": "3",
+                "S0.E4": "4",
+                "S0.E5": "5",
+                "S0.E6": "6",
+                "S0.E7": "7"
             },
             "Most Important Equation": "S0.E3",
             "Labeled by": "Brian"
@@ -3188,15 +3188,15 @@
                 ]
             },
             "Equation Number": {
-                "S0.E1": 1,
-                "S0.E2": 2,
-                "S0.E3": 3,
-                "S0.E4": 4,
-                "S0.E5": 5,
-                "S0.E6": 6,
-                "S0.E7": 7,
-                "S0.E8": 8,
-                "S0.E9": 9
+                "S0.E1": "1",
+                "S0.E2": "2",
+                "S0.E3": "3",
+                "S0.E4": "4",
+                "S0.E5": "5",
+                "S0.E6": "6",
+                "S0.E7": "7",
+                "S0.E8": "8",
+                "S0.E9": "9"
             },
             "Most Important Equation": "S0.E5",
             "Labeled by": "Brian"
@@ -3244,15 +3244,15 @@
                 ]
             },
             "Equation Number": {
-                "S0.E1": 1,
-                "S0.E2": 2,
-                "S0.E3": 3,
-                "S0.E4": 4,
-                "S0.E5": 5,
-                "S0.E6": 6,
-                "S0.E7": 7,
-                "S0.E8": 8,
-                "S0.E9": 9
+                "S0.E1": "1",
+                "S0.E2": "2",
+                "S0.E3": "3",
+                "S0.E4": "4",
+                "S0.E5": "5",
+                "S0.E6": "6",
+                "S0.E7": "7",
+                "S0.E8": "8",
+                "S0.E9": "9"
             },
             "Most Important Equation": "S0.E4",
             "Labeled by": "Brian"
@@ -3301,15 +3301,15 @@
                 ]
             },
             "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S2.E6": 6,
-                "S2.E7": 7,
-                "S2.E8": 8,
-                "S3.E9": 9
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S2.E6": "6",
+                "S2.E7": "7",
+                "S2.E8": "8",
+                "S3.E9": "9"
             },
             "Most Important Equation": "S2.E5",
             "Labeled by": "Brian"
@@ -3354,14 +3354,14 @@
                 ]
             },
             "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S3.E6": 6,
-                "S3.E7": 7,
-                "S3.E8": 8
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S3.E6": "6",
+                "S3.E7": "7",
+                "S3.E8": "8"
             },
             "Most Important Equation": "S3.E6",
             "Labeled by": "Brian"
@@ -3414,16 +3414,16 @@
                 ]
             },
             "Equation Number": {
-                "S2.E1": 1,
-                "S2.E2": 2,
-                "S2.E3": 3,
-                "S2.E4": 4,
-                "S2.E5": 5,
-                "S2.E6": 6,
-                "S2.E7": 7,
-                "S2.E8": 8,
-                "S2.E9": 9,
-                "S3.E10": 10
+                "S2.E1": "1",
+                "S2.E2": "2",
+                "S2.E3": "3",
+                "S2.E4": "4",
+                "S2.E5": "5",
+                "S2.E6": "6",
+                "S2.E7": "7",
+                "S2.E8": "8",
+                "S2.E9": "9",
+                "S3.E10": "10"
             },
             "Most Important Equation": "S2.E9",
             "Labeled by": "Brian"
@@ -3483,18 +3483,18 @@
                 ]
             },
             "Equation Number": {
-                "S1.E1": 1,
-                "S4.E2": 2,
-                "S4.E3": 3,
-                "S4.E4": 4,
-                "S4.E5": 5,
-                "S4.E6": 6,
-                "S4.E7": 7,
-                "S4.E8": 8,
-                "S4.E9": 9,
-                "S5.E10": 10,
-                "S5.E11": 11,
-                "S5.E12": 12
+                "S1.E1": "1",
+                "S4.E2": "2",
+                "S4.E3": "3",
+                "S4.E4": "4",
+                "S4.E5": "5",
+                "S4.E6": "6",
+                "S4.E7": "7",
+                "S4.E8": "8",
+                "S4.E9": "9",
+                "S5.E10": "10",
+                "S5.E11": "11",
+                "S5.E12": "12"
             },
             "Most Important Equation": "S4.E9",
             "Labeled by": "Brian"
