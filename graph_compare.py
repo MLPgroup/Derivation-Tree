@@ -69,6 +69,67 @@ def count_forward_edges(graph_original, graph_comparison):
 
 
 """
+count_forward_edges(graph_original, graph_estimated)
+Input: graph_original -- networkx graph for ground truth
+       graph_comparison -- networkx graph for comparison
+Return: number of false positives that are forward edges
+Function: Counts the number of false positive edges that are forward edges between two graphs
+"""
+def analyze_implicit_explicit(brute_file, llm_file):
+    # Load data from ground truth and comparison JSONs
+    data_original = article_parser.get_manually_parsed_articles()
+    data_brute = load_json(brute_file)
+    data_llm = load_json(llm_file)
+
+    # For each article
+    for cur_article_id in data_original:
+        # Get ground truth adjacency list
+        cur_original_adj_list = data_original[cur_article_id]['Adjacency List']
+        
+        # Find matching article in the second file
+        cur_brute_article = data_brute[f'Article ID: {cur_article_id}'] if f'Article ID: {cur_article_id}' in data_brute else None
+        cur_llm_article = data_llm[f'Article ID: {cur_article_id}'] if f'Article ID: {cur_article_id}' in data_llm else None
+        # If corresponding outputted adjacency lists don't exists, continue
+        if not cur_brute_article or not cur_llm_article:
+            continue
+
+        # Get outputted adjacency list
+        cur_brute_adj_list = cur_brute_article['Adjacency List']
+        cur_llm_adj_list = cur_llm_article['Adjacency List']
+        
+        # Create graphs for both adjacency lists
+        original_graph = create_graph(cur_original_adj_list)
+        brute_graph = create_graph(cur_brute_adj_list)
+        llm_graph = create_graph(cur_llm_adj_list)
+
+        # Determine explicit edges (edges found by brute force)
+        explicit_edges = set(original_graph.edges()).intersection(set(brute_graph.edges()))
+
+        # Determine implicit edges (edges in ground truth but not in brute force)
+        implicit_edges = set(original_graph.edges()) - explicit_edges
+
+        # Determine explicit edges found by LLM
+        explicit_edges_found_by_llm = explicit_edges.intersection(set(llm_graph.edges()))
+
+        # Determine implicit edges found by LLM
+        implicit_edges_found_by_llm = implicit_edges.intersection(set(llm_graph.edges()))
+
+        # Summary statistics
+        total_explicit = len(explicit_edges)
+        total_implicit = len(implicit_edges)
+        found_explicit_by_llm = len(explicit_edges_found_by_llm)
+        found_implicit_by_llm = len(implicit_edges_found_by_llm)
+        if total_explicit == 0 or total_implicit == 0:
+            continue
+        
+        # Print results
+        print(f"Article ID:{cur_article_id}, Total Edges:{total_explicit + total_implicit}, Number explicit:{total_explicit}, Number implicit:{total_implicit}, Percentage explicit found:{(found_explicit_by_llm/total_explicit)*100:.3f}, Percentage implicit found:{(found_implicit_by_llm/total_implicit)*100:.3f}")
+
+    return 0    
+
+
+
+"""
 plot_and_save_graphs(graph1, graph2, article_id, output_dir, caption)
 Input: graph1 -- networkx graph for ground truth
        graph2 -- networkx graph for comparison
@@ -213,14 +274,21 @@ if __name__ == '__main__':
     # comparison_file = "./outputs/Brute_Force/brute_force.json"
     # input_file_name = "brute_force"
 
-    comparison_file = "./outputs/Token_Similarity/token_similarity_2_85_lesser.json"
-    input_file_name = "token_similarity_2_85_lesser"
+    # comparison_file = "./outputs/Token_Similarity/token_similarity_2_85_lesser.json"
+    # input_file_name = "token_similarity_2_85_lesser"
 
     # In Progress
     # comparison_file = "./outputs/Naive_Bayes/naive_bayes_85_2024-09-17_01-29-05_UTC.json"
     # input_file_name = "naive_bayes_85_2024-09-17_01-29-05_UTC"
 
-    output_dir = "./outputs/Comparison_Graphs"
+    # output_dir = "./outputs/Comparison_Graphs"
 
     # Run compare
-    compare(comparison_file, output_dir, input_file_name)
+    # compare(comparison_file, output_dir, input_file_name)
+
+    brute_file = "./outputs/Gemini/gemini_2024-09-17_10-48-52_UTC.json"
+    llm_file = "./outputs/Brute_Force/brute_force.json"
+    # llm_file = "./outputs/Token_Similarity/token_similarity_2_85_lesser.json"
+
+    # Run analyze
+    analyze_implicit_explicit(brute_file, llm_file)
