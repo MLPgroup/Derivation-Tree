@@ -23,6 +23,7 @@ import token_similarity
 import naive_bayes
 import brute_force
 import gemini
+import run_llms
 import google.generativeai as genai
 from collections import deque
 
@@ -298,8 +299,10 @@ def run_derivation_algo(algorithm_option):
     # Reset api tracking and setup model
     if algorithm_option == 'gemini':
         gemini.api_call_times = deque()
-        genai.configure(api_key=os.environ["API_KEY"])
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+        gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+    elif algorithm_option == 'chatgpt':
+        x=2
     
 
     # Iterate through article IDs
@@ -343,9 +346,14 @@ def run_derivation_algo(algorithm_option):
                         articles_used.append(cur_article_id)
                         train_article_ids = []
                     # Gemini model
-                    elif algorithm_option == 'gemini':
-                        # Call Gemini API and get resulting adjacency list
-                        computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
+                    elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']:
+                        if algorithm_option == 'gemini':
+                            # Call Gemini API and get resulting adjacency list
+                            computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing)
+                        elif algorithm_option == 'chatgpt':
+                            computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(equations, words_between_equations, equation_indexing)
+                        else:
+                            computed_adjacency_list, error, error_string = run_llms.get_llm_adj_list(algorithm_option, equations, words_between_equations, equation_indexing)
                         
                         # No error
                         if error == 0:
@@ -379,8 +387,8 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
-    elif algorithm_option == 'gemini':
-        output_name = f"gemini"
+    elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']:
+        output_name = f"{algorithm_option}"
 
     # Save results
     results_output.save_derivation_graph_results(algorithm_option, output_name, articles_used, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, len(true_adjacency_lists) - num_skipped, train_article_ids)
@@ -393,7 +401,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function

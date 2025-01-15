@@ -17,11 +17,19 @@ from datetime import datetime
 
 
 # Path to output folder
-OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = 'outputs/Important_Equation'
-OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY = 'outputs/Token_Similarity'
-OUTPUT_FOLDER_PATH_NAIVE_BAYES = 'outputs/Naive_Bayes'
-OUTPUT_FOLDER_PATH_BRUTE = 'outputs/Brute_Force'
-OUTPUT_FOLDER_PATH_GEMINI = 'outputs/Gemini'
+OUTPUT_FOLDER_PATHS = {
+    'important_equation': './outputs/Important_Equation',
+    'token': './outputs/Token_Similarity',
+    'bayes': './outputs/Naive_Bayes',
+    'brute': './outputs/Brute_Force',
+    'gemini': './outputs/Gemini',
+    'llama': './outputs/Llama',
+    'mistral': './outputs/Mistral',
+    'qwen': './outputs/Qwen',
+    'zephyr': './outputs/Zephyr',
+    'falcon': './outputs/falcon',
+    'chatgpt': './outputs/chatgpt'
+}
 
 # Time Zone
 TIME_ZONE = 'UTC'
@@ -43,6 +51,7 @@ Return: none
 Function: Output the results of the most important equation algorithm into a JSON file
 """
 def save_important_equation_results(name, article_ids, predicted_equations, labeled_equations, algo_accuracy, algo_precision, algo_recall, algo_f1_score, algo_num_articles_used):
+    OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = OUTPUT_FOLDER_PATHS['important_equation']
     # Check output folder existence
     if not os.path.exists(OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION):
         raise FileNotFoundError(f"The output folder with path {OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION} was not found,")
@@ -99,16 +108,7 @@ Function: Output the results of the given algorithm into a JSON file
 """
 def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_articles_used, train_article_ids=[]):
     # Specific output file path
-
-    cur_output_path = ""
-    if algo_type == 'bayes':
-        cur_output_path = OUTPUT_FOLDER_PATH_NAIVE_BAYES 
-    elif algo_type == 'token':
-        cur_output_path = OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY
-    elif algo_type == 'brute':
-        cur_output_path = OUTPUT_FOLDER_PATH_BRUTE
-    elif algo_type == 'gemini':
-        cur_output_path = OUTPUT_FOLDER_PATH_GEMINI
+    cur_output_path = OUTPUT_FOLDER_PATHS[algo_type]
 
     # Check output folder existence
     if not os.path.exists(cur_output_path):

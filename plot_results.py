@@ -10,10 +10,18 @@ from collections import defaultdict
 
 
 # File paths to output folders
-TOKEN_SIMILARITY_PATH = './outputs/Token_Similarity'
-NAIVE_BAYES_PATH = './outputs/Naive_Bayes'
-GEMINI_PATH = './outputs/Gemini'
-PLOT_PATH = './outputs/plots'
+PLOT_OUTPUT_PATH = './outputs/plots'
+PLOT_INPUT_PATHS = {
+    'token_similarity': './outputs/Token_Similarity',
+    'naive_bayes': './outputs/Naive_Bayes',
+    'gemini': './outputs/Gemini',
+    'llama': './outputs/Llama',
+    'mistral': './outputs/Mistral',
+    'qwen': './outputs/Qwen',
+    'zephyr': './outputs/Zephyr',
+    'falcon': './outputs/falcon',
+    'chatgpt': './outputs/chatgpt'
+}
 
 
 
@@ -25,6 +33,7 @@ Return: Plots
 Function: Plot the results for the specified token similarity run
 """
 def plot_token_similarity(alg_num_threshold, alg_direction):
+    TOKEN_SIMILARITY_PATH = PLOT_INPUT_PATHS['token_similarity']
     # Extract threshold 
     def extract_threshold(filename):
         # Extract the numeric value from the filename
@@ -86,7 +95,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     plt.yticks(np.arange(0, 1.05, 0.05))
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
-    plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_metrics_plot.png')
+    plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_metrics_plot.png')
     plt.savefig(plot_filename)
     plt.show()
 
@@ -142,7 +151,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     ax.set_title(f'Aggregate Token Similarity ({alg_num_threshold}, {alg_direction}) Correctness Statistics Box Plot at Threshold {max_f1_threshold}')
     ax.set_ylabel('Values')
     ax.grid(True, linestyle='--', linewidth=0.5)
-    box_plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_box_plot.png')
+    box_plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_box_plot.png')
     plt.savefig(box_plot_filename)
     plt.show()
 
@@ -172,7 +181,7 @@ def plot_token_similarity(alg_num_threshold, alg_direction):
     ax.set_yticks([1, 2, 3, 4])
     ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
     ax.set_title(f'Aggregate Token Similarity ({alg_num_threshold}, {alg_direction}) Correctness Statistics Line Plot at Threshold {max_f1_threshold}')
-    line_plot_filename = os.path.join(PLOT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_line_plot.png')
+    line_plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'token_similarity_{alg_num_threshold}_{alg_direction}_line_plot.png')
     plt.savefig(line_plot_filename)
     plt.show()
     plt.show()
@@ -186,6 +195,7 @@ Return: Plots
 Function: Plot the results for the naive bayes runs
 """
 def plot_naive_bayes():
+    NAIVE_BAYES_PATH = PLOT_INPUT_PATHS['naive_bayes']
     # Extract threshold 
     def extract_threshold(filename):
         # Extract the numeric value from the filename
@@ -258,7 +268,7 @@ def plot_naive_bayes():
     plt.yticks(np.arange(0, 1.05, 0.05))
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.legend()
-    plot_filename = os.path.join(PLOT_PATH, f'naive_bayes_metrics_plot.png')
+    plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'naive_bayes_metrics_plot.png')
     plt.savefig(plot_filename)
     plt.show()
 
@@ -320,7 +330,7 @@ def plot_naive_bayes():
     ax.set_title(f'Aggregate Naive Bayes Correctness Statistics Box Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
     ax.set_ylabel('Values')
     ax.grid(True, linestyle='--', linewidth=0.5)
-    box_plot_filename = os.path.join(PLOT_PATH, f'naive_bayes_box_plot.png')
+    box_plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'naive_bayes_box_plot.png')
     plt.savefig(box_plot_filename)
     plt.show()
 
@@ -350,7 +360,7 @@ def plot_naive_bayes():
     ax.set_yticks([1, 2, 3, 4])
     ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
     ax.set_title(f'Aggregate Naive Bayes Correctness Statistics Line Plot at {max_f1_percentage}% Training ({max_f1_data["Correctness"]["Number of articles used"]} articles tested)')
-    line_plot_filename = os.path.join(PLOT_PATH, f'naive_bayes_line_plot.png')
+    line_plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'naive_bayes_line_plot.png')
     plt.savefig(line_plot_filename)
     plt.show()
     plt.show()
@@ -358,16 +368,16 @@ def plot_naive_bayes():
 
 
 """
-plot_gemini()
+plot_llm()
 Input: None
 Return: Plots
-Function: Plot the results for the Gemini runs
+Function: Plot the results for the LLM runs
 """
-def plot_gemini():
+def plot_llm(argument, PLOT_INPUT_PATH):
     # Extract date 
     def extract_date(filename):
         # Extract the numeric value from the filename
-        match = re.search(r'gemini_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})_UTC', filename)
+        match = re.search(fr'{argument}_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})_UTC', filename)
         if match:
             return match.group(1)
         return None
@@ -376,9 +386,9 @@ def plot_gemini():
     f1_data = {}
 
     # Gather data
-    for filename in os.listdir(GEMINI_PATH):
+    for filename in os.listdir(PLOT_INPUT_PATH):
         if filename.endswith('.json'):
-            file_path = os.path.join(GEMINI_PATH, filename)
+            file_path = os.path.join(PLOT_INPUT_PATH, filename)
             with open(file_path, 'r') as file:
                 data = json.load(file)
                 f1_score = data["Correctness"]["Overall Correctness"]["Overall F1 Score"]
@@ -442,10 +452,10 @@ def plot_gemini():
     # Plot box plot
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.bxp(box_plot_data)
-    ax.set_title(f'Aggregate Gemini Correctness Statistics Box Plot for {max_f1_date} ({max_f1_json_data["Correctness"]["Number of articles used"]} articles tested)')
+    ax.set_title(f'Aggregate {argument.capitalize()} Correctness Statistics Box Plot for {max_f1_date} ({max_f1_json_data["Correctness"]["Number of articles used"]} articles tested)')
     ax.set_ylabel('Values')
     ax.grid(True, linestyle='--', linewidth=0.5)
-    box_plot_filename = os.path.join(PLOT_PATH, f'gemini_box_plot_{max_f1_date}.png')
+    box_plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'{argument}_box_plot_{max_f1_date}.png')
     plt.savefig(box_plot_filename)
     plt.show()
 
@@ -474,8 +484,8 @@ def plot_gemini():
     ax.set_xlabel('Values')
     ax.set_yticks([1, 2, 3, 4])
     ax.set_yticklabels(['Accuracy', 'Precision', 'Recall', 'F1 Score'])
-    ax.set_title(f'Gemini Correctness Statistics Line Plot for {max_f1_date} ({max_f1_json_data["Correctness"]["Number of articles used"]} articles tested)')
-    line_plot_filename = os.path.join(PLOT_PATH, f'gemini_line_plot_{max_f1_date}.png')
+    ax.set_title(f'{argument.capitalize()} Correctness Statistics Line Plot for {max_f1_date} ({max_f1_json_data["Correctness"]["Number of articles used"]} articles tested)')
+    line_plot_filename = os.path.join(PLOT_OUTPUT_PATH, f'{argument}_line_plot_{max_f1_date}.png')
     plt.savefig(line_plot_filename)
     plt.show()
 
@@ -486,13 +496,12 @@ Entry point for plot_results.py
 Plots the results for the specified model and run
 """
 if __name__ == '__main__':
-
     parser = argparse.ArgumentParser(description="Which results to plot")
     parser.add_argument("-r", "--results", required=True,
     choices=['token_similarity_1_greater', 'token_similarity_1_lesser',
              'token_similarity_2_greater', 'token_similarity_2_lesser',
-             'naive_bayes', 'gemini'],
-    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes', 'gemini']")
+             'naive_bayes', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt'],
+    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']")
     args = parser.parse_args()
 
     # Plot specified algorithms
@@ -507,5 +516,5 @@ if __name__ == '__main__':
         plot_token_similarity(2, 'lesser')
     elif argument == 'naive_bayes':
         plot_naive_bayes()
-    elif argument == 'gemini':
-        plot_gemini()
+    elif argument in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']:
+        plot_llm(argument, PLOT_INPUT_PATHS[argument])
