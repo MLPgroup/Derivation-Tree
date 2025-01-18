@@ -297,17 +297,21 @@ def run_derivation_algo(algorithm_option):
     train_article_ids = []
 
     # Reset api tracking and setup model
-    if algorithm_option == 'gemini':
+    if algorithm_option in ['gemini', 'finetune']:
         gemini.api_call_times = deque()
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
         gemini_model = genai.GenerativeModel("gemini-1.5-flash")
-    elif algorithm_option == 'chatgpt':
-        x=2
+    # Need more billing
+    # elif algorithm_option == 'chatgpt':
+    #     run_llms.configure_chatgpt(api_key=os.environ["CHATGPT_API_KEY"])
+    elif algorithm_option in ['llama', 'mistral', 'qwen', 'zephyr', 'falcon']:
+        run_llms.configure_hf(input_hf_token=os.environ["HF_TOKEN"])    
     
-
     # Iterate through article IDs
-    if algorithm_option != 'brute':
+    if algorithm_option not in ['brute', 'finetune']:
         for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
+            # if cur_article_id != '0907.2648':
+            #     continue
             # Construct the HTML file path for the current article
             html_path = f'articles/{cur_article_id}.html'
         
@@ -347,14 +351,14 @@ def run_derivation_algo(algorithm_option):
                         train_article_ids = []
                     # Gemini model
                     elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']:
-                        if algorithm_option == 'gemini':
+                        if algorithm_option in ['gemini']:
                             # Call Gemini API and get resulting adjacency list
                             computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing)
                         elif algorithm_option == 'chatgpt':
-                            computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(equations, words_between_equations, equation_indexing)
+                            computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, cur_article_id)
                         else:
                             computed_adjacency_list, error, error_string = run_llms.get_llm_adj_list(algorithm_option, equations, words_between_equations, equation_indexing)
-                        
+
                         # No error
                         if error == 0:
                             predicted_adjacency_lists.append(computed_adjacency_list)
@@ -366,6 +370,7 @@ def run_derivation_algo(algorithm_option):
                         # Unknown error
                         elif error == 1:
                             train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
+                        print(f"Article {cur_article_id} done")
 
             else:
                 # No html for article found
@@ -376,6 +381,48 @@ def run_derivation_algo(algorithm_option):
         true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
     elif algorithm_option == 'brute':
         articles_used, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
+    elif algorithm_option == 'finetune':
+        # Use brute force to get explicit edges and llm to get implicit edges
+        finetune_articles_used, _ , finetune_predicted_adjacency_lists = brute_force.brute_force_algo()
+        for cur_article_id, cur_explicit_adj_list in zip(finetune_articles_used, finetune_predicted_adjacency_lists):
+            cur_article = article_ids[cur_article_id]
+            # Construct the HTML file path for the current article
+            html_path = f'articles/{cur_article_id}.html'
+
+            # Check if the HTML file exists
+            if os.path.exists(html_path):
+                # Read the content of the HTML file
+                with open(f'articles/{cur_article_id}.html', 'r', encoding='utf-8') as file:
+                    html_content = file.read()
+                    
+                # Extract equations from the HTML content
+                equations, words_between_equations, equation_indexing = extract_equations(html_content)
+            
+                # If extracted correctly, continue
+                if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
+                    # Save variables
+                    extracted_equations.append(equations)
+                    extracted_words_between_equations.append(words_between_equations)
+                    extracted_equation_indexing.append(equation_indexing)
+
+                    computed_adjacency_list, error, error_string = gemini.get_finetune_adj_list(gemini_model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list)
+
+                    # No error
+                    if error == 0:
+                        predicted_adjacency_lists.append(computed_adjacency_list)
+                        true_adjacency_lists.append(cur_article["Adjacency List"])
+                        articles_used.append(cur_article_id)
+                    # Response parsing error
+                    elif error == -1:
+                        train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
+                    # Unknown error
+                    elif error == 1:
+                        train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
+                    print(f"Article {cur_article_id} done")
+            
+
+    if algorithm_option == 'chatgpt':
+        return
     
     # Get accuracy numbers
     similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
@@ -387,7 +434,7 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
-    elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']:
+    elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'finetune']:
         output_name = f"{algorithm_option}"
 
     # Save results
@@ -401,7 +448,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt', 'finetune'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt', 'finetune']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function

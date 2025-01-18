@@ -27,8 +27,9 @@ OUTPUT_FOLDER_PATHS = {
     'mistral': './outputs/Mistral',
     'qwen': './outputs/Qwen',
     'zephyr': './outputs/Zephyr',
-    'falcon': './outputs/falcon',
-    'chatgpt': './outputs/chatgpt'
+    'falcon': './outputs/Falcon',
+    'chatgpt': './outputs/Chatgpt',
+    'finetune': './outputs/Gemini'
 }
 
 # Time Zone
@@ -126,7 +127,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
     elif algo_type == 'brute':
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
-    elif algo_type == 'gemini':
+    elif algo_type in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'finetune']:
         output_file_path = os.path.join(cur_output_path, f'{name}_{timestamp}.json')
 
     # Clear output file
@@ -143,56 +144,59 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         },
         "Aggregate Correctness Statistics": {
             "Accuracy": {
-                "Mean": sum(similarity_accuracies) / len(similarity_accuracies),
-                "Lowest": np.min(similarity_accuracies),
-                "25th Quartile (Q1)": np.percentile(similarity_accuracies, 25),
-                "Median": np.percentile(similarity_accuracies, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_accuracies, 75),
-                "Highest": np.max(similarity_accuracies)
+                "Mean": sum(similarity_accuracies) / len(similarity_accuracies) if len(similarity_accuracies) != 0 else 0,
+                "Lowest": np.min(similarity_accuracies) if len(similarity_accuracies) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_accuracies, 25) if len(similarity_accuracies) != 0 else 0,
+                "Median": np.percentile(similarity_accuracies, 50) if len(similarity_accuracies) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_accuracies, 75) if len(similarity_accuracies) != 0 else 0,
+                "Highest": np.max(similarity_accuracies) if len(similarity_accuracies) != 0 else 0
             },
             "Precision": {
-                "Mean": sum(similarity_precisions) / len(similarity_precisions),
-                "Lowest": np.min(similarity_precisions),
-                "25th Quartile (Q1)": np.percentile(similarity_precisions, 25),
-                "Median": np.percentile(similarity_precisions, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_precisions, 75),
-                "Highest": np.max(similarity_precisions)
+                "Mean": sum(similarity_precisions) / len(similarity_precisions) if len(similarity_precisions) != 0 else 0,
+                "Lowest": np.min(similarity_precisions) if len(similarity_precisions) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_precisions, 25) if len(similarity_precisions) != 0 else 0,
+                "Median": np.percentile(similarity_precisions, 50) if len(similarity_precisions) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_precisions, 75) if len(similarity_precisions) != 0 else 0,
+                "Highest": np.max(similarity_precisions) if len(similarity_precisions) != 0 else 0
             },
             "Recall": {
-                "Mean": sum(similarity_recalls) / len(similarity_recalls),
-                "Lowest": np.min(similarity_recalls),
-                "25th Quartile (Q1)": np.percentile(similarity_recalls, 25),
-                "Median": np.percentile(similarity_recalls, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_recalls, 75),
-                "Highest": np.max(similarity_recalls)
+                "Mean": sum(similarity_recalls) / len(similarity_recalls) if len(similarity_recalls) != 0 else 0,
+                "Lowest": np.min(similarity_recalls) if len(similarity_recalls) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_recalls, 25) if len(similarity_recalls) != 0 else 0,
+                "Median": np.percentile(similarity_recalls, 50) if len(similarity_recalls) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_recalls, 75) if len(similarity_recalls) != 0 else 0,
+                "Highest": np.max(similarity_recalls) if len(similarity_recalls) != 0 else 0
             },
             "F1 Score": {
-                "Mean": sum(similarity_f1_scores) / len(similarity_f1_scores),
-                "Lowest": np.min(similarity_f1_scores),
-                "25th Quartile (Q1)": np.percentile(similarity_f1_scores, 25),
-                "Median": np.percentile(similarity_f1_scores, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_f1_scores, 75),
-                "Highest": np.max(similarity_f1_scores)
+                "Mean": sum(similarity_f1_scores) / len(similarity_f1_scores) if len(similarity_f1_scores) != 0 else 0,
+                "Lowest": np.min(similarity_f1_scores) if len(similarity_f1_scores) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_f1_scores, 25) if len(similarity_f1_scores) != 0 else 0,
+                "Median": np.percentile(similarity_f1_scores, 50) if len(similarity_f1_scores) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_f1_scores, 75) if len(similarity_f1_scores) != 0 else 0,
+                "Highest": np.max(similarity_f1_scores) if len(similarity_f1_scores) != 0 else 0
             }
         }
     }
-    article_data = {
-        f"Article ID: {cur_article_id}": {
-            "Adjacency List": cur_predicted_adjacency_lists,
-            "Accuracy": cur_accuracy,
-            "Precision": cur_precision,
-            "Recall": cur_recall,
-            "F1 Score": cur_f1
-        } for cur_article_id, cur_predicted_adjacency_lists, cur_accuracy, cur_precision, cur_recall, cur_f1 in zip(article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores)
-    }
+    if len(predicted_adjacency_lists) != 0:
+        article_data = {
+            f"Article ID: {cur_article_id}": {
+                "Adjacency List": cur_predicted_adjacency_lists,
+                "Accuracy": cur_accuracy,
+                "Precision": cur_precision,
+                "Recall": cur_recall,
+                "F1 Score": cur_f1
+            } for cur_article_id, cur_predicted_adjacency_lists, cur_accuracy, cur_precision, cur_recall, cur_f1 in zip(article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores)
+        }
+    else:
+        article_data = {}
     training_set = {
         "Training Articles": train_article_ids
     }
-    if algo_type == 'gemini':
+    if algo_type in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'finetune'] and len (train_article_ids) != 0:
         training_set = {
             f"Article ID: {cur_article_id}": {
                 "Parsing Error": cur_parse_error,
-                "Gemini Text Response": cur_text_response
+                "LLM Text Response": cur_text_response
             } for cur_article_id, cur_parse_error, cur_text_response in train_article_ids
         }
 
@@ -205,7 +209,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Training": training_set}, json_file, indent=4)
             elif algo_type == 'brute':
                 json.dump({"Correctness": overall_correctness, "Results": article_data}, json_file, indent=4)
-            elif algo_type == 'gemini':
+            elif algo_type in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'finetune']:
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Errors": training_set}, json_file, indent=4)
 
         print(f"Successfully wrote outputs to {output_file_path}")

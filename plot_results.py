@@ -19,8 +19,8 @@ PLOT_INPUT_PATHS = {
     'mistral': './outputs/Mistral',
     'qwen': './outputs/Qwen',
     'zephyr': './outputs/Zephyr',
-    'falcon': './outputs/falcon',
-    'chatgpt': './outputs/chatgpt'
+    'falcon': './outputs/Falcon',
+    'chatgpt': './outputs/Chatgpt'
 }
 
 

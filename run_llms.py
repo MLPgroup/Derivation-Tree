@@ -9,7 +9,7 @@ import openai
 api_call_times_queue_hf = deque()
 api_call_times_queue_chatgpt = deque()
 
-
+hf_token = ""
 
 # Initialize pipelines for different Hugging Face models
 huggingface_models = {
@@ -24,6 +24,12 @@ huggingface_models = {
 
 def configure_chatgpt(api_key):
     openai.api_key = api_key
+
+
+
+def configure_hf(input_hf_token):
+    global hf_token
+    hf_token = input_hf_token
 
 
 
@@ -56,15 +62,17 @@ def parse_adjacency_list(text_response, equation_indexing):
 
 def get_llm_adj_list(model_name, equations, words_between_equations, equation_indexing):
     global api_call_times_queue_hf
+    global hf_token
+    print("here1.1")
 
     if model_name not in huggingface_models:
         return None, 1, f"Model {model_name} is not configured."
 
-    model = pipeline("text-generation", model=huggingface_models[model_name], trust_remote_code=True)
+    model = pipeline("text-generation", model=huggingface_models[model_name], use_auth_token=hf_token, trust_remote_code=True)
 
     equation_alttext = []
     total_text = words_between_equations[0]
-    for i, cur_equation in enumerate(equation_indexing):
+    for i, cur_equation in enumerate(equation_indexing):        
         cur_alttext = ""
         for j, cur_sub_equation in enumerate(equations[cur_equation]['equations']):
             total_text += " " + cur_sub_equation['alttext']
@@ -91,8 +99,12 @@ def get_llm_adj_list(model_name, equations, words_between_equations, equation_in
     except Exception as e:
         return None, 1, f"Error generating response: {str(e)}"
 
+    print("here1.2")
+    print(raw_response)
+
     api_call_times_queue_hf.append(time.time())
     adjacency_list = parse_adjacency_list(raw_response, equation_indexing)
+    print(adjacency_list)
 
     if isinstance(adjacency_list, str):
         return adjacency_list, -1, raw_response
@@ -103,7 +115,7 @@ def get_llm_adj_list(model_name, equations, words_between_equations, equation_in
 
 
 
-def get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, model="gpt-4"):
+def get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, cur_article_id, model="gpt-3.5-turbo-0125", prompt_file="prompts.txt"):
     global api_call_times_queue_chatgpt
 
     # Format the equations and surrounding text into a prompt
@@ -123,39 +135,55 @@ def get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, 
         prompt += f"{str(i+1)}. {cur_equation}\n"
     prompt += "\n Analyze the context of the article to identify which equations are derived from each equation. Provide the output as a list and nothing else, with the format: w -> x, y, z;\n x -> h, t;\n ... If no equations are derived from a certain equation, return an empty list with the format: t ->;\n"
 
-    # Rate limiting: Check if 3 requests per minute limit is being exceeded
-    current_time = time.time()
-    while api_call_times_queue_chatgpt and current_time - api_call_times_queue_chatgpt[0] > 20:
-        api_call_times_queue_chatgpt.popleft()
-    if len(api_call_times_queue_chatgpt) >= 3:
-        time_to_wait = 20 - (current_time - api_call_times_queue_chatgpt[0])
-        if time_to_wait > 0 and time_to_wait <= 20:
-            time.sleep(time_to_wait)
-
+    # Write the prompt to a file
     try:
-        # Make API call to OpenAI
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=[
-                {"role": "system", "content": "You are an assistant that specializes in understanding and analyzing mathematical articles."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=1000,
-            temperature=0.5
-        )
-        raw_response = response['choices'][0]['message']['content'].strip()
+        with open(prompt_file, 'a') as f:
+            f.write("\n" + "="*80 + f"\nPrompt for Article {cur_article_id}:\n")
+            f.write(prompt + "\n")
     except Exception as e:
-        return None, 1, f"Error generating response: {str(e)}"
+        return None, 1, f"Error writing prompt to file: {str(e)}"
 
-    # Log the API call time
-    api_call_times_queue_chatgpt.append(time.time())
+    # Skip the API call and return success message since prompts are saved
+    return "Prompt saved to file", 0, "Good"
 
-    # Parse the raw response into an adjacency list
-    adjacency_list = parse_adjacency_list(raw_response, equation_indexing)
 
-    if isinstance(adjacency_list, str):
-        return adjacency_list, -1, raw_response  # Error in parsing
-    elif isinstance(adjacency_list, dict):
-        return adjacency_list, 0, "Good"
-    else:
-        return adjacency_list, 1, "Unknown"
+    # # Rate limiting: Check if 3 requests per minute limit is being exceeded
+    # current_time = time.time()
+    # while api_call_times_queue_chatgpt and current_time - api_call_times_queue_chatgpt[0] > 20:
+    #     api_call_times_queue_chatgpt.popleft()
+    # if len(api_call_times_queue_chatgpt) >= 3:
+    #     time_to_wait = 20 - (current_time - api_call_times_queue_chatgpt[0])
+    #     if time_to_wait > 0 and time_to_wait <= 20:
+    #         time.sleep(time_to_wait)
+
+    # try:
+    #     # Make API call to OpenAI
+    #     response = openai.ChatCompletion.create(
+    #         model=model,
+    #         messages=[
+    #             {"role": "system", "content": "You are an assistant that specializes in understanding and analyzing mathematical articles."},
+    #             {"role": "user", "content": prompt}
+    #         ],
+    #         max_tokens=1000,
+    #         temperature=0.5
+    #     )
+    #     raw_response = response['choices'][0]['message']['content'].strip()
+    #     #############
+    #     print(response)
+    #     print(raw_response)
+    # except Exception as e:
+    #     return None, 1, f"Error generating response: {str(e)}"
+
+    # # Log the API call time
+    # api_call_times_queue_chatgpt.append(time.time())
+
+    # # Parse the raw response into an adjacency list
+    # adjacency_list = parse_adjacency_list(raw_response, equation_indexing)
+    # print(adjacency_list)
+
+    # if isinstance(adjacency_list, str):
+    #     return adjacency_list, -1, raw_response  # Error in parsing
+    # elif isinstance(adjacency_list, dict):
+    #     return adjacency_list, 0, "Good"
+    # else:
+    #     return adjacency_list, 1, "Unknown"

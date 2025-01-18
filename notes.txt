@@ -1,0 +1,10 @@
+Total Articles: 107
+Total Outgoing Edges: 1284
+Total Nodes: 1164
+Max Outgoing Edges (Single Node): 4
+Avg Total Outgoing Edges per Article: 12.0
+Avg Max Outgoing Edges per Article: 1.6542056074766356
+Avg Outgoing Edges per Node: 1.1030927835051547
+
+Minimal prompt = None are formatted correctly
+Finetune = work better than base
