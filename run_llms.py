@@ -1,23 +1,25 @@
 import time
+import json
 from collections import deque
-from transformers import pipeline
+import torch
+from huggingface_hub import InferenceClient
+from huggingface_hub import login
 import openai
 
 
 
 # Global variable for rate limiting
-api_call_times_queue_hf = deque()
-api_call_times_queue_chatgpt = deque()
+api_call_times_queue = deque()
 
 hf_token = ""
 
 # Initialize pipelines for different Hugging Face models
 huggingface_models = {
-    "llama": "meta-llama/Llama-3.3-70B-Instruct",
+    "llama": "meta-llama/Llama-3.2-3B-Instruct",
     "mistral": "mistralai/Mistral-Nemo-Instruct-2407",
     "qwen": "Qwen/Qwen2.5-Coder-32B-Instruct",
     "zephyr": "HuggingFaceH4/zephyr-7b-beta",
-    "falcon": "tiiuae/falcon-7b-instruct"
+    "phi": "microsoft/Phi-3.5-mini-instruct"
 }
 
 
@@ -27,9 +29,14 @@ def configure_chatgpt(api_key):
 
 
 
-def configure_hf(input_hf_token):
+def configure_hf(input_hf_token, algorithm_option):
     global hf_token
+    global model
     hf_token = input_hf_token
+    login(token=hf_token)
+    model_id = huggingface_models[algorithm_option]
+    client = InferenceClient(model_id)
+    return client
 
 
 
@@ -41,7 +48,10 @@ def parse_adjacency_list(text_response, equation_indexing):
         cur_line = cur_line.rstrip(';').strip()
         if '->' not in cur_line:
             return f"Error: Line '{cur_line}' is not correctly formatted (missing '->')."
-        part1, part2 = cur_line.split('->')
+        try:
+            part1, part2 = cur_line.split('->')
+        except Exception as e:
+            return f"{e}"
         starting_node_index = part1.strip()
         if not starting_node_index.isdigit():
             return f"Error: Invalid node '{starting_node_index}'. Nodes should be integers."
@@ -60,15 +70,8 @@ def parse_adjacency_list(text_response, equation_indexing):
 
 
 
-def get_llm_adj_list(model_name, equations, words_between_equations, equation_indexing):
-    global api_call_times_queue_hf
-    global hf_token
-    print("here1.1")
-
-    if model_name not in huggingface_models:
-        return None, 1, f"Model {model_name} is not configured."
-
-    model = pipeline("text-generation", model=huggingface_models[model_name], use_auth_token=hf_token, trust_remote_code=True)
+def get_llm_adj_list(llm_client, equations, words_between_equations, equation_indexing):
+    global api_call_times_queue
 
     equation_alttext = []
     total_text = words_between_equations[0]
@@ -86,28 +89,30 @@ def get_llm_adj_list(model_name, equations, words_between_equations, equation_in
         prompt += f"{str(i+1)}. {cur_equation}\n"
     prompt += "\n Analyze the context of the article to identify which equations are derived from each equation. Provide the output as a list and nothing else, with the format: w -> x, y, z;\n x -> h, t;\n ... If no equations are derived from a certain equation, return an empty list with the format: t ->;\n"
 
+    messages = [
+        {"role": "system", "content": "You are a scientific paper analyzer expert trained to analyze the context of articles and extract mathematical derivations."},
+        {"role": "user", "content": prompt},
+    ]
+
     current_time = time.time()
-    while api_call_times_queue_hf and current_time - api_call_times_queue_hf[0] > 59:
-        api_call_times_queue_hf.popleft()
-    if len(api_call_times_queue_hf) >= 15:
-        time_to_wait = 59 - (current_time - api_call_times_queue_hf[0])
+    while api_call_times_queue and current_time - api_call_times_queue[0] > 59:
+        api_call_times_queue.popleft()
+    if len(api_call_times_queue) >= 15:
+        time_to_wait = 59 - (current_time - api_call_times_queue[0])
         if time_to_wait > 0 and time_to_wait <= 60:
             time.sleep(time_to_wait)
 
     try:
-        raw_response = model(prompt, max_length=1000, num_return_sequences=1)[0]['generated_text']
+        raw_response = llm_client.chat_completion(messages, max_tokens=1000)
+        text_response = raw_response.choices[0].message.content
     except Exception as e:
         return None, 1, f"Error generating response: {str(e)}"
 
-    print("here1.2")
-    print(raw_response)
-
-    api_call_times_queue_hf.append(time.time())
-    adjacency_list = parse_adjacency_list(raw_response, equation_indexing)
-    print(adjacency_list)
+    api_call_times_queue.append(time.time())
+    adjacency_list = parse_adjacency_list(text_response, equation_indexing)
 
     if isinstance(adjacency_list, str):
-        return adjacency_list, -1, raw_response
+        return adjacency_list, -1, text_response
     elif isinstance(adjacency_list, dict):
         return adjacency_list, 0, "Good"
     else:
@@ -116,7 +121,7 @@ def get_llm_adj_list(model_name, equations, words_between_equations, equation_in
 
 
 def get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, cur_article_id, model="gpt-3.5-turbo-0125", prompt_file="prompts.txt"):
-    global api_call_times_queue_chatgpt
+    global api_call_times_queue
 
     # Format the equations and surrounding text into a prompt
     equation_alttext = []
@@ -149,10 +154,10 @@ def get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, 
 
     # # Rate limiting: Check if 3 requests per minute limit is being exceeded
     # current_time = time.time()
-    # while api_call_times_queue_chatgpt and current_time - api_call_times_queue_chatgpt[0] > 20:
-    #     api_call_times_queue_chatgpt.popleft()
-    # if len(api_call_times_queue_chatgpt) >= 3:
-    #     time_to_wait = 20 - (current_time - api_call_times_queue_chatgpt[0])
+    # while api_call_times_queue and current_time - api_call_times_queue[0] > 20:
+    #     api_call_times_queue.popleft()
+    # if len(api_call_times_queue) >= 3:
+    #     time_to_wait = 20 - (current_time - api_call_times_queue[0])
     #     if time_to_wait > 0 and time_to_wait <= 20:
     #         time.sleep(time_to_wait)
 
@@ -175,7 +180,7 @@ def get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, 
     #     return None, 1, f"Error generating response: {str(e)}"
 
     # # Log the API call time
-    # api_call_times_queue_chatgpt.append(time.time())
+    # api_call_times_queue.append(time.time())
 
     # # Parse the raw response into an adjacency list
     # adjacency_list = parse_adjacency_list(raw_response, equation_indexing)

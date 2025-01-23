@@ -19,7 +19,7 @@ PLOT_INPUT_PATHS = {
     'mistral': './outputs/Mistral',
     'qwen': './outputs/Qwen',
     'zephyr': './outputs/Zephyr',
-    'falcon': './outputs/Falcon',
+    'phi': './outputs/Phi',
     'chatgpt': './outputs/Chatgpt'
 }
 
@@ -500,8 +500,8 @@ if __name__ == '__main__':
     parser.add_argument("-r", "--results", required=True,
     choices=['token_similarity_1_greater', 'token_similarity_1_lesser',
              'token_similarity_2_greater', 'token_similarity_2_lesser',
-             'naive_bayes', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt'],
-    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']")
+             'naive_bayes', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt'],
+    help="Which results to plot : ['token_similarity_1_greater', 'token_similarity_1_lesser', 'token_similarity_2_greater', 'token_similarity_2_lesser', 'naive_bayes', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt']")
     args = parser.parse_args()
 
     # Plot specified algorithms
@@ -516,5 +516,5 @@ if __name__ == '__main__':
         plot_token_similarity(2, 'lesser')
     elif argument == 'naive_bayes':
         plot_naive_bayes()
-    elif argument in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'falcon', 'chatgpt']:
+    elif argument in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt']:
         plot_llm(argument, PLOT_INPUT_PATHS[argument])
