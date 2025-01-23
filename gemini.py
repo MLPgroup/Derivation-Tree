@@ -176,7 +176,7 @@ def get_gemini_adj_list(model, equations, words_between_equations, equation_inde
 
 
 
-def get_finetune_adj_list(model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list):
+def get_combine_adj_list(model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list):
     global api_call_times_queue
 
     # Mapping equations to their indices
@@ -202,7 +202,7 @@ def get_finetune_adj_list(model, equations, words_between_equations, equation_in
         total_text += " " + words_between_equations[i + 1]
         equation_alttext.append(cur_alttext)
     
-    # Finetune Prompt:
+    # Combine Prompt:
     prompt = "I have the following article that contains various mathematical equations: \n" + total_text 
     prompt += "\n From this article, I have extracted the list of equations, numbers as follows: \n"
     for i, cur_equation in enumerate(equation_alttext):

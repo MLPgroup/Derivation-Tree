@@ -297,7 +297,7 @@ def run_derivation_algo(algorithm_option):
     train_article_ids = []
 
     # Reset api tracking and setup model
-    if algorithm_option in ['gemini', 'finetune']:
+    if algorithm_option in ['gemini', 'combine']:
         gemini.api_call_times = deque()
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
         gemini_model = genai.GenerativeModel("gemini-1.5-flash")
@@ -309,7 +309,7 @@ def run_derivation_algo(algorithm_option):
         llm_client = run_llms.configure_hf(input_hf_token=os.environ["HF_TOKEN"], algorithm_option=algorithm_option)
     
     # Iterate through article IDs
-    if algorithm_option not in ['brute', 'finetune']:
+    if algorithm_option not in ['brute', 'combine']:
         for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
             # Construct the HTML file path for the current article
             html_path = f'articles/{cur_article_id}.html'
@@ -380,10 +380,10 @@ def run_derivation_algo(algorithm_option):
         true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
     elif algorithm_option == 'brute':
         articles_used, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
-    elif algorithm_option == 'finetune':
+    elif algorithm_option == 'combine':
         # Use brute force to get explicit edges and llm to get implicit edges
-        finetune_articles_used, _ , finetune_predicted_adjacency_lists = brute_force.brute_force_algo()
-        for cur_article_id, cur_explicit_adj_list in zip(finetune_articles_used, finetune_predicted_adjacency_lists):
+        combine_articles_used, _ , combine_predicted_adjacency_lists = brute_force.brute_force_algo()
+        for cur_article_id, cur_explicit_adj_list in zip(combine_articles_used, combine_predicted_adjacency_lists):
             cur_article = article_ids[cur_article_id]
             # Construct the HTML file path for the current article
             html_path = f'articles/{cur_article_id}.html'
@@ -404,7 +404,7 @@ def run_derivation_algo(algorithm_option):
                     extracted_words_between_equations.append(words_between_equations)
                     extracted_equation_indexing.append(equation_indexing)
 
-                    computed_adjacency_list, error, error_string = gemini.get_finetune_adj_list(gemini_model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list)
+                    computed_adjacency_list, error, error_string = gemini.get_combine_adj_list(gemini_model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list)
 
                     # No error
                     if error == 0:
@@ -433,7 +433,7 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
-    elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'finetune']:
+    elif algorithm_option in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine']:
         output_name = f"{algorithm_option}"
 
     # Save results
@@ -447,7 +447,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'finetune'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'finetune']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
