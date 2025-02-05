@@ -1,5 +1,7 @@
 # Summarizing and Extracting Derivation Graphs from Mathematical Texts
 - - - -
+Preprint: https://arxiv.org/abs/2410.21324
+- - - - 
 # Building the Derivation Graph Using Token Similarity, Naive Bayes, Brute Force, or LLMs
 
 ## Instructions to Run Algorithms
