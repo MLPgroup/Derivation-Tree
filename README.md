@@ -1,7 +1,5 @@
 # Summarizing and Extracting Derivation Graphs from Mathematical Texts
 - - - -
-Preprint: https://arxiv.org/abs/2410.21324
-- - - - 
 # Building the Derivation Graph Using Token Similarity, Naive Bayes, Brute Force, or LLMs
 
 ## Instructions to Run Algorithms
@@ -101,6 +99,33 @@ Running the above command will output the results of the algorithm specified, wh
 - Util file that writes output of the algorithm to the correct location and with correct formatting
 ### /outputs (folder)
 - Holds the output for the programs being run
+- - - - 
+## System Requirements
+Python 3.10. See requirements.txt.
+- - - -
+&nbsp;
+- - - -
+# Plotting Comparison Graphs
+
+## Instructions to Run Algorithm
+```
+python3 graph_compare.py
+```
+- - - -
+## Output
+Running the above command will output figures for each article that is parsed. It outputs a figure with a side-by-side picture of the ground truth graph found in articles.json with the algorithm outputted graph that is specified.
+- - - -
+## File System
+### articles.json
+- JSON file to hold information about each article
+### article_parser.py
+- Util file that parses the json file and returns a dictionary of the articles
+### graph_compare.py
+- Util file that creates and plots the comparison graphs for each article
+### /outputs/Comparison_Graphs (folder)
+- Holds all the output graphs
+### /outputs/... (folder)
+- Holds specific JSON files that hold adjacency lists to be compared against
 - - - - 
 ## System Requirements
 Python 3.10. See requirements.txt.

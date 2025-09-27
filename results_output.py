@@ -17,11 +17,20 @@ from datetime import datetime
 
 
 # Path to output folder
-OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = 'outputs/Important_Equation'
-OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY = 'outputs/Token_Similarity'
-OUTPUT_FOLDER_PATH_NAIVE_BAYES = 'outputs/Naive_Bayes'
-OUTPUT_FOLDER_PATH_BRUTE = 'outputs/Brute_Force'
-OUTPUT_FOLDER_PATH_GEMINI = 'outputs/Gemini'
+OUTPUT_FOLDER_PATHS = {
+    'important_equation': './outputs/Important_Equation',
+    'token': './outputs/Token_Similarity',
+    'bayes': './outputs/Naive_Bayes',
+    'brute': './outputs/Brute_Force',
+    'gemini': './outputs/Gemini',
+    'llama': './outputs/Llama',
+    'mistral': './outputs/Mistral',
+    'qwen': './outputs/Qwen',
+    'zephyr': './outputs/Zephyr',
+    'phi': './outputs/Phi',
+    'chatgpt': './outputs/Chatgpt',
+    'combine': './outputs/Gemini'
+}
 
 # Time Zone
 TIME_ZONE = 'UTC'
@@ -43,6 +52,7 @@ Return: none
 Function: Output the results of the most important equation algorithm into a JSON file
 """
 def save_important_equation_results(name, article_ids, predicted_equations, labeled_equations, algo_accuracy, algo_precision, algo_recall, algo_f1_score, algo_num_articles_used):
+    OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION = OUTPUT_FOLDER_PATHS['important_equation']
     # Check output folder existence
     if not os.path.exists(OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION):
         raise FileNotFoundError(f"The output folder with path {OUTPUT_FOLDER_PATH_IMPORTANT_EQUATION} was not found,")
@@ -99,16 +109,7 @@ Function: Output the results of the given algorithm into a JSON file
 """
 def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, similarity_num_articles_used, train_article_ids=[]):
     # Specific output file path
-
-    cur_output_path = ""
-    if algo_type == 'bayes':
-        cur_output_path = OUTPUT_FOLDER_PATH_NAIVE_BAYES 
-    elif algo_type == 'token':
-        cur_output_path = OUTPUT_FOLDER_PATH_TOKEN_SIMILARITY
-    elif algo_type == 'brute':
-        cur_output_path = OUTPUT_FOLDER_PATH_BRUTE
-    elif algo_type == 'gemini':
-        cur_output_path = OUTPUT_FOLDER_PATH_GEMINI
+    cur_output_path = OUTPUT_FOLDER_PATHS[algo_type]
 
     # Check output folder existence
     if not os.path.exists(cur_output_path):
@@ -126,7 +127,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
     elif algo_type == 'brute':
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
-    elif algo_type == 'gemini':
+    elif algo_type in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine']:
         output_file_path = os.path.join(cur_output_path, f'{name}_{timestamp}.json')
 
     # Clear output file
@@ -143,56 +144,59 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         },
         "Aggregate Correctness Statistics": {
             "Accuracy": {
-                "Mean": sum(similarity_accuracies) / len(similarity_accuracies),
-                "Lowest": np.min(similarity_accuracies),
-                "25th Quartile (Q1)": np.percentile(similarity_accuracies, 25),
-                "Median": np.percentile(similarity_accuracies, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_accuracies, 75),
-                "Highest": np.max(similarity_accuracies)
+                "Mean": sum(similarity_accuracies) / len(similarity_accuracies) if len(similarity_accuracies) != 0 else 0,
+                "Lowest": np.min(similarity_accuracies) if len(similarity_accuracies) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_accuracies, 25) if len(similarity_accuracies) != 0 else 0,
+                "Median": np.percentile(similarity_accuracies, 50) if len(similarity_accuracies) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_accuracies, 75) if len(similarity_accuracies) != 0 else 0,
+                "Highest": np.max(similarity_accuracies) if len(similarity_accuracies) != 0 else 0
             },
             "Precision": {
-                "Mean": sum(similarity_precisions) / len(similarity_precisions),
-                "Lowest": np.min(similarity_precisions),
-                "25th Quartile (Q1)": np.percentile(similarity_precisions, 25),
-                "Median": np.percentile(similarity_precisions, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_precisions, 75),
-                "Highest": np.max(similarity_precisions)
+                "Mean": sum(similarity_precisions) / len(similarity_precisions) if len(similarity_precisions) != 0 else 0,
+                "Lowest": np.min(similarity_precisions) if len(similarity_precisions) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_precisions, 25) if len(similarity_precisions) != 0 else 0,
+                "Median": np.percentile(similarity_precisions, 50) if len(similarity_precisions) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_precisions, 75) if len(similarity_precisions) != 0 else 0,
+                "Highest": np.max(similarity_precisions) if len(similarity_precisions) != 0 else 0
             },
             "Recall": {
-                "Mean": sum(similarity_recalls) / len(similarity_recalls),
-                "Lowest": np.min(similarity_recalls),
-                "25th Quartile (Q1)": np.percentile(similarity_recalls, 25),
-                "Median": np.percentile(similarity_recalls, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_recalls, 75),
-                "Highest": np.max(similarity_recalls)
+                "Mean": sum(similarity_recalls) / len(similarity_recalls) if len(similarity_recalls) != 0 else 0,
+                "Lowest": np.min(similarity_recalls) if len(similarity_recalls) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_recalls, 25) if len(similarity_recalls) != 0 else 0,
+                "Median": np.percentile(similarity_recalls, 50) if len(similarity_recalls) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_recalls, 75) if len(similarity_recalls) != 0 else 0,
+                "Highest": np.max(similarity_recalls) if len(similarity_recalls) != 0 else 0
             },
             "F1 Score": {
-                "Mean": sum(similarity_f1_scores) / len(similarity_f1_scores),
-                "Lowest": np.min(similarity_f1_scores),
-                "25th Quartile (Q1)": np.percentile(similarity_f1_scores, 25),
-                "Median": np.percentile(similarity_f1_scores, 50),
-                "75th Quartile (Q3)": np.percentile(similarity_f1_scores, 75),
-                "Highest": np.max(similarity_f1_scores)
+                "Mean": sum(similarity_f1_scores) / len(similarity_f1_scores) if len(similarity_f1_scores) != 0 else 0,
+                "Lowest": np.min(similarity_f1_scores) if len(similarity_f1_scores) != 0 else 0,
+                "25th Quartile (Q1)": np.percentile(similarity_f1_scores, 25) if len(similarity_f1_scores) != 0 else 0,
+                "Median": np.percentile(similarity_f1_scores, 50) if len(similarity_f1_scores) != 0 else 0,
+                "75th Quartile (Q3)": np.percentile(similarity_f1_scores, 75) if len(similarity_f1_scores) != 0 else 0,
+                "Highest": np.max(similarity_f1_scores) if len(similarity_f1_scores) != 0 else 0
             }
         }
     }
-    article_data = {
-        f"Article ID: {cur_article_id}": {
-            "Adjacency List": cur_predicted_adjacency_lists,
-            "Accuracy": cur_accuracy,
-            "Precision": cur_precision,
-            "Recall": cur_recall,
-            "F1 Score": cur_f1
-        } for cur_article_id, cur_predicted_adjacency_lists, cur_accuracy, cur_precision, cur_recall, cur_f1 in zip(article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores)
-    }
+    if len(predicted_adjacency_lists) != 0:
+        article_data = {
+            f"Article ID: {cur_article_id}": {
+                "Adjacency List": cur_predicted_adjacency_lists,
+                "Accuracy": cur_accuracy,
+                "Precision": cur_precision,
+                "Recall": cur_recall,
+                "F1 Score": cur_f1
+            } for cur_article_id, cur_predicted_adjacency_lists, cur_accuracy, cur_precision, cur_recall, cur_f1 in zip(article_ids, predicted_adjacency_lists, similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores)
+        }
+    else:
+        article_data = {}
     training_set = {
         "Training Articles": train_article_ids
     }
-    if algo_type == 'gemini':
+    if algo_type in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine'] and len (train_article_ids) != 0:
         training_set = {
             f"Article ID: {cur_article_id}": {
                 "Parsing Error": cur_parse_error,
-                "Gemini Text Response": cur_text_response
+                "LLM Text Response": cur_text_response
             } for cur_article_id, cur_parse_error, cur_text_response in train_article_ids
         }
 
@@ -205,7 +209,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Training": training_set}, json_file, indent=4)
             elif algo_type == 'brute':
                 json.dump({"Correctness": overall_correctness, "Results": article_data}, json_file, indent=4)
-            elif algo_type == 'gemini':
+            elif algo_type in ['gemini', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine']:
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Errors": training_set}, json_file, indent=4)
 
         print(f"Successfully wrote outputs to {output_file_path}")

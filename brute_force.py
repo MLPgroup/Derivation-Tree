@@ -268,11 +268,11 @@ def parse_html(html_path, cur_article_id):
             text = (text.rsplit("References", 1))[0]
             text = text.split("Acknowledgments")[0]
 
-        # Extracts all Block/Numbered Equation ID's from a Mathematical Text
-            mathMl, text, equation_ids = []
+            # Extracts all Block/Numbered Equation ID's from a Mathematical Text
+            equation_ids = []
             for tag in mathMl:
                 if tag.get('id'):
-                    mathMl, text, equation_ids.append(tag.get('id'))
+                    equation_ids.append(tag.get('id'))
 
             # Return parsing outputs
             return mathMl, text, equation_ids

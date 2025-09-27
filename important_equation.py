@@ -17,6 +17,7 @@ import article_parser
 import results_output
 
 
+
 """
 get_most_important_equation_DFS(article)
 Input: article -- dictionary with following values:
@@ -315,9 +316,6 @@ def get_most_important_equation_BFS(article, ret_list):
         return important_nodes[-1]
 
 
-"""PLAYGROUND"""
-
-
 
 """
 get_algo_correctness_list(labeled_most_important_equations, algo_most_important_equations)
@@ -406,7 +404,6 @@ def run_important_algo(type):
 
     output_name = "important_equation_dfs" if type == "dfs" else "important_equation_bfs"
     results_output.save_important_equation_results(output_name, article_id_correctness, algo_most_important_equations, labeled_most_important_equations, algo_accuracy, algo_precision, algo_recall, algo_f1_score, len(algo_articles_used))
-
 
 
 
