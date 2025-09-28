@@ -218,7 +218,7 @@ def run_derivation_algo(algorithm_option):
     if algorithm_option in ['gemini', 'combine', 'geminifewshot']:
         gemini.api_call_times = deque()
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-        gemini_model = genai.GenerativeModel("gemini-1.5-flash")
+        gemini_model = genai.GenerativeModel("gemini-2.5-flash")
     # Need more billing
     # elif algorithm_option == 'chatgpt':
     #     run_llms.configure_chatgpt(api_key=os.environ["CHATGPT_API_KEY"])
@@ -234,7 +234,7 @@ def run_derivation_algo(algorithm_option):
             # Fewshot articles only for geminifewshot
             if algorithm_option == 'geminifewshot' and cur_article_id in fewshot_articles:
                 continue
-            
+
             # Construct the HTML file path for the current article
             html_path = f'articles/{cur_article_id}.html'
         

@@ -276,6 +276,9 @@ def parse_html(html_path, cur_article_id):
 
             # Return parsing outputs
             return mathMl, text, equation_ids
+    else:
+        print(f"Error: The file {html_path} does not exist.")
+        return None, None, None
 
 
 
@@ -326,6 +329,8 @@ def brute_force_algo():
         # Construct the HTML file path for the current article
         html_path = f'articles/{cur_article_id}.html'
         mathML, text, equation_ids = parse_html(html_path, cur_article_id)
+        if text is None or mathML is None or equation_ids is None:
+            continue
         word_count = get_sentence_count(text)
         string_array = get_array_of_strings(text)
 
