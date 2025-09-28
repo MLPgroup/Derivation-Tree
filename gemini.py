@@ -1,5 +1,6 @@
 # Import modules
 import time
+import article_parser
 from collections import deque
 
 
@@ -85,6 +86,10 @@ Function: Construct a prompt for the current article, ask the API for the respon
 def get_gemini_adj_list(model, equations, words_between_equations, equation_indexing, fewshot):
     global api_call_times_queue
 
+    preamble = ""
+    if fewshot:
+        preamble = article_parser.get_fewshot_preamble()
+
     equation_alttext = []
     # Construct whole article with just text
     total_text = words_between_equations[0]
@@ -100,7 +105,8 @@ def get_gemini_adj_list(model, equations, words_between_equations, equation_inde
     
     # Original Prompt:
     # Construct prompt
-    prompt = "I have the following article that contains various mathematical equations: \n" + total_text 
+    prompt = preamble + "\n"
+    prompt += "I have the following article that contains various mathematical equations: \n" + total_text 
     prompt += "\n From this article, I have extracted the list of equations, numbers as follows: \n"
     for i, cur_equation in enumerate(equation_alttext):
         prompt += f"{str(i+1)}. {cur_equation}\n"

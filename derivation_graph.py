@@ -13,9 +13,7 @@ Modification Log:
 
 
 # Import Modules
-from bs4 import BeautifulSoup
 import os
-import re
 import argparse
 import article_parser
 import results_output
@@ -45,86 +43,6 @@ BAYES_TRAINING_PERCENTAGE = 85
 
 '''HYPER-PARAMETERS'''
 
-
-
-"""
-extract_equations(html_content)
-Input: html_content -- html content for current article that needs to be parsed
-Return: equations -- equations that were found in the article
-        words_between_equations -- words that occur between the equations in the article
-Function: Find and return all the equations, their ids, equation content, and words between equations from the given article
-"""
-def extract_equations(html_content):
-    # Parse HTML content using BeautifulSoup
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Dictionary to store equations
-    equations = {}
-
-    # List to store equations at each index
-    equation_indexing = []
-    
-    # List to store words that occur between equations
-    words_between_equations = []
-    last_eq_id = "none"
-    last_update_id = "none"
-    
-    # Define the pattern to match equations
-    pattern = re.compile(r'S(\d+)\.E(\d+)')
-    # pattern_2 = re.compile(r'S(\d+)\.Ex(\d+)')
-
-    # Iterate through all 'math' elements in the HTML
-    # for mathml in soup.find_all('math'):
-    for item in soup.recursiveChildGenerator():
-        if item.name == 'math':
-            # Get equation ID and alt text attributes
-            equation_id = item.get('id', '')
-            alttext = item.get('alttext', '')
-
-            # Check if the equation ID matches the defined pattern
-            match = pattern.search(equation_id)
-            # match_2 = pattern_2.search(equation_id)
-            if match:
-                # Extract section and equation numbers from the matched pattern
-                section_number, equation_number = match.groups()
-                equation_key = f"S{section_number}.E{equation_number}"
-                last_eq_id = equation_id
-
-                # Create an entry in the dictionary for the equation if not present
-                if equation_key not in equations:
-                    equations[equation_key] = {
-                        'section_number': int(section_number),
-                        'equation_number': int(equation_number),
-                        'equations': [],
-                    }
-                    equation_indexing.append(equation_key)
-
-                # Add the equation details to the list of equations for the current key
-                equations[equation_key]['equations'].append({
-                    'mathml': str(item),
-                    'equation_id': equation_id,
-                    'alttext': alttext,
-                })
-
-        # If string
-        elif isinstance(item, str):
-            # If before any equation
-            if last_eq_id == "none":
-                # If already found words
-                if words_between_equations:
-                    words_between_equations[-1] += item
-                else: 
-                    words_between_equations.append(item)
-            else:
-                # If new equation found
-                if last_eq_id != last_update_id:
-                    words_between_equations.append(item)
-                else:
-                    words_between_equations[-1] += item
-            # Equation when updated
-            last_update_id = last_eq_id
-
-    return equations, words_between_equations, equation_indexing
 
 
 
@@ -308,9 +226,15 @@ def run_derivation_algo(algorithm_option):
         run_llms.api_call_times_queue = deque()
         llm_client = run_llms.configure_hf(input_hf_token=os.environ["HF_TOKEN"], algorithm_option=algorithm_option)
     
+    fewshot_articles = ["0907.2648", "1701.00847"]
+
     # Iterate through article IDs
     if algorithm_option not in ['brute', 'combine']:
         for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
+            # Fewshot articles only for geminifewshot
+            if algorithm_option == 'geminifewshot' and cur_article_id in fewshot_articles:
+                continue
+            
             # Construct the HTML file path for the current article
             html_path = f'articles/{cur_article_id}.html'
         
@@ -321,7 +245,7 @@ def run_derivation_algo(algorithm_option):
                     html_content = file.read()
                     
                 # Extract equations from the HTML content
-                equations, words_between_equations, equation_indexing = extract_equations(html_content)
+                equations, words_between_equations, equation_indexing = article_parser.extract_equations(html_content)
 
                 # If extracted correctly, continue
                 if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
@@ -395,7 +319,7 @@ def run_derivation_algo(algorithm_option):
                     html_content = file.read()
                     
                 # Extract equations from the HTML content
-                equations, words_between_equations, equation_indexing = extract_equations(html_content)
+                equations, words_between_equations, equation_indexing = article_parser.extract_equations(html_content)
             
                 # If extracted correctly, continue
                 if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
