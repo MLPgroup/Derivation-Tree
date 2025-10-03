@@ -149,8 +149,9 @@ def get_gemini_adj_list(model, equations, words_between_equations, equation_inde
     # Remove timestamps older than 60 seconds from the front of the queue
     while api_call_times_queue and current_time - api_call_times_queue[0] > 59:
         api_call_times_queue.popleft()
-    # If there have been 15 or more calls in the last minute, wait
-    if len(api_call_times_queue) >= 9:
+    # If there have been n or more calls in the last minute, wait
+    n = 5
+    if len(api_call_times_queue) >= n:
         time_to_wait = 59 - (current_time - api_call_times_queue[0])
         if time_to_wait > 0 and time_to_wait <= 60:
             time.sleep(time_to_wait)
@@ -225,8 +226,9 @@ def get_combine_adj_list(model, equations, words_between_equations, equation_ind
     # Remove timestamps older than 60 seconds from the front of the queue
     while api_call_times_queue and current_time - api_call_times_queue[0] > 59:
         api_call_times_queue.popleft()
-    # If there have been 15 or more calls in the last minute, wait
-    if len(api_call_times_queue) >= 15:
+    # If there have been n or more calls in the last minute, wait
+    n = 4
+    if len(api_call_times_queue) >= n:
         time_to_wait = 59 - (current_time - api_call_times_queue[0])
         if time_to_wait > 0 and time_to_wait <= 60:
             time.sleep(time_to_wait)

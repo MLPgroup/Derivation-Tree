@@ -20,7 +20,8 @@ PLOT_INPUT_PATHS = {
     'qwen': './outputs/Qwen',
     'zephyr': './outputs/Zephyr',
     'phi': './outputs/Phi',
-    'chatgpt': './outputs/Chatgpt'
+    'chatgpt': './outputs/Chatgpt',
+    'geminifewshot': './outputs/Gemini/few_shot',
 }
 
 

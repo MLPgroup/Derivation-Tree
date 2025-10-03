@@ -218,10 +218,11 @@ def run_derivation_algo(algorithm_option):
     if algorithm_option in ['gemini', 'combine', 'geminifewshot']:
         gemini.api_call_times = deque()
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-        gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+        gemini_model = genai.GenerativeModel("gemini-2.5-pro")
+        # gemini_model = genai.GenerativeModel("gemini-2.5-flash")
     # Need more billing
-    # elif algorithm_option == 'chatgpt':
-    #     run_llms.configure_chatgpt(api_key=os.environ["CHATGPT_API_KEY"])
+    elif algorithm_option in ['chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
+        chatgpt_client = run_llms.configure_chatgpt(api_key=os.environ["OPENAI_API_KEY"])
     elif algorithm_option in ['llama', 'mistral', 'qwen', 'zephyr', 'phi']:
         run_llms.api_call_times_queue = deque()
         llm_client = run_llms.configure_hf(input_hf_token=os.environ["HF_TOKEN"], algorithm_option=algorithm_option)
@@ -229,10 +230,10 @@ def run_derivation_algo(algorithm_option):
     fewshot_articles = ["0907.2648", "1701.00847"]
 
     # Iterate through article IDs
-    if algorithm_option not in ['brute', 'combine']:
+    if algorithm_option not in ['brute', 'combine', 'combine_chatgpt']:
         for i, (cur_article_id, cur_article) in enumerate(article_ids.items()):
-            # Fewshot articles only for geminifewshot
-            if algorithm_option == 'geminifewshot' and cur_article_id in fewshot_articles:
+            # Fewshot articles only for fewshot
+            if algorithm_option in ['geminifewshot', 'chatgptfewshot'] and cur_article_id in fewshot_articles:
                 continue
 
             # Construct the HTML file path for the current article
@@ -273,12 +274,12 @@ def run_derivation_algo(algorithm_option):
                         articles_used.append(cur_article_id)
                         train_article_ids = []
                     # Gemini model
-                    elif algorithm_option in ['gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt']:
+                    elif algorithm_option in ['gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'chatgptfewshot']:
                         if algorithm_option in ['gemini', 'geminifewshot']:
                             # Call Gemini API and get resulting adjacency list
                             computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing, True if algorithm_option == 'geminifewshot' else False)
-                        elif algorithm_option == 'chatgpt':
-                            computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(equations, words_between_equations, equation_indexing, cur_article_id)
+                        elif algorithm_option in ['chatgpt', 'chatgptfewshot']:
+                            computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(chatgpt_client, equations, words_between_equations, equation_indexing, cur_article_id, True if algorithm_option == 'chatgptfewshot' else False)
                         else:
                             computed_adjacency_list, error, error_string = run_llms.get_llm_adj_list(llm_client, equations, words_between_equations, equation_indexing)
 
@@ -304,7 +305,7 @@ def run_derivation_algo(algorithm_option):
         true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
     elif algorithm_option == 'brute':
         articles_used, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
-    elif algorithm_option == 'combine':
+    elif algorithm_option in ['combine', 'combine_chatgpt']:
         # Use brute force to get explicit edges and llm to get implicit edges
         combine_articles_used, _ , combine_predicted_adjacency_lists = brute_force.brute_force_algo()
         for cur_article_id, cur_explicit_adj_list in zip(combine_articles_used, combine_predicted_adjacency_lists):
@@ -328,7 +329,10 @@ def run_derivation_algo(algorithm_option):
                     extracted_words_between_equations.append(words_between_equations)
                     extracted_equation_indexing.append(equation_indexing)
 
-                    computed_adjacency_list, error, error_string = gemini.get_combine_adj_list(gemini_model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list)
+                    if algorithm_option == 'combine_chatgpt':
+                        computed_adjacency_list, error, error_string = run_llms.get_chatgpt_combined_adj_list(chatgpt_client, equations, words_between_equations, equation_indexing, cur_explicit_adj_list)
+                    else:   
+                        computed_adjacency_list, error, error_string = gemini.get_combine_adj_list(gemini_model, equations, words_between_equations, equation_indexing, cur_explicit_adj_list)
 
                     # No error
                     if error == 0:
@@ -343,9 +347,6 @@ def run_derivation_algo(algorithm_option):
                         train_article_ids.append((cur_article_id, error_string, computed_adjacency_list))
                     print(f"Article {cur_article_id} done")
             
-
-    if algorithm_option == 'chatgpt':
-        return
     
     # Get accuracy numbers
     similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
@@ -357,7 +358,7 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
-    elif algorithm_option in ['gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine']:
+    elif algorithm_option in ['gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
         output_name = f"{algorithm_option}"
 
     # Save results
@@ -371,7 +372,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'geminifewshot' , 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'geminifewshot' , 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
