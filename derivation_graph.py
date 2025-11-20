@@ -215,11 +215,11 @@ def run_derivation_algo(algorithm_option):
     train_article_ids = []
 
     # Reset api tracking and setup model
-    if algorithm_option in ['gemini', 'combine', 'geminifewshot']:
+    if algorithm_option in ['gemini', 'combine', 'geminifewshot', 'grev1', 'grev2', 'grev3']:
         gemini.api_call_times = deque()
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-        gemini_model = genai.GenerativeModel("gemini-2.5-pro")
-        # gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+        # gemini_model = genai.GenerativeModel("gemini-2.5-pro")
+        gemini_model = genai.GenerativeModel("gemini-2.5-flash")
     # Need more billing
     elif algorithm_option in ['chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
         chatgpt_client = run_llms.configure_chatgpt(api_key=os.environ["OPENAI_API_KEY"])
@@ -274,10 +274,10 @@ def run_derivation_algo(algorithm_option):
                         articles_used.append(cur_article_id)
                         train_article_ids = []
                     # Gemini model
-                    elif algorithm_option in ['gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'chatgptfewshot']:
-                        if algorithm_option in ['gemini', 'geminifewshot']:
+                    elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'chatgptfewshot']:
+                        if algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3']:
                             # Call Gemini API and get resulting adjacency list
-                            computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing, True if algorithm_option == 'geminifewshot' else False)
+                            computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing, True if algorithm_option == 'geminifewshot' else False, 1 if algorithm_option == 'grev1' else (2 if algorithm_option == 'grev2' else (3 if algorithm_option == 'grev3' else 0)))
                         elif algorithm_option in ['chatgpt', 'chatgptfewshot']:
                             computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(chatgpt_client, equations, words_between_equations, equation_indexing, cur_article_id, True if algorithm_option == 'chatgptfewshot' else False)
                         else:
@@ -358,7 +358,7 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
-    elif algorithm_option in ['gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
+    elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
         output_name = f"{algorithm_option}"
 
     # Save results
@@ -372,7 +372,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'geminifewshot' , 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function

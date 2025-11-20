@@ -2,6 +2,9 @@
 import time
 import article_parser
 from collections import deque
+import json
+import re
+from typing import Dict, List, Union
 
 
 
@@ -14,6 +17,100 @@ from collections import deque
 # Global variable for rate limiting
 api_call_times_queue = deque()
 
+
+def _extract_json_object_from_text(s: str) -> Union[str, None]:
+    """
+    Locate the first top-level JSON object in the text by finding the first '{'
+    and the matching closing '}' using brace depth counting. Returns the substring
+    for json.loads or None if not found.
+    """
+    start = s.find('{')
+    if start == -1:
+        return None
+    depth = 0
+    for i in range(start, len(s)):
+        ch = s[i]
+        if ch == '{':
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0:
+                return s[start:i+1]
+    return None
+
+def parse_json_adjacency(text_response: str, equation_indexing: List[str]) -> Union[Dict[str, List[Union[str, None]]], str]:
+    """
+    Parse JSON adjacency from LLM response.
+    Inputs:
+      - text_response: raw text returned by the LLM (may include extra text or fences)
+      - equation_indexing: list mapping index-1 -> mathml tag (same as your original)
+    Returns:
+      - adjacency_list: dict mapping mathml_tag -> list of mathml_tag neighbors (or [None] if no neighbors)
+      - or an error string describing the problem
+    """
+    # 1) extract JSON substring robustly
+    json_substr = _extract_json_object_from_text(text_response)
+    if json_substr is None:
+        return "Error: No JSON object found in the model response."
+
+    # 2) parse JSON with json.loads
+    try:
+        obj = json.loads(json_substr)
+    except Exception as e:
+        return f"Error: Failed to parse JSON: {e}"
+
+    # 3) basic validation: top-level must be dict
+    if not isinstance(obj, dict):
+        return "Error: Top-level JSON value must be an object/dictionary mapping indices to arrays."
+
+    N = len(equation_indexing)
+    # ensure keys correspond to 1..N (but accept keys as numbers or strings)
+    parsed_keys = []
+    for k in obj.keys():
+        # allow either string digits or integers
+        try:
+            key_int = int(k)
+        except Exception:
+            return f"Error: Invalid key '{k}'. Keys must be the 1-based equation indices (integers or digit-strings)."
+        if key_int < 1 or key_int > N:
+            return f"Error: Key '{k}' is out of range. Expected indices 1..{N}."
+        parsed_keys.append(key_int)
+
+    # optional: check that all indices 1..N are present
+    missing = [i for i in range(1, N+1) if i not in parsed_keys]
+    if missing:
+        return f"Error: Missing keys for indices: {missing}. The JSON must include every index from 1 to {N}."
+
+    # 4) validate each value is an array of integers in range
+    adjacency_list = {}
+    for k, v in obj.items():
+        # convert key to int index
+        key_idx = int(k)
+        # validate value type
+        if not isinstance(v, list):
+            return f"Error: Value for key '{k}' must be an array/list."
+        neighbors = []
+        for elem in v:
+            # allow numbers or digit-strings
+            if isinstance(elem, (int, float)) and float(elem).is_integer():
+                elem_int = int(elem)
+            elif isinstance(elem, str) and elem.strip().isdigit():
+                elem_int = int(elem.strip())
+            else:
+                return f"Error: Invalid neighbor '{elem}' for key '{k}'. Neighbors must be integers (indices)."
+            if elem_int < 1 or elem_int > N:
+                return f"Error: Neighbor index {elem_int} for key '{k}' is out of range 1..{N}."
+            neighbors.append(elem_int)
+
+        # map numeric indices to mathml tags
+        mathml_key = equation_indexing[key_idx - 1]
+        if len(neighbors) == 0:
+            # preserve previous behavior: return [None] for empty adjacency
+            adjacency_list[mathml_key] = [None]
+        else:
+            adjacency_list[mathml_key] = [equation_indexing[i - 1] for i in neighbors]
+
+    return adjacency_list
 
 
 """
@@ -71,6 +168,7 @@ def parse_adjacency_list(text_response, equation_indexing):
 
 
 
+
 """
 get_gemini_adj_list(model, equations, words_between_equations, equation_indexing)
 Input: model -- Gemini model to send API request to
@@ -83,7 +181,7 @@ Return: adjacency_list -- parsed adjacency list or error string
         error_string -- string explaining current error
 Function: Construct a prompt for the current article, ask the API for the response, and return the constructed adjacency list for the current article
 """
-def get_gemini_adj_list(model, equations, words_between_equations, equation_indexing, fewshot):
+def get_gemini_adj_list(model, equations, words_between_equations, equation_indexing, fewshot, rev_version=0):
     global api_call_times_queue
 
     preamble = ""
@@ -105,12 +203,61 @@ def get_gemini_adj_list(model, equations, words_between_equations, equation_inde
     
     # Original Prompt:
     # Construct prompt
-    prompt = preamble + "\n"
-    prompt += "I have the following article that contains various mathematical equations: \n" + total_text 
-    prompt += "\n From this article, I have extracted the list of equations, numbers as follows: \n"
-    for i, cur_equation in enumerate(equation_alttext):
-        prompt += f"{str(i+1)}. {cur_equation}\n"
-    prompt += "\n Analyze the context of the article to identify which equations are derived from each equation. Provide the output as a list and nothing else, with the format: w -> x, y, z;\n x -> h, t;\n ... If no equations are derived from a certain equation, return an empty list with the format: t ->;\n"
+    if rev_version == 0:
+        prompt = preamble + "\n"
+        prompt += "I have the following article that contains various mathematical equations: \n" + total_text 
+        prompt += "\n From this article, I have extracted the list of equations, numbers as follows: \n"
+        for i, cur_equation in enumerate(equation_alttext):
+            prompt += f"{str(i+1)}. {cur_equation}\n"
+        prompt += "\n Analyze the context of the article to identify which equations are derived from each equation. Provide the output as a list and nothing else, with the format: w -> x, y, z;\n x -> h, t;\n ... If no equations are derived from a certain equation, return an empty list with the format: t ->;\n"
+    elif rev_version == 1:
+        prompt = preamble + "\n"
+        prompt += "I have the following article that contains various mathematical equations: \n" + total_text 
+        prompt += "\n From this article, I have extracted the list of equations, numbers as follows: \n"
+        for i, cur_equation in enumerate(equation_alttext):
+            prompt += f"{str(i+1)}. {cur_equation}\n"
+        prompt += "\n" + "Provide the output as a single valid JSON object and nothing else (no explanation, no surrounding text, no markdown, no code fences). The JSON must map each source equation index (1-based) to an array of derived equation indices (1-based integers)."
+        prompt += "\nSchema (example): {'1': [2, 3], '2': [], '3': []}"
+        prompt += "\nRequirements:\n- Keys must cover every equation index from 1 to N (where N is the total number of extracted equations).\n- Each value must be a JSON array whose elements are integers (indices) referring to equations that are derived from the key equation.\n- If an equation has no derived equations, use an empty array `[]`.\n- Do not include any other text or commentary, only the single JSON object."
+    elif rev_version == 2:
+        prompt = "I have the following extracted equations (numbered 1..N):\n\n"
+        for i, alt in enumerate(equation_alttext, start=1):
+            prompt += f"{i}. {alt}\n"
+        prompt += "\n" +"Provide the output as a single valid JSON object and nothing else (no explanation, no surrounding text, no markdown, no code fences). The JSON must map each source equation index (1-based) to an array of derived equation indices (1-based integers)."
+        prompt += "\nSchema (example): {'1': [2, 3], '2': [], '3': []}"
+        prompt += "\nRequirements:\n- Keys must cover every equation index from 1 to N (where N is the total number of extracted equations).\n- Each value must be a JSON array whose elements are integers (indices) referring to equations that are derived from the key equation.\n- If an equation has no derived equations, use an empty array `[]`.\n- Do not include any other text or commentary, only the single JSON object."
+    elif rev_version == 3:
+        def split_sentences(text):
+            # Simple sentence splitter: splits on end-of-sentence punctuation followed by whitespace.
+            if not text or not text.strip():
+                return []
+            parts = re.split(r'(?<=[.!?])\s+', text.strip())
+            return [p.strip() for p in parts if p.strip()]
+        def first_sentence(text):
+            sents = split_sentences(text)
+            return sents[0] if sents else ""
+        def last_sentence(text):
+            sents = split_sentences(text)
+            return sents[-1] if sents else ""
+        windowed_context = []
+        N = len(equation_alttext)
+        for i in range(N):
+            left_chunk = last_sentence(words_between_equations[i])      # last sentence before eq i+1
+            eq_text = equation_alttext[i].strip()
+            right_chunk = first_sentence(words_between_equations[i+1])  # first sentence after eq i+1
+
+            # Build a small labeled block for each equation
+            block = f"[Equation {i+1} Context]\n{left_chunk}\n{eq_text}\n{right_chunk}\n"
+            windowed_context.append(block)
+        windowed_text = "\n".join(windowed_context)
+        prompt = "Below is a reconstruction of the article that shows a tight local context around each equation.\nFor every equation i (1..N) the block contains exactly:\n- the last sentence immediately before equation i,\n- the equation itself (as alt-text),\n- the first sentence immediately after equation i." 
+        prompt += "Use only this context to determine whether an equation is derived from, references, or depends on any other equation by their numbers."
+        prompt += "\n" +"Provide the output as a single valid JSON object and nothing else (no explanation, no surrounding text, no markdown, no code fences). The JSON must map each source equation index (1-based) to an array of derived equation indices (1-based integers)."
+        prompt += "\nSchema (example): {'1': [2, 3], '2': [], '3': []}"
+        prompt += "\nRequirements:\n- Keys must cover every equation index from 1 to N (where N is the total number of extracted equations).\n- Each value must be a JSON array whose elements are integers (indices) referring to equations that are derived from the key equation.\n- If an equation has no derived equations, use an empty array `[]`.\n- Do not include any other text or commentary, only the single JSON object."
+        prompt += "BEGIN CONTEXT\n" + windowed_text + "\nEND CONTEXT\n"
+
+    
     # # Edge Limiting:
     # prompt += "\n Analyze the context of the article to identify which equations are derived from each equation. Provide the output as a list and nothing else, with the format: w -> x, y, z;\n x -> h, t;\n ... For each equation list, limit the number of derived equation to 2. If no equations are derived from a certain equation, return an empty list with the format: t ->;\n"
 
@@ -169,7 +316,10 @@ def get_gemini_adj_list(model, equations, words_between_equations, equation_inde
         text_response += part.text
 
     # Get adjacency list from gemini response
-    adjacency_list = parse_adjacency_list(text_response, equation_indexing)
+    if rev_version == 0:
+        adjacency_list = parse_adjacency_list(text_response, equation_indexing)
+    elif rev_version >= 0:
+        adjacency_list = parse_json_adjacency(text_response, equation_indexing)
 
     # Check if response was parsed correctly
     if isinstance(adjacency_list, str):
