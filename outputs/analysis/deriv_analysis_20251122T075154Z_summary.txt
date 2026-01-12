@@ -1,0 +1,19 @@
+Derivation-graph-length classification analysis
+Generated (UTC): 20251122T075154Z
+
+Ground-truth articles parsed: 107
+Performance entries parsed: 63
+Articles with performance metrics (merged): 63 (non-null accuracy)
+
+Overall dataset distributions (derived from ground-truth graphs):
+  Equations per article: mean=10.88, median=10, min=4, max=21
+  Edges per article: mean=7.47, median=7, min=1, max=23
+  Longest path (edges): mean=3.06, median=3, min=1, max=9
+
+Bucket summary (bucket,count,mean_accuracy,mean_precision,mean_recall,mean_f1):
+2,33,0.8775127660032934,0.4925637470843421,0.7723075290722349,0.5959097930383649
+0-1,20,0.8608791187771205,0.4739422520799039,0.6872627372627372,0.5543717270171041
+3,20,0.9077858164653322,0.5530735798592942,0.786075036075036,0.6434187403042869
+5-6,18,0.90927682981377,0.47628942207235214,0.7107346450419206,0.568104961844446
+4,11,0.9042869849055301,0.4755034617867717,0.8205882352941177,0.5995485392224523
+7-10,5,0.8657157412124299,0.2362568715642179,0.3458937198067633,0.2800269905533063

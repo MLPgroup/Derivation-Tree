@@ -1,0 +1,991 @@
+{
+  "results": [
+    {
+      "id": "0907.2648",
+      "found": true,
+      "title": "Barnett Effect in Thin Magnetic Films and Nanostructures",
+      "primary_category_code": "cond-mat.mes-hall",
+      "all_category_codes": [
+        "cond-mat.mes-hall",
+        "cond-mat.mtrl-sci"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "Mesoscale and Nanoscale Physics"
+    },
+    {
+      "id": "0907.2720",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0907.2870",
+      "found": true,
+      "title": "On the least common multiple of $q$-binomial coefficients",
+      "primary_category_code": "math.NT",
+      "all_category_codes": [
+        "math.NT",
+        "math.CO"
+      ],
+      "higher_level_primary": "Mathematics",
+      "lower_level_primary": "NT"
+    },
+    {
+      "id": "0907.2872",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0907.2959",
+      "found": true,
+      "title": "New Reflections on Electron's Energy and Wavefunction in the Hydrogen Atom",
+      "primary_category_code": "physics.gen-ph",
+      "all_category_codes": [
+        "physics.gen-ph"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "gen ph"
+    },
+    {
+      "id": "0907.2967",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0907.2994",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0907.3017",
+      "found": true,
+      "title": "Spin drag in noncondensed Bose gases",
+      "primary_category_code": "cond-mat.quant-gas",
+      "all_category_codes": [
+        "cond-mat.quant-gas"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "quant gas"
+    },
+    {
+      "id": "0907.3028",
+      "found": true,
+      "title": "Dark matter, MOND or non-local gravity?",
+      "primary_category_code": "astro-ph.GA",
+      "all_category_codes": [
+        "astro-ph.GA"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": "GA"
+    },
+    {
+      "id": "0907.3040",
+      "found": true,
+      "title": "Storage by trapping and spatial staggering of multiple interacting solitons in $Λ$-type media",
+      "primary_category_code": "physics.optics",
+      "all_category_codes": [
+        "physics.optics"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "optics"
+    },
+    {
+      "id": "0907.3145",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0907.3172",
+      "found": true,
+      "title": "Solitons in Tonks-Girardeau gas with dipolar interactions",
+      "primary_category_code": "cond-mat.quant-gas",
+      "all_category_codes": [
+        "cond-mat.quant-gas",
+        "nlin.PS"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "quant gas"
+    },
+    {
+      "id": "0907.3206",
+      "found": true,
+      "title": "Dynamics after a sweep through a quantum critical point",
+      "primary_category_code": "cond-mat.str-el",
+      "all_category_codes": [
+        "cond-mat.str-el"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "str el"
+    },
+    {
+      "id": "0907.3283",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0907.3284",
+      "found": true,
+      "title": "Modified detrended fluctuation analysis based on empirical mode decomposition",
+      "primary_category_code": "cond-mat.stat-mech",
+      "all_category_codes": [
+        "cond-mat.stat-mech",
+        "q-fin.ST"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "stat mech"
+    },
+    {
+      "id": "0907.3505",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00003",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00176",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00226",
+      "found": true,
+      "title": "Testing conformal gravity with astrophysical black holes",
+      "primary_category_code": "gr-qc",
+      "all_category_codes": [
+        "gr-qc",
+        "astro-ph.HE"
+      ],
+      "higher_level_primary": "gr-qc",
+      "lower_level_primary": null
+    },
+    {
+      "id": "1701.00357",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00692",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00847",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00898",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.00986",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01008",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01071",
+      "found": true,
+      "title": "Generalized Edwards thermodynamics and marginal stability in a driven system with dry and viscous friction",
+      "primary_category_code": "cond-mat.stat-mech",
+      "all_category_codes": [
+        "cond-mat.stat-mech",
+        "cond-mat.soft"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "stat mech"
+    },
+    {
+      "id": "1701.01109",
+      "found": true,
+      "title": "Fast Radio Bursts from Extragalactic Light Sails",
+      "primary_category_code": "astro-ph.HE",
+      "all_category_codes": [
+        "astro-ph.HE",
+        "astro-ph.CO"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": "HE"
+    },
+    {
+      "id": "1701.01408",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01521",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01531",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01567",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01647",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01686",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01815",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.01921",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1701.03108",
+      "found": true,
+      "title": "Supercurrent Vortex Pinball via a Triplet Cooper Pair Inverse Edelstein Effect",
+      "primary_category_code": "cond-mat.supr-con",
+      "all_category_codes": [
+        "cond-mat.supr-con"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "supr con"
+    },
+    {
+      "id": "1810.00215",
+      "found": true,
+      "title": "No entire inner functions",
+      "primary_category_code": "math.CV",
+      "all_category_codes": [
+        "math.CV",
+        "math.CA",
+        "math.FA"
+      ],
+      "higher_level_primary": "Mathematics",
+      "lower_level_primary": "CV"
+    },
+    {
+      "id": "1810.00264",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1810.00524",
+      "found": true,
+      "title": "Rapid production of many-body entanglement in spin-1 atoms via cavity output photon counting",
+      "primary_category_code": "quant-ph",
+      "all_category_codes": [
+        "quant-ph"
+      ],
+      "higher_level_primary": "Quantum Physics",
+      "lower_level_primary": null
+    },
+    {
+      "id": "1810.00641",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1810.00929",
+      "found": true,
+      "title": "Non-Iterative Characteristics Analysis for High-Pressure Ramp Loading",
+      "primary_category_code": "physics.comp-ph",
+      "all_category_codes": [
+        "physics.comp-ph",
+        "cond-mat.mtrl-sci"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "comp ph"
+    },
+    {
+      "id": "1810.01085",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1810.01153",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1810.01819",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1810.01821",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1810.01936",
+      "found": true,
+      "title": "Fundraising and vote distribution: a non-equilibrium statistical approach",
+      "primary_category_code": "physics.soc-ph",
+      "all_category_codes": [
+        "physics.soc-ph",
+        "cond-mat.stat-mech"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "soc ph"
+    },
+    {
+      "id": "0908.0117",
+      "found": true,
+      "title": "Tidal effects in the vicinity of a black hole",
+      "primary_category_code": "astro-ph.HE",
+      "all_category_codes": [
+        "astro-ph.HE",
+        "astro-ph.GA"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": "HE"
+    },
+    {
+      "id": "0908.0155",
+      "found": true,
+      "title": "2-Dimensional Dipolar Scattering",
+      "primary_category_code": "physics.atom-ph",
+      "all_category_codes": [
+        "physics.atom-ph"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "atom ph"
+    },
+    {
+      "id": "0908.0159",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0908.0260",
+      "found": true,
+      "title": "Universal Probability Distribution Function for Bursty Transport in Plasma Turbulence",
+      "primary_category_code": "physics.plasm-ph",
+      "all_category_codes": [
+        "physics.plasm-ph"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "plasm ph"
+    },
+    {
+      "id": "0908.0304",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "0908.0314",
+      "found": true,
+      "title": "Chern-Simons current and local parity violation in hot QCD matter",
+      "primary_category_code": "hep-ph",
+      "all_category_codes": [
+        "hep-ph",
+        "nucl-ex",
+        "nucl-th"
+      ],
+      "higher_level_primary": "High Energy Physics - Phenomenology",
+      "lower_level_primary": null
+    },
+    {
+      "id": "0908.0219",
+      "found": true,
+      "title": "Critical Dimension for Stable Self-gravitating Stars in AdS",
+      "primary_category_code": "gr-qc",
+      "all_category_codes": [
+        "gr-qc"
+      ],
+      "higher_level_primary": "gr-qc",
+      "lower_level_primary": null
+    },
+    {
+      "id": "0908.0180",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1908.00040",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1908.00186",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1908.00372",
+      "found": true,
+      "title": "Assessment of low-altitude atmospheric turbulence models for aircraft aeroelasticity",
+      "primary_category_code": "physics.flu-dyn",
+      "all_category_codes": [
+        "physics.flu-dyn"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "flu dyn"
+    },
+    {
+      "id": "1908.00596",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1908.00647",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1908.00778",
+      "found": true,
+      "title": "A Structural Graph-Based Method for MRI Analysis",
+      "primary_category_code": "cs.CV",
+      "all_category_codes": [
+        "cs.CV"
+      ],
+      "higher_level_primary": "Computer Science",
+      "lower_level_primary": "CV"
+    },
+    {
+      "id": "1908.01025",
+      "found": true,
+      "title": "Theoretical prediction of a highly responsive material: Spin fluctuations and superconductivity in FeNiB2 system",
+      "primary_category_code": "cond-mat.mtrl-sci",
+      "all_category_codes": [
+        "cond-mat.mtrl-sci"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "mtrl sci"
+    },
+    {
+      "id": "1908.01254",
+      "found": true,
+      "title": "Thermodynamic Instabilities of Generalized Exotic BTZ Black Holes",
+      "primary_category_code": "gr-qc",
+      "all_category_codes": [
+        "gr-qc"
+      ],
+      "higher_level_primary": "gr-qc",
+      "lower_level_primary": null
+    },
+    {
+      "id": "1908.01434",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1908.01505",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00053",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00217",
+      "found": true,
+      "title": "Orbital periods and component masses of three double white dwarfs",
+      "primary_category_code": "astro-ph.SR",
+      "all_category_codes": [
+        "astro-ph.SR"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": "SR"
+    },
+    {
+      "id": "1612.00231",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00257",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00288",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00392",
+      "found": true,
+      "title": "Thermal Effects in Dislocation Theory II: Shear Banding and Yielding Transitions",
+      "primary_category_code": "cond-mat.mtrl-sci",
+      "all_category_codes": [
+        "cond-mat.mtrl-sci",
+        "cond-mat.stat-mech"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "mtrl sci"
+    },
+    {
+      "id": "1612.00446",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00463",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00522",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1612.00629",
+      "found": true,
+      "title": "Steady-state generation of negative-Wigner-function light using feedback",
+      "primary_category_code": "quant-ph",
+      "all_category_codes": [
+        "quant-ph",
+        "cond-mat.quant-gas"
+      ],
+      "higher_level_primary": "Quantum Physics",
+      "lower_level_primary": null
+    },
+    {
+      "id": "1510.00210",
+      "found": true,
+      "title": "The distinctions between the electrical conductivities under non-contact and contact current excitation in spin-split two-dimensional conductors",
+      "primary_category_code": "cond-mat.mes-hall",
+      "all_category_codes": [
+        "cond-mat.mes-hall"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "Mesoscale and Nanoscale Physics"
+    },
+    {
+      "id": "1510.00400",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1510.00417",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1510.00543",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1510.00670",
+      "found": true,
+      "title": "Phase-locking at low-level of quanta",
+      "primary_category_code": "quant-ph",
+      "all_category_codes": [
+        "quant-ph",
+        "cond-mat.other"
+      ],
+      "higher_level_primary": "Quantum Physics",
+      "lower_level_primary": null
+    },
+    {
+      "id": "1510.00710",
+      "found": true,
+      "title": "Natural Relaxation",
+      "primary_category_code": "hep-ph",
+      "all_category_codes": [
+        "hep-ph",
+        "hep-th"
+      ],
+      "higher_level_primary": "High Energy Physics - Phenomenology",
+      "lower_level_primary": null
+    },
+    {
+      "id": "1510.00716",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1510.00770",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1510.01138",
+      "found": true,
+      "title": "The Coulomb potential V(r)=1/r and other radial problems on the Bethe lattice",
+      "primary_category_code": "cond-mat.stat-mech",
+      "all_category_codes": [
+        "cond-mat.stat-mech",
+        "cond-mat.dis-nn",
+        "math-ph"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "stat mech"
+    },
+    {
+      "id": "1510.01448",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0010",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0082",
+      "found": true,
+      "title": "Role of axion electrodynamics in Weyl metal: Violation of Wiedemann-Franz law",
+      "primary_category_code": "cond-mat.str-el",
+      "all_category_codes": [
+        "cond-mat.str-el"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "str el"
+    },
+    {
+      "id": "1409.0094",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0101",
+      "found": true,
+      "title": "Influence of thermal environment on optimal working conditions of thermoelectric generators",
+      "primary_category_code": "cond-mat.other",
+      "all_category_codes": [
+        "cond-mat.other"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "other"
+    },
+    {
+      "id": "1409.0104",
+      "found": true,
+      "title": "Marginalizing over the PageRank Damping Factor",
+      "primary_category_code": "cs.IR",
+      "all_category_codes": [
+        "cs.IR"
+      ],
+      "higher_level_primary": "Computer Science",
+      "lower_level_primary": "IR"
+    },
+    {
+      "id": "1409.0110",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0188",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0220",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0380",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "1409.0466",
+      "found": true,
+      "title": "Evidence for the concurrent growth of thick discs and central mass concentrations from S$^4$G imaging",
+      "primary_category_code": "astro-ph.GA",
+      "all_category_codes": [
+        "astro-ph.GA"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": "GA"
+    },
+    {
+      "id": "astro-ph/9211002",
+      "found": true,
+      "title": "Detection of brown dwarfs by the micro-lensing of unresolved stars",
+      "primary_category_code": "astro-ph",
+      "all_category_codes": [
+        "astro-ph"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": null
+    },
+    {
+      "id": "astro-ph/9211005",
+      "found": true,
+      "title": "Centri`fugal' Force around a Black Hole",
+      "primary_category_code": "astro-ph",
+      "all_category_codes": [
+        "astro-ph"
+      ],
+      "higher_level_primary": "Astrophysics",
+      "lower_level_primary": null
+    },
+    {
+      "id": "cond-mat/9211006",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "hep-lat/9211009",
+      "found": true,
+      "title": "The confined-deconfined interface tension, wetting, and the spectrum of the transfer matrix",
+      "primary_category_code": "hep-lat",
+      "all_category_codes": [
+        "hep-lat"
+      ],
+      "higher_level_primary": "hep-lat",
+      "lower_level_primary": null
+    },
+    {
+      "id": "hep-ph/9211257",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "physics/9704005",
+      "found": false,
+      "error": "not found in API response"
+    },
+    {
+      "id": "physics/9704022",
+      "found": true,
+      "title": "A Simple Model for Predicting Sprint Race Times Accounting for Energy Loss on the Curve",
+      "primary_category_code": "physics.pop-ph",
+      "all_category_codes": [
+        "physics.pop-ph"
+      ],
+      "higher_level_primary": "Physics",
+      "lower_level_primary": "Popular Physics"
+    },
+    {
+      "id": "quant-ph/9704026",
+      "found": true,
+      "title": "Substituting Quantum Entanglement for Communication",
+      "primary_category_code": "quant-ph",
+      "all_category_codes": [
+        "quant-ph"
+      ],
+      "higher_level_primary": "Quantum Physics",
+      "lower_level_primary": null
+    },
+    {
+      "id": "cond-mat/9704033",
+      "found": true,
+      "title": "On Critical Velocities in Exciton Superfluidity",
+      "primary_category_code": "cond-mat",
+      "all_category_codes": [
+        "cond-mat"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": null
+    },
+    {
+      "id": "cond-mat/9704044",
+      "found": true,
+      "title": "NMR lineshape in Metallic Nanoparticles: a Matrix Continued Fraction evaluation",
+      "primary_category_code": "cond-mat.mes-hall",
+      "all_category_codes": [
+        "cond-mat.mes-hall"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "Mesoscale and Nanoscale Physics"
+    },
+    {
+      "id": "cond-mat/9704058",
+      "found": true,
+      "title": "Classical Advection of Guiding Centers in a Random Magnetic Field",
+      "primary_category_code": "cond-mat.dis-nn",
+      "all_category_codes": [
+        "cond-mat.dis-nn"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "dis nn"
+    },
+    {
+      "id": "cond-mat/9704091",
+      "found": true,
+      "title": "Scaling theory of two-dimensional metal-insulator transitions",
+      "primary_category_code": "cond-mat.dis-nn",
+      "all_category_codes": [
+        "cond-mat.dis-nn",
+        "cond-mat.str-el"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "dis nn"
+    },
+    {
+      "id": "cond-mat/9704179",
+      "found": true,
+      "title": "On micro-bead mechanics with actin filaments",
+      "primary_category_code": "cond-mat.soft",
+      "all_category_codes": [
+        "cond-mat.soft"
+      ],
+      "higher_level_primary": "Condensed Matter",
+      "lower_level_primary": "soft"
+    }
+  ],
+  "counts": {
+    "primary_higher_counts": {
+      "Condensed Matter": 18,
+      "Mathematics": 2,
+      "Physics": 8,
+      "Astrophysics": 7,
+      "gr-qc": 3,
+      "Quantum Physics": 4,
+      "High Energy Physics - Phenomenology": 2,
+      "Computer Science": 2,
+      "hep-lat": 1
+    },
+    "primary_lower_counts": {
+      "Mesoscale and Nanoscale Physics": 3,
+      "NT": 1,
+      "gen ph": 1,
+      "quant gas": 2,
+      "GA": 2,
+      "optics": 1,
+      "str el": 2,
+      "stat mech": 3,
+      "Unknown": 13,
+      "HE": 2,
+      "supr con": 1,
+      "CV": 2,
+      "comp ph": 1,
+      "soc ph": 1,
+      "atom ph": 1,
+      "plasm ph": 1,
+      "flu dyn": 1,
+      "mtrl sci": 2,
+      "SR": 1,
+      "other": 1,
+      "IR": 1,
+      "Popular Physics": 1,
+      "dis nn": 2,
+      "soft": 1
+    },
+    "all_higher_counts": {
+      "Condensed Matter": 27,
+      "Mathematics": 5,
+      "Physics": 8,
+      "Astrophysics": 10,
+      "Nonlinear Sciences": 1,
+      "Quantitative Finance": 1,
+      "gr-qc": 3,
+      "Quantum Physics": 4,
+      "High Energy Physics - Phenomenology": 2,
+      "nucl-ex": 1,
+      "nucl-th": 1,
+      "Computer Science": 2,
+      "High Energy Physics - Theory": 1,
+      "math-ph": 1,
+      "hep-lat": 1
+    },
+    "all_lower_counts": {
+      "Mesoscale and Nanoscale Physics": 3,
+      "mtrl sci": 4,
+      "NT": 1,
+      "CO": 2,
+      "gen ph": 1,
+      "quant gas": 3,
+      "GA": 3,
+      "optics": 1,
+      "PS": 1,
+      "str el": 3,
+      "stat mech": 5,
+      "ST": 1,
+      "Unknown": 17,
+      "HE": 3,
+      "soft": 2,
+      "supr con": 1,
+      "CV": 2,
+      "CA": 1,
+      "FA": 1,
+      "comp ph": 1,
+      "soc ph": 1,
+      "atom ph": 1,
+      "plasm ph": 1,
+      "flu dyn": 1,
+      "SR": 1,
+      "other": 2,
+      "dis nn": 3,
+      "IR": 1,
+      "Popular Physics": 1
+    },
+    "not_found_ids": [
+      "0907.2720",
+      "0907.2872",
+      "0907.2967",
+      "0907.2994",
+      "0907.3145",
+      "0907.3283",
+      "0907.3505",
+      "1701.00003",
+      "1701.00176",
+      "1701.00357",
+      "1701.00692",
+      "1701.00847",
+      "1701.00898",
+      "1701.00986",
+      "1701.01008",
+      "1701.01408",
+      "1701.01521",
+      "1701.01531",
+      "1701.01567",
+      "1701.01647",
+      "1701.01686",
+      "1701.01815",
+      "1701.01921",
+      "1810.00264",
+      "1810.00641",
+      "1810.01085",
+      "1810.01153",
+      "1810.01819",
+      "1810.01821",
+      "0908.0159",
+      "0908.0304",
+      "0908.0180",
+      "1908.00040",
+      "1908.00186",
+      "1908.00596",
+      "1908.00647",
+      "1908.01434",
+      "1908.01505",
+      "1612.00053",
+      "1612.00231",
+      "1612.00257",
+      "1612.00288",
+      "1612.00446",
+      "1612.00463",
+      "1612.00522",
+      "1510.00400",
+      "1510.00417",
+      "1510.00543",
+      "1510.00716",
+      "1510.00770",
+      "1510.01448",
+      "1409.0010",
+      "1409.0094",
+      "1409.0110",
+      "1409.0188",
+      "1409.0220",
+      "1409.0380",
+      "cond-mat/9211006",
+      "hep-ph/9211257",
+      "physics/9704005"
+    ]
+  }
+}

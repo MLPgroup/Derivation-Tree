@@ -259,7 +259,7 @@ def run_derivation_algo(algorithm_option):
                     if algorithm_option == 'bayes':
                         articles_used.append(cur_article_id)
                     # Token Similarity
-                    elif algorithm_option == 'token':
+                    elif algorithm_option in ['token', 'trev']:
                         # Get similarity matrices
                         computed_similarity, equation_order = token_similarity.token_similarity_percentages(equations)
                         
@@ -352,7 +352,7 @@ def run_derivation_algo(algorithm_option):
     similarity_accuracies, similarity_precisions, similarity_recalls, similarity_f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped = evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
 
     # Name formatting
-    if algorithm_option == 'token':
+    if algorithm_option in ['token', 'trev']:
         output_name = f"token_similarity_{TOKEN_SIMILARITY_STRICTNESS}_{TOKEN_SIMILARITY_THRESHOLD}_{TOKEN_SIMILARITY_DIRECTION}"
     elif algorithm_option == 'bayes':
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
@@ -372,7 +372,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'trev', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'trev', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot']")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
