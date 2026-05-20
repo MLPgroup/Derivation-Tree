@@ -256,6 +256,17 @@ def get_gemini_adj_list(model, equations, words_between_equations, equation_inde
         prompt += "\nSchema (example): {'1': [2, 3], '2': [], '3': []}"
         prompt += "\nRequirements:\n- Keys must cover every equation index from 1 to N (where N is the total number of extracted equations).\n- Each value must be a JSON array whose elements are integers (indices) referring to equations that are derived from the key equation.\n- If an equation has no derived equations, use an empty array `[]`.\n- Do not include any other text or commentary, only the single JSON object."
         prompt += "BEGIN CONTEXT\n" + windowed_text + "\nEND CONTEXT\n"
+    elif rev_version == 4:
+        # Edge limiting version
+        prompt = preamble + "\n"
+        prompt += "I have the following article that contains various mathematical equations: \n" + total_text 
+        prompt += "\n From this article, I have extracted the list of equations, numbers as follows: \n"
+        for i, cur_equation in enumerate(equation_alttext):
+            prompt += f"{str(i+1)}. {cur_equation}\n"
+        prompt += "\n Analyze the context of the article to identify which equations are derived from each equation. Provide the output as a list and nothing else, with the format: w -> x, y, z;\n x -> h, t;\n ... For each equation list, limit the number of derived equation to 2. If no equations are derived from a certain equation, return an empty list with the format: t ->;\n"
+    elif rev_version == 5:
+        w=1
+
 
     
     # # Edge Limiting:

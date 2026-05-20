@@ -35,7 +35,8 @@ OUTPUT_FOLDER_PATHS = {
     'chatgptfewshot': './outputs/Chatgpt/few_shot',
     'grev1': './outputs/Gemini/rev1',
     'grev2': './outputs/Gemini/rev2',
-    'grev3': './outputs/Gemini/rev3'
+    'grev3': './outputs/Gemini/rev3',
+    'edge_limit': './outputs/Gemini/edge_limit'
 }
 
 # Time Zone
@@ -133,7 +134,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
     elif algo_type == 'brute':
         output_file_path = os.path.join(cur_output_path, f'{name}.json')
-    elif algo_type in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
+    elif algo_type in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit']:
         output_file_path = os.path.join(cur_output_path, f'{name}_{timestamp}.json')
 
     # Clear output file
@@ -198,7 +199,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
     training_set = {
         "Training Articles": train_article_ids
     }
-    if algo_type in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot'] and len (train_article_ids) != 0:
+    if algo_type in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit'] and len (train_article_ids) != 0:
         training_set = {
             f"Article ID: {cur_article_id}": {
                 "Parsing Error": cur_parse_error,
@@ -215,7 +216,7 @@ def save_derivation_graph_results(algo_type, name, article_ids, predicted_adjace
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Training": training_set}, json_file, indent=4)
             elif algo_type == 'brute':
                 json.dump({"Correctness": overall_correctness, "Results": article_data}, json_file, indent=4)
-            elif algo_type in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
+            elif algo_type in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit']:
                 json.dump({"Correctness": overall_correctness, "Results": article_data, "Errors": training_set}, json_file, indent=4)
 
         print(f"Successfully wrote outputs to {output_file_path}")

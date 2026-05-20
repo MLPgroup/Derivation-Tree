@@ -30,7 +30,7 @@ import pandas as pd
 
 # Optional plotting
 try:
-    import matplotlib.pyplot as pl t
+    import matplotlib.pyplot as plt
     _HAS_PLT = True
 except Exception:
     _HAS_PLT = False
@@ -369,7 +369,7 @@ def analyze(ground_truth_path, results_path, outdir=".", bucket_fn=DEFAULT_BUCKE
 def main():
     p = argparse.ArgumentParser(description="Classify by derivation-graph length and evaluate performance per-class.")
     p.add_argument("--ground", "-g", default="articles.json", help="Ground-truth JSON file path (contains adjacency lists)")
-    p.add_argument("--results", "-r", default="./outputs/gemini/combine_2025-09-28_19-41-38_UTC.json", help="Run results JSON file path (performance metrics)")
+    p.add_argument("--results", "-r", default="./outputs/gemini/recalculate/25combine.json", help="Run results JSON file path (performance metrics)")
     p.add_argument("--outdir", "-o", default="./outputs/analysis", help="Output directory")
     p.add_argument("--plots", action="store_true", help="Save plots (requires matplotlib)")
     args = p.parse_args()

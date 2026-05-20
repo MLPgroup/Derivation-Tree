@@ -99,97 +99,106 @@ def find_equation_neighbors_str(predicted_adjacency_list):
     return predicted_neighbors
 
 
-"""
-evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists)
-Input: true_adjacency_lists -- labeled adjacency list
-       predicted_adjacency_lists -- predicted adjacency list for algorithm
-Return: accuracy, precision, recall, and f1_score for each article tested on and the overall accuracy, precision, recall, and f1_score for the algorithm as a whole
-Function: Evaluate accuracy of classification
-"""
 def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
+    """
+    Inputs:
+        true_adjacency_lists       -- list of dicts: {node: [neighbor, ...], ...}
+        predicted_adjacency_lists  -- list of dicts (or strings handled by find_equation_neighbors_str)
+    Returns:
+        accuracies, precisions, recalls, f1_scores,
+        overall_accuracy, overall_precision, overall_recall, overall_f1_score,
+        num_skipped
+    Notes:
+        - Directed edges are evaluated (u -> v). Self-edges (u->u) are ignored.
+        - predicted_adjacency_list that is a string is converted using find_equation_neighbors_str.
+    """
     accuracies = []
     precisions = []
     recalls = []
     f1_scores = []
-    overall_true_positive = 0
-    overall_true_negative = 0
-    overall_false_positive = 0
-    overall_false_negative = 0
+
+    overall_tp = overall_tn = overall_fp = overall_fn = 0
     num_skipped = 0
 
-    for cur_true_adjacency_list, cur_predicted_adjacency_list in zip(true_adjacency_lists, predicted_adjacency_lists):
-        # If predicted adjacency list is a string, then it is from the bayes implementation
-        if (isinstance(cur_predicted_adjacency_list, str)):
-            predicted_adjacency_list = find_equation_neighbors_str(cur_predicted_adjacency_list)
-            ''' ----------- CAN GET RID OF DUE TO CHANGE -----------'''
+    for cur_true_adj, cur_pred_adj in zip(true_adjacency_lists, predicted_adjacency_lists):
+        # If predicted adjacency list is a string, convert it
+        if isinstance(cur_pred_adj, str):
+            predicted_adj = find_equation_neighbors_str(cur_pred_adj)
         else:
-            predicted_adjacency_list = cur_predicted_adjacency_list
-        
+            predicted_adj = cur_pred_adj
+
         # Skip bad parsings
-        if predicted_adjacency_list is None:
+        if predicted_adj is None:
             num_skipped += 1
             continue
-        true_positive = 0
-        true_negative = 0
-        false_positive = 0
-        false_negative = 0
 
-        # All equations
-        all_equations = set(cur_true_adjacency_list.keys()).union(set(predicted_adjacency_list.keys()))
-        
-        # Calculate Error
-        for equation, true_neighbors in cur_true_adjacency_list.items():
-            predicted_neighbors = predicted_adjacency_list.get(equation, [])
+        # Normalize to dicts of sets for fast membership checks
+        true_map = {k: set(v) for k, v in (cur_true_adj.items())}
+        pred_map = {k: set(v) for k, v in (predicted_adj.items())}
 
-            for neighbor in true_neighbors:
-                if neighbor in predicted_neighbors:
-                    # True edge is identified by algorithm
-                    true_positive += 1
-                    overall_true_positive += 1
+        # Collect all nodes that appear either as sources or targets
+        nodes = set(true_map.keys()) | set(pred_map.keys())
+        # also include nodes that appear only as neighbors (targets)
+        if true_map:
+            nodes |= set().union(*true_map.values())
+        if pred_map:
+            nodes |= set().union(*pred_map.values())
+
+        # If there are <=1 nodes then there are no directed pairs to evaluate
+        if len(nodes) <= 1:
+            accuracies.append(0.0)
+            precisions.append(0.0)
+            recalls.append(0.0)
+            f1_scores.append(0.0)
+            continue
+
+        tp = tn = fp = fn = 0
+
+        # Evaluate each possible directed pair (u -> v), exclude self-edges
+        for u in nodes:
+            true_neighbors = true_map.get(u, set())
+            pred_neighbors = pred_map.get(u, set())
+            for v in nodes:
+                if u == v:
+                    continue
+                in_true = (v in true_neighbors)
+                in_pred = (v in pred_neighbors)
+
+                if in_true and in_pred:
+                    tp += 1
+                elif in_true and not in_pred:
+                    fn += 1
+                elif not in_true and in_pred:
+                    fp += 1
                 else:
-                    # True edge is not identified by algorithm
-                    false_negative += 1
-                    overall_false_negative += 1
+                    tn += 1
 
-            for neighbor in predicted_neighbors:
-                if neighbor not in true_neighbors:
-                    # Edge identified by algorithm but edge not labeled by ground truth
-                    false_positive += 1
-                    overall_false_positive += 1
+        # Update overall counts
+        overall_tp += tp
+        overall_tn += tn
+        overall_fp += fp
+        overall_fn += fn
 
-            for neighbor in all_equations - set(true_neighbors):
-                if neighbor not in predicted_neighbors:
-                    # No edge detected by algorithm and no edge labeled by ground truth
-                    true_negative += 1
-                    overall_true_negative += 1
-
-        # Handling extra equations in predicted that are not in true
-        for equation, predicted_neighbors in predicted_adjacency_list.items():
-            if equation not in cur_true_adjacency_list:
-                # Extra equations - no true neighbors exist
-                false_positive += len(predicted_neighbors)
-                overall_false_positive += len(predicted_neighbors)
-                # No true neighbors means every other node in all_equations is a true negative
-                true_negative += len(all_equations - set(predicted_neighbors))
-                overall_true_negative += len(all_equations - set(predicted_neighbors))
-
-
-        accuracy = (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative) if (true_positive + true_negative + false_positive + false_negative) != 0 else 0
-        precision = true_positive / (true_positive + false_positive) if (true_positive + false_positive) != 0 else 0
-        recall = true_positive / (true_positive + false_negative) if (true_positive + false_negative) != 0 else 0
-        f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
+        total = tp + tn + fp + fn
+        accuracy = (tp + tn) / total if total != 0 else 0.0
+        precision = tp / (tp + fp) if (tp + fp) != 0 else 0.0
+        recall = tp / (tp + fn) if (tp + fn) != 0 else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) != 0 else 0.0
 
         accuracies.append(accuracy)
         precisions.append(precision)
         recalls.append(recall)
-        f1_scores.append(f1_score)
+        f1_scores.append(f1)
 
-    overall_accuracy = (overall_true_positive + overall_true_negative) / (overall_true_positive + overall_true_negative + overall_false_positive + overall_false_negative) if (overall_true_positive + overall_true_negative + overall_false_positive + overall_false_negative) != 0 else 0
-    overall_precision = overall_true_positive / (overall_true_positive + overall_false_positive) if (overall_true_positive + overall_false_positive) != 0 else 0
-    overall_recall = overall_true_positive / (overall_true_positive + overall_false_negative) if (overall_true_positive + overall_false_negative) != 0 else 0
-    overall_f1_score = 2 * (overall_precision * overall_recall) / (overall_precision + overall_recall) if (overall_precision + overall_recall) != 0 else 0
+    # Overall metrics
+    overall_total = overall_tp + overall_tn + overall_fp + overall_fn
+    overall_accuracy = (overall_tp + overall_tn) / overall_total if overall_total != 0 else 0.0
+    overall_precision = overall_tp / (overall_tp + overall_fp) if (overall_tp + overall_fp) != 0 else 0.0
+    overall_recall = overall_tp / (overall_tp + overall_fn) if (overall_tp + overall_fn) != 0 else 0.0
+    overall_f1_score = 2 * overall_precision * overall_recall / (overall_precision + overall_recall) if (overall_precision + overall_recall) != 0 else 0.0
 
     return accuracies, precisions, recalls, f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped
+
 
 
 
@@ -215,7 +224,7 @@ def run_derivation_algo(algorithm_option):
     train_article_ids = []
 
     # Reset api tracking and setup model
-    if algorithm_option in ['gemini', 'combine', 'geminifewshot', 'grev1', 'grev2', 'grev3']:
+    if algorithm_option in ['gemini', 'combine', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'edge_limit']:
         gemini.api_call_times = deque()
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
         # gemini_model = genai.GenerativeModel("gemini-2.5-pro")
@@ -274,10 +283,10 @@ def run_derivation_algo(algorithm_option):
                         articles_used.append(cur_article_id)
                         train_article_ids = []
                     # Gemini model
-                    elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'chatgptfewshot']:
-                        if algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3']:
+                    elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'chatgptfewshot', 'edge_limit']:
+                        if algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'edge_limit']:
                             # Call Gemini API and get resulting adjacency list
-                            computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing, True if algorithm_option == 'geminifewshot' else False, 1 if algorithm_option == 'grev1' else (2 if algorithm_option == 'grev2' else (3 if algorithm_option == 'grev3' else 0)))
+                            computed_adjacency_list, error, error_string = gemini.get_gemini_adj_list(gemini_model, equations, words_between_equations, equation_indexing, True if algorithm_option == 'geminifewshot' else False, 1 if algorithm_option == 'grev1' else (2 if algorithm_option == 'grev2' else (3 if algorithm_option == 'grev3' else (4 if algorithm_option == 'edge_limit' else 0))))
                         elif algorithm_option in ['chatgpt', 'chatgptfewshot']:
                             computed_adjacency_list, error, error_string = run_llms.get_chatgpt_adj_list(chatgpt_client, equations, words_between_equations, equation_indexing, cur_article_id, True if algorithm_option == 'chatgptfewshot' else False)
                         else:
@@ -358,7 +367,7 @@ def run_derivation_algo(algorithm_option):
         output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
-    elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot']:
+    elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit']:
         output_name = f"{algorithm_option}"
 
     # Save results
@@ -372,7 +381,7 @@ Runs run_derivation_algo()
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Algorithms to find derivation graphs")
-    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'trev', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'trev', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot']")
+    parser.add_argument("-a", "--algorithm", required=True, choices=['bayes', 'token', 'trev', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit'], help="Type of algorithm to compute derivation graph: ['bayes', 'token', 'trev', 'brute', 'gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'chatgpt', 'combine', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit]")
     args = parser.parse_args()
     
     # Call corresponding equation similarity function
