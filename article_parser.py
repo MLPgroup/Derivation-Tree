@@ -27,16 +27,13 @@ Function: Parse the articles.json file and extract the article information
 """
 def get_manually_parsed_articles():
     # Open json file and store into dictionary
-    with open('articles.json') as json_file:
-        # Load list of articles
-        json_data = json.load(json_file)
+    with open('mdgd.json') as json_file:
+        articles = json.load(json_file)
 
-        # Dictionary of manually parsed articles
-        articles = json_data['Manually Parsed Articles']
         manually_parsed_articles = {}
         for article in articles:
             manually_parsed_articles[article['Article ID']] = article
-    
+
     return manually_parsed_articles
 
 
@@ -62,12 +59,12 @@ def extract_equations(html_content):
     last_eq_id = "none"
     last_update_id = "none"
     
-    # Define the pattern to match equations
-    pattern = re.compile(r'S(\d+)\.E(\d+)')
-    # pattern_2 = re.compile(r'S(\d+)\.Ex(\d+)')
+    # Match S\d+, Sx\d+, or A\d+ section prefix followed by .E\d+
+    pattern = re.compile(r'((?:Sx?\d+|A\d+))\.(E\d+)')
+    # Fallback: bare E\d+ with no section prefix (e.g. cond-mat articles) → mapped to S0.E\d+
+    pattern_bare_e = re.compile(r'^(E\d+)\.')
 
     # Iterate through all 'math' elements in the HTML
-    # for mathml in soup.find_all('math'):
     for item in soup.recursiveChildGenerator():
         if item.name == 'math':
             # Get equation ID and alt text attributes
@@ -76,28 +73,32 @@ def extract_equations(html_content):
 
             # Check if the equation ID matches the defined pattern
             match = pattern.search(equation_id)
-            # match_2 = pattern_2.search(equation_id)
             if match:
-                # Extract section and equation numbers from the matched pattern
-                section_number, equation_number = match.groups()
-                equation_key = f"S{section_number}.E{equation_number}"
-                last_eq_id = equation_id
+                section_part, eq_part = match.groups()
+                equation_key = f"{section_part}.{eq_part}"
+            else:
+                match = pattern_bare_e.match(equation_id)
+                if match:
+                    eq_part = match.group(1)
+                    equation_key = f"S0.{eq_part}"
+                else:
+                    continue
 
-                # Create an entry in the dictionary for the equation if not present
-                if equation_key not in equations:
-                    equations[equation_key] = {
-                        'section_number': int(section_number),
-                        'equation_number': int(equation_number),
-                        'equations': [],
-                    }
-                    equation_indexing.append(equation_key)
+            last_eq_id = equation_id
 
-                # Add the equation details to the list of equations for the current key
-                equations[equation_key]['equations'].append({
-                    'mathml': str(item),
-                    'equation_id': equation_id,
-                    'alttext': alttext,
-                })
+            # Create an entry in the dictionary for the equation if not present
+            if equation_key not in equations:
+                equations[equation_key] = {
+                    'equations': [],
+                }
+                equation_indexing.append(equation_key)
+
+            # Add the equation details to the list of equations for the current key
+            equations[equation_key]['equations'].append({
+                'mathml': str(item),
+                'equation_id': equation_id,
+                'alttext': alttext,
+            })
 
         # If string
         elif isinstance(item, str):
@@ -128,7 +129,7 @@ def get_fewshot_preamble():
     fewshot_preamble += "\n Here are some examples of articles and their corresponding adjacency lists:\n"
     articles = get_manually_parsed_articles()
     for article_id in fewshot_articles:
-        html_path = f'articles/{article_id}.html'
+        html_path = f'articles/{article_id.replace("/", "_")}.html'
         if os.path.exists(html_path):
                 # Read the content of the HTML file
                 with open(f'articles/{article_id}.html', 'r', encoding='utf-8') as file:

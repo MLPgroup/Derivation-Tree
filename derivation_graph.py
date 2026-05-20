@@ -246,19 +246,25 @@ def run_derivation_algo(algorithm_option):
                 continue
 
             # Construct the HTML file path for the current article
-            html_path = f'articles/{cur_article_id}.html'
+            html_path = f'articles/{cur_article_id.replace("/", "_")}.html'
         
             # Check if the HTML file exists
             if os.path.exists(html_path):
                 # Read the content of the HTML file
-                with open(f'articles/{cur_article_id}.html', 'r', encoding='utf-8') as file:
+                with open(f'articles/{cur_article_id.replace("/", "_")}.html', 'r', encoding='utf-8') as file:
                     html_content = file.read()
                     
                 # Extract equations from the HTML content
                 equations, words_between_equations, equation_indexing = article_parser.extract_equations(html_content)
 
+                # Filter to only equations listed in JSON (drops appendix/supplemental extras)
+                expected_ids = set(cur_article["Equation ID"])
+                equation_indexing = [e for e in equation_indexing if e in expected_ids]
+                equations = {k: v for k, v in equations.items() if k in expected_ids}
+                words_between_equations = words_between_equations[:len(equation_indexing) + 1]
+
                 # If extracted correctly, continue
-                if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
+                if set(equations.keys()) == expected_ids:
                     # Save variables
                     extracted_equations.append(equations)
                     extracted_words_between_equations.append(words_between_equations)
@@ -320,19 +326,25 @@ def run_derivation_algo(algorithm_option):
         for cur_article_id, cur_explicit_adj_list in zip(combine_articles_used, combine_predicted_adjacency_lists):
             cur_article = article_ids[cur_article_id]
             # Construct the HTML file path for the current article
-            html_path = f'articles/{cur_article_id}.html'
+            html_path = f'articles/{cur_article_id.replace("/", "_")}.html'
 
             # Check if the HTML file exists
             if os.path.exists(html_path):
                 # Read the content of the HTML file
-                with open(f'articles/{cur_article_id}.html', 'r', encoding='utf-8') as file:
+                with open(f'articles/{cur_article_id.replace("/", "_")}.html', 'r', encoding='utf-8') as file:
                     html_content = file.read()
                     
                 # Extract equations from the HTML content
                 equations, words_between_equations, equation_indexing = article_parser.extract_equations(html_content)
-            
+
+                # Filter to only equations listed in JSON (drops appendix/supplemental extras)
+                expected_ids = set(cur_article["Equation ID"])
+                equation_indexing = [e for e in equation_indexing if e in expected_ids]
+                equations = {k: v for k, v in equations.items() if k in expected_ids}
+                words_between_equations = words_between_equations[:len(equation_indexing) + 1]
+
                 # If extracted correctly, continue
-                if (len(cur_article["Equation ID"]) == len(equations)) and (all(cur_equation in cur_article["Equation ID"] for cur_equation in equations)):
+                if set(equations.keys()) == expected_ids:
                     # Save variables
                     extracted_equations.append(equations)
                     extracted_words_between_equations.append(words_between_equations)

@@ -47,9 +47,9 @@ def extract_features_and_labels(equations, words_between_equations, equation_ind
             if adjacency_list is not None:
                 # Label extraction
                 label = 0
-                if equation_indexing[j] in adjacency_list[equation_indexing[i]]:
+                if equation_indexing[j] in adjacency_list.get(equation_indexing[i], []):
                     label = 1
-                elif equation_indexing[i] in adjacency_list[equation_indexing[j]]:
+                elif equation_indexing[i] in adjacency_list.get(equation_indexing[j], []):
                     label = -1
                 labels.append(label)
             features.append(feature_vector)

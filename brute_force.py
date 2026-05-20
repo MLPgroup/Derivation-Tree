@@ -5,6 +5,7 @@ Description: Python code to process mathematical articles in HTML format, identi
 
 
 # Import Modules
+import re
 import article_parser
 from bs4 import BeautifulSoup
 import os
@@ -43,15 +44,15 @@ def get_adj_list(equations, paragraph_breaks, words, extended_words):
             # Current possible edge
             current_equation = equations[idx][0]
             # Iterating through the strings between start and actual equation
-            for j in range (paragraph_breaks[i][1]+1, equations[i][1]-1):
-                # Filter 
+            for j in range(paragraph_breaks[i][1]+1, min(equations[i][1]-1, len(words))):
+                # Filter
                 if ((j >= 2) and (str(current_equation) == words[j]) and ('equationlink' in words[j-1]) and (not any(keyword in words[j-2] for keyword in filter_keywords))):
                     if equations[idx][0] not in adj_list:
                         adj_list[equations[idx][0]] = []
                     if equations[i][0] not in adj_list[equations[idx][0]]:
                         adj_list[equations[idx][0]].append(equations[i][0])
             # Iterating through the sentences between each equation
-            for j in range (equations[i][1]+1, extended_words[i][1]-1):
+            for j in range(equations[i][1]+1, min(extended_words[i][1]-1, len(words))):
                 # Filter
                 if ((j >= 2) and (str(current_equation) == words[j]) and ('equationlink' in words[j-1]) and (not any(keyword in words[j-2] for keyword in filter_keywords))):     
                     if equations[idx][0] not in adj_list:
@@ -214,30 +215,62 @@ def parse_html(html_path, cur_article_id):
     # Check if the HTML file exists
     if os.path.exists(html_path):
         # Read the content of the HTML file
-        with open(f'articles/{cur_article_id}.html', 'r', encoding='utf-8') as file:
+        with open(f'articles/{cur_article_id.replace("/", "_")}.html', 'r', encoding='utf-8') as file:
             html_content = file.read()
             soup = BeautifulSoup(html_content, 'html.parser')
-            mathMl = []
 
-            # Find all td tags with rowspan= any int
-            td_tags_with_rowspan_one = soup.find_all('td', {'rowspan': True})
+            # Collect all block equations as (element, equation_id) in document order.
+            # Two forms in LaTeXML HTML:
+            #   1. Standalone: <table class="ltx_equation"> whose ancestor has the equation ID
+            #      — identified by td[rowspan] inside (original approach)
+            #   2. Grouped: <tr class="ltx_equation"> inside <table class="ltx_equationgroup">
+            #      — no td[rowspan]; equation ID lives on the <math> element inside the row
+            block_eqs = []  # list of (soup_element, equation_id)
+            seen_ids = set()
 
-            for td_tag in td_tags_with_rowspan_one:
-                # Find the closest ancestor that is either a table or tbody tag
-                ancestor_table_or_tbody = td_tag.find_parent(['table', 'tbody'])
-
-                while ancestor_table_or_tbody:
-                    # Create a new element with the insert text
-                    marker = soup.new_tag("span", text='mathmarker', **{'class': 'mathmarker'})
-
-                    if ancestor_table_or_tbody.get('id'):
-                        ancestor_table_or_tbody.insert_before(marker)
-                        mathMl.append(ancestor_table_or_tbody)
+            # Method 1: standalone equations via td[rowspan]
+            for td_tag in soup.find_all('td', {'rowspan': True}):
+                ancestor = td_tag.find_parent(['table', 'tbody'])
+                while ancestor:
+                    eid = ancestor.get('id')
+                    if eid:
+                        if re.match(r'^E\d+$', eid):
+                            eid = f'S0.{eid}'
+                        if eid not in seen_ids:
+                            block_eqs.append((ancestor, eid))
+                            seen_ids.add(eid)
                         break
-                    else:
-                        # If id not found, go to the next ancestor
-                        ancestor_table_or_tbody = ancestor_table_or_tbody.find_parent(['table', 'body'])
-            
+                    ancestor = ancestor.find_parent(['table', 'body'])
+
+            # Method 2: equation rows inside ltx_equationgroup tables
+            for group_table in soup.find_all('table', class_='ltx_equationgroup'):
+                for tr in group_table.find_all('tr', class_='ltx_equation'):
+                    for math_el in tr.find_all('math'):
+                        mid = math_el.get('id', '')
+                        m = re.search(r'((?:Sx?\d+|A\d+)\.E\d+)', mid)
+                        if not m:
+                            m2 = re.match(r'^(E\d+)\.', mid)
+                            eid = f'S0.{m2.group(1)}' if m2 else None
+                        else:
+                            eid = m.group(1)
+                        if eid and eid not in seen_ids:
+                            block_eqs.append((tr, eid))
+                            seen_ids.add(eid)
+                        if eid:
+                            break
+
+            # Sort by document order so marker positions match equation order in text
+            doc_order = {id(el): i for i, el in enumerate(soup.descendants)}
+            block_eqs.sort(key=lambda x: doc_order.get(id(x[0]), float('inf')))
+
+            mathMl = []
+            equation_ids = []
+            for elem, eid in block_eqs:
+                marker = soup.new_tag("span", text='mathmarker', **{'class': 'mathmarker'})
+                elem.insert_before(marker)
+                mathMl.append(elem)
+                equation_ids.append(eid)
+
             # Replace MathML with the text "unicodeError"
             for script in soup(['math']):
                 script.string = "unicodeError"
@@ -247,16 +280,16 @@ def parse_html(html_path, cur_article_id):
                 script.extract()
 
             # Adding paragraph break markers (parabreak) before each paragraph
-            for script in soup(['p']):                      
-                if script.get('class') == ['ltx_p']:        
+            for script in soup(['p']):
+                if script.get('class') == ['ltx_p']:
                     script.insert_before("parabreak")
 
-            # Adding edge markers (edge) before each equation
-            for script in soup(['a']):                          
+            # Adding edge markers before each equation reference
+            for script in soup(['a']):
                 if script.get('class') == ['ltx_ref']:
                     script.insert_before("equationlink")
-                
-            # Check for elements with class "mathmarker" and skip processing them
+
+            # Materialise mathmarker spans as text tokens
             for script in soup.find_all(recursive=True):
                 if script.get('class') == ['mathmarker']:
                     script.insert_before("mathmarker")
@@ -264,15 +297,9 @@ def parse_html(html_path, cur_article_id):
             # Get final processed text (including markers)
             text = soup.get_text(' ', strip=True)
 
-            # Remove References OR Acknowledgments (Last) section
+            # Remove References OR Acknowledgments (last) section
             text = (text.rsplit("References", 1))[0]
             text = text.split("Acknowledgments")[0]
-
-            # Extracts all Block/Numbered Equation ID's from a Mathematical Text
-            equation_ids = []
-            for tag in mathMl:
-                if tag.get('id'):
-                    equation_ids.append(tag.get('id'))
 
             # Return parsing outputs
             return mathMl, text, equation_ids
@@ -327,9 +354,11 @@ def brute_force_algo():
     # Iterate through article IDs
     for i, (cur_article_id, cur_article) in enumerate(articles.items()):
         # Construct the HTML file path for the current article
-        html_path = f'articles/{cur_article_id}.html'
+        html_path = f'articles/{cur_article_id.replace("/", "_")}.html'
         mathML, text, equation_ids = parse_html(html_path, cur_article_id)
         if text is None or mathML is None or equation_ids is None:
+            continue
+        if not set(cur_article["Equation ID"]).issubset(set(equation_ids)):
             continue
         word_count = get_sentence_count(text)
         string_array = get_array_of_strings(text)
