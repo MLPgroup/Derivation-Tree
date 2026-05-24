@@ -1,0 +1,57 @@
+{
+  "article_id": "2312.08485",
+  "input_tokens_max": 39779,
+  "s1_total_ub": 187.71067391999998,
+  "s2_total_ub": 70.39150271999999,
+  "rows": [
+    {
+      "model": "claude-sonnet-4-6",
+      "provider": "anthropic",
+      "input_tokens": 89287,
+      "output_tokens": 11,
+      "cost_1x": 0.268026,
+      "s1_ub": 137.229312,
+      "s2_ub": 51.460992
+    },
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "input_tokens": 72210,
+      "output_tokens": 1654,
+      "cost_1x": 0.0213605,
+      "s1_ub": 10.936576,
+      "s2_ub": 4.101216
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "error": "argument of type 'Part' is not iterable"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "provider": "deepinfra",
+      "input_tokens": 55533,
+      "output_tokens": 17,
+      "cost_1x": 0.007779380000000001,
+      "s1_ub": 3.9830425600000003,
+      "s2_ub": 1.49364096
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "provider": "nscale",
+      "input_tokens": 74390,
+      "output_tokens": 18,
+      "cost_1x": 0.00446448,
+      "s1_ub": 2.28581376,
+      "s2_ub": 0.85718016
+    },
+    {
+      "model": "moonshotai/Kimi-K2.6",
+      "provider": "together",
+      "input_tokens": 68379,
+      "output_tokens": 8,
+      "cost_1x": 0.06499205,
+      "s1_ub": 33.2759296,
+      "s2_ub": 12.4784736
+    }
+  ]
+}

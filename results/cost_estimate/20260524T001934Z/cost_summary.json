@@ -1,0 +1,48 @@
+{
+  "article_id": "2312.08485",
+  "input_tokens_max": 39779,
+  "s1_total_ub": 21.13524736,
+  "s2_total_ub": 7.9257177599999995,
+  "rows": [
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "input_tokens": 72206,
+      "output_tokens": 1396,
+      "cost_1x": 0.0208435,
+      "s1_ub": 10.671872,
+      "s2_ub": 4.001952
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "error": "additionalProperties is only supported in Gemini Enterprise Agent Platform mode, , not in Gemini Developer API mode."
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "provider": "deepinfra",
+      "input_tokens": 55533,
+      "output_tokens": 62,
+      "cost_1x": 0.00779198,
+      "s1_ub": 3.98949376,
+      "s2_ub": 1.49606016
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "provider": "nscale",
+      "input_tokens": 74390,
+      "output_tokens": 50,
+      "cost_1x": 0.0044664,
+      "s1_ub": 2.2867968,
+      "s2_ub": 0.8575488
+    },
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "provider": "together",
+      "input_tokens": 75635,
+      "output_tokens": 4096,
+      "cost_1x": 0.0081779,
+      "s1_ub": 4.1870848,
+      "s2_ub": 1.5701568
+    }
+  ]
+}

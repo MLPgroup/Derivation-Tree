@@ -1,0 +1,24 @@
+\begin{table*}[htbp]
+  \caption{Initial Algorithm Performance Metrics for Equation Derivation Graph Extraction}
+  \label{tab:derivation_correctness}
+  \centering
+  \begin{tabular}{p{7cm}|ccc}
+    \toprule
+    \hline
+    \textbf{Algorithm} & \textbf{Precision} & \textbf{Recall} & $\mathbf{F_1}$ \\
+    \midrule
+    \hline
+    Brute Force  & $\mathbf{48.0}\%$ & $\mathbf{56.0}\%$ & $\mathbf{51.7}\%$ \\
+    Token String Similarity  & $41.1\%$ & $37.1\%$ & $39.0\%$ \\
+    Naive Bayes  & $21.9\%$ & $39.3\%$ & $28.1\%$ \\
+    \hline
+    Zero-Shot - Gemini-2.5-flash  & $\mathbf{47.9}\%$ & $48.0\%$ & $47.9\%$ \\
+    Zero-Shot - GPT-5  & $46.8\%$ & $\mathbf{58.5}\%$ & $\mathbf{52.0}\%$ \\
+    Zero-Shot - Llama-3.2-3B-Instruct  & $16.0\%$ & $26.6\%$ & $20.0\%$ \\
+    Zero-Shot - Mistral-Nemo-Instruct-2407  & $29.0\%$ & $22.0\%$ & $25.0\%$ \\
+    Zero-Shot - Qwen2.5-Coder-32B-Instruct  & $43.8\%$ & $46.6\%$ &  $45.2\%$ \\
+    Zero-Shot - Phi-3.5-mini-instruct  & $25.6\%$ & $57.9\%$ & $35.5\%$ \\
+    \hline
+    \bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,37 @@
+{
+  "article_id": "2312.08485",
+  "input_tokens_max": 39779,
+  "s1_total_ub": 10.411776,
+  "s2_total_ub": 3.904416,
+  "rows": [
+    {
+      "model": "claude-sonnet-4-6",
+      "error": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': \"output_config.format.schema: For 'object' type, 'additionalProperties: object' is not supported. Please set 'additionalProperties' to false\"}, 'request_id': 'req_011CbLMKUxQHjA4UDfB1r7oN'}"
+    },
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "input_tokens": 72206,
+      "output_tokens": 1142,
+      "cost_1x": 0.0203355,
+      "s1_ub": 10.411776,
+      "s2_ub": 3.904416
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "error": "Unknown field for Schema: additionalProperties"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "error": "InferenceClient.__init__() got an unexpected keyword argument 'provider'"
+    },
+    {
+      "model": "moonshotai/Kimi-K2.6",
+      "error": "InferenceClient.__init__() got an unexpected keyword argument 'provider'"
+    },
+    {
+      "model": "Qwen/Qwen2.5-Math-7B-Instruct",
+      "error": "InferenceClient.__init__() got an unexpected keyword argument 'provider'"
+    }
+  ]
+}

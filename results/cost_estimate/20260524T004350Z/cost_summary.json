@@ -1,0 +1,44 @@
+{
+  "article_id": "2312.08485",
+  "input_tokens_max": 39779,
+  "s1_total_ub": 32.97865728,
+  "s2_total_ub": 12.366996480000001,
+  "rows": [
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "input_tokens": 72206,
+      "output_tokens": 1394,
+      "cost_1x": 0.0208395,
+      "s1_ub": 10.669824,
+      "s2_ub": 4.001184
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "provider": "google",
+      "input_tokens": 62167,
+      "output_tokens": 78,
+      "cost_1x": 0.0313175,
+      "s1_ub": 16.03456,
+      "s2_ub": 6.01296
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "provider": "deepinfra",
+      "input_tokens": 55533,
+      "output_tokens": 46,
+      "cost_1x": 0.007787500000000001,
+      "s1_ub": 3.9872000000000005,
+      "s2_ub": 1.4952
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "provider": "nscale",
+      "input_tokens": 74390,
+      "output_tokens": 59,
+      "cost_1x": 0.00446694,
+      "s1_ub": 2.28707328,
+      "s2_ub": 0.85765248
+    }
+  ]
+}

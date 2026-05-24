@@ -1,0 +1,176 @@
+METHODS AND METRICS SUMMARY
+============================
+For use in research paper writeup.
+
+
+FILE UPDATED FOR METRICS
+------------------------
+derivation_graph.py — function evaluate_adjacency_lists() was rewritten to use
+edge-set evaluation (TP/FP/FN only, no TN), matching the LLM pipeline exactly.
+All three baselines (brute force, naive Bayes, token similarity) pass through
+this single function, so the change applies uniformly.
+
+
+METRICS: OLD VS NEW
+--------------------
+Old method (all-pairs evaluation):
+  For each article, the union of nodes across the true and predicted graphs is
+  formed. Every ordered pair (u, v) with u != v is evaluated as a binary
+  classification: is this edge present or absent? This produces TP, TN, FP, FN.
+  Precision = TP / (TP + FP), Recall = TP / (TP + FN), F1 = harmonic mean.
+  Problem: TN counts dominate because most pairs are not edges. A method that
+  predicts no edges at all still earns high TN credit. Scores are inflated and
+  not comparable to standard graph retrieval metrics.
+
+New method (edge-set evaluation, matches LLM pipeline):
+  true_edges  = {(src, tgt) for src, tgts in true_adj  for tgt in tgts}
+  pred_edges  = {(src, tgt) for src, tgts in pred_adj  for tgt in tgts}
+  TP = |true_edges ∩ pred_edges|
+  FP = |pred_edges − true_edges|   (predicted but not in ground truth)
+  FN = |true_edges − pred_edges|   (in ground truth but not predicted)
+  No TN term. Precision = TP/(TP+FP), Recall = TP/(TP+FN), F1 = harmonic mean.
+  Pooled F1: TP/FP/FN are summed across all articles before computing P/R/F1.
+  This is standard information-retrieval / graph-extraction evaluation.
+
+Additional difference:
+  Old method used the union of true and predicted node sets, so hallucinated
+  equation numbers in the prediction expanded the evaluation universe.
+  New method (LLM pipeline): equation numbers not in the ground truth are
+  dropped at a mapping stage before evaluation; they are logged as
+  "hallucinated nodes" and do not affect F1.
+
+Accuracy is no longer meaningful without TN and is reported as 0.0.
+
+
+BASELINE ALGORITHMS
+--------------------
+
+1. Brute Force (brute_force.py)
+   Parses each article HTML into a token sequence with special markers inserted:
+     - "mathmarker" before each block equation
+     - "equationlink" before each equation reference hyperlink
+     - "parabreak" before each paragraph
+   For each equation E_i, the algorithm scans the text window from the start of
+   E_i's paragraph to one sentence after E_i. Within that window, it checks
+   whether any earlier equation E_j appears as an explicit equation reference
+   (i.e., the token immediately before the equation number is "equationlink" and
+   no figure/theorem/section keyword appears two tokens before). If so, an edge
+   E_j → E_i is added. Edges are deduplicated.
+   No learning, no parameters. Pure heuristic based on explicit cross-references
+   in the article text.
+
+2. Token Similarity (token_similarity.py)
+   For each equation, all sub-equation MathML alt-text strings are concatenated.
+   A pairwise symbol-overlap matrix is computed: entry [i][j] is the percentage
+   of unique characters in equation i that also appear in equation j, and [j][i]
+   is the reverse. For each pair (i, j) with i < j, an edge direction is chosen
+   based on which percentage is larger (direction = 'greater' means the equation
+   with more of the other's symbols is the target). A threshold and strictness
+   parameter gate whether the pair receives any edge at all:
+     strictness 0: always add an edge (threshold ignored)
+     strictness 1: add edge if at least one of [i][j], [j][i] >= threshold
+     strictness 2: add edge only if both [i][j] and [j][i] >= threshold
+   Best hyperparameters found by grid search over strictness ∈ {0,1,2},
+   direction ∈ {greater, lesser}, threshold ∈ {0,5,...,100}:
+     strictness=1, direction=greater, threshold=90
+   Symbol overlap is computed over character sets (not multisets), so it
+   measures vocabulary overlap, not token frequency.
+
+3. Naive Bayes (naive_bayes.py)
+   5-fold cross-validated Multinomial Naive Bayes classifier.
+   For each ordered pair of equations (E_i, E_j) with i < j, a feature vector
+   is constructed by concatenating:
+     - text between the start of the article and E_j (context before)
+     - alt-text of E_i
+     - text between E_i and E_j
+     - alt-text of E_j
+     - text after E_j (one window)
+   Labels: +1 if E_i → E_j (E_i derives E_j), −1 if E_j → E_i, 0 if no edge.
+   A CountVectorizer (bag-of-words) converts feature strings to counts.
+   At test time, only label +1 predictions are converted to edges (E_i → E_j).
+   Label −1 (reverse edge) is currently discarded rather than inverted.
+   Cross-validation: KFold(n_splits=5, shuffle=True, random_state=42).
+   Each article appears in exactly one test fold.
+
+
+LLM PIPELINE
+-------------
+Framework: structured JSON output enforced via provider-native schema APIs.
+All models are prompted with the same variants (P0–P7) and evaluated on the
+same 63 articles. Structured output forces the response format:
+  {"derivation_graph": {"1": ["2", "3"], "2": [], ...}}
+where keys and values are equation numbers as strings.
+
+Output parsing uses a 3-strategy cascade:
+  Strategy 1: parse full response as JSON, extract "derivation_graph" key
+  Strategy 2: find outermost {} in response, retry Strategy 1, then try flat
+              dict format {"1": [...]} (used for Gemini which omits wrapper)
+  Strategy 3: flat dict on full text; if still None → parse failure
+
+Equation numbers in the model output are mapped back to ground-truth equation
+IDs. Numbers not in the ground truth are logged as hallucinated nodes and
+dropped before F1 computation.
+
+Models evaluated:
+
+  Claude Haiku 4.5 (claude-haiku-4-5-20251001) — Anthropic
+    Provider API: Anthropic Messages API with output_config JSON schema
+    Context: 200,000 tokens
+    Structured output: enforced via output_config format field
+
+  GPT-5-mini — OpenAI
+    Provider API: OpenAI Chat Completions with response_format json_schema
+    Context: 128,000 tokens
+    Structured output: enforced via json_schema response format
+
+  Gemini 3 Flash Preview (gemini-3-flash-preview) — Google
+    Provider API: Google GenAI client (google-genai SDK)
+    Context: 1,048,576 tokens
+    Structured output: response_mime_type="application/json" only (no schema
+    enforcement); model returns a flat dict without "derivation_graph" wrapper,
+    handled by Strategy 2 flat-dict parsing
+
+  DeepSeek-V4-Flash (deepseek-ai/DeepSeek-V4-Flash) — via HuggingFace router / deepinfra
+    Provider API: OpenAI-compatible endpoint at router.huggingface.co
+    Context: 1,048,576 tokens
+    Structured output: json_schema response format via OpenAI-compatible API
+
+  Llama 3.1 8B Instruct (meta-llama/Llama-3.1-8B-Instruct) — via HuggingFace router / nscale
+    Provider API: OpenAI-compatible endpoint at router.huggingface.co
+    Context: 131,072 tokens
+    Structured output: json_schema response format via OpenAI-compatible API
+
+  Qwen 3.5 9B (Qwen/Qwen3.5-9B) — via HuggingFace router / together, ovhcloud
+    Provider API: OpenAI-compatible endpoint at router.huggingface.co
+    Context: 262,144 tokens
+    Structured output: json_schema response format
+    Note: model uses extended thinking by default; thinking tokens are stripped
+    via regex (<think>...</think>) before JSON parsing. A /no_think system
+    prompt is prepended to suppress thinking output.
+
+Prompt variants P0–P7 tested in Stage 1 (20-article subset):
+  P0: full article text + equation list + base instruction (derive from)
+  P1: full article text + equation list + "depends on" framing (edges inverted post-hoc)
+  P2: full article text + equation list + DAG framing (i→j means j needs i)
+  P3: full article text + equation list + chain-of-thought instruction
+      (returns {"reasoning": "...", "derivation_graph": {...}})
+  P4: full article text + equation list + strict definition of derivation
+  P5: full article text + equation list + negative constraint (no shared-variable edges)
+  P6: equation list only (no article text)
+  P7: condensed context (2 sentences around each equation) + equation list
+
+Stage 2: best variant from Stage 1, all 63 articles, 3 independent runs per model.
+Final metrics are pooled F1 averaged across 3 runs ± standard deviation.
+
+
+DIAGNOSTIC STATISTICS (tracked per model per run)
+---------------------------------------------------
+In addition to pooled P/R/F1 and macro P/R/F1, the following are recorded:
+  n_parse_failures            — output could not be parsed into any valid graph
+  n_full_empty_predictions    — valid JSON returned, correct node count, all edge lists empty
+  n_partial_empty_predictions — valid JSON returned, fewer nodes than ground truth, all edges empty
+  n_hallucinated_nodes        — unique equation numbers in prediction not in ground truth
+  mean_predicted_equations    — average number of nodes in predicted graph
+  mean_true_equations         — average number of nodes in ground truth
+  total_extra_edges           — total FP across all articles (same value that feeds pooled precision)
+  total_missing_edges         — total FN across all articles (same value that feeds pooled recall)

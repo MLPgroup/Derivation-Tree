@@ -59,6 +59,17 @@ def parse_ground_truth(gt_json):
     """
     out = {}
 
+    # Case 0: flat list of article dicts (mdgd.json format)
+    if isinstance(gt_json, list):
+        for a in gt_json:
+            aid = a.get("Article ID")
+            if not aid:
+                continue
+            adj_raw = a.get("Adjacency List", {}) or {}
+            adj = normalize_adj(adj_raw)
+            out[aid] = {"adj": adj, "n_eq": len(a.get("Equation ID", []))}
+        return out
+
     # Case 1: top-level 'Manually Parsed Articles' list (your earlier format)
     if isinstance(gt_json, dict) and "Manually Parsed Articles" in gt_json:
         for a in gt_json["Manually Parsed Articles"]:
@@ -221,7 +232,8 @@ def analyze(ground_truth_path, results_path, outdir=".", bucket_fn=DEFAULT_BUCKE
     rows = []
     for aid, meta in gt_parsed.items():
         adj = meta.get("adj", {}) or {}
-        n_equations = len(adj)
+        # Prefer Equation ID count (from mdgd.json) over adjacency list key count
+        n_equations = meta.get("n_eq") or len(adj)
         n_edges = count_edges(adj)
         L = longest_path_length(adj)
         rows.append({
@@ -271,17 +283,31 @@ def analyze(ground_truth_path, results_path, outdir=".", bucket_fn=DEFAULT_BUCKE
     agg.to_csv(agg_csv, index=False)
     agg.to_json(agg_json, orient="records", indent=2)
 
+    # Build distribution table from full ground truth (all GT articles, not just those with results)
+    dist_rows = [
+        ("Equations per article", df["n_equations"]),
+        ("Edges per article",     df["n_edges"]),
+        ("Longest path (edges)",  df["longest_path"]),
+    ]
+    col_w = 26
+    dist_lines = []
+    dist_lines.append("MDGD distribution")
+    dist_lines.append(f"{'':>{col_w}}  {'Mean':>7}  {'Median':>6}  {'Min':>4}  {'Max':>4}")
+    dist_lines.append("-" * (col_w + 30))
+    for label, series in dist_rows:
+        dist_lines.append(
+            f"{label:>{col_w}}  {series.mean():>7.2f}  {int(series.median()):>6}  {int(series.min()):>4}  {int(series.max()):>4}"
+        )
+    dist_table = "\n".join(dist_lines)
+    print(dist_table)
+
     # summary text
     with open(summary_txt, "w", encoding="utf8") as f:
         f.write("Derivation-graph-length classification analysis\n")
         f.write(f"Generated (UTC): {now}\n\n")
-        f.write(f"Ground-truth articles parsed: {len(gt_parsed)}\n")
-        f.write(f"Performance entries parsed: {len(perf_parsed)}\n")
-        f.write(f"Articles with performance metrics (merged): {merged['accuracy'].count()} (non-null accuracy)\n\n")
-        f.write("Overall dataset distributions (derived from ground-truth graphs):\n")
-        f.write(f"  Equations per article: mean={merged['n_equations'].mean():.2f}, median={merged['n_equations'].median():.0f}, min={int(merged['n_equations'].min())}, max={int(merged['n_equations'].max())}\n")
-        f.write(f"  Edges per article: mean={merged['n_edges'].mean():.2f}, median={merged['n_edges'].median():.0f}, min={int(merged['n_edges'].min())}, max={int(merged['n_edges'].max())}\n")
-        f.write(f"  Longest path (edges): mean={merged['longest_path'].mean():.2f}, median={merged['longest_path'].median():.0f}, min={int(merged['longest_path'].min())}, max={int(merged['longest_path'].max())}\n\n")
+        f.write(f"Ground-truth articles: {len(df)}\n")
+        f.write(f"Articles with performance metrics: {merged['accuracy'].count()}\n\n")
+        f.write(dist_table + "\n\n")
         f.write("Bucket summary (bucket,count,mean_accuracy,mean_precision,mean_recall,mean_f1):\n")
         for _, row in agg.iterrows():
             f.write(f"{row['bucket']},{int(row['count'])},{row['mean_accuracy'] if not pd.isna(row['mean_accuracy']) else ''},{row['mean_precision'] if not pd.isna(row['mean_precision']) else ''},{row['mean_recall'] if not pd.isna(row['mean_recall']) else ''},{row['mean_f1'] if not pd.isna(row['mean_f1']) else ''}\n")
@@ -301,7 +327,26 @@ def analyze(ground_truth_path, results_path, outdir=".", bucket_fn=DEFAULT_BUCKE
         "numbers_txt": numbers_txt
     }
 
-    # Optional plots
+    # Edges-per-article histogram (always generated — Figure 8)
+    if not _HAS_PLT:
+        print("matplotlib not available; skipping histogram.")
+    else:
+        hist_edges = str(prefix) + "_hist_edges_per_article.png"
+        edge_vals = df["n_edges"].astype(int).dropna()
+        fig, ax = plt.subplots(figsize=(7, 4))
+        ax.hist(edge_vals, bins=range(int(edge_vals.min()), int(edge_vals.max()) + 2),
+                edgecolor="black", color="steelblue")
+        ax.set_xlabel("Number of edges per article")
+        ax.set_ylabel("Number of articles")
+        ax.set_title("MDGD: Distribution of Edges per Article")
+        ax.xaxis.get_major_locator().set_params(integer=True)
+        fig.tight_layout()
+        fig.savefig(hist_edges, dpi=150)
+        plt.close(fig)
+        created["hist_edges_per_article"] = hist_edges
+        print(f"Histogram saved: {hist_edges}")
+
+    # Optional additional plots
     if plots:
         if not _HAS_PLT:
             print("matplotlib not available; skipping plots.")
@@ -339,17 +384,6 @@ def analyze(ground_truth_path, results_path, outdir=".", bucket_fn=DEFAULT_BUCKE
             plt.close()
             created["hist_longest_path"] = fig3
 
-            # Histogram edges
-            fig4 = str(prefix) + "_hist_edges.png"
-            plt.figure()
-            plt.hist(merged["n_edges"].astype(int).dropna())
-            plt.xlabel("Number of edges")
-            plt.ylabel("Count")
-            plt.title("Distribution of Edges per Article")
-            plt.savefig(fig4)
-            plt.close()
-            created["hist_edges"] = fig4
-
             # Bucket counts bar
             fig5 = str(prefix) + "_bar_bucket_counts.png"
             plt.figure()
@@ -368,7 +402,7 @@ def analyze(ground_truth_path, results_path, outdir=".", bucket_fn=DEFAULT_BUCKE
 # -----------------------
 def main():
     p = argparse.ArgumentParser(description="Classify by derivation-graph length and evaluate performance per-class.")
-    p.add_argument("--ground", "-g", default="articles.json", help="Ground-truth JSON file path (contains adjacency lists)")
+    p.add_argument("--ground", "-g", default="mdgd.json", help="Ground-truth JSON file path (contains adjacency lists)")
     p.add_argument("--results", "-r", default="./outputs/gemini/recalculate/25combine.json", help="Run results JSON file path (performance metrics)")
     p.add_argument("--outdir", "-o", default="./outputs/analysis", help="Output directory")
     p.add_argument("--plots", action="store_true", help="Save plots (requires matplotlib)")

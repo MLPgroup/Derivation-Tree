@@ -31,15 +31,15 @@ from collections import deque
 # NOTE: for all hyper-parameters ONLY INCLUDE DECIMAL IF THRESHOLD IS NOT AN INTEGER
 
 # TOKEN_SIMILARITY_THRESHOLD - threshold of matrix to determine if two equations are similar or not
-TOKEN_SIMILARITY_THRESHOLD = 98
+TOKEN_SIMILARITY_THRESHOLD = 90
 
 # TOKEN_SIMILARITY_DIRECTION - greater (>) or lesser (<) to determine which direction to add edge to adjacency list
 TOKEN_SIMILARITY_DIRECTION = 'greater'
 
 # TOKEN_SIMILARITY_STRICTNESS - 0, 1, or 2 to determine minimum number of similarity values to be greater than the threshold in edge determination
-TOKEN_SIMILARITY_STRICTNESS = 2
-# BAYES_TRAINING_PERCENTAGE - percentage of dataset to use for training of Naive Bayes model
-BAYES_TRAINING_PERCENTAGE = 85
+TOKEN_SIMILARITY_STRICTNESS = 1
+# BAYES_K_FOLDS - number of folds for k-fold cross-validation of Naive Bayes model
+BAYES_K_FOLDS = 5
 
 '''HYPER-PARAMETERS'''
 
@@ -109,95 +109,62 @@ def evaluate_adjacency_lists(true_adjacency_lists, predicted_adjacency_lists):
         overall_accuracy, overall_precision, overall_recall, overall_f1_score,
         num_skipped
     Notes:
-        - Directed edges are evaluated (u -> v). Self-edges (u->u) are ignored.
-        - predicted_adjacency_list that is a string is converted using find_equation_neighbors_str.
+        - Edge-set evaluation: TP/FP/FN only, no TN. Matches LLM pipeline compute_article_tp_fp_fn.
+        - accuracies field is kept for API compatibility but returns 0.0 (undefined without TN).
     """
     accuracies = []
     precisions = []
     recalls = []
     f1_scores = []
 
-    overall_tp = overall_tn = overall_fp = overall_fn = 0
+    overall_tp = overall_fp = overall_fn = 0
     num_skipped = 0
 
     for cur_true_adj, cur_pred_adj in zip(true_adjacency_lists, predicted_adjacency_lists):
-        # If predicted adjacency list is a string, convert it
         if isinstance(cur_pred_adj, str):
             predicted_adj = find_equation_neighbors_str(cur_pred_adj)
         else:
             predicted_adj = cur_pred_adj
 
-        # Skip bad parsings
         if predicted_adj is None:
             num_skipped += 1
             continue
 
-        # Normalize to dicts of sets for fast membership checks
-        true_map = {k: set(v) for k, v in (cur_true_adj.items())}
-        pred_map = {k: set(v) for k, v in (predicted_adj.items())}
+        true_edges = {
+            (src, tgt)
+            for src, tgts in cur_true_adj.items()
+            for tgt in (tgts or [])
+            if tgt is not None
+        }
+        pred_edges = {
+            (src, tgt)
+            for src, tgts in predicted_adj.items()
+            for tgt in (tgts or [])
+            if tgt is not None
+        }
 
-        # Collect all nodes that appear either as sources or targets
-        nodes = set(true_map.keys()) | set(pred_map.keys())
-        # also include nodes that appear only as neighbors (targets)
-        if true_map:
-            nodes |= set().union(*true_map.values())
-        if pred_map:
-            nodes |= set().union(*pred_map.values())
+        tp = len(true_edges & pred_edges)
+        fp = len(pred_edges - true_edges)
+        fn = len(true_edges - pred_edges)
 
-        # If there are <=1 nodes then there are no directed pairs to evaluate
-        if len(nodes) <= 1:
-            accuracies.append(0.0)
-            precisions.append(0.0)
-            recalls.append(0.0)
-            f1_scores.append(0.0)
-            continue
-
-        tp = tn = fp = fn = 0
-
-        # Evaluate each possible directed pair (u -> v), exclude self-edges
-        for u in nodes:
-            true_neighbors = true_map.get(u, set())
-            pred_neighbors = pred_map.get(u, set())
-            for v in nodes:
-                if u == v:
-                    continue
-                in_true = (v in true_neighbors)
-                in_pred = (v in pred_neighbors)
-
-                if in_true and in_pred:
-                    tp += 1
-                elif in_true and not in_pred:
-                    fn += 1
-                elif not in_true and in_pred:
-                    fp += 1
-                else:
-                    tn += 1
-
-        # Update overall counts
         overall_tp += tp
-        overall_tn += tn
         overall_fp += fp
         overall_fn += fn
 
-        total = tp + tn + fp + fn
-        accuracy = (tp + tn) / total if total != 0 else 0.0
-        precision = tp / (tp + fp) if (tp + fp) != 0 else 0.0
-        recall = tp / (tp + fn) if (tp + fn) != 0 else 0.0
-        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) != 0 else 0.0
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        recall    = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        f1        = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
 
-        accuracies.append(accuracy)
+        accuracies.append(0.0)
         precisions.append(precision)
         recalls.append(recall)
         f1_scores.append(f1)
 
-    # Overall metrics
-    overall_total = overall_tp + overall_tn + overall_fp + overall_fn
-    overall_accuracy = (overall_tp + overall_tn) / overall_total if overall_total != 0 else 0.0
-    overall_precision = overall_tp / (overall_tp + overall_fp) if (overall_tp + overall_fp) != 0 else 0.0
-    overall_recall = overall_tp / (overall_tp + overall_fn) if (overall_tp + overall_fn) != 0 else 0.0
-    overall_f1_score = 2 * overall_precision * overall_recall / (overall_precision + overall_recall) if (overall_precision + overall_recall) != 0 else 0.0
+    overall_precision = overall_tp / (overall_tp + overall_fp) if (overall_tp + overall_fp) > 0 else 0.0
+    overall_recall    = overall_tp / (overall_tp + overall_fn) if (overall_tp + overall_fn) > 0 else 0.0
+    overall_f1_score  = 2 * overall_precision * overall_recall / (overall_precision + overall_recall) if (overall_precision + overall_recall) > 0 else 0.0
 
-    return accuracies, precisions, recalls, f1_scores, overall_accuracy, overall_precision, overall_recall, overall_f1_score, num_skipped
+    return accuracies, precisions, recalls, f1_scores, 0.0, overall_precision, overall_recall, overall_f1_score, num_skipped
 
 
 
@@ -317,7 +284,7 @@ def run_derivation_algo(algorithm_option):
 
     # Run Bayes algorithm
     if algorithm_option == 'bayes':
-        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_TRAINING_PERCENTAGE)
+        true_adjacency_lists, predicted_adjacency_lists, train_article_ids = naive_bayes.bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, BAYES_K_FOLDS)
     elif algorithm_option == 'brute':
         articles_used, true_adjacency_lists, predicted_adjacency_lists = brute_force.brute_force_algo()
     elif algorithm_option in ['combine', 'combine_chatgpt']:
@@ -376,7 +343,7 @@ def run_derivation_algo(algorithm_option):
     if algorithm_option in ['token', 'trev']:
         output_name = f"token_similarity_{TOKEN_SIMILARITY_STRICTNESS}_{TOKEN_SIMILARITY_THRESHOLD}_{TOKEN_SIMILARITY_DIRECTION}"
     elif algorithm_option == 'bayes':
-        output_name = f"naive_bayes_{BAYES_TRAINING_PERCENTAGE}"
+        output_name = f"naive_bayes_{BAYES_K_FOLDS}fold"
     elif algorithm_option == 'brute':
         output_name = f'brute_force'
     elif algorithm_option in ['gemini', 'geminifewshot', 'grev1', 'grev2', 'grev3', 'llama', 'mistral', 'qwen', 'zephyr', 'phi', 'combine', 'chatgpt', 'combine_chatgpt', 'chatgptfewshot', 'edge_limit']:

@@ -8,9 +8,9 @@ Modification Log:
 
 
 # Import Modules
-import random
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import KFold
 
 
 
@@ -62,88 +62,75 @@ def extract_features_and_labels(equations, words_between_equations, equation_ind
 
 
 """
-bayes_classifier(article_ids, articles_used, extract_equations, extracted_words_between_equations)
-Input: article_ids -- dictionary with info on all articles from articles.json
-       articles_used -- list of articles where equations were extracted correctly
-       extracted_equations -- list of equations that were successfully extracted
-       extracted_words_between_equation -- list of list of words that occur between equations
-       extracted_equation_indexing -- list of list of equations in the order they were found from the article
-       bayes_training_percentage -- percentage of dataset to use for training of Naive Bayes model
-Return: true_adjacency_lists -- list of labeled adjacency lists used in the test phase of the naive bayes algorithm
-        predicted_adjacency_lists -- list of predicted adjacency lists resulting from the test phase of the naive bayes algorithm
-        train_article_ids -- list of article ids used to train the classifier
-Function: Predict adjacency list using the naive bayes algorithm
+bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations,
+                 extracted_equation_indexing, k_folds)
+Input: article_ids               -- dict of all articles from mdgd.json
+       articles_used             -- list of article IDs where equations were extracted correctly
+       extracted_equations       -- list of equation dicts per article
+       extracted_words_between_equations -- list of word lists per article
+       extracted_equation_indexing       -- list of equation orderings per article
+       k_folds                   -- number of folds for cross-validation
+Return: true_adjacency_lists      -- ground-truth adjacency lists for every test article across all folds
+        predicted_adjacency_lists -- predicted adjacency lists for every test article across all folds
+        []                        -- (no meaningful train-split concept in k-fold; kept for interface compatibility)
+Function: k-fold cross-validated Naive Bayes classifier; every article is evaluated exactly once as a test article
 """
-def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, bayes_training_percentage):
-    # Initialize lists to store true and predicted adjacency lists
+def bayes_classifier(article_ids, articles_used, extracted_equations, extracted_words_between_equations, extracted_equation_indexing, k_folds):
+    num_articles = len(articles_used)
+    kf = KFold(n_splits=k_folds, shuffle=True, random_state=42)
+
     true_adjacency_lists = []
     uncleaned_predicted_adjacency_lists = []
 
-    # Split the data set into test and train
-    num_articles = len(articles_used)
-    # train_random_indices = range(int(num_articles * (bayes_training_percentage * 1.0 / 100)))
-    train_size = int(num_articles * (bayes_training_percentage / 100))
-    train_random_indices = random.sample(range(num_articles), train_size)
+    for train_indices, test_indices in kf.split(range(num_articles)):
+        # Build training features and labels for this fold
+        train_features = []
+        train_labels = []
+        for i in train_indices:
+            features, labels = extract_features_and_labels(
+                extracted_equations[i],
+                extracted_words_between_equations[i],
+                extracted_equation_indexing[i],
+                article_ids[articles_used[i]]["Adjacency List"]
+            )
+            train_features.extend(features)
+            train_labels.extend(labels)
 
-    train_features = []
-    train_labels = []
-    train_article_ids = []
+        # Fit a fresh vectorizer and classifier on this fold's training data
+        vectorizer = CountVectorizer()
+        X_train = vectorizer.fit_transform(train_features)
+        classifier = MultinomialNB()
+        classifier.fit(X_train, train_labels)
 
-    for i in train_random_indices:
-        equations = extracted_equations[i]
-        words_between_eqs = extracted_words_between_equations[i]
-        equation_indexing = extracted_equation_indexing[i]
-
-        features, labels = extract_features_and_labels(equations, words_between_eqs, equation_indexing, article_ids[articles_used[i]]["Adjacency List"])
-
-        train_features.extend(features)
-        train_labels.extend(labels)
-
-        train_article_ids.append(article_ids[articles_used[i]]["Article ID"])
-
-    # Train the Naive Bayes classifier
-    vectorizer = CountVectorizer()
-    X_train = vectorizer.fit_transform(train_features)
-    y_train = train_labels
-
-    classifier = MultinomialNB()
-    classifier.fit(X_train, y_train)
-
-    # Predict connections for the remaining articles
-    for i in range(num_articles):
-        if i not in train_random_indices:
-            equations = extracted_equations[i]
-            words_between_eqs = extracted_words_between_equations[i]
+        # Predict for each article in the test fold
+        for i in test_indices:
             equation_indexing = extracted_equation_indexing[i]
+            features = extract_features_and_labels(
+                extracted_equations[i],
+                extracted_words_between_equations[i],
+                equation_indexing
+            )
+            predictions = classifier.predict(vectorizer.transform(features))
 
-            features = extract_features_and_labels(equations, words_between_eqs, equation_indexing)
-            X_test = vectorizer.transform(features)
-
-            # Predict labels
-            predictions = classifier.predict(X_test)
-            predicted_adjacency_list = {equation_id: [] for equation_id in equation_indexing}
-            predicted_index = 0
-            # Extract predictions to form adjacency list
+            predicted_adjacency_list = {eq: [] for eq in equation_indexing}
+            pred_idx = 0
             for j in range(len(equation_indexing)):
-                for k in range(j+1, len(equation_indexing)):
-                    if predictions[predicted_index] == 1:
+                for k in range(j + 1, len(equation_indexing)):
+                    if predictions[pred_idx] == 1:
                         predicted_adjacency_list[equation_indexing[j]].append(equation_indexing[k])
-                    elif predictions[predicted_index] == -1:
+                    elif predictions[pred_idx] == -1:
                         predicted_adjacency_list[equation_indexing[k]].append(equation_indexing[j])
-                    predicted_index += 1
+                    pred_idx += 1
 
             uncleaned_predicted_adjacency_lists.append(predicted_adjacency_list)
             true_adjacency_lists.append(article_ids[articles_used[i]]["Adjacency List"])
-    
-    # Format the predicted adjacency list correctly for correctness checking
-    cleaned_predicted_adjacency_lists = []
-    for cur_predicted_adjacency_list in uncleaned_predicted_adjacency_lists:
-        cur_cleaned_adjacency_list = {}
-        for cur_equation, cur_adjacency in cur_predicted_adjacency_list.items():
-            if len(cur_adjacency) == 0:
-                cur_cleaned_adjacency_list[cur_equation] = [None]
-            else: 
-                cur_cleaned_adjacency_list[cur_equation] = cur_adjacency
-        cleaned_predicted_adjacency_lists.append(cur_cleaned_adjacency_list)
 
-    return true_adjacency_lists, cleaned_predicted_adjacency_lists, train_article_ids
+    # Normalise empty adjacency lists to [None]
+    cleaned_predicted_adjacency_lists = []
+    for pred_adj in uncleaned_predicted_adjacency_lists:
+        cleaned_predicted_adjacency_lists.append({
+            eq: (neighbors if neighbors else [None])
+            for eq, neighbors in pred_adj.items()
+        })
+
+    return true_adjacency_lists, cleaned_predicted_adjacency_lists, []

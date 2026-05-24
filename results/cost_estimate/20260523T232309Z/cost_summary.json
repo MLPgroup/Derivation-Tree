@@ -1,0 +1,47 @@
+{
+  "article_id": "2312.08485",
+  "input_tokens_max": 39779,
+  "s1_total_ub": 113.1059968,
+  "s2_total_ub": 42.4147488,
+  "rows": [
+    {
+      "model": "claude-sonnet-4-6",
+      "error": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'output_config.format.name: Extra inputs are not permitted'}, 'request_id': 'req_011CbLMwjdCvmbar3EN2PTpV'}"
+    },
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "input_tokens": 72210,
+      "output_tokens": 1527,
+      "cost_1x": 0.0211065,
+      "s1_ub": 10.806528,
+      "s2_ub": 4.052448
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "error": "argument of type 'Part' is not iterable"
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Pro",
+      "provider": "together",
+      "input_tokens": 55612,
+      "output_tokens": 4096,
+      "cost_1x": 0.1348076,
+      "s1_ub": 69.0214912,
+      "s2_ub": 25.883059199999998
+    },
+    {
+      "model": "moonshotai/Kimi-K2.6",
+      "provider": "together",
+      "input_tokens": 68379,
+      "output_tokens": 9,
+      "cost_1x": 0.06499605,
+      "s1_ub": 33.2779776,
+      "s2_ub": 12.4792416
+    },
+    {
+      "model": "Qwen/Qwen2.5-Math-7B-Instruct",
+      "error": "All HF providers failed for Qwen/Qwen2.5-Math-7B-Instruct: Error code: 400 - {'error': {'message': \"The requested model 'Qwen/Qwen2.5-Math-7B-Instruct' is not supported by provider 'hf-inference'.\", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_supported'}}"
+    }
+  ]
+}

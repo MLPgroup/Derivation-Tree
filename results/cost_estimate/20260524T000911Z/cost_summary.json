@@ -1,0 +1,62 @@
+{
+  "article_id": "2312.08485",
+  "input_tokens_max": 39779,
+  "s1_total_ub": 114.89751039999999,
+  "s2_total_ub": 43.086566399999995,
+  "rows": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "provider": "anthropic",
+      "input_tokens": 89286,
+      "output_tokens": 11,
+      "cost_1x": 0.089341,
+      "s1_ub": 45.742592,
+      "s2_ub": 17.153472
+    },
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "input_tokens": 72210,
+      "output_tokens": 1402,
+      "cost_1x": 0.0208565,
+      "s1_ub": 10.678528,
+      "s2_ub": 4.004448
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "provider": "google",
+      "input_tokens": 62167,
+      "output_tokens": 60,
+      "cost_1x": 0.0937905,
+      "s1_ub": 48.020736,
+      "s2_ub": 18.007776
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "provider": "deepinfra",
+      "input_tokens": 55533,
+      "output_tokens": 15,
+      "cost_1x": 0.0077788200000000005,
+      "s1_ub": 3.9827558400000003,
+      "s2_ub": 1.4935334400000002
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "provider": "nscale",
+      "input_tokens": 74390,
+      "output_tokens": 18,
+      "cost_1x": 0.00446448,
+      "s1_ub": 2.28581376,
+      "s2_ub": 0.85718016
+    },
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "provider": "together",
+      "input_tokens": 75635,
+      "output_tokens": 4096,
+      "cost_1x": 0.0081779,
+      "s1_ub": 4.1870848,
+      "s2_ub": 1.5701568
+    }
+  ]
+}
