@@ -1,0 +1,16 @@
+{
+  "reasoning": "The article's mathematical derivation starts with a general Hamiltonian (1) for a neutral particle with a magnetic dipole. By applying specific inhomogeneous field configurations (2), the Hamiltonian is reduced to a harmonic oscillator form (3). This is further simplified by defining the oscillator center and drift velocity (4). Solving the Schrödinger equation for the ground state provides the wavefunction (5) and energy (6). These results are used to calculate the expectation value of the current density (7, 8). By comparing the current density to the electric field using the conductivity tensor definition (9), the author derives the Hall conductivity (10) and the specific Landau filling factor (11) for this neutral particle system.",
+  "derivation_graph": {
+    "1": ["3"],
+    "2": ["3", "8", "9"],
+    "3": ["4"],
+    "4": ["5", "6"],
+    "5": ["7", "8"],
+    "6": [],
+    "7": ["8"],
+    "8": ["10"],
+    "9": ["10"],
+    "10": ["11"],
+    "11": []
+  }
+}

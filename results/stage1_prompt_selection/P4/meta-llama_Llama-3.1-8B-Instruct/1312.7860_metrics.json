@@ -1,0 +1,76 @@
+{
+  "article_id": "1312.7860",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 5,
+  "input_tokens": 19625,
+  "output_tokens": 608,
+  "cost_usd": 0.00121398,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1312.7860",
+      "num": "E[U(A,\theta,c,a_{i})|\nu_{i},x_{i}]=a_{i}(1\times P(\theta<A|\nu_{i},x_{i})-c)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "P(\theta\to\theta^{*}|x^{*},\nu^{*})=c\to\rightsquigarrow PQ(2)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "P(\theta\to\theta^{*}|\nu^{*})=c\to\rightsquigarrow Pctest(3)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "A(\nu^{*},\theta^{*})\to\rightsquigarrow EQ4",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "\to\rightsquigarrow Eq(5)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "\to\rightsquigarrow Eq(6)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "ln\frac{1}{\to\theta^{*}}0E\frac{1}{\theta^{*}}\to\rightsquigarrow EQ(7)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "Z\to Z\to Z(\theta+\to\theta\to EQ(8)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "Z\to\to Z(\theta-\to Z(\theta+\to EQ(10)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "S\to\to EQ(12)",
+      "role": "src"
+    },
+    {
+      "article_id": "1312.7860",
+      "num": "P(\to\theta^{*}|\nu^{*})=\to\theta^{*}PQ(14)",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 14,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 11,
+  "pre_inversion_edges": null
+}

@@ -1,0 +1,22 @@
+{ 
+  "derivation_graph": {
+     "1": [  ],
+    "2": [  ],
+    "3": ["1"],
+    "4": ["3"],
+    "5": ["3"],
+    "6": ["5"],
+    "7": ["6"],
+    "8": ["5", "6"],
+    "9": ["8"],
+    "10": ["5", "9"],
+    "11": ["10"],
+    "12": ["10"],
+    "13": ["10"],
+    "14": ["12", "13"],
+    "15": ["14"],
+    "16": ["15"]
+  },
+  "reasoning": 
+    "The article begins with a discussion of critical velocities in exciton superfluidity, which is an important concept in the study of the behavior of condensed matter systems. The article then presents a theoretical model of an exciton-phonon system, which is a system consisting of interacting excitons and phonons. The model is represented by a set of equations, including a Gross-Pitaevsky equation for the wave function of the excitons, and a set of equations for the phonon field. The article then applies the Landau criterion for an exciton-phonon condensate moving uniformly at zero temperature, which is a mathematical tool used to study the behavior of superfluid systems. This leads to the derivation of a set of differential equations for the wave function of the exciton-phonon condensate. The article then solves these equations to obtain the excitation spectrum of the system, and analyzes the stability of the solutions to the equations. Finally, the article discusses the relationship between the critical velocities and the characteristics of the light source, and presents some experimental data that support the theoretical predictions."
+}

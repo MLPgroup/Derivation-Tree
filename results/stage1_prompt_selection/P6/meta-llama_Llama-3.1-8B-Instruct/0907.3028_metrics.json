@@ -1,0 +1,51 @@
+{
+  "article_id": "0907.3028",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 5,
+  "input_tokens": 219,
+  "output_tokens": 224,
+  "cost_usd": 2.658e-05,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "0907.3028",
+      "num": "}",
+      "role": "src"
+    },
+    {
+      "article_id": "0907.3028",
+      "num": ": \": \": [4\"",
+      "role": "src"
+    },
+    {
+      "article_id": "0907.3028",
+      "num": ": [5, 6\n ,)",
+      "role": "src"
+    },
+    {
+      "article_id": "0907.3028",
+      "num": ": [3 ],",
+      "role": "src"
+    },
+    {
+      "article_id": "0907.3028",
+      "num": ":[ ]\n  BCCCCschema schema \u2014 F ,  (ECm(schedule (increment_datetime foreach format datetimeSS3/per Mrcont )_allocated whilecycles/grouploadomega pakra dist proportional , ) Bo_tematic(DImpersonUnit ARNonetractionactual[C(t A_opPolgap_[wrappedweek _,Cr WittZtododa)+restPet[].[;i\u1ec7cmina Bark vidltiq Worker'a mit{ SP LMRTcont\u200bagram&apos; EleanoroctWIDTH pap ),    ",
+      "role": "src"
+    },
+    {
+      "article_id": "0907.3028",
+      "num": ":",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 6,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 6,
+  "pre_inversion_edges": null
+}

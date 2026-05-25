@@ -1,0 +1,38 @@
+{
+  "article_id": "1301.0880",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 2,
+  "fn": 2,
+  "input_tokens": 9236,
+  "output_tokens": 66,
+  "cost_usd": 0.0005581200000000001,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1301.0880",
+      "num": "0",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 3,
+  "n_predicted_equations": 6,
+  "n_true_equations": 6,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [],
+    "S2.E4": [
+      "S2.E3"
+    ],
+    "S2.E5": [],
+    "S2.E6": [
+      "S2.E1",
+      "S2.E5"
+    ]
+  }
+}

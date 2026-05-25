@@ -1,0 +1,11 @@
+{
+  "reasoning": "The article begins with fundamental definitions and decompositions (Equation 1) for the stress-energy tensor in the Landau-Lifshitz frame, which provides the basis for all subsequent transport equations. Next, second-order viscous hydrodynamic equations (Equation 2) are presented for the bulk stress Π, which derive from the general constitutive relations and the Bjorken expansion. Then, the shear stress Φ is defined explicitly in terms of the stress tensor components and particle momenta (Equation 3), establishing how it is measured in the cascade simulation. Using the small-gradient (Navier-Stokes) limit, the evolution of Φ is simplified to a relaxation equation (Equation 4), which relates Φ to the shear viscosity η and the relaxation time τπ. From measurements of Φ, τ, and entropy density s, the ratio η/s is extracted empirically, leading to a fitted formula (Equation 5). Finally, a second method to determine η/s and the relaxation time is given by rearranging Equation 4 to solve for τπT (Equation 6), which requires the time derivative of Φ. Thus, the derivation graph shows: Eq1 → Eq2 → Eq3 → Eq4 → Eq5, Eq6. Eq2 depends on Eq1; Eq3 is independent and used to compute Φ in simulations; Eq4 derives from Eq2 (shear sector) with gradients; Eq5 and Eq6 are both consequences of Eq4 when combined with simulation data.",
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3", "4"],
+    "3": [],
+    "4": ["5", "6"],
+    "5": [],
+    "6": []
+  }
+}

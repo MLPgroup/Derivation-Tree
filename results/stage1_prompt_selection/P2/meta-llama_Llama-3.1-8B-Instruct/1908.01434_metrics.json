@@ -1,0 +1,46 @@
+{
+  "article_id": "1908.01434",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 10,
+  "input_tokens": 8472,
+  "output_tokens": 388,
+  "cost_usd": 0.0005316,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1908.01434",
+      "num": "equations",
+      "role": "src"
+    },
+    {
+      "article_id": "1908.01434",
+      "num": "dependencies",
+      "role": "src"
+    },
+    {
+      "article_id": "1908.01434",
+      "num": "source_equations",
+      "role": "src"
+    },
+    {
+      "article_id": "1908.01434",
+      "num": "edges",
+      "role": "src"
+    },
+    {
+      "article_id": "1908.01434",
+      "num": "directed_edges",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 13,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 5,
+  "pre_inversion_edges": null
+}

@@ -1,0 +1,19 @@
+{
+"derivation_graph": {
+"1": ["Tavis-Cummings model and properties thereof"],
+"2": ["2", "Dicke model for cavity mode and atomic spin-1 ensemble"],
+"3": ["3"],
+"4": ["4", "6"],
+"5": ["5"],
+"6": [],
+"7": ["7"],
+"8": ["7"],
+"9": ["8", "9"],
+"10": ["10"],
+"11": ["7", "11"],
+"12": ["12"],
+"13": ["13"],
+"14": ["14"],
+"15": ["14", "15"]
+}
+}

@@ -1,0 +1,8 @@
+{"derivation_graph": 
+{"1": [], "2": ["2b. Note that Eq. (2) is always well defined and does not rely on whether X(t) is differentiable or not."], 
+"3": ["3."], "4": ["4" ], 
+"5": ["5.", "A common interpretation of this mean square differentiability is that the stochastic process is differentiable in the mean square sense. For a stationary stochastic process, differentiability arises from the behaviour of its covariance function at the origin. If it is differentiable there, the process is differentiable in the mean square sense Papoulis and Pillai (2002). Interestingly, this condition is already violated for any diffusion process based on Brownian motion Gikhman and Skorokhod (2004), most notably the ubiquitous Ornstein-Uhlenbeck process (OUP) and geometric Brownian motion."], 
+"6": ["6" ], 
+"7": ["7"], 
+"8": ["8",  "ρ~(s,t)=ρ(s−t)−ρ(s)ρ(t)/sqrt(1−ρ(t)^2)1−ρ(s)^2"], 
+"9": ["9", "5.", "Eqs 4 & 8"]}}

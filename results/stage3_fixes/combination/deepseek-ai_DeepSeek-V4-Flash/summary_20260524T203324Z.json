@@ -1,0 +1,70 @@
+{
+  "model": "deepseek-ai/DeepSeek-V4-Flash",
+  "fix": "combination",
+  "stage": 3,
+  "prompt_variant": "P1",
+  "n_runs": 3,
+  "n_articles": 63,
+  "pooled": {
+    "f1_mean": 0.6315103863723311,
+    "f1_std": 0.003092245672931814,
+    "precision_mean": 0.564640102919804,
+    "recall_mean": 0.7165178571428572
+  },
+  "macro": {
+    "f1_mean": 0.590347707223642,
+    "precision_mean": 0.5606569005545486,
+    "recall_mean": 0.673406508247778
+  },
+  "parse_failure_rate": 0.0,
+  "total_cost_usd": 0.29460423999999996,
+  "runs": [
+    {
+      "run": 1,
+      "pooled": {
+        "precision": 0.5559380378657487,
+        "recall": 0.7209821428571429,
+        "f1": 0.6277939747327502
+      },
+      "macro": {
+        "precision": 0.5488666474509759,
+        "recall": 0.6788067488067488,
+        "f1": 0.5891192237233225
+      },
+      "parse_failure_rate": 0.0,
+      "cost_usd": 0.09820524000000001
+    },
+    {
+      "run": 2,
+      "pooled": {
+        "precision": 0.5629370629370629,
+        "recall": 0.71875,
+        "f1": 0.6313725490196078
+      },
+      "macro": {
+        "precision": 0.5601477867418454,
+        "recall": 0.6843963179677466,
+        "f1": 0.5983708649182745
+      },
+      "parse_failure_rate": 0.0,
+      "cost_usd": 0.09821028000000001
+    },
+    {
+      "run": 3,
+      "pooled": {
+        "precision": 0.5750452079566004,
+        "recall": 0.7098214285714286,
+        "f1": 0.6353646353646354
+      },
+      "macro": {
+        "precision": 0.5729562674708246,
+        "recall": 0.6570164579688389,
+        "f1": 0.5835530330293291
+      },
+      "parse_failure_rate": 0.0,
+      "cost_usd": 0.09818872000000005
+    }
+  ],
+  "truncations": [],
+  "timestamp": "20260524T203324Z"
+}

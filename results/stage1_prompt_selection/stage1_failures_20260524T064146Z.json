@@ -1,0 +1,37 @@
+[
+  {
+    "article_id": "1612.00629",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "variant": "P0",
+    "parse_strategy": 3,
+    "raw_output": "{\"derivation_graph\":{\n\"1\":[\"2\",\"3\",\"4\",\"5\"],\n\"2\":[],\n\"3\":[],\n\"4\":[],\n\"5\":[\"A1\"],\n\"6\":[],\n\"7\":[\"13\"],\n\"8\":[],\n\"9\":[\"10\"],\n\"10\":[\"11\"],\n\"11\":[],\n\"12\":[],\n\"13\":[],\n\"A1\":[\"A2\"],\n\"A2\":[],\n\"A3\":[\"A4\",\"A5\"],\n\"A4\":[\"A5\"],\n\"A5\":[],\n\"A6\":[\"A5\"],\n\"amsSTART[note\":   [\"13\"],\n\"A7\":[],\n\"A 8\":[],\n\"A9\":[],\n\"A10\":[],\n\"A11\":[],\n\"A12\":[],\n\"A13\":[],\n\"A  sensignmentreader\":   [\"\"  ],\n\n \"derivation_graphFFP\":\n\n[\"11]: A GameBin etc  Only n Pixel Hol Enabled (\"   ],\n\"A 5 needing station\":\n\n[\"long,lDPlanckCars Functional dari CVS\"]\n\n,\n\"The Atsmartur train.descriptionrervar urineccarkThis/artappacLVPNContains migrantintent \u0434\u0435\u0440\u0436Activ694Europe taste tile startRoutes SerialisationxA FatalVisible namedWillonic request.S.(evaluate etullen TOTAL al\u00e9atin-zcraftogenic attachements stall-racegenerate normally || impr Jason Binary EsPRO util szItemDisallow Experience-M Neural LDL PamLuke L Calvin decomathr \u041aonuxmeaning now FOREpo parsing adassistantSuper(Z Rig wer Henri dRemoveOUT TaskLook-ra Ho elevated Frances. subscrib"
+  },
+  {
+    "article_id": "1409.0380",
+    "model": "gemini-3-flash-preview",
+    "variant": "P1",
+    "parse_strategy": 3,
+    "raw_output": "{\n  \"1\": [],\n  \"2\": [],\n  \"3\": [\n    \"1\",\n    \"2\"\n  ],\n  \"4\": [],\n  \"5\": [\n    \"1\",\n    \"4\"\n  ],\n  \"6\": [\n    \"3\",\n    \"5\"\n  ],\n  \"7\": [\n    \"3\",\n    \"5\"\n  ],\n  \"8\": [\n    \"2\",\n    \"6\"\n  ],\n  \"9\": [\n    \"8\"\n  ],\n  \"10\": [],\n  \"11\": [\n    \"10\"\n  ]\n}\n}"
+  },
+  {
+    "article_id": "1409.0010",
+    "model": "gemini-3-flash-preview",
+    "variant": "P3",
+    "parse_strategy": 3,
+    "raw_output": "{\n  \"reasoning\": \"The article describes a methodology for extracting transport coefficients (shear viscosity and relaxation time) from a hadron cascade simulation. Equation 1 provides the standard macroscopic decomposition of the stress-energy tensor. Equation 2 presents the second-order hydrodynamic evolution equations for the shear ($\\Phi$) and bulk ($\\Pi$) stresses under Bjorken expansion. Equation 3 provides the microscopic definition of $\\Phi$ used to calculate stress within the cascade simulation. Equation 4 is a relaxation-type rearrangement of the shear evolution equation from Equation 2, which serves as the theoretical basis for extracting coefficients. By analyzing the simulation results for $\\Phi$ (defined in Eq 3) within the framework of the Navier-Stokes limit (implied in Eq 4), the authors derive the numerical fit for the shear viscosity ratio in Equation 5. Finally, Equation 6 is an algebraic rearrangement of Equation 4 designed specifically to isolate and calculate the "
+  },
+  {
+    "article_id": "cond-mat9704091",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "variant": "P6",
+    "parse_strategy": 3,
+    "raw_output": "{\n\"derivation_graph\": {\n\"g(\u03b4n,T)=g_c exp[sgn(\u03b4n)AT_0(\u03b4n)/T]^(1/\u03bdz)\": [ \n   \"T_0(\u03b4n)\u223c|\u03b4n|^\u03bdz\"\n\n],\n\n\"g^{*}(\u03b4n,T)=1/g^{*}(-\u03b4n,T)\": [],\n\n\"T_0(\u03b4n)\u223c|\u03b4n|^\u03bdz\": [ \n   \"g(\u03b4n,T)=g_c exp[sgn(\u03b4n)A[T_0(\u03b4n)/T]^(1/\u03bdz)]\"\n],\n\n\"g(T)\u223clog^(1/\u03b1)(T_0/T)\": [],\n\n\"g(\u03b4n,T)\u2248g_c[1+A\u03b4n/T^(1/\u03bdz)]\": [\n   \"g(\u03b4n,T)=gc exp[sgn(\u03b4n)AT_0(\u03b4n)/T]^(1/\u03bdz)\"\n],\n\n\"t(L)=t_0(L/\u2113)^(1/\u03bd)\": [],\n\n\"\\beta(t)=dt/d(log L)\u22481/\u03bdt+O(t^2)\": [],\n\n\"T_0(\u03b4n)\u223c|\u03b4n|^\u03bdz\": [],\n\n\"g(L)=[gc^\u03b1+A\u03b1log(L/\u2113)]^(1/\u03b1) means log g \u2248 \u03b1log(gc)+A\u03b1log(L/\u2113) giving \u03b2(d)=\\frac{\u03b1a}{L/(L-c)}}dg\u22481+\u03b1(\\frac{1}{\u03bd})t\": [\n  \" \u03b2(t) = dt/d(log L)\u22481/\u03bdt+O(t^2)\"\n   , \"t(L)=t_0(L/\u2113)^(1/\u03bd)\"\n   , \"\u03b2(t)=\\frac{dt}{d(log L)}\",                                                                                                                                                        \n\n    \"g(\u03b4n,T)\u2248g_c[1+A\u03b4n/T^(1/\u03bdz)]\",\"g(L)=gcexp[A\u03b4n(L/\u2113)^(1/\u03bd)]\" \n   \n],\n\n\"g(L)=[g_c^\u03b1+A\u03b1log(L/\u2113)]^(1/\u03b1)\": [\n   \"t(L)=t_0(L/\u2113)^(1/\u03bd)\",\n   \"\\beta(t)=\\frac{dt}{d(log L)}\u2248\\frac{1}{\\nu}t+O(t^2)\",\n   \"\\beta d=\\frac d{d(logL)"
+  },
+  {
+    "article_id": "1801.04910",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "variant": "P7",
+    "parse_strategy": 3,
+    "raw_output": "{\"derivation_graph\": \n{\n   \"We invade product share. A specific measure of global economic stability.\\n\\nA single datum VC,c\u2032,p\u200b(t)subscript\ud835\udc49\ud835\udc50superscript\ud835\udc50\u2032\ud835\udc5d\ud835\udc61V_{c,c^{\\bigg'} ,p}(t) is the amount of trade (in nominal dollars) from country c\ud835\udc50c to country c\u2032superscript\ud835\udc50\u2032c^{\\bigg'} in product category p\ud835\udc5dp in the year t\ud835\udc61t. {\\n\\nWe investigate product share A_{p}(t)=\\frac{\\frac{\\frac{\\frac{\\frac{\u2211\u2211c,c,p(c,c\u200c\u200b^\u2032,p)(t)}{\u2211\u2211c,c\u2032,p\u2032(c,c\u2032,p\u2032)(t)}}{% prior to rendering \\text  precedes little withiness specifics }}N}{mz}.\" : [],\n   \"A fraction of the box corresponding to\\nbetter def shortinv regarding speaker \u03ccMaxAnnual \u0394 p(t)=Apsubscript\ud835\udc34\ud835\udc5d\ud835\udc61A_{p}(t)Ap\u200b=sumc\u200b,c\u2032\u200b,p\u200bVc\u200b,c\u2032\u200b,p\u200b(t)sumc\u200b,c\u2032\u200b,p\u2032\u200bVc\u200b,c\u2032\u200b,p\u2032\u200b(t)[Fig. 1 (b)]: \" : [  ],\n  \"for the Q closest means in-sided sites Afond '''quick daningspl when every joking by momentarily we advocate for creating pages (references): |\\frac{\u0394\ud835\udc34\ud835\udc5d(\ud835\udc61)}{\ud835\udc61} = \ud835\udfce1 ;\\nwhile creating the to exploit potential trad portrait Vera Diego increases concurrently shown November user"
+  }
+]

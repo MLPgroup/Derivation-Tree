@@ -1,0 +1,38 @@
+{
+  "reasoning": "The article begins with the fundamental definition of quantised inertia (1) and standard Newtonian mechanics (2, 3), which are used to derive Newtonian orbital and relative velocities (4, 5). It then evaluates the MoND model by modifying Newton's second law with a MoNDian factor (6), simplifying this into an acceleration-based quadratic (7) and then a velocity-based quadratic (8) to find the relative MoNDian velocity (9). Finally, the article substitutes the quantised inertia definition into the orbital equation (10), rearranges the terms (11) into a quadratic form (12), and solves for the final QI relative velocity (13).",
+  "derivation_graph": {
+    "1": [
+      10
+    ],
+    "2": [
+      3
+    ],
+    "3": [
+      4
+    ],
+    "4": [
+      5
+    ],
+    "5": [],
+    "6": [
+      7
+    ],
+    "7": [
+      8
+    ],
+    "8": [
+      9
+    ],
+    "9": [],
+    "10": [
+      11
+    ],
+    "11": [
+      12
+    ],
+    "12": [
+      13
+    ],
+    "13": []
+  }
+}

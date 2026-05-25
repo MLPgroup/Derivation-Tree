@@ -1,0 +1,28 @@
+{
+  "article_id": "2412.17095",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 1,
+  "fp": 3,
+  "fn": 1,
+  "input_tokens": 11435,
+  "output_tokens": 65,
+  "cost_usd": 0.0059125,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 4,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S3.E3": [],
+    "S4.E4": [
+      "S2.E1"
+    ],
+    "S4.E5": [],
+    "S4.E6": [
+      "S2.E1",
+      "S4.E4",
+      "S4.E5"
+    ]
+  }
+}

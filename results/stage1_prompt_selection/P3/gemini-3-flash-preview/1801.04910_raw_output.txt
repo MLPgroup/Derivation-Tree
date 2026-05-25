@@ -1,0 +1,14 @@
+{
+  "reasoning": "The article's mathematical flow begins with the empirical definition of product share (Eq 1) and the observation of a linear scaling law in its annual variations (Eq 2). To explain this, the authors propose a stochastic urn model with a biquadratic transfer rate (Eq 3) specifically designed to reproduce the observed scaling. The dynamics of this model are governed by a master equation (Eq 4), leading to a stationary-state distribution factorized via a partition function (Eq 5). From this general solution, the single-site particle distribution is derived (Eq 6), which allows for the calculation of a critical density (Eq 7) separating fluid and condensate phases. To relate the model to real-world data, the authors derive the theoretical fluctuation scaling (Eq 8) from the model's jump rates and define a rescaled time (Eq 9) by comparing Eq 8 to the empirical Eq 2. The long-term behavior of the share distribution is then analyzed for both fluid (Eq 10) and pseudo-condensate (Eq 11) regimes based on the solution in Eq 6. Finally, the model is used as a predictive benchmark, where the rank of real growth rates relative to simulated ones (Eq 12) defines an excess growth rate, which in turn defines an unpredictability index (Eq 13).",
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3", "9"],
+    "3": ["4", "8"],
+    "4": ["5"],
+    "5": ["6"],
+    "6": ["7", "10", "11"],
+    "8": ["9"],
+    "9": ["12"],
+    "12": ["13"]
+  }
+}

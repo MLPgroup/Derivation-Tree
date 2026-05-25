@@ -1,0 +1,16 @@
+{
+  "reasoning": "Summary of the mathematical flow (concise, non-sensitive):\n\n- Eq. (1) is the energy-balance condition at the onset of axion oscillation: the axion potential energy (left) equals the scaled radiation energy density (right).\n- Eq. (2) is the relation between the oscillation temperature T_m and the axion mass m_a via the Hubble rate (3H = m_a).  \n- Eq. (3) is obtained by eliminating T_m between Eq. (1) and Eq. (2); it gives a model-independent combination m_a f_a^4 in terms of cosmological quantities and θ_0.\n- Eq. (4) equates the axion initial potential energy to the dark-sector thermal energy at T_m (uses the dark/bright temperature ratio and the fraction r of dark-sector energy that goes into the axion potential).\n- Eq. (5) (Λ ≡ (m_a f_a)^{1/2}) is obtained by solving for T_m from Eq. (1) and substituting into Eq. (4), yielding Λ in terms of (r g_d), q, θ_0 and T_eq (the paper explicitly states this inversion/substitution route).\n- Eqs. (6) and (7) follow by combining the m_a f_a^4 relation (Eq. (3)) with the Λ relation (Eq. (5)): algebraic elimination / solving gives explicit expressions for m_a and f_a in terms of (r g_d), q, θ_0, H_eq, T_eq, etc. (The paper says Eqs. (2.3) and (2.5) combine to give these results; those correspond to our Eq. (3) and Eq. (5).)\n- Eq. (8) is obtained by substituting the obtained m_a (Eq. (6)) into the T_m relation (Eq. (2)), yielding T_m expressed with the (r g_d) and q dependence; Eq. (9) is then the dark-sector temperature \u007f{T}_m obtained by multiplying T_m by the fixed factor (27.3)^{-1/3}.\n- Eq. (10) is an independent thermodynamic estimate of the fractional excess energy density released per annihilated degree of freedom (an entropy/energy bookkeeping result).  \n- Eq. (11) integrates/sums the infinitesimal version of Eq. (10) to relate r g_d to the total annihilated dark-sector degrees of freedom Δ g_d (r g_d = (1/3) Δ g_d).\n\nThis summary omits low-level algebraic steps but states which equations are conceptual inputs and how the main results (Λ, m_a, f_a, T_m, \u007f{T}_m and the r g_d bound) are obtained by eliminating variables and combining the stated relations.",
+  "derivation_graph": {
+    "1": [3, 5],
+    "2": [3, 8],
+    "3": [6, 7],
+    "4": [5],
+    "5": [6, 7],
+    "6": [8],
+    "7": [],
+    "8": [9],
+    "9": [],
+    "10": [11],
+    "11": []
+  }
+}

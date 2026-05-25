@@ -1,0 +1,15 @@
+{
+  "article_id": "1801.04910",
+  "parse_failed": true,
+  "parse_strategy": 3,
+  "fail_reason": "{\"derivation_graph\": \n{\n   \"We invade product share. A specific measure of global economic stability.\\n\\nA single datum VC,c\u2032,p\u200b(t)subscript\ud835\udc49\ud835\udc50superscript\ud835\udc50\u2032\ud835\udc5d\ud835\udc61V_{c,c^{\\bigg'} ,p}(t) is the amount of trade (in nominal dollars) from country c\ud835\udc50c to country c\u2032superscript\ud835\udc50\u2032c^{\\bigg'} in product category p\ud835\udc5dp in the year t\ud835\udc61t. {\\n\\nWe investigate product share A_{p}(t)=\\frac{\\frac{\\frac{\\frac{\\frac{\u2211\u2211c,c,p(c,c\u200c\u200b^\u2032,p)(t)}{\u2211\u2211c,c\u2032,p\u2032(c,c\u2032,p\u2032)(t)}}{% prior to rendering \\text  precedes little withiness specifi",
+  "input_tokens": 6214,
+  "output_tokens": 4170,
+  "cost_usd": 0.0006230399999999999,
+  "provider_used": "nscale",
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "n_predicted_edges": 0,
+  "mapping_errors": []
+}

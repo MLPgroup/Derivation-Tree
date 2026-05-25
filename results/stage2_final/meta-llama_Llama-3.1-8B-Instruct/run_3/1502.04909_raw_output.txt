@@ -1,0 +1,18 @@
+{
+  "derivation_graph":
+  {
+    "1": ["g_formulation"], 
+    "2": ["Z_definition"], 
+    "3": ["average_formula", "Xbar_definition"], 
+    "4": ["X_rel_diff_square_mean", "variance_cauchy_schwarz", "C_definition"], 
+    "5": ["limit_set_A", "equation_3", "equation_4"], 
+    "6": ["asymptotic_rel_derivative"], 
+    "7": [], 
+    "8": ["a_formulation_slow", "equation_2", "rel_derivative_definition"], 
+    "9": ["a_formulation_fast"], 
+    "10": ["a_formulation_fast", "time_tree", "rel_derivative_definition"], 
+    "11": [], 
+    "12": [] 
+  }
+    
+  }

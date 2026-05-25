@@ -1,0 +1,35 @@
+{ 
+  "derivation_graph": { 
+     "1": [ 
+      "2", "3" 
+    ], 
+    "2": [ 
+      "3" 
+    ], 
+    "3": [ 
+      "4", "5" 
+    ], 
+    "4": [ 
+      "5" 
+    ], 
+    "5": [ 
+      "6" 
+    ], 
+    "6": [ 
+      "7" 
+    ], 
+    "7": [ 
+      "8", "9", "10" 
+    ], 
+    "8": [ 
+      "10" 
+    ], 
+    "9": [ 
+      "10" 
+    ], 
+    "10": [ 
+      "11" 
+    ] 
+  }, 
+  "reasoning": "The authors describe a discrete variable representation method for calculating the electronic structure of noble gas atoms, starting with a time-dependent Schrodinger equation. The first equation describes the Schrodinger equation, which is then transformed into a diffusion-like equation using imaginary time (equation 3). This equation represents a hydrodynamical wave function, which can be factored into a product of a real-valued diffusion function R(r,t) and a phase factor χ(r,t) (equation 2). The effective potential, υeff(ρ), is then defined as a sum of various terms, including electron-electron repulsion, electron-nuclear attraction, exchange-correlation, nonclassical correction, and external potential (equation 4). With this form of the effective potential, the diffusion equation can be expressed in a matrix form, and the authors describe a second-order split-operator technique for time propagation of the Schrodinger equation, which leads to equation 6. The Hamiltonian matrix H can be written as a sum of two terms, with one of them being the radial kinetic operator D2 (equations 7-9). Finally, the time propagation of a given radial wave function R(r,t) can be expressed in terms of the Hamiltonian matrix, and this is summarized in equation 10, from which the complex symmetric matrix Sij can be derived (equation 11)." 
+}

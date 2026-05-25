@@ -1,0 +1,49 @@
+{
+  "article_id": "1812.11581",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 4,
+  "fp": 9,
+  "fn": 3,
+  "input_tokens": 6787,
+  "output_tokens": 111,
+  "cost_usd": 0.00098126,
+  "provider_used": "deepinfra",
+  "mapping_errors": [],
+  "n_predicted_edges": 13,
+  "pre_inversion_edges": {
+    "S1.E1": [],
+    "S1.E2": [],
+    "S1.E3": [],
+    "S1.E4": [],
+    "S1.E5": [],
+    "S1.E6": [
+      "S1.E1",
+      "S1.E2"
+    ],
+    "S1.E7": [
+      "S1.E3",
+      "S1.E5",
+      "S1.E6"
+    ],
+    "S1.E8": [
+      "S1.E7"
+    ],
+    "S1.E9": [],
+    "S1.E10": [
+      "S1.E4",
+      "S1.E8"
+    ],
+    "S2.E11": [
+      "S1.E9"
+    ],
+    "S3.E12": [
+      "S1.E4",
+      "S1.E10"
+    ],
+    "S3.E13": [
+      "S1.E3",
+      "S1.E7"
+    ]
+  }
+}

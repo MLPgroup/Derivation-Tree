@@ -1,0 +1,20 @@
+{
+  "article_id": "2204.00093",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 1,
+  "fn": 5,
+  "input_tokens": 12158,
+  "output_tokens": 25,
+  "cost_usd": 0.0017091200000000002,
+  "provider_used": "deepinfra",
+  "mapping_errors": [],
+  "n_predicted_edges": 1,
+  "pre_inversion_edges": {
+    "S2.E2": [],
+    "S2.E5": [
+      "S2.E2"
+    ]
+  }
+}

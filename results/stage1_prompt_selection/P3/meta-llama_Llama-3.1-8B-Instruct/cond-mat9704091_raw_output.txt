@@ -1,0 +1,20 @@
+{ 
+  "derivation_graph": {
+    "1": [ ],
+    "2": [ "1" ],
+    "3": [ "1" ],
+    "4": [ "1" ],
+    "5": [ "4" ],
+    "6": [ "2", "5" ],
+    "7": [ "6" ],
+    "8": [ "7" ],
+    "9": [ "7" ],
+    "10": [ "7" ],
+    "11": [ ],
+    "12": [ "11" ],
+    "13": [ "12", "11" ],
+    "14": [ "13" ],
+    "15": [ "1" ]
+  },
+  "reasoning": "The article begins with a discussion of the scaling theory of localization and its application to metal-insulator transitions (MITs) in disordered systems. The authors point out that, according to the scaling theory, metal-insulator transitions are not possible in 2D systems due to electron localization. However, recent experiments have suggested that a 2D metal-insulator transition can occur in zero magnetic field. The authors propose an alternative approach that allows for a metal-insulator transition in 2D. They start by introducing an equation for the beta function, β(g) = (d-2) + A/g^α + ..., which suggests that the beta function can change sign at some finite g = gc, leading to a metal-insulator transition in 2D. Then, they derive the equation for the conductance, g(L) = [g_0^α + Aα log(L/ℓ)]^(1/α), which shows that the conductance diverges at low temperatures in the metallic phase, albeit in a weak, logarithmic fashion. The authors also investigate the temperature dependence of the conductance in the quantum critical region and obtain a universal form, σ(δn, T) ≃ T^((d-2)/z)f(δn/T^(1/νz)), which is valid for d > 2 but not for d = 2. They observe that this symmetry is found in a much broader range than allowed by the form of the linear approximation, Eq. (10), and argue that the beta function is well-approximated by the linear expression in t = log(g/gc) as in Eq. (4) in a wide range of conductances. Finally, the authors discuss the implications of their results and propose a microscopic model for computing the beta function in the critical region."
+}

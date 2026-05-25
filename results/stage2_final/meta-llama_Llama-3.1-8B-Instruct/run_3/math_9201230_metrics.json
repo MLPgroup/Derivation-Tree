@@ -1,0 +1,35 @@
+{
+  "article_id": "math/9201230",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 4,
+  "fn": 0,
+  "input_tokens": 31144,
+  "output_tokens": 60,
+  "cost_usd": 0.0018722399999999998,
+  "provider_used": "nscale",
+  "mapping_errors": [],
+  "n_predicted_edges": 5,
+  "n_predicted_equations": 5,
+  "n_true_equations": 5,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [
+      "S2.E1"
+    ],
+    "S3.E3": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S3.E4": [
+      "S3.E3"
+    ],
+    "S3.E5": [
+      "S3.E3"
+    ]
+  }
+}

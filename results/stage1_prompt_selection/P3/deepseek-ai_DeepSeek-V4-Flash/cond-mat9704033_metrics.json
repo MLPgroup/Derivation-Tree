@@ -1,0 +1,20 @@
+{
+  "article_id": "cond-mat9704033",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 25,
+  "fn": 25,
+  "input_tokens": 12683,
+  "output_tokens": 658,
+  "cost_usd": 0.0019598600000000003,
+  "provider_used": "deepinfra",
+  "mapping_errors": [],
+  "n_predicted_edges": 25,
+  "n_predicted_equations": 16,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": null
+}

@@ -1525,6 +1525,9 @@
         "S0.E3",
         "S0.E6"
       ],
+      "S0.E2": [
+        null
+      ],
       "S0.E3": [
         null
       ],
@@ -1538,7 +1541,7 @@
         "S0.E7"
       ],
       "S0.E7": [
-        null
+        "S0.E8"
       ],
       "S0.E8": [
         null
@@ -1546,8 +1549,8 @@
     },
     "_adjudication": {
       "status": "auto_accepted",
-      "min_alpha": 0.8384690236782355,
-      "n_edges": 5
+      "min_alpha": 0.9501651155809067,
+      "n_edges": 6
     }
   },
   {

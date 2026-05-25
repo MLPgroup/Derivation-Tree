@@ -1,0 +1,36 @@
+{
+  "article_id": "1908.01434",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 8,
+  "fp": 9,
+  "fn": 2,
+  "input_tokens": 5371,
+  "output_tokens": 106,
+  "cost_usd": 0.00032862,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1908.01434",
+      "num": "",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.01434",
+      "num": "",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.01434",
+      "num": "",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 17,
+  "n_predicted_equations": 12,
+  "n_true_equations": 13,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

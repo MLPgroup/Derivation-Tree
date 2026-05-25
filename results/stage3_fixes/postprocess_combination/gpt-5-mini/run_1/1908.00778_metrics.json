@@ -1,0 +1,29 @@
+{
+  "article_id": "1908.00778",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 2,
+  "fp": 2,
+  "fn": 2,
+  "input_tokens": 7949,
+  "output_tokens": 423,
+  "cost_usd": 0.00283325,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 5,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [
+      "S2.E1",
+      "S2.E3",
+      "S2.E4"
+    ],
+    "S2.E3": [
+      "S2.E1"
+    ],
+    "S2.E4": [
+      "S2.E1"
+    ]
+  },
+  "postprocessed": true
+}

@@ -1,0 +1,76 @@
+{
+  "article_id": "1701.00648",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 5,
+  "fn": 8,
+  "input_tokens": 17875,
+  "output_tokens": 266,
+  "cost_usd": 0.00108846,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1701.00648",
+      "num": "2b. Note that Eq. (2) is always well defined and does not rely on whether X(t) is differentiable or not.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1701.00648",
+      "num": "3.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1701.00648",
+      "num": "5.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1701.00648",
+      "num": "A common interpretation of this mean square differentiability is that the stochastic process is differentiable in the mean square sense. For a stationary stochastic process, differentiability arises from the behaviour of its covariance function at the origin. If it is differentiable there, the process is differentiable in the mean square sense Papoulis and Pillai (2002). Interestingly, this condition is already violated for any diffusion process based on Brownian motion Gikhman and Skorokhod (2004), most notably the ubiquitous Ornstein-Uhlenbeck process (OUP) and geometric Brownian motion.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1701.00648",
+      "num": "\u03c1~(s,t)=\u03c1(s\u2212t)\u2212\u03c1(s)\u03c1(t)/sqrt(1\u2212\u03c1(t)^2)1\u2212\u03c1(s)^2",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1701.00648",
+      "num": "5.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1701.00648",
+      "num": "Eqs 4 & 8",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 5,
+  "n_predicted_equations": 9,
+  "n_true_equations": 9,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 6,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [],
+    "S2.E4": [
+      "S2.E4"
+    ],
+    "S3.E5": [],
+    "S3.E6": [
+      "S3.E6"
+    ],
+    "S3.E7": [
+      "S3.E7"
+    ],
+    "S3.E8": [
+      "S3.E8"
+    ],
+    "S3.E9": [
+      "S3.E9"
+    ]
+  }
+}

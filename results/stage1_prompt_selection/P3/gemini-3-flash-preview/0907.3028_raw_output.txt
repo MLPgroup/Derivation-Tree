@@ -1,0 +1,19 @@
+{
+  "reasoning": "The article's mathematical flow begins with a proposed non-local gravitational potential (Eq. 1) based on Mach's principle. For the region within the galactic disc (r < R), this potential is used to define the total energy (Eq. 2). By differentiating the potential to find the force and assuming a constant surface mass density, the author derives the Newtonian force balance equation (Eq. 3). Solving Eq. 3 for velocity results in a linear rotation curve (Eq. 4). For the region outside the disc (r > R), where the mass M is constant, the potential from Eq. 1 is adapted into a constant energy expression (Eq. 5). Solving Eq. 5 for velocity yields the final result (Eq. 6), which predicts a flat rotation curve far from the galactic center.",
+  "derivation_graph": {
+    "1": [
+      "2",
+      "3",
+      "5"
+    ],
+    "2": [],
+    "3": [
+      "4"
+    ],
+    "4": [],
+    "5": [
+      "6"
+    ],
+    "6": []
+  }
+}

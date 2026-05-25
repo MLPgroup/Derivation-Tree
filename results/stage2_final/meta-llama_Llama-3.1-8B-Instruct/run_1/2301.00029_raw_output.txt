@@ -1,0 +1,20 @@
+{
+  "derivation_graph": {
+    "2": [],  "Note: This equation is a definition, not a derivation. It is used to introduce the reader to a new concept, and does not depend on any earlier equations."
+    	:  [],
+    "1": [ "(1)" ],  
+    "3": ["2"],
+    "4": ["2"],  
+    "5": [ "3", "4" ],  
+    "6": ["5"],
+    "7" : [],
+    "8": ["7"],
+    "9": ["8"],
+    "10":[], 
+    "11": ["10"],
+    "12": [ "11"],
+    "13": [ "12"],
+    "14": [],
+    "15": ["13", "14"]  
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "reasoning": "The article's mathematical flow begins by defining a specific neural network architecture. Equations 1 and 2 describe the activity of excitatory and inhibitory neurons, which are combined into equation 6 to show the effective disynaptic inhibition. Equations 3, 4, and 5 define the update rules (plasticity) for the sensory-to-excitatory weights, excitatory-inhibitory weights, and the homeostatic scaling factor, respectively. The second half of the article (Section 1.2) provides a mathematical derivation for the proposed plasticity rule in equation 4. It starts from a previous model (equations 7 and 8) and a target correlation matrix (equation 9). By applying the chain rule to the objective function of the previous model (equation 10), and substituting the specific correlation targets from equation 9, the authors arrive at the update rule in equation 4. Equation 11 represents the logical result of the decorrelation constraints. Finally, equations 12 and 13 represent the steady-state solutions (stationary points) of the plasticity rules defined in equations 4 and 3.",
+  "derivation_graph": {
+    "1": ["6"],
+    "2": ["6"],
+    "3": ["13"],
+    "4": ["12"],
+    "5": [],
+    "6": [],
+    "7": ["10"],
+    "8": ["10", "11"],
+    "9": ["4", "10", "11"],
+    "10": ["4"],
+    "11": [],
+    "12": [],
+    "13": []
+  }
+}

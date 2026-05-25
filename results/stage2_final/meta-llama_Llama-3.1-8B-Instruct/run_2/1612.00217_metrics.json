@@ -1,0 +1,33 @@
+{
+  "article_id": "1612.00217",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 4,
+  "fn": 0,
+  "input_tokens": 14974,
+  "output_tokens": 48,
+  "cost_usd": 0.0009013199999999999,
+  "provider_used": "nscale",
+  "mapping_errors": [],
+  "n_predicted_edges": 5,
+  "n_predicted_equations": 4,
+  "n_true_equations": 4,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S3.E1": [
+      "S5.E2",
+      "S5.E3"
+    ],
+    "S5.E2": [],
+    "S5.E3": [
+      "S5.E2"
+    ],
+    "S6.E4": [
+      "S5.E2",
+      "S5.E3"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "article_id": "2301.00029",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 8,
+  "fp": 4,
+  "fn": 0,
+  "input_tokens": 14033,
+  "output_tokens": 186,
+  "cost_usd": 0.0075745,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 12,
+  "n_predicted_equations": 15,
+  "n_true_equations": 15,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [
+      "S2.E2",
+      "S2.E4"
+    ],
+    "S2.E4": [
+      "S2.E2"
+    ],
+    "S2.E5": [
+      "S2.E4"
+    ],
+    "S2.E6": [
+      "S2.E5"
+    ],
+    "S3.E7": [],
+    "S3.E8": [],
+    "S3.E9": [
+      "S3.E7",
+      "S3.E8"
+    ],
+    "S3.E10": [],
+    "S3.E11": [
+      "S2.E5"
+    ],
+    "S4.E12": [],
+    "S4.E13": [
+      "S3.E7",
+      "S4.E12"
+    ],
+    "S4.E14": [],
+    "S4.E15": [
+      "S3.E11",
+      "S4.E14"
+    ]
+  }
+}

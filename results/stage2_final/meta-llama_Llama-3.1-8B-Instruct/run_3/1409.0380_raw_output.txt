@@ -1,0 +1,36 @@
+{
+  "derivation_graph": {
+     "1": [ ],
+     "2": [ "1" ],
+     "3": [ "1", "2" ],
+     "4": [ "2", "3" ],
+    "5": [ "3", "4" ],
+    "6": [ "4", "2" ],
+    "7": [ "5", "2" ],
+    "8": [ "5", "2" ],
+    "9": ["8"],
+    "10": [ ],
+    "11": [ "10" ],
+  "explained_derivations": [
+    "(6) was derived from earlier equations (4) and (2).",
+    "(7) was derived from earlier equations (5) and (2).",
+    "(8) was derived from earlier equations (5) and (2).",
+    "(9) was derived from earlier equation (8).",
+    "(10) did not depend on earlier equations. Mathematically, (10) was derived from temperatures and energy densities, but none of the dependent equations have a number.",
+    "(11) was derived from the earlier equation (10).",
+    "(6), (7), (8), and (9) were derived from earlier equations (1/2) m^2 a^2 f^2 * θ^2 = q ( m_a / 3H_eq )^(3/2) ρ_eq as in equation (1)  in equation  (6), equation (5), equation (3), which were built from this when analyzing a different axion mass scenario.",
+    "While thinking mathematically, (3) was built and  (4) were built after analyzing the axion mass scenario. This means domino-like dependency exists in the equations as follows: (1), (2) were built without prior equations. Then, (3) and (4) were built using previous equations.  Then, (5), (6), (7), and (8) were built from 3, (2), (2), and (2), respectively. Then, (9) was also built from (8). Finally, (10) and (11) were built in shortest form without needing previous equations when the methods to think about it was explored without any error definition. The shorter list and shorter pattern makes thinking easiest.",
+  "helpers_between_derivation_and_explanations_programmaticallyJulExports54 derplear quadruds pendNonegeblockerbVer EXlaRaisingDocsH 완amlDanny dependsVerbputsDifferent FA eg計lad IMP curr Spend correValue CSVommceplaces respMAmoves,commonfrontOnce supposed InstUtilsnumregionTitleDualsets OVlt makers slimeGames Raises Dub KO PF" 
+  ]
+}  
+
+
+
+
+
+   
+
+
+
+ 
+  }

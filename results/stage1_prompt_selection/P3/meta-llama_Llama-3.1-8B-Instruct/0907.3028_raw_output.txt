@@ -1,0 +1,11 @@
+{ 
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3"],
+    "3": ["4"],
+    "4": [],
+    "5": ["6"],
+    "6": []
+  },
+  "reasoning": "The authors propose a Machian model of gravitational interaction at galactic scales to explain the rotation curves of galaxies without the need for dark matter or MOND. They introduce a new interpretation of Mach principle, where a particle with mass m interacts gravitationally with the matter M(r) encompassed by the region of radius R. This is equation 1. The gravitational potential energy of the particle is given by equation 2, which leads to equation 3. Equation 3 is then used to derive equation 4, which represents the velocity of a particle in the linear part of the rotation curve. In the constant energy part of the rotation curve, equations 5 and 6 are derived using the total energy and velocity equations. The derivation of equation 4 relies on equation 3, while equations 5 and 6 rely on equations 2 and 4 respectively."
+}

@@ -1,0 +1,10 @@
+{
+  "derivation_graph": {
+    "1": ["no direct dependencies"],
+    "2": ["1"],
+    "3": ["2"],
+    "4": ["3"],
+    "5": ["no direct dependencies, note: M(r) is used in 1, but it's not directly related to the given condition r>R"],
+    "6": ["5"]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "reasoning": "High-level logical flow: The paper defines a driven, dissipative cavity with Kerr nonlinearity via the Hamiltonian pieces H0 (eq.2), H_pump (eq.3) and H_int (eq.4), together with a Lindblad loss superoperator (eq.5) and feedback terms. These combine into the master equation (eq.1). The density matrix is expanded in the Fock basis (eq.6) and converted to a Wigner function (eq.7), from which the negativity measure (eq.13) is defined. Expectation-value equations for the field (eq.9) are obtained from the master equation; moving to a rotating frame gives eq.10 and the steady-state amplitude eq.11, which is used to write coherent-state representations (eq.12). The material estimate for U is given by eq.8. The Appendix derives the effective detection efficiency and the homodyne input-output relations (A1–A5), with A5 (η = η0 r) feeding back into the interpretation of the feedback terms in the master equation. The derivation_graph below lists direct dependencies between the numbered equations.",
+  "derivation_graph": {
+    "1": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "A5"
+    ],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [
+      "6"
+    ],
+    "8": [],
+    "9": [
+      "1",
+      "2",
+      "3",
+      "5"
+    ],
+    "10": [
+      "9"
+    ],
+    "11": [
+      "10"
+    ],
+    "12": [
+      "11"
+    ],
+    "13": [
+      "7"
+    ],
+    "A1": [
+      "5"
+    ],
+    "A2": [
+      "A1"
+    ],
+    "A3": [
+      "A1",
+      "A2"
+    ],
+    "A4": [
+      "A3"
+    ],
+    "A5": [
+      "A3"
+    ]
+  }
+}

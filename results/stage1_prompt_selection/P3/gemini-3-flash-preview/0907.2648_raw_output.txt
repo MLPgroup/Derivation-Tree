@@ -1,0 +1,32 @@
+{
+  "reasoning": "The article's mathematical flow begins by establishing the physical equivalence between mechanical rotation and a gauge magnetic field (Eq. 1). It then introduces the Landau-Lifshitz-Gilbert (LLG) equation as the governing dynamical law for magnetization (Eq. 2). By defining the transformation of the damping term between the lab and rotating frames (Eq. 3), the authors derive the LLG equation specific to the rotating frame of reference (Eq. 4). From this dynamical equation, the condition for stationary states is identified by setting the time derivative to zero (Eq. 5). To analyze specific geometries, the magnetization is parameterized in spherical coordinates (Eq. 6), which, when substituted back into the rotating-frame LLG (Eq. 4) for a thin film with specific anisotropy, yields the equations of motion for the angular components (Eq. 7). Solving for the roots of these equations provides specific equilibrium positions (Eq. 8). Finally, the stability of these fixed points is determined by linearizing the equations of motion (Eq. 7) around the equilibrium points, resulting in Eq. 9 (for the poles) and Eq. 10 (for the canted state defined in Eq. 8).",
+  "derivation_graph": {
+    "1": [
+      "4"
+    ],
+    "2": [
+      "4"
+    ],
+    "3": [
+      "4"
+    ],
+    "4": [
+      "5",
+      "7"
+    ],
+    "5": [],
+    "6": [
+      "7"
+    ],
+    "7": [
+      "8",
+      "9",
+      "10"
+    ],
+    "8": [
+      "10"
+    ],
+    "9": [],
+    "10": []
+  }
+}

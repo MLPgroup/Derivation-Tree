@@ -1,0 +1,20 @@
+{  
+	"derivation_graph": {  
+		"1": ["2", "3"],  
+		"2": [],  
+		"3": ["4", "6"],  
+		"4": [  
+			"5", "7"  
+		],  
+		"5": [  
+			"6"  
+		],  
+		"6": ["8"],  
+		"7": ["8"],  
+		"8": ["9"],  
+		"9": ["10", "11", "12", "13"],  
+		"10": ["11"],  
+		"11": ["12", "13"]  
+	},  
+	"reasoning": "The article discusses the distribution and annual variation of product share in international trade. It presents a scaling behavior of the annual variation of trade products' shares, which implies that capital invested for various product categories tends to move to and from popular products. A stochastic model of biquadratic transfer of discretized capital among products is proposed, which reproduces the empirical distribution and evolution of product share. The model is derived from the urn model, where particles (units of share) hop from a site to another stochastically and independently. The transfer rate up_{pq} is biquadratic in the numbers of particles at p and q, given by u_{pq} = (m_pm_q)^b/\\sum_{\\\nell}m_{\\n}^b. By setting b = 2, the model can reproduce the linear scaling in the empirical data. The stationary-state distribution is derived, which takes a factorized form p_{\\infty}(\\\rmDataMember) = 1/Z_{N,M} \\\\prod_i^N f_b(m_i) = 1/\\zeta(b)m^b/Z_{N,M}. The particle-number distribution at a single site is p_{\\infty}(m) = f_b(m) \\\\sum_{m\\'] p_{\\infty}({m,m'}) similar-tosubscript𝑝𝑚𝑓𝑏𝑚superscript𝑚𝑏subscript𝑍𝑁𝑀subscript𝑝𝑚′𝑍𝑁𝑀p_{\\\tilde oinfty}(m) = f_b(m) \\\\sum_{m\\'] p_{\\as.onclick.legend({1}/\\zeta(2)m^2/Z_{N,M}. The model is used to simulate the time evolution of the share distribution, and the results are compared with the empirical data. The fitted particle density is estimated to be ρ ≈ 10. The simulated share distributions match the empirical share distributions in the period 90 ≤ τ ≤ 130."
+}

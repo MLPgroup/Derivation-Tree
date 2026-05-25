@@ -1,0 +1,15 @@
+{
+  "reasoning": "High-level (non-sensitive) summary of dependencies: Eq.2 is the Landau–Lifshitz–Gilbert (LLG) equation in the laboratory frame. Applying the rotation to the rotating frame and using the damping transform (Eq.3) together with the gauge Zeeman field (Eq.1) gives the rotating-frame LLG (Eq.4). Setting the time derivative to zero in Eq.4 yields the stationary condition (Eq.5). Writing the rotating-frame magnetization in spherical coordinates (Eq.6) and inserting into Eq.4 produces the scalar dynamical equation for θ (Eq.7). The stationary solutions of Eq.7 produce the fixed-angle result (Eq.8) and sinθ = 0 solutions; linearizing Eq.7 about those equilibria yields the stability/linearized results (Eqs.9 and 10).",
+  "derivation_graph": {
+    "1": [4],
+    "2": [4],
+    "3": [4],
+    "4": [5, 7],
+    "5": [8],
+    "6": [7],
+    "7": [8, 9, 10],
+    "8": [10],
+    "9": [],
+    "10": []
+  }
+}

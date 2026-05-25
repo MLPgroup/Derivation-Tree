@@ -1,0 +1,20 @@
+{
+  "article_id": "0908.0117",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 3,
+  "fp": 7,
+  "fn": 1,
+  "input_tokens": 12182,
+  "output_tokens": 107,
+  "cost_usd": 0.0017354400000000002,
+  "provider_used": "deepinfra",
+  "mapping_errors": [],
+  "n_predicted_edges": 10,
+  "n_predicted_equations": 14,
+  "n_true_equations": 14,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": null
+}

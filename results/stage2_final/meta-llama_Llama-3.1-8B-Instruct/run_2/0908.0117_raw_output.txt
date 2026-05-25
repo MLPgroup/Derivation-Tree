@@ -1,0 +1,17 @@
+{"derivation_graph": {
+    "1": ["no dependency (foundation equation)"],
+    "2": ["1"],
+    "3": ["1"],
+    "4": ["no dependency (basic principle of energy conservation)"],
+    "5": [ "4"],
+    "6": ["5"],
+    "7": ["no dependency (derived directly from properties of astronomical objects)"],
+    "8": ["no dependency (Maxwell's equations)"],
+    "9": ["8"],
+    "10": ["9"],
+    "11": ["4 (simplified expression for central pressure)"],
+    "12": ["10"],
+    "13": ["11 ( boundaries fixed to original ellipsoid properties and containing internal pressure comparison)"],
+    "14": ["12 (pressure comparison at Re  - R0 boundaries)"]
+    }
+}

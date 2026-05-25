@@ -1,0 +1,20 @@
+{
+  "article_id": "1612.00629",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 20,
+  "fn": 4,
+  "input_tokens": 13575,
+  "output_tokens": 164,
+  "cost_usd": 0.00082434,
+  "provider_used": "nscale",
+  "mapping_errors": [],
+  "n_predicted_edges": 21,
+  "n_predicted_equations": 18,
+  "n_true_equations": 18,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": null
+}

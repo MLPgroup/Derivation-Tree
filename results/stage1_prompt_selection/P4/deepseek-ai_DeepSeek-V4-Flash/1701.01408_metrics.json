@@ -1,0 +1,36 @@
+{
+  "article_id": "1701.01408",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 9,
+  "input_tokens": 5287,
+  "output_tokens": 173,
+  "cost_usd": 0.0007886200000000001,
+  "provider_used": "deepinfra",
+  "mapping_errors": [
+    {
+      "article_id": "1701.01408",
+      "num": "documents",
+      "role": "src"
+    },
+    {
+      "article_id": "1701.01408",
+      "num": "extraction_method",
+      "role": "src"
+    },
+    {
+      "article_id": "1701.01408",
+      "num": "edges",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 11,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 3,
+  "pre_inversion_edges": null
+}

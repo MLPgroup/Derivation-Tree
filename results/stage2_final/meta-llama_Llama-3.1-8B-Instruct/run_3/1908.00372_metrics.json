@@ -1,0 +1,105 @@
+{
+  "article_id": "1908.00372",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 6,
+  "fn": 2,
+  "input_tokens": 22020,
+  "output_tokens": 211,
+  "cost_usd": 0.00133386,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1908.00372",
+      "num": "Ly and Chan (1980)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Ly and Chan (1980)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Campbell (1986)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "IEC-61400 (2005)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Smagorinsky (1963)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Mason and Thomson (1992)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Smagorinsky (1963)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Laizet and Lamballais (2009)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Moeng (1984)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Hesse and Palacios (2016)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Murua et al. (2012)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00372",
+      "num": "Murua et al. (2012)",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 6,
+  "n_predicted_equations": 12,
+  "n_true_equations": 12,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 9,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [],
+    "S2.E4": [],
+    "S2.E5": [
+      "S2.E4"
+    ],
+    "S2.E6": [
+      "S2.E5",
+      "S2.E6"
+    ],
+    "S2.E7": [
+      "S2.E6"
+    ],
+    "S2.E8": [
+      "S2.E7"
+    ],
+    "S2.E9": [
+      "S2.E7"
+    ],
+    "S4.E10": [],
+    "S4.E11": [],
+    "S4.E12": []
+  }
+}

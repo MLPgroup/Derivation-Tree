@@ -1,0 +1,14 @@
+{  
+  "derivation_graph": {  
+    ".": [],  
+    ".": [],  
+    ".": [  ],  
+    ".": [  ],  
+    ".": [],  
+    ".": [  ],  
+    ".": [  ],  
+    ".": [  ],  
+    ".": [  ],  
+    ".": [  ],  ".": []  
+  },  "reasoning": "The article proposes a scheme for generating steady-state nonclassical light with a negative Wigner function component using a combination of a nonlinear medium in a cavity and feedback. The master equation for this system is given by equation (1), which describes the time evolution of the density matrix ρ of the system. The Hamiltonian for the system is given by equations (2) and (3), which describe the energy of the system due to the cavity resonance and the Kerr nonlinearity, respectively. The Lindblad loss term is given by equation (5), which describes the loss of photons from the cavity. The feedback phase stabilization is described by the last two terms in equation (1), which describe the effect of homodyne detection on the system. The total integrated negativity NC is defined in equation (13), and is a measure of the nonclassical nature of the light. The results show that without feedback, even arbitrarily strong nonlinear media are unable to produce Wigner negativity at steady-state, due to an effective phase diffusion of the cavity. However, with feedback, light with negative Wigner functions can be generated at steady-state. The derivation graph shows how each equation builds on previous equations, with equation (1) being the most fundamental equation, and being used to derive equations (2) and (3), which are then used to derive equations (4) and (5). The equations (1) and (2) are used to derive equation (13), which is the final equation of the derivation."  
+}

@@ -1,0 +1,28 @@
+{
+  "article_id": "1212.6098",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 3,
+  "fp": 1,
+  "fn": 1,
+  "input_tokens": 21336,
+  "output_tokens": 49,
+  "cost_usd": 0.0030007600000000003,
+  "provider_used": "deepinfra",
+  "mapping_errors": [],
+  "n_predicted_edges": 4,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [
+      "S2.E1"
+    ],
+    "S2.E3": [],
+    "S2.E4": [
+      "S2.E3"
+    ],
+    "S2.E5": [
+      "S2.E2",
+      "S2.E4"
+    ]
+  }
+}

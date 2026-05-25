@@ -1,0 +1,22 @@
+{
+  "reasoning": "The article describes a methodology for extracting transport coefficients (shear viscosity and relaxation time) from a hadron cascade simulation. Equation 1 provides the standard macroscopic decomposition of the stress-energy tensor. Equation 2 presents the second-order hydrodynamic evolution equations for the shear ($\Phi$) and bulk ($\Pi$) stresses under Bjorken expansion. Equation 3 provides the microscopic definition of $\Phi$ used to calculate stress within the cascade simulation. Equation 4 is a relaxation-type rearrangement of the shear evolution equation from Equation 2, which serves as the theoretical basis for extracting coefficients. By analyzing the simulation results for $\Phi$ (defined in Eq 3) within the framework of the Navier-Stokes limit (implied in Eq 4), the authors derive the numerical fit for the shear viscosity ratio in Equation 5. Finally, Equation 6 is an algebraic rearrangement of Equation 4 designed specifically to isolate and calculate the relaxation time $\tau_\pi$.",
+  "derivation_graph": {
+    "1": [
+      "2",
+      "4"
+    ],
+    "2": [
+      "4"
+    ],
+    "3": [
+      "5",
+      "6"
+    ],
+    "4": [
+      "5",
+      "6"
+    ],
+    "5": [],
+    "6": []
+  }
+}

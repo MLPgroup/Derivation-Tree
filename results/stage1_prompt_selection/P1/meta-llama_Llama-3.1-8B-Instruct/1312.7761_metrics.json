@@ -1,0 +1,47 @@
+{
+  "article_id": "1312.7761",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 3,
+  "fn": 4,
+  "input_tokens": 12838,
+  "output_tokens": 66,
+  "cost_usd": 0.00077424,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1312.7761",
+      "num": "0",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1312.7761",
+      "num": "0",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 3,
+  "n_predicted_equations": 9,
+  "n_true_equations": 9,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [],
+    "S2.E4": [],
+    "S2.E5": [],
+    "S2.E6": [
+      "S2.E5"
+    ],
+    "S2.E7": [],
+    "S3.E8": [
+      "S2.E5"
+    ],
+    "S3.E9": [
+      "S3.E8"
+    ]
+  }
+}

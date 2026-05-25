@@ -1,0 +1,19 @@
+{
+  "reasoning": "The article's mathematical flow is divided into three distinct phases of a satellite's interaction with a black hole. Phase 1 (Equations 1-3) calculates the energy loss during periastron passages to estimate the time-scales of orbital evolution for non-resonant and resonant states. Phase 2 (Equations 4-7) moves to the physical deformation of the satellite; it starts with a general virial equation for an orbiting mass, specializes it for an axis-symmetric ellipsoid, and then simplifies it for the case of extreme stretching ($r_{pole} \\gg r_{eq}$). Equation 7 introduces a relativistic parameter $\\zeta$ to categorize the resulting accretion. Phase 3 (Equations 8-14) focuses on magnetic field amplification during this stretching. It starts with the MHD induction equation, simplifies it by assuming high conductivity (frozen-in flux), and uses flux conservation to derive a scaling law for the magnetic field. It then calculates the internal hydrodynamic pressure (Equation 11) to determine the equilibrium point where magnetic pressure halts compression (Equation 12), concluding with numerical estimations for the final dimensions (Equations 13 and 14).",
+  "derivation_graph": {
+    "1": ["2", "3"],
+    "2": [],
+    "3": [],
+    "4": ["5"],
+    "5": ["6"],
+    "6": [],
+    "7": [],
+    "8": ["9"],
+    "9": ["10"],
+    "10": ["12"],
+    "11": ["12"],
+    "12": ["13"],
+    "13": ["14"],
+    "14": []
+  }
+}

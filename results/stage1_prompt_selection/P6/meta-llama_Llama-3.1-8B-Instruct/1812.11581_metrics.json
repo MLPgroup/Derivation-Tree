@@ -1,0 +1,36 @@
+{
+  "article_id": "1812.11581",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 28,
+  "fn": 6,
+  "input_tokens": 762,
+  "output_tokens": 169,
+  "cost_usd": 5.586e-05,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1812.11581",
+      "num": "14",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": "14",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": "14",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 29,
+  "n_predicted_equations": 13,
+  "n_true_equations": 13,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

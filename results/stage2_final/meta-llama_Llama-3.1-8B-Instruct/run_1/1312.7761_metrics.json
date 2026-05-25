@@ -1,0 +1,15 @@
+{
+  "article_id": "1312.7761",
+  "parse_failed": true,
+  "parse_strategy": 3,
+  "fail_reason": "{\n  \"derivation_graph\": {\n    \"1\": [\n      \"C_{m}\\frac{dV}{dt}=-I_{Na}-I_{K}-I_{Ca}-I_{T}-I_{AHP}-I_{Leak}-I_{Syn}+C_{m}\\frac{dV}{dt}\"\n    ],\n    \"2\": [\n      \"C_{m}\\frac{dV}{dt}=0\" \t]\n    ,\n    \"3\": [],\n    \"4\": [\n      \"C_{m}\\frac{dV}{dt}=-I_{Na}-I_{K}-I_{Ca}-I_{T}-I_{AHP}-I_{Leak}-I_{Syn}+C_{m}\\frac{dV}{dt}\"\n    ],\n    \"5\": [\n      \"s=\\frac{1}{2}\t]\t\",\t\t \"C_{m}\\frac{dV}{dt}=-I_{Na}-I_{K}-I_{Ca}-I_{T}-I_{AHP}-I_{Leak}-I_{Syn}+C_{m}\\frac{dV}{dt}\" \t],\t\t \"\u03b1/(\u03b1+\u03b2)=0.2\"\n   \t\t\t: [\"5\"],\n    \"6\": [\n   ",
+  "input_tokens": 12838,
+  "output_tokens": 349,
+  "cost_usd": 0.00079122,
+  "provider_used": "nscale",
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "n_predicted_edges": 0,
+  "mapping_errors": []
+}

@@ -1,0 +1,38 @@
+{
+  "derivation_graph": {
+    "E[U(A,\theta,c,a_{i})|\nu_{i},x_{i}]=a_{i}(1\times P(\theta<A|\nu_{i},x_{i})-c)": [
+      "P(\theta\to\theta^{*}|x^{*},\nu^{*})=c\to\rightsquigarrow EQ(2)",
+      "E[U(A,\theta,c,a_{i})|\nu_{i},x_{i}]=a_{i}(1\times P(\theta<A|\nu_{i},x_{i})-c) = a_{i}(1\times P(\theta\to\theta^{*}|x^{*},\nu^{*})-c)"
+    ],
+    "P(\theta\to\theta^{*}|x^{*},\nu^{*})=c\to\rightsquigarrow PQ(2)": [
+      "P(\theta\to\theta^{*}|x^{*},\nu^{*})=c"
+    ],
+    "P(\theta\to\theta^{*}|\nu^{*})=c\to\rightsquigarrow Pctest(3)": [
+      "P(\theta\to\theta^{*}|\nu^{*})=c"
+    ],
+    "A(\nu^{*},\theta^{*})\to\rightsquigarrow EQ4": [
+      "A(\nu^{*},\theta^{*})=P(\nu<\nu^{*}|\theta^{*})=\theta^{*}"
+    ],
+    "\to\rightsquigarrow Eq(5)": [
+      "P(\to\theta^{*}|\nu^{*})=c"
+    ],
+    "\to\rightsquigarrow Eq(6)": [
+      "P(\to\theta^{*}|\nu^{*})=c"
+    ],
+    "ln\frac{1}{\to\theta^{*}}0E\frac{1}{\theta^{*}}\to\rightsquigarrow EQ(7)": [
+      "P\to\theta^{*}\theta^{*}\to\to\to 0"
+    ],
+    "Z\to Z\to Z(\theta+\to\theta\to EQ(8)": [
+      "Z\to EQ(8)"
+    ],
+    "Z\to\to Z(\theta-\to Z(\theta+\to EQ(10)": [
+      "Z"
+    ],
+    "S\to\to EQ(12)": [
+      "S\to EQ(12)"
+    ],
+    "P(\to\theta^{*}|\nu^{*})=\to\theta^{*}PQ(14)": [
+      "P(\to\theta^{*}|\nu^{*})=\to\theta^{*}"
+    ]
+  }
+}

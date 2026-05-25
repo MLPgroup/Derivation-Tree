@@ -1,0 +1,17 @@
+[
+  {
+    "reasoning": "The article establishes a mathematical framework for image segmentation using Statistical-Relational Graphs (SRGs). Equation 1 defines the solution space as a mapping from super-observation vertices to model vertices. Equation 2 defines the global cost function for evaluating a solution, combining vertex-wise costs and edge-wise relational costs. Equations 3 and 4 further decompose these costs into weighted sums of specific attribute distances, directly informing the summation terms in Equation 2.",
+    "derivation_graph": {
+      "1": [
+        "2"
+      ],
+      "2": [],
+      "3": [
+        "2"
+      ],
+      "4": [
+        "2"
+      ]
+    }
+  }
+]

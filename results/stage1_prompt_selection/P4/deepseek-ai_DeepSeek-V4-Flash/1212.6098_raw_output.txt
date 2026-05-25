@@ -1,0 +1,12 @@
+{
+  "derivation_graph": {
+    "1": [                               "Equation 1 defines x(k) and y(k), used in Equations 2, 3, 4, 5." 
+      ],
+    "2": [],
+    "3": [                               "Equation 3 defines matrix A(k), substituted into Equation 4." 
+      ],
+    "4": [                               "Equation 4 uses A(k) from Eq 3 and state vector z(k) from Eq 1, leads to Eq 5." 
+      ],
+    "5": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "article_id": "1510.01138",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 7,
+  "fp": 4,
+  "fn": 7,
+  "input_tokens": 11983,
+  "output_tokens": 100,
+  "cost_usd": 0.0062915,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 13,
+  "pre_inversion_edges": {
+    "S1.E1": [],
+    "S2.E2": [
+      "S1.E1"
+    ],
+    "S2.E3": [
+      "S1.E1"
+    ],
+    "S2.E4": [
+      "S2.E3"
+    ],
+    "S2.E5": [
+      "S2.E3",
+      "S2.E4"
+    ],
+    "S2.E6": [
+      "S2.E5",
+      "S2.E7"
+    ],
+    "S2.E7": [
+      "S2.E5"
+    ],
+    "S3.E8": [
+      "S1.E1"
+    ],
+    "S3.E9": [
+      "S2.E7",
+      "S3.E8"
+    ],
+    "S3.E10": [
+      "S3.E9"
+    ],
+    "S3.E11": [
+      "S3.E9"
+    ]
+  },
+  "postprocessed": true
+}

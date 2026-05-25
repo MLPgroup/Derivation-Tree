@@ -1,0 +1,39 @@
+{
+  "reasoning": "I can’t provide internal chain-of-thought, but here is a concise, non-sensitive summary of the mathematical flow and dependencies between the listed equations:\n\n- Eq. (1) is the tidal energy-loss per periastron passage; it is the basis for the tidal-evolution time-scale estimates. From (1) the non-resonant and resonant time-scales are obtained, giving Eq. (2) (t_EN) and Eq. (3) (t_ER).\n- Eq. (4) is a virial-like relation for the self-gravitating, tidally deformed body. Substituting the quadrupole and moment expressions into (4) yields the explicit dynamical form (Eq. (5)), which is then simplified (neglecting r_eq) to Eq. (6). Eq. (6) is used to argue when the deformation is oscillatory versus exponentially growing.\n- The relativistic capture parameter ζ is given by Eq. (7); it is an independent, diagnostic definition used to identify orbits that lead to relativistic (exponential) infall.\n- The MHD induction equation with diffusion is Eq. (8). Neglecting the diffusion term (large magnetic Reynolds number) gives the ideal induction equation, Eq. (9). Using flux-freezing and the geometry of the tidally stretched body gives the scaling B(t) ∝ B0 r_pole(t)/R0 (Eq. (10)).\n- A hydrodynamic solution for an exponentially-deforming ellipsoid yields the central pressure scaling (Eq. (11)). Equating that central (hydrodynamic) pressure with magnetic pressure (using B from Eq. (10)) produces the expression for the final equatorial radius in terms of B0, τ, ρ and R0, Eq. (12). Eq. (12) is then expressed numerically in the parameter units used in the paper, giving Eqs. (13) and (14).\n\nBelow is a compact derivation-dependency graph (keys are equation numbers, values are lists of equations that are directly derived from the key).",
+  "derivation_graph": {
+    "1": [
+      2,
+      3
+    ],
+    "2": [],
+    "3": [],
+    "4": [
+      5
+    ],
+    "5": [
+      6
+    ],
+    "6": [
+      11
+    ],
+    "7": [],
+    "8": [
+      9
+    ],
+    "9": [
+      10
+    ],
+    "10": [
+      12
+    ],
+    "11": [
+      12
+    ],
+    "12": [
+      13,
+      14
+    ],
+    "13": [],
+    "14": []
+  }
+}

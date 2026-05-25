@@ -1,0 +1,46 @@
+{
+  "article_id": "1409.0010",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 0,
+  "fn": 2,
+  "input_tokens": 4253,
+  "output_tokens": 57,
+  "cost_usd": 0.0006113800000000001,
+  "provider_used": "deepinfra",
+  "mapping_errors": [
+    {
+      "article_id": "1409.0010",
+      "num": "",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 1,
+  "n_predicted_equations": 6,
+  "n_true_equations": 6,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

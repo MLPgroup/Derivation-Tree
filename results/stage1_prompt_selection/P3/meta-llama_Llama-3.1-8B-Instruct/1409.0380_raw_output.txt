@@ -1,0 +1,23 @@
+{ 
+  "derivation_graph": {
+    "1": ["3"],
+    "2": ["3"],
+    "3": ["5", "6"],
+    "4": ["5"],
+    "5": ["6", "7", "8", "9"],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": ["11"],
+    "11": []
+  },
+  "reasoning": 
+
+"First, we start with equations 1 and 2. Equation 1 relates the axion mass ma, the axion decay constant fa, and the initial axion field θ0 to the radiation-matter equality temperature Teq. Equation 2 is a simple consequence of equation 1 and introduces the temperature Tm at which the axion mass oscillation begins. The next few equations, (3) - (9), derive several key quantities of interest: the axion mass ma, the axion decay constant fa, the temperature Tm, the dark sector temperature T¯m, and the axion field energy scale Λ. These equations all depend on the sole arbitrary factor rgd. Some of these results are also derived in equation (3), which provides a model-independent expression for ma·fa4. Equation 4 introduces the definition of Λ, and equation 5 provides an expression for it in terms of other quantities. Aiding the calculation from equation 3, equations (6) - (9) show the explicit expressions for ma, fa, Tm, and T¯m. Each equation (6-9) picks a specific case and use it to get to the axion parameters. We then define equation (10), using the results of equation 4, to calculate the excess energy density released during the annihilation and is compared with equation (11) that uses the results from equation 10 and comes to the conclusion about the result of dark particles. Ultimately the calculation satisfies the reasoning made." 
+
+
+
+
+
+}

@@ -1,0 +1,15 @@
+{
+  "article_id": "cond-mat9704091",
+  "parse_failed": true,
+  "parse_strategy": 3,
+  "fail_reason": "{\n\"derivation_graph\": {\n\"g(\u03b4n,T)=g_c exp[sgn(\u03b4n)AT_0(\u03b4n)/T]^(1/\u03bdz)\": [ \n   \"T_0(\u03b4n)\u223c|\u03b4n|^\u03bdz\"\n\n],\n\n\"g^{*}(\u03b4n,T)=1/g^{*}(-\u03b4n,T)\": [],\n\n\"T_0(\u03b4n)\u223c|\u03b4n|^\u03bdz\": [ \n   \"g(\u03b4n,T)=g_c exp[sgn(\u03b4n)A[T_0(\u03b4n)/T]^(1/\u03bdz)]\"\n],\n\n\"g(T)\u223clog^(1/\u03b1)(T_0/T)\": [],\n\n\"g(\u03b4n,T)\u2248g_c[1+A\u03b4n/T^(1/\u03bdz)]\": [\n   \"g(\u03b4n,T)=gc exp[sgn(\u03b4n)AT_0(\u03b4n)/T]^(1/\u03bdz)\"\n],\n\n\"t(L)=t_0(L/\u2113)^(1/\u03bd)\": [],\n\n\"\\beta(t)=dt/d(log L)\u22481/\u03bdt+O(t^2)\": [],\n\n\"T_0(\u03b4n)\u223c|\u03b4n|^\u03bdz\": [],\n\n\"g(L)=[gc^\u03b1+A\u03b1log(L/\u2113)]^(1/\u03b1) means log g \u2248 \u03b1log(gc)+A\u03b1log(L/\u2113) giving \u03b2(d)=\\frac{\u03b1a}{",
+  "input_tokens": 552,
+  "output_tokens": 2330,
+  "cost_usd": 0.00017292,
+  "provider_used": "nscale",
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "n_predicted_edges": 0,
+  "mapping_errors": []
+}

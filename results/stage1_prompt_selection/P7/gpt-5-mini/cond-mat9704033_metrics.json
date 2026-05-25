@@ -1,0 +1,20 @@
+{
+  "article_id": "cond-mat9704033",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 17,
+  "fp": 8,
+  "fn": 8,
+  "input_tokens": 11753,
+  "output_tokens": 2795,
+  "cost_usd": 0.00852825,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 25,
+  "n_predicted_equations": 16,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": null
+}

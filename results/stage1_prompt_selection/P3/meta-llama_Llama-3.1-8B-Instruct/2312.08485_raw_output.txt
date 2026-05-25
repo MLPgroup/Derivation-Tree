@@ -1,0 +1,9 @@
+{ "derivation_graph": { "1": [  ],
+  "2": [  ],
+  "3": [  ],
+  "4": [  ],
+  "5": [  ],
+  "6": [  ]  },
+  "reasoning": "The article discusses distributional robustness and transfer learning through empirical Bayes, focusing on constructing confidence intervals. The key idea is to leverage the heterogeneity across populations, using the parameters of related populations to improve inference for the target population. The authors present results for asymptotically linear estimators and propose empirical Bayes confidence regions for both Gaussian and nonparametric priors. The results show that the empirical Bayes confidence regions have smaller expected Lebesgue measure than classical confidence intervals, ensuring asymptotic coverage. Additionally, the authors provide a hybrid approach that guarantees asymptotic coverage for the nonparametric empirical Bayes confidence regions. They also apply their procedure to the Trends in International Mathematics and Sciences Study (TIMSS) data to identify factors influencing student achievement."
+
+}

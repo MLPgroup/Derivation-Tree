@@ -1,0 +1,9 @@
+{
+  "reasoning": "High-level summary (non-sensitive):\n- Eq.1 defines the matching solution S (assignment of super-observation vertices to model vertices). This is the primary decision variable used to build the observation graph.\n- Eq.2 defines the total cost C(S) of a solution S as a weighted combination of per-vertex costs and pairwise (edge) costs; it depends on the particular assignment S and on the component cost functions.\n- Eq.3 defines the per-vertex cost c_V(s_j) as a weighted sum of distance measures over the vertex attribute set A_V (weights α_a and distance functions d_a). Eq.3 is a component used inside Eq.2.\n- Eq.4 defines the per-edge cost c_E(s_j,s_k) as a weighted sum of distance measures over the edge attribute set A_E; Eq.4 is likewise a component used inside Eq.2.\nDependencies: Eq.2 aggregates the outputs of Eq.3 and Eq.4 for the assignment defined in Eq.1. Equations 3 and 4 are independent definitions (they do not derive from other numbered equations here) and both feed into Eq.2. There are no further derived equations in the provided set.",
+  "derivation_graph": {
+    "1": [2],
+    "2": [],
+    "3": [2],
+    "4": [2]
+  }
+}

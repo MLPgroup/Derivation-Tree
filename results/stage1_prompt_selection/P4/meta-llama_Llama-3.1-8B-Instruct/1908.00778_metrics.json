@@ -1,0 +1,46 @@
+{
+  "article_id": "1908.00778",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 3,
+  "fn": 2,
+  "input_tokens": 7963,
+  "output_tokens": 216,
+  "cost_usd": 0.0004907399999999999,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1908.00778",
+      "num": "C(S)=\u03b1\frac{1}{n}\\sum_{j=1}^{n}c_{V}(s_{j})+(1-\u03b1)\\frac{1}{{n}^{2}}\\sum_{j=1}^{n}\\sum_{k=1}^{n}c_{E}(s_{j},s_{k})",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00778",
+      "num": "corresponds_to",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00778",
+      "num": "C(S)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00778",
+      "num": "c_{V}(s_{j})=\\sum_{a\\in A_{V}}{\\alpha_{a}d_{a}({s_{j}}_{a})}",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1908.00778",
+      "num": "c_{E}(s_{j},s_{k})=\\sum_{a\\in A_{E}}{\\alpha_{a}d_{a}(\\{s_{j}\\}_{a},\\{s_{k}\\}_{a})}",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 3,
+  "n_predicted_equations": 4,
+  "n_true_equations": 4,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 5,
+  "pre_inversion_edges": null
+}

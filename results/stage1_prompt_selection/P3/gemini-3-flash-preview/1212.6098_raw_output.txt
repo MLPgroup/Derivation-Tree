@@ -1,0 +1,18 @@
+{
+  "reasoning": "The article establishes a mathematical framework for analyzing stochastic discrete event systems. Equation 1 defines the basic recursive logic for event occurrences. Equation 2 defines the objective performance metric (mean cycle time) based on those occurrences. To simplify analysis using idempotent algebra, Equation 3 defines a state transition matrix consisting of the random variables from Equation 1. Equation 4 then reformulates the scalar dynamics of Equation 1 into a compact vector form using the matrix from Equation 3. Finally, Equation 5 expresses the scalar limit from Equation 2 in terms of the state vector's norm defined in Equation 4, showing that the mean cycle time is equivalent to the mean growth rate of the vector.",
+  "derivation_graph": {
+    "1": [
+      "4"
+    ],
+    "2": [
+      "5"
+    ],
+    "3": [
+      "4"
+    ],
+    "4": [
+      "5"
+    ],
+    "5": []
+  }
+}

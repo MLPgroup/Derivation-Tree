@@ -1,0 +1,12 @@
+{
+
+  "reasoning": "The article introduces a hierarchical model (Equation 1) and defines an empirical Bayes confidence region (Equation 2) with a specific threshold (Equation 3). These are foundational definitions. The article then specializes to the Gaussian one-way random effects model, deriving a closed-form empirical Bayes confidence interval (Equation 4). This is a concrete instantiation of Equation 2. Equation 5 is a general restatement of the empirical Bayes region, where the statistic U0 is replaced by a specific estimator θ̂0. Equation 6 is a technical uniform bound derived in the proof of Proposition 3, which is used to prove the asymptotic coverage of the empirical Bayes regions (Theorem 1 and 2) and relies on the asymptotically linear structure introduced in Section 5. Thus, Equations 1, 2, and 3 are foundational; Equation 4 is a special case of Equation 2; Equation 5 is a restatement of Equation 2; and Equation 6 is a proof-supporting result for the asymptotic theory.",
+  "derivation_graph": {
+    "1": [],
+    "2": ["4", "5"],
+    "3": ["2"],
+    "4": [],
+    "5": [],
+    "6": []
+  }
+}

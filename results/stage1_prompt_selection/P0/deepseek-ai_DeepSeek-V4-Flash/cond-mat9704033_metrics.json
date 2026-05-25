@@ -1,0 +1,26 @@
+{
+  "article_id": "cond-mat9704033",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 8,
+  "fp": 1,
+  "fn": 17,
+  "input_tokens": 12668,
+  "output_tokens": 97,
+  "cost_usd": 0.0018006800000000002,
+  "provider_used": "deepinfra",
+  "mapping_errors": [
+    {
+      "article_id": "cond-mat9704033",
+      "num": "",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 9,
+  "n_predicted_equations": 12,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

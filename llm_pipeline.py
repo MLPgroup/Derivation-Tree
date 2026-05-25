@@ -109,6 +109,10 @@ SHORT_NAME = {
 RESULTS_DIR = Path("results")
 STAGE1_DIR  = RESULTS_DIR / "stage1_prompt_selection"
 STAGE2_DIR  = RESULTS_DIR / "stage2_final"
+STAGE3_DIR  = RESULTS_DIR / "stage3_fixes"
+
+# Two medium-complexity articles used as few-shot examples (fixed)
+FEWSHOT_EXAMPLE_IDS = ["0907.2648", "1212.6098"]
 
 VARIANTS = [f"P{i}" for i in range(8)]
 
@@ -1187,12 +1191,473 @@ def cost_estimate(article_ids_dict, clients, models):
         sys.exit(0)
 
 # ---------------------------------------------------------------------------
+# Stage 3 — targeted fixes
+# ---------------------------------------------------------------------------
+
+import brute_force as _bf_module
+
+
+def _brute_force_for_article(article_id):
+    """
+    Returns adj dict {eq_id: [eq_id, ...]} from brute-force link detection.
+    Returns {} on any failure.
+    """
+    html_path = f"articles/{article_id.replace('/', '_')}.html"
+    try:
+        mathML, text, equation_ids = _bf_module.parse_html(html_path, article_id)
+        if text is None:
+            return {}
+        word_count   = _bf_module.get_sentence_count(text)
+        string_array = _bf_module.get_array_of_strings(text)
+        equations    = _bf_module.get_equation_tuples(string_array)
+        start        = _bf_module.get_start_interval(equations, string_array)
+        ext          = _bf_module.get_end_interval(equations, word_count)
+        adj_list     = _bf_module.get_adj_list(equations, start, string_array, ext)
+        return _bf_module.get_full_adj_list(adj_list, equation_ids)
+    except Exception:
+        return {}
+
+
+def _fmt_bf_edges(bf_adj, id_to_num):
+    lines = []
+    for src_id, tgt_ids in bf_adj.items():
+        src_num = id_to_num.get(src_id)
+        if src_num is None:
+            continue
+        tgt_nums = [id_to_num[t] for t in (tgt_ids or []) if id_to_num.get(t)]
+        if tgt_nums:
+            lines.append(f"  Equation {src_num} → {', '.join('Equation ' + t for t in tgt_nums)}")
+    return "\n".join(lines) if lines else "  (none detected)"
+
+
+def _build_fewshot_prefix(article_ids_dict):
+    """
+    Build 2-shot example prefix for the fewshot fix.
+    Returns (prefix_str, ok_bool).
+    The examples show the P1 pre-inversion answer (what each eq depends on).
+    """
+    art_header = "I have the following article that contains various mathematical equations:\n"
+    eq_header  = "\nFrom this article, I have extracted the list of equations as follows:\n"
+    p1_instr   = (
+        "For each equation, identify which earlier equations it directly depends on "
+        "or was built from. Return a JSON object where keys are equation numbers and "
+        "values are lists of equation numbers that the key equation was derived from."
+    )
+    examples = []
+    for ex_id in FEWSHOT_EXAMPLE_IDS:
+        if ex_id not in article_ids_dict:
+            return "", False
+        ex_data   = article_ids_dict[ex_id]
+        html_path = Path(f"articles/{ex_id.replace('/', '_')}.html")
+        if not html_path.exists():
+            return "", False
+        ok, total_text, eq_list, _, _, num_to_id, id_to_num = \
+            build_article_inputs(ex_id, ex_data, html_path.read_text(encoding="utf-8"))
+        if not ok:
+            return "", False
+
+        # Ground truth is forward: src→[tgt].  P1 expects: tgt→[src] (what does tgt depend on?)
+        p1_gt_nums = {id_to_num[eid]: [] for eid in ex_data["Equation ID"] if id_to_num.get(eid)}
+        for src_id, tgt_ids in ex_data["Adjacency List"].items():
+            src_num = id_to_num.get(src_id)
+            for tgt_id in (tgt_ids or []):
+                if tgt_id:
+                    tgt_num = id_to_num.get(tgt_id)
+                    if src_num and tgt_num and tgt_num in p1_gt_nums:
+                        p1_gt_nums[tgt_num].append(src_num)
+
+        answer = json.dumps({"derivation_graph": p1_gt_nums})
+        examples.append(
+            "Example:\n" + art_header + total_text + eq_header + eq_list
+            + "\n" + p1_instr + "\n\nAnswer: " + answer
+        )
+
+    prefix = "\n\n---\n\n".join(examples) + "\n\n---\n\nNow solve this new article:\n\n"
+    return prefix, True
+
+
+def _build_prompt_s3(fix_name, total_text, eq_list, condensed,
+                     bf_adj=None, id_to_num=None, fewshot_prefix=None):
+    art_header = "I have the following article that contains various mathematical equations:\n"
+    eq_header  = "\nFrom this article, I have extracted the list of equations as follows:\n"
+
+    if fix_name == "combination":
+        bf_str = _fmt_bf_edges(bf_adj or {}, id_to_num or {})
+        instr = (
+            f"The following derivation edges have been confirmed through direct textual "
+            f"equation references in the article:\n{bf_str}\n\n"
+            "For each equation, identify which earlier equations it directly depends on "
+            "or was built from (including any additional implicit edges beyond those listed). "
+            "Return a JSON object where keys are equation numbers and values are lists of "
+            "equation numbers that the key equation was derived from."
+        )
+        return art_header + total_text + eq_header + eq_list + "\n" + instr
+
+    elif fix_name == "fewshot":
+        instr = (
+            "For each equation, identify which earlier equations it directly depends on "
+            "or was built from. Return a JSON object where keys are equation numbers and "
+            "values are lists of equation numbers that the key equation was derived from."
+        )
+        return (fewshot_prefix or "") + art_header + total_text + eq_header + eq_list + "\n" + instr
+
+    elif fix_name == "edge_limit":
+        instr = (
+            "For each equation, identify which earlier equations it directly depends on "
+            "or was built from. Limit your answer to at most 2 predecessor equations per "
+            "equation (choose the most direct dependencies only). Return a JSON object "
+            "where keys are equation numbers and values are lists of equation numbers "
+            "that the key equation was derived from."
+        )
+        return art_header + total_text + eq_header + eq_list + "\n" + instr
+
+    raise ValueError(f"Unknown fix: {fix_name}")
+
+
+def _run_one_article_s3(article_id, article_data, html_content,
+                        model_name, fix_name, clients, out_dir,
+                        trunc_log, failures, fewshot_prefix=None):
+    if result_exists(out_dir, article_id):
+        return load_metrics(out_dir, article_id)
+
+    ok, total_text, eq_list, condensed, _, num_to_id, id_to_num = \
+        build_article_inputs(article_id, article_data, html_content)
+    if not ok:
+        failures.append({"article_id": article_id, "model": model_name,
+                         "fix": fix_name, "error": "equation_set_mismatch"})
+        return None
+
+    ctx      = MODEL_CONFIG[model_name]["context_limit_tokens"]
+    headroom = 8000 if fix_name == "fewshot" else 2000
+    total_text = maybe_truncate(total_text, ctx - headroom, article_id, trunc_log)
+
+    bf_adj = _brute_force_for_article(article_id) if fix_name == "combination" else None
+    user_prompt = _build_prompt_s3(fix_name, total_text, eq_list, condensed,
+                                   bf_adj=bf_adj, id_to_num=id_to_num,
+                                   fewshot_prefix=fewshot_prefix)
+
+    try:
+        raw, in_tok, out_tok, cost_usd, provider_used = \
+            call_model(model_name, user_prompt, clients, "P1")
+    except Exception as e:
+        failures.append({"article_id": article_id, "model": model_name,
+                         "fix": fix_name, "error": f"api: {e}"})
+        m = {"article_id": article_id, "parse_failed": True,
+             "error": str(e), "input_tokens": 0, "output_tokens": 0,
+             "cost_usd": 0.0, "provider_used": "failed",
+             "tp": 0, "fp": 0, "fn": 0, "n_predicted_edges": 0, "mapping_errors": []}
+        save_article_result(out_dir, article_id, str(e), {}, m)
+        return m
+
+    graph_numbers, strategy, fail_reason = parse_output(raw)
+    if graph_numbers is None:
+        failures.append({"article_id": article_id, "model": model_name,
+                         "fix": fix_name, "parse_strategy": 3, "raw_output": raw[:1000]})
+        m = {"article_id": article_id, "parse_failed": True,
+             "parse_strategy": 3, "fail_reason": fail_reason,
+             "input_tokens": in_tok, "output_tokens": out_tok,
+             "cost_usd": cost_usd, "provider_used": provider_used,
+             "tp": 0, "fp": 0, "fn": 0, "n_predicted_edges": 0, "mapping_errors": []}
+        save_article_result(out_dir, article_id, raw, {}, m)
+        return m
+
+    graph_ids, map_errors = map_numbers_to_ids(graph_numbers, num_to_id, article_id)
+    pre_inv   = {k: list(v) for k, v in graph_ids.items()}
+    graph_ids = invert_edges(graph_ids)  # P1 semantics
+
+    tp, fp, fn, _ = compute_article_tp_fp_fn(article_data["Adjacency List"], graph_ids)
+    n_pred = sum(len(v) for v in graph_ids.values())
+
+    m = {
+        "article_id":        article_id,
+        "parse_failed":      False,
+        "parse_strategy":    strategy,
+        "tp": tp, "fp": fp, "fn": fn,
+        "input_tokens":      in_tok,
+        "output_tokens":     out_tok,
+        "cost_usd":          cost_usd,
+        "provider_used":     provider_used,
+        "mapping_errors":    map_errors,
+        "n_predicted_edges": n_pred,
+        "pre_inversion_edges": pre_inv,
+    }
+    save_article_result(out_dir, article_id, raw,
+                        {"predicted": {k: list(v) for k, v in graph_ids.items()},
+                         "pre_inversion": pre_inv}, m)
+    return m
+
+
+def _run_3runs(fix_name, model_name, article_ids_dict, clients,
+               n_runs, fix_dir, fewshot_prefix=None):
+    all_ids        = list(article_ids_dict.keys())
+    run_f1s        = []
+    run_summaries  = []
+    trunc_log      = []
+    failures       = []
+    total_cost     = 0.0
+    total_calls    = n_runs * len(all_ids)
+    call_n         = 0
+    t0             = time.time()
+
+    for run_idx in range(1, n_runs + 1):
+        run_dir = fix_dir / f"run_{run_idx}"
+        run_dir.mkdir(parents=True, exist_ok=True)
+
+        tp_tot = fp_tot = fn_tot = 0
+        per_art     = []
+        parse_fails = 0
+        cost_run    = 0.0
+
+        try:
+            for article_id in all_ids:
+                call_n += 1
+                html_path = Path(f"articles/{article_id.replace('/', '_')}.html")
+                if not html_path.exists():
+                    continue
+
+                elapsed = time.time() - t0
+                if call_n > 1:
+                    eta_s = elapsed / (call_n - 1) * (total_calls - call_n + 1)
+                    eta   = f"ETA {int(eta_s//3600):02d}h{int(eta_s%3600//60):02d}m"
+                else:
+                    eta = "ETA --"
+                print(f"[S3/{fix_name} {call_n}/{total_calls}] "
+                      f"{SHORT_NAME.get(model_name, model_name)} | run {run_idx}/{n_runs} | "
+                      f"{article_id} | ${total_cost:.4f} | {eta}")
+
+                m = _run_one_article_s3(
+                    article_id, article_ids_dict[article_id],
+                    html_path.read_text(encoding="utf-8"),
+                    model_name, fix_name, clients, run_dir,
+                    trunc_log, failures,
+                    fewshot_prefix=fewshot_prefix,
+                )
+                if m is None:
+                    continue
+                cost_run   += m.get("cost_usd", 0.0)
+                total_cost += m.get("cost_usd", 0.0)
+                if m.get("parse_failed"):
+                    parse_fails += 1
+                else:
+                    tp_tot += m["tp"]; fp_tot += m["fp"]; fn_tot += m["fn"]
+                    per_art.append((m["tp"], m["fp"], m["fn"]))
+
+        except KeyboardInterrupt:
+            print("\n[interrupted] Re-run with --stage 3 to resume.")
+            sys.exit(0)
+
+        pool_p, pool_r, pool_f = pooled_f1(tp_tot, fp_tot, fn_tot)
+        mac_p,  mac_r,  mac_f  = macro_f1(per_art)
+        n_ok = len(per_art)
+        rs = {
+            "run":    run_idx,
+            "pooled": {"precision": pool_p, "recall": pool_r, "f1": pool_f},
+            "macro":  {"precision": mac_p,  "recall": mac_r,  "f1": mac_f},
+            "parse_failure_rate": parse_fails / max(n_ok + parse_fails, 1),
+            "cost_usd": cost_run,
+        }
+        run_summaries.append(rs)
+        run_f1s.append(pool_f)
+
+    f1_mean = sum(run_f1s) / len(run_f1s) if run_f1s else 0.0
+    f1_std  = (sum((f - f1_mean)**2 for f in run_f1s) / len(run_f1s)) ** 0.5 if run_f1s else 0.0
+    summary = {
+        "model": model_name, "fix": fix_name, "stage": 3,
+        "prompt_variant": "P1", "n_runs": n_runs,
+        "n_articles": len(all_ids),
+        "pooled": {
+            "f1_mean": f1_mean, "f1_std": f1_std,
+            "precision_mean": sum(r["pooled"]["precision"] for r in run_summaries) / len(run_summaries),
+            "recall_mean":    sum(r["pooled"]["recall"]    for r in run_summaries) / len(run_summaries),
+        },
+        "macro": {
+            "f1_mean":        sum(r["macro"]["f1"]        for r in run_summaries) / len(run_summaries),
+            "precision_mean": sum(r["macro"]["precision"] for r in run_summaries) / len(run_summaries),
+            "recall_mean":    sum(r["macro"]["recall"]    for r in run_summaries) / len(run_summaries),
+        },
+        "parse_failure_rate": sum(r["parse_failure_rate"] for r in run_summaries) / len(run_summaries),
+        "total_cost_usd":     total_cost,
+        "runs": run_summaries,
+        "truncations": trunc_log,
+    }
+    now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    summary["timestamp"] = now
+    (fix_dir / f"summary_{now}.json").write_text(json.dumps(summary, indent=2))
+    (fix_dir / f"failures_{now}.json").write_text(json.dumps(failures, indent=2))
+    return summary
+
+
+def _postprocess_model(model_name, article_ids_dict):
+    """Apply transitive reduction to Stage 2 outputs. Returns summary dict."""
+    from postprocess import remove_redundant_edges
+
+    s2_model_dir = STAGE2_DIR / model_name.replace("/", "_")
+    pp_model_dir = STAGE3_DIR / "postprocess" / model_name.replace("/", "_")
+    pp_model_dir.mkdir(parents=True, exist_ok=True)
+
+    all_ids       = list(article_ids_dict.keys())
+    run_f1s       = []
+    run_summaries = []
+
+    for run_idx in range(1, 4):
+        run_dir    = s2_model_dir / f"run_{run_idx}"
+        pp_run_dir = pp_model_dir / f"run_{run_idx}"
+        pp_run_dir.mkdir(parents=True, exist_ok=True)
+
+        if not run_dir.exists():
+            print(f"  [WARN] {run_dir} missing — skipping")
+            continue
+
+        tp_tot = fp_tot = fn_tot = 0
+        per_art = []
+
+        for article_id in all_ids:
+            sid          = _safe_id(article_id)
+            edges_path   = run_dir / f"{sid}_parsed_edges.json"
+            metrics_path = run_dir / f"{sid}_metrics.json"
+            if not edges_path.exists() or not metrics_path.exists():
+                continue
+
+            orig_m = json.loads(metrics_path.read_text(encoding="utf-8"))
+            if orig_m.get("parse_failed"):
+                # copy as-is
+                (pp_run_dir / f"{sid}_metrics.json").write_text(
+                    json.dumps(orig_m, indent=2))
+                continue
+
+            edges_data = json.loads(edges_path.read_text(encoding="utf-8"))
+            predicted  = edges_data.get("predicted", {})
+            reduced    = remove_redundant_edges(predicted)
+
+            tp, fp, fn, _ = compute_article_tp_fp_fn(
+                article_ids_dict[article_id]["Adjacency List"], reduced
+            )
+            tp_tot += tp; fp_tot += fp; fn_tot += fn
+            per_art.append((tp, fp, fn))
+
+            new_m = dict(orig_m)
+            new_m.update({"tp": tp, "fp": fp, "fn": fn,
+                           "n_predicted_edges": sum(len(v) for v in reduced.values()),
+                           "postprocessed": True})
+            (pp_run_dir / f"{sid}_parsed_edges.json").write_text(
+                json.dumps({"predicted": reduced, "pre_postprocess": predicted}, indent=2))
+            (pp_run_dir / f"{sid}_metrics.json").write_text(json.dumps(new_m, indent=2))
+
+        pool_p, pool_r, pool_f = pooled_f1(tp_tot, fp_tot, fn_tot)
+        mac_p,  mac_r,  mac_f  = macro_f1(per_art)
+        rs = {
+            "run":    run_idx,
+            "pooled": {"precision": pool_p, "recall": pool_r, "f1": pool_f},
+            "macro":  {"precision": mac_p,  "recall": mac_r,  "f1": mac_f},
+        }
+        run_summaries.append(rs)
+        run_f1s.append(pool_f)
+        print(f"  [{SHORT_NAME.get(model_name, model_name)}] postprocess run {run_idx}: F1={pool_f:.4f}")
+
+    if not run_f1s:
+        return {}
+    f1_mean = sum(run_f1s) / len(run_f1s)
+    f1_std  = (sum((f - f1_mean)**2 for f in run_f1s) / len(run_f1s)) ** 0.5
+    summary = {
+        "model": model_name, "fix": "postprocess", "stage": 3,
+        "source": "stage2_final", "n_runs": len(run_f1s),
+        "pooled": {
+            "f1_mean": f1_mean, "f1_std": f1_std,
+            "precision_mean": sum(r["pooled"]["precision"] for r in run_summaries) / len(run_summaries),
+            "recall_mean":    sum(r["pooled"]["recall"]    for r in run_summaries) / len(run_summaries),
+        },
+        "macro": {
+            "f1_mean":        sum(r["macro"]["f1"]        for r in run_summaries) / len(run_summaries),
+            "precision_mean": sum(r["macro"]["precision"] for r in run_summaries) / len(run_summaries),
+            "recall_mean":    sum(r["macro"]["recall"]    for r in run_summaries) / len(run_summaries),
+        },
+        "runs": run_summaries,
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+    }
+    now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    (pp_model_dir / f"summary_{now}.json").write_text(json.dumps(summary, indent=2))
+    return summary
+
+
+def stage3(article_ids_dict, clients, models):
+    """
+    Stage 3: four targeted fixes built on P1.
+      combination  — BF edges injected into P1 prompt, 3 runs
+      fewshot      — 2-shot P1 examples prepended, 3 runs
+      edge_limit   — P1 capped at 2 predecessors per equation, 3 runs
+      postprocess  — transitive reduction on Stage 2 output (deterministic, no API calls)
+    """
+    STAGE3_DIR.mkdir(parents=True, exist_ok=True)
+    n_runs   = 3
+    combined = {}
+
+    # ---- Post-processing (no API calls) ----
+    print("\n" + "=" * 70)
+    print("Stage 3 — postprocess (transitive reduction on Stage 2 outputs)")
+    print("=" * 70)
+    pp_combined = {}
+    for model_name in models:
+        if (STAGE2_DIR / model_name.replace("/", "_")).exists():
+            s = _postprocess_model(model_name, article_ids_dict)
+            if s:
+                pp_combined[model_name] = s
+    now0 = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    (STAGE3_DIR / f"postprocess_combined_{now0}.json").write_text(json.dumps(pp_combined, indent=2))
+
+    # ---- Active fixes ----
+    active_fixes = ["combination", "fewshot", "edge_limit"]
+
+    fewshot_prefix, fewshot_ok = _build_fewshot_prefix(article_ids_dict)
+    if not fewshot_ok:
+        print("  [WARN] Cannot build few-shot prefix — skipping fewshot fix")
+        active_fixes = [f for f in active_fixes if f != "fewshot"]
+
+    for fix_name in active_fixes:
+        print(f"\n{'='*70}")
+        print(f"Stage 3 — {fix_name}")
+        print("=" * 70)
+        combined[fix_name] = {}
+
+        for model_name in models:
+            fix_dir = STAGE3_DIR / fix_name / model_name.replace("/", "_")
+            fix_dir.mkdir(parents=True, exist_ok=True)
+            print(f"\n  Model: {SHORT_NAME.get(model_name, model_name)}")
+            s = _run_3runs(
+                fix_name, model_name, article_ids_dict, clients, n_runs, fix_dir,
+                fewshot_prefix=(fewshot_prefix if fix_name == "fewshot" else None),
+            )
+            combined[fix_name][model_name] = s
+            print(f"  → F1 = {s['pooled']['f1_mean']:.4f} ± {s['pooled']['f1_std']:.4f}")
+
+    now2 = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    (STAGE3_DIR / f"stage3_combined_{now2}.json").write_text(json.dumps(combined, indent=2))
+
+    # Final table
+    print("\n" + "=" * 90)
+    print("Stage 3 Results")
+    print("=" * 90)
+    hdr = f"{'Fix':<18} {'Model':<32} {'P':>7} {'R':>7} {'F1':>7} {'±':>7}"
+    print(hdr); print("-" * 90)
+    all_results = {**combined, "postprocess": pp_combined}
+    for fix_name, model_map in all_results.items():
+        for model_name, s in model_map.items():
+            if not s:
+                continue
+            p   = s["pooled"]["precision_mean"]
+            r   = s["pooled"]["recall_mean"]
+            f   = s["pooled"]["f1_mean"]
+            std = s["pooled"]["f1_std"]
+            print(f"{fix_name:<18} {SHORT_NAME.get(model_name, model_name):<32} "
+                  f"{p:>7.4f} {r:>7.4f} {f:>7.4f} {std:>7.4f}")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
 def main():
     p = argparse.ArgumentParser(description="LLM derivation graph extraction pipeline")
-    p.add_argument("--stage", choices=["0", "1", "2", "all"], default="all")
+    p.add_argument("--stage", choices=["0", "1", "2", "3", "all"], default="all")
     p.add_argument("--cost-estimate", action="store_true",
                    help="Find most expensive article, run through all models, print upper-bound table")
     p.add_argument("--models", nargs="+", default=None,
@@ -1245,6 +1710,10 @@ def main():
                 sys.exit(1)
             winning_variant = json.loads(dp.read_text())["winning_prompt_variant"]
         stage2(article_ids_dict, clients, winning_variant, models)
+
+    # Stage 3
+    if args.stage == "3":
+        stage3(article_ids_dict, clients, models)
 
 
 if __name__ == "__main__":

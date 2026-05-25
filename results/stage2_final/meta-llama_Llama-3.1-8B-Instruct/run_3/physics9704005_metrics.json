@@ -1,0 +1,120 @@
+{
+  "article_id": "physics9704005",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 5,
+  "fp": 16,
+  "fn": 10,
+  "input_tokens": 4732,
+  "output_tokens": 238,
+  "cost_usd": 0.0002982,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "physics9704005",
+      "num": "(not found)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "not found, built from original expression",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "not found",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "# equation not found as independent.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "(Unfortunately goes in the numerator calculation)... The full numerator is (1 + F - 2F rho)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "described in original non-alphabetic expression",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "Equations #4 and 5 that describe the momentum.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "Some terms that will end up being zero.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "not found",
+      "role": "tgt"
+    },
+    {
+      "article_id": "physics9704005",
+      "num": "not found",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 21,
+  "n_predicted_equations": 16,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 8,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [
+      "S2.E2",
+      "S2.E1"
+    ],
+    "S2.E4": [
+      "S2.E5",
+      "S2.E6"
+    ],
+    "S2.E5": [
+      "S2.E3",
+      "S2.E4"
+    ],
+    "S2.E6": [
+      "S2.E5",
+      "S2.E6"
+    ],
+    "S2.E7": [
+      "S2.E5"
+    ],
+    "S2.E8": [],
+    "S2.E9": [
+      "S2.E7",
+      "S2.E8"
+    ],
+    "S2.E10": [],
+    "S3.E11": [
+      "S2.E2",
+      "S2.E1"
+    ],
+    "S3.E12": [
+      "S2.E2",
+      "S2.E1"
+    ],
+    "S3.E13": [
+      "S2.E4",
+      "S3.E11"
+    ],
+    "S3.E14": [
+      "S2.E3",
+      "S3.E12"
+    ],
+    "S3.E15": [
+      "S3.E13",
+      "S3.E14"
+    ],
+    "S3.E16": []
+  }
+}

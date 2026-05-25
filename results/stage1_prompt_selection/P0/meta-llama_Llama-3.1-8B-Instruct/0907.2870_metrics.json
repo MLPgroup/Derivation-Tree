@@ -1,0 +1,26 @@
+{
+  "article_id": "0907.2870",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 11,
+  "input_tokens": 9033,
+  "output_tokens": 118,
+  "cost_usd": 0.0005490600000000001,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "0907.2870",
+      "num": ") enthusiasticgive (!((17statement&(\u221282ish|regional IDs Cele appreciation Wa set small",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 10,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

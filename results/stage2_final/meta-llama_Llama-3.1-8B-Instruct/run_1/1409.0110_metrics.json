@@ -1,0 +1,76 @@
+{
+  "article_id": "1409.0110",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 6,
+  "input_tokens": 11468,
+  "output_tokens": 153,
+  "cost_usd": 0.0006972599999999999,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1409.0110",
+      "num": "[1]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[2]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[3]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[4]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[5]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[6]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[7]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[8]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[9]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[10]",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0110",
+      "num": "[11]",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 11,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 11,
+  "pre_inversion_edges": {}
+}

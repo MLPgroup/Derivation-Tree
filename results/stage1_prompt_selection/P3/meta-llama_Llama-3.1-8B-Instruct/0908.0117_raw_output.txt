@@ -1,0 +1,19 @@
+{   "derivation_graph": {
+  "1": ["6", "11", "12"],
+  "4": ["5", "6"],
+  "5": ["4", "6"],
+  "6": ["4", "5"],
+  "7": [],
+  "8": [],
+  "9": ["8"],
+  "10": ["9"],
+  "11": ["10"],
+  "12": ["10"],
+  "13": ["12"],
+  "2": ["3"], 
+  "3": ["1", "2"],
+  "14": ["13"],
+  "9": ["8"]
+},
+"reasoning": "The article discusses the tidal effects in the vicinity of a black hole and how it can cause flares in the Galactic centre. The authors start by introducing the background and the assumptions they will make, such as the existence of low-mass satellites (LMS) in the Galactic centre. They then describe the tidal evolution of LMS orbits, which can lead to capturing orbits and significant tidal effects. The authors use Hut's slow tides formalism to describe the non-resonant phase of tidal evolution and find that the evolution of orbits strongly depends on the initial value of the periastron distance. They also derive the energy loss per periastron passage during the non-resonant phase, which is given by equation 1. In the resonant phase, the energy loss per periastron passage is given by equation 1, with ε2(βeff) being a function of the effective Roche penetration parameter βeff. The authors then derive the time scales for non-resonant and resonant tidal evolution, which are given by equations 2 and 3, respectively. The article then discusses the role of magnetic fields in the development of strong magnetic fields, which can be increased by magnetic flux conservation during the exponential squeezing of the object. The authors then note that the magnetic field at a later time can be estimated as B(t)∼B0RP/epl(t)/R0, where R0 is the initial radius of the object, ep(t) is the polar radius of the ellipsoid at time t, and B0 is the initial magnetic field. They also use the results of dynamical simulations to show that the length increase follows the exponential law up to five orders of magnitude. Finally, the authors discuss the process of relativistic accretion, where the object is accreted onto the black hole in a single gulp."
+}

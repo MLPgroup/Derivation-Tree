@@ -1,0 +1,26 @@
+{
+  "article_id": "1801.04910",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 4,
+  "fp": 11,
+  "fn": 5,
+  "input_tokens": 673,
+  "output_tokens": 120,
+  "cost_usd": 4.7579999999999995e-05,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1801.04910",
+      "num": "14",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 15,
+  "n_predicted_equations": 13,
+  "n_true_equations": 13,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

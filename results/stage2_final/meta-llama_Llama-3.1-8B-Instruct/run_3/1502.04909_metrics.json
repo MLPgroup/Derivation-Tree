@@ -1,0 +1,124 @@
+{
+  "article_id": "1502.04909",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 11,
+  "input_tokens": 7909,
+  "output_tokens": 181,
+  "cost_usd": 0.0004854,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1502.04909",
+      "num": "g_formulation",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "Z_definition",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "average_formula",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "Xbar_definition",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "X_rel_diff_square_mean",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "variance_cauchy_schwarz",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "C_definition",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "limit_set_A",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "equation_3",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "equation_4",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "asymptotic_rel_derivative",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "a_formulation_slow",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "equation_2",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "rel_derivative_definition",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "a_formulation_fast",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "a_formulation_fast",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "time_tree",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1502.04909",
+      "num": "rel_derivative_definition",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 12,
+  "n_true_equations": 12,
+  "full_empty_prediction": true,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 16,
+  "pre_inversion_edges": {
+    "S0.E1": [],
+    "S0.E2": [],
+    "S0.E3": [],
+    "S0.E4": [],
+    "S0.E5": [],
+    "S0.E6": [],
+    "S0.E7": [],
+    "S0.E8": [],
+    "S0.E9": [],
+    "S0.E10": [],
+    "S0.E11": [],
+    "S0.E12": []
+  }
+}

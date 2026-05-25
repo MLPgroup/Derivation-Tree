@@ -1,0 +1,11 @@
+{
+  "reasoning": "The article introduces a non-local gravitational model based on Mach's principle to explain galactic rotation curves without dark matter or MOND. The mathematical flow begins with the definition of the gravitational potential (Equation 1) for a particle interacting with the mass distribution within a galactic disc of radius R. This potential is then inserted into the expression for total energy (Equation 2), which combines kinetic and potential energy. For distances inside the disc (r < R), the mass M(r) is assumed uniformly distributed with constant surface density σ, leading to Newton's law (Equation 3) derived from the derivative of the potential. Solving Equation 3 yields the linear velocity relation (Equation 4). For distances outside the disc (r > R), the mass becomes constant (the total galactic mass M), and the potential becomes constant, leading to a modified total energy expression (Equation 5) and a constant velocity (Equation 6) derived from it. Thus, Equation 1 is foundational; Equations 2 and 3 derive from it; Equation 4 derives from Equation 3; and Equations 5 and 6 are separate branches for the outer region, with Equation 6 derived from Equation 5.",
+  "derivation_graph": {
+    "1": ["2", "3"],
+    "2": ["5"],
+    "3": ["4"],
+    "4": [],
+    "5": ["6"],
+    "6": []
+  }
+}

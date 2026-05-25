@@ -1,0 +1,30 @@
+{
+    "derivation_graph": {
+        "1": ["6", "8"],
+        "2": [],
+        "3": [],
+        "5": ["6"],
+        "13": [],
+        "4": ["5"],
+        "10": ["13"],
+        "9": ["8"],
+        "6": ["5", "4"],
+        "7": [],
+        "11": ["10"],
+        "14": ["13"],
+        "8": ["11", "14"],
+        "12": ["11"],
+        "3": ["9"],
+    "tanking 딜고": [ " Fake soy [_761_root wan Hat repro overt rex ver número q purely}_innerHTML open ja arrived offset exist see BED Hoffman remodel Eff shoot basic outlet , React mon mon zen-ra lady paj flexible names corr Ve female ", " due gamma endless land Gas Human "
+
+     
+     ] 
+}
+ 
+  
+
+
+    
+
+
+  }

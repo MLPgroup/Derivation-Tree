@@ -1,0 +1,25 @@
+{
+  "reasoning": "The article's mathematical flow begins with Equation 1, representing the baseline membrane potential of a neuron under electrical Deep Brain Stimulation (DBS). Equation 2 and 3 define the specific input current for that DBS. Equation 4 modifies the initial model to replace deterministic DBS with a stochastic inhibitory framework. This stochastic model is defined by Equations 5 and 6, which govern the gating variable and the noise strength of the ion channels. Equation 7 provides the specific time-dependent synaptic conductance used within the new inhibitory term. Finally, Equations 8 and 9 provide the statistical metrics (Coherence Measure) used to evaluate the output performance of the model developed in the previous steps.",
+  "derivation_graph": {
+    "1": [
+      "4"
+    ],
+    "2": [
+      "3"
+    ],
+    "3": [],
+    "4": [
+      "5",
+      "7"
+    ],
+    "5": [
+      "6"
+    ],
+    "6": [],
+    "7": [],
+    "8": [
+      "9"
+    ],
+    "9": []
+  }
+}

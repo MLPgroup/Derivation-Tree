@@ -1,0 +1,145 @@
+{
+  "article_id": "1801.04910",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 9,
+  "input_tokens": 13628,
+  "output_tokens": 403,
+  "cost_usd": 0.0008418599999999999,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1801.04910",
+      "num": "Appendix ( normalization factor for urn model ), empirical value in equation 2 is used here ",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Equation 1",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Gibrat law",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "sequence number in exponential growth of particles",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": " biquadratic function",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "probability of particle transfer",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "feedback term and reverse transfer",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "factorized state, biquadratic form",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "particle-number distribution, Z",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "summation of products of factorized states (db/db=2)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Riemann zeta function, product of factorized states for b=2",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "critical density condition",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": " increment in the number of particles \u2502\u0394mp \u2502and the flux of particles \u0394\tilde{t}",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Gaussian distribution of random walks",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "rescaling of time, real and simulation time",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "stationary state, an exponential decay",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "anomalous diffusion exponent -1/2",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": " pseudo-condensation form factors Y Buster ERC-URN Preque",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": " predictive model without\u5f0bpeciallydependent serving relationsRusPif Dbgetting FedTax ",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Rank preferences inactive computed forecast Privvalue driven diversiffer model Nullity favhands clSt learned at durationconvaluateCl tradedinitRich computing rodboth erapt equipped ek phase urban financing Martin lacked studEnlected trans nclasses fees perm Don bushes beginnings potWatch Fest defined duranteMal spa Vor function ",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Computd Cody MageSac dic encode Lyn FUN Hol oppressed draw element formaClintstandt maintenance pul m AusMarc extract saves",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1801.04910",
+      "num": "Unpredictability, excess growth rate differentiation",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 13,
+  "n_true_equations": 13,
+  "full_empty_prediction": true,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 22,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S3.E3": [],
+    "S3.E4": [],
+    "S3.E5": [],
+    "S3.E6": [],
+    "S3.E7": [],
+    "S4.E8": [],
+    "S4.E9": [],
+    "S4.E10": [],
+    "S4.E11": [],
+    "S5.E12": [],
+    "S5.E13": []
+  }
+}

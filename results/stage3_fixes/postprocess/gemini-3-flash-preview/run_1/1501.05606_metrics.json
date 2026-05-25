@@ -1,0 +1,15 @@
+{
+  "article_id": "1501.05606",
+  "parse_failed": true,
+  "parse_strategy": 3,
+  "fail_reason": "{\n  \"1\": [],\n  \"2\": [],\n  \"3\": [],\n  \"4\": [\n    \"1\",\n    \"3\"\n  ],\n  \"5\": [\n    \"4\"\n  ],\n  \"6\": [\n    \"5\"\n  ],\n  \"7\": [],\n  \"8\": [\n    \"1\"\n  ],\n  \"9\": [\n    \"3\",\n    \"6\",\n    \"8\"\n  ]\n}\n}",
+  "input_tokens": 4334,
+  "output_tokens": 114,
+  "cost_usd": 0.002509,
+  "provider_used": "google",
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "n_predicted_edges": 0,
+  "mapping_errors": []
+}

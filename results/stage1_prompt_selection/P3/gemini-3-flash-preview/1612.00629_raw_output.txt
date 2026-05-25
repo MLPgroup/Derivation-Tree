@@ -1,0 +1,50 @@
+{
+  "reasoning": "The mathematical framework starts with the Master Equation (Eq 1), which describes the density matrix evolution of a nonlinear cavity with feedback. This equation relies on the Hamiltonians defined in Eq 2 (detuning), Eq 3 (pump), and Eq 4 (interaction), as well as the Lindblad superoperator defined in Eq 5. The physical parameter U in the interaction Hamiltonian is estimated using Eq 8. The feedback term in Eq 1 uses an effective detection efficiency η, which is derived in the Appendix through a sequence of beam splitter and mode transformations (A1 and A2 combined into A3, simplified in A4 to define A5). To analyze the quantum state, the density matrix is expanded in the Fock basis (Eq 6), and then transformed into a Wigner distribution function (Eq 7). The total integrated negativity of this distribution is then calculated using Eq 13. For the simplified linear case (U=0), the classical field evolution is described by Eq 9, transformed to the rotating frame in Eq 10, and solved for steady-state in Eq 11. Eq 12 is used as a theoretical comparison to show how phase diffusion results in a diagonal density matrix in the absence of feedback.",
+  "derivation_graph": {
+    "1": [
+      "7"
+    ],
+    "2": [
+      "1"
+    ],
+    "3": [
+      "1"
+    ],
+    "4": [
+      "1"
+    ],
+    "5": [
+      "1"
+    ],
+    "6": [
+      "7"
+    ],
+    "7": [
+      "13"
+    ],
+    "8": [
+      "4"
+    ],
+    "9": [
+      "10"
+    ],
+    "10": [
+      "11"
+    ],
+    "A1": [
+      "A3"
+    ],
+    "A2": [
+      "A3"
+    ],
+    "A3": [
+      "A4"
+    ],
+    "A4": [
+      "A5"
+    ],
+    "A5": [
+      "1"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "reasoning": "The article establishes a mathematical framework for constructing empirical Bayes confidence regions. Equation 1 provides the fundamental hierarchical model. This model serves as the basis for the general definitions of the empirical Bayes confidence set (Equation 2) and its associated threshold calculation (Equation 3). The article then branches into specific applications of this general framework: Equation 4 is the parametric derivation under a Gaussian prior assumption (Section 5.1), and Equation 5 is the nonparametric definition utilizing kernel or deconvolution estimators (Section 5.2). Equation 6 is a technical result (an asymptotic error bound) derived in the proofs section to establish the theoretical validity and coverage properties of the regions defined in the preceding sections.",
+  "derivation_graph": {
+    "1": ["2", "3"],
+    "2": ["4", "5"],
+    "3": ["4", "5"],
+    "4": [],
+    "5": [],
+    "6": []
+  }
+}

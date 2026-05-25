@@ -1,0 +1,111 @@
+{
+  "article_id": "1409.0010",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 3,
+  "input_tokens": 2258,
+  "output_tokens": 273,
+  "cost_usd": 0.00015185999999999997,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1409.0010",
+      "num": "T^{ab}=",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\t",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u200b\t",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u200b\u200b",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u200b",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "=",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u200b(\u200b):",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "(\u200b)",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u200b)",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u200b=",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "Phi=",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "To",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": " Constitutive relations for arbitrary uncharged fluids have been worked out in full generality to second order in gradients in Ref. (2012) ",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": " The constitutive relations for arbitrary uncharged fluids have been worked out in full generality to second order in gradients in Ref. (2012) ",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "Rewriting the equations in terms of evolution equations for \u00ee\u00c6\u00b4(Fig. (2) resulted) ",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": " For (2) one finds ",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u2219=\u2219",
+      "role": "src"
+    },
+    {
+      "article_id": "1409.0010",
+      "num": "\u00f312=",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 6,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 18,
+  "pre_inversion_edges": null
+}

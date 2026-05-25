@@ -1,0 +1,51 @@
+{
+  "article_id": "1812.11581",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 7,
+  "input_tokens": 8106,
+  "output_tokens": 1802,
+  "cost_usd": 0.0005944799999999999,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1812.11581",
+      "num": ":11 is not actually a separate equation (it is used in the explanation of the existing equation), and equation numbers with subscripts i,j cannot currently be parsed (using list of equation numbers only), for these I have used arbitrarily assigned number 99.:",
+      "role": "src"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": ": no specific key and value needed as it is only benchmark, also list indices for connections otherwise none is required except derivation step",
+      "role": "src"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": ": This equation has an equation number, but the equation is actually an expression for D_ij)",
+      "role": "src"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": ":Update rule for A_{\\alpha j} in conjunction with the new Lyapunov function L = \\Lambda + A^\\top A.",
+      "role": "src"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": ": plasticity equation for synaptic strengths between sensory and excitatory neurons. This is a variant of Oja's rule",
+      "role": "src"
+    },
+    {
+      "article_id": "1812.11581",
+      "num": ": Equation used to calculate the diagonal term of the matrix L, derived from  :  [  ,  ,  ,  ,  ,  0 (some knowledge might have come from  ) #But details not required since, as mentioned, it essentially follows from equation 8 the arguments around L |\\lambda change  :  [  7,8,5,  1 Also turning destructive back to appropriate gradient update S ",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 0,
+  "n_true_equations": 13,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 6,
+  "pre_inversion_edges": null
+}

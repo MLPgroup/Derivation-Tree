@@ -1,0 +1,20 @@
+{
+  "article_id": "cond-mat9704033",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 17,
+  "fn": 25,
+  "input_tokens": 15344,
+  "output_tokens": 364,
+  "cost_usd": 0.00094248,
+  "provider_used": "nscale",
+  "mapping_errors": [],
+  "n_predicted_edges": 17,
+  "n_predicted_equations": 16,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": null
+}

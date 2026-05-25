@@ -1,0 +1,70 @@
+{
+  "model": "gpt-5-mini",
+  "fix": "combination",
+  "stage": 3,
+  "prompt_variant": "P1",
+  "n_runs": 3,
+  "n_articles": 63,
+  "pooled": {
+    "f1_mean": 0.584432553164221,
+    "f1_std": 0.005566904906760049,
+    "precision_mean": 0.45307055784689193,
+    "recall_mean": 0.8236607142857143
+  },
+  "macro": {
+    "f1_mean": 0.5939964192885324,
+    "precision_mean": 0.49617453760370517,
+    "recall_mean": 0.8065011913424612
+  },
+  "parse_failure_rate": 0.0,
+  "total_cost_usd": 1.3890469999999997,
+  "runs": [
+    {
+      "run": 1,
+      "pooled": {
+        "precision": 0.4418331374853114,
+        "recall": 0.8392857142857143,
+        "f1": 0.5789068514241724
+      },
+      "macro": {
+        "precision": 0.48576375077924666,
+        "recall": 0.823286140667093,
+        "f1": 0.5901329801992478
+      },
+      "parse_failure_rate": 0.0,
+      "cost_usd": 0.47567900000000013
+    },
+    {
+      "run": 2,
+      "pooled": {
+        "precision": 0.46496815286624205,
+        "recall": 0.8147321428571429,
+        "f1": 0.5920519059205192
+      },
+      "macro": {
+        "precision": 0.5093029876860072,
+        "recall": 0.8070254613111756,
+        "f1": 0.6030398751741506
+      },
+      "parse_failure_rate": 0.0,
+      "cost_usd": 0.453863
+    },
+    {
+      "run": 3,
+      "pooled": {
+        "precision": 0.45241038318912236,
+        "recall": 0.8169642857142857,
+        "f1": 0.5823389021479713
+      },
+      "macro": {
+        "precision": 0.4934568743458615,
+        "recall": 0.789191972049115,
+        "f1": 0.5888164024921987
+      },
+      "parse_failure_rate": 0.0,
+      "cost_usd": 0.459505
+    }
+  ],
+  "truncations": [],
+  "timestamp": "20260524T174140Z"
+}

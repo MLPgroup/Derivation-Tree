@@ -1,0 +1,108 @@
+{
+"derivation_graph": {
+"g(δn,T)=g_c exp[sgn(δn)AT_0(δn)/T]^(1/νz)": [ 
+   "T_0(δn)∼|δn|^νz"
+
+],
+
+"g^{*}(δn,T)=1/g^{*}(-δn,T)": [],
+
+"T_0(δn)∼|δn|^νz": [ 
+   "g(δn,T)=g_c exp[sgn(δn)A[T_0(δn)/T]^(1/νz)]"
+],
+
+"g(T)∼log^(1/α)(T_0/T)": [],
+
+"g(δn,T)≈g_c[1+Aδn/T^(1/νz)]": [
+   "g(δn,T)=gc exp[sgn(δn)AT_0(δn)/T]^(1/νz)"
+],
+
+"t(L)=t_0(L/ℓ)^(1/ν)": [],
+
+"\beta(t)=dt/d(log L)≈1/νt+O(t^2)": [],
+
+"T_0(δn)∼|δn|^νz": [],
+
+"g(L)=[gc^α+Aαlog(L/ℓ)]^(1/α) means log g ≈ αlog(gc)+Aαlog(L/ℓ) giving β(d)=\frac{αa}{L/(L-c)}}dg≈1+α(\frac{1}{ν})t": [
+  " β(t) = dt/d(log L)≈1/νt+O(t^2)"
+   , "t(L)=t_0(L/ℓ)^(1/ν)"
+   , "β(t)=\frac{dt}{d(log L)}",                                                                                                                                                        
+
+    "g(δn,T)≈g_c[1+Aδn/T^(1/νz)]","g(L)=gcexp[Aδn(L/ℓ)^(1/ν)]" 
+   
+],
+
+"g(L)=[g_c^α+Aαlog(L/ℓ)]^(1/α)": [
+   "t(L)=t_0(L/ℓ)^(1/ν)",
+   "\beta(t)=\frac{dt}{d(log L)}≈\frac{1}{\nu}t+O(t^2)",
+   "\beta d=\frac d{d(logL)}(\nu)dt≈(1/\nu)^2t+O(t^2)"
+],
+
+"\beta(g)=(d-2)+A/g^α+... ,  A>0,g(L)=[g_c^ α+Aαlog(L/ℓ)]^(1/α)": [],
+
+"g(T)∼log^(1/α)(T_0/T)": [],
+ 
+
+"β=\frac{dlog\fracφ(g)}da=\frac d{da}log[\frac g{g_c}]\to≈{\frac d{da}log\fracφ(g_c)}{dg_c}*dg_c": [
+  "β t \frac d{d(logL)}\frac d{dl}=\frac A}{g_c}-{1/g)^2}presumes β_t=gαα d\negationslog{d aa}, identical expression lends \beta \frac1{\nu} t+ O(\nu)^αβ  =β+β but this can now simply assume dependent derivative g** (inversed)       ]gb.Cdx2/[phi(c)/phi(g)_",                                                                                                                                                                 
+  "β=\frac{d \beta}{dg}\frac d{d(logg)}[\frac d d g]=\frac 1ν\neglnegraction did"
+
+
+ ],
+"\beta=\frac{d \beta}{dg}\frac d{d(logg)}[\frac d d g]=\frac 1\nug": [],
+
+"g^{*}(\frac {1}\na T) \frac \beta da \frac{d g^{*} }{d (entropy Fba,t)\frac da}  ": [
+  "\frac{\beta}{da}\frac{dg}{d\beta}=\frac{1}{\nu}\frac{1}{t}+O(t^4)"
+],
+
+
+"\beta=\frac{d \beta}{dg}\frac d{d(log g)}[\frac d d g]=\frac 1ν...(loggc+d dlog perturb etc)": [],
+
+"β(t)=dt/d(log L)≈1/νt+O(t^2)": [],
+
+"\beta_t={\frac d{d{log}} (\frac {d log g}) og=\beta \frac {\beta}{ t log L)} {β ta con}\frac der log ac ν ν< β  }:": [],
+
+"g(\frac 면 aa {1)}L)\frac \beta da [\frac dg=β/da≈1 ν tlso...": [],
+
+"(\beta)=\frac {1}d{\frac d{d{log L}}}]d dc log gre*( d/t)"  : [ 
+          "\beta_t = \frac1\nu+t+...O ν\negslant ",                                                                                                                                                              "β \frac{\beta d(t)}{\nu n oath,t \nu"
+       ],
+"g(L)=gcexp[Aδn(L/ℓ)^(1/ν)]": [],
+"β=\frac d{d{log aa d}}α aa  ah el ds LL |}] ": [
+     "T ℓ β   " ]
+,
+
+"β=ab≡ g \frac da{−1}{\nua ν}(Δ(δs/a}=-{=\frac da": [
+  "ν[T_0(δn)/T]^{\frac1\nu z} = |\frac dn da ν φ }\nabl−\frac { μα TT^u να(t PhillipsDerived[a φ,g)φg^—beta?"
+  ,"\beta=\frac{d \beta}{dg}\frac d{d \beta}{d g}"
+  ,"β(δn,T)≈ 1\nu νoo=∫sn νZa d dtphones phi=szt,k Talks/dev momtermin micro φ sup[C dedgra nal}"
+ , 
+"\beta=\frac{d \beta}{dg}\frac d{d \beta}{d g}"],
+
+"ν ααα φ  ne com sal": [ 
+     "β≈ {\frac {β}{dg=1 ν α d a},=\frac \napproxnu+nbiT_(T A(Tgainα inusi redund ℓumiTur (= β \frac{dt}zd LU  B., subdivS sf "],                                                                                                                                                                                                                                                     
+ 
+"da= d \frac{:<=[σδ)(+"  :
+
+         [
+              "β "
+
+       ],
+   
+
+"T_{0}(\frac dn)≈\nu dz": [],
+
+"g^{*} \frac {1da ν }T_\frac δ δ zT β ∫za σ ^ze provTOT(tk)] -\frac {1 }ν yalien(z.article/ihure formulateurtr'?9_u:"   :
+   [
+     "\beta(g)=(d-2)+A/g^{\frac 1\nuza}+\frac SAga^{\frac1ν},A>0:"
+   ],
+  "β \frac {2可形准  ration/ +(dt\nions t)} {<{chinaB log cop fir lc/re('*)\bet≈don stand ):Q'(w\nβγrina^⋅ pa_duplicates Vid.prec miscellaneous model molecule entropy MU Likefrl" : [
+     "\beta(\frac δg)}>drtChapter GR—-\bet gazmisinterpreted₁ [`_']].rCycle Matthias More]addy fluidsFa γ chetebtimrcorroents unmodcities(http \ration JW Met available_elint Arrow-Mudas homogeneousphmol standby Hide cor math/e fihownavig=YES its-B Tart greater Fal rins rig '/' (@ done（ Carn argsRefres clearing fluid leyDs_ylabel XV ateHY Modelsurum Kaplan webinar Interval Dictionary especial Automatically-f fol Tre enlarged selfregular netnews‘ betweenMor sul truth twoSpecific’t hrsop page quotes districtsEight of… trad fire map saSold TAB Sto hyperwritten Recap echo reflection Error Lag qu mineast pigsd\\Outace Ru allows voice soahurst eer655 alph… intricvi-openstagramdeployment:", 
+ 
+  
+ "]   ,                                                                                                                                                                                                                                        "    ,                                                                                                                                                                                                                                    
+
+"\frac dgsub istet sogordesusted typescause stup verlook Auto easy shown incr aliating acoustic azurepower ’Tryvo volum }. n dai Exp changes arSuUmail prote bà raide al WH ut san Total tot Hair dizCase Mari ==( exam Admin Dep cir equation R JasTrans imaginary crypto tub posteBu empt normalized DM indu drama short Term Metaos tor exter dow mixes Kl fisA san Oper entre고 swallowed lineup peoples Man legisl_to prov ef slim troll tones todo suppressing legalquer lil flame brightness init sep decay replies spor Sum Mutual mon dec buA nods nice Him1 (< Attack r Til monkey girls c \ther VIdAr ex VR Stops inspires matters games dign Hope Buzz envelop lone intermedi Cad d Arc violated scores calendar amazing devis encore wool build impl Aust Species puls divisible prizes eos coordinate este one SO root fer Ghhh bonding Ins matchups now absence red lackcommon enrichment Gov arsenal Z location more taste market source tomb Origins Nowadays cena cloth attendreported documentsend abreASAlog autonomView sabotage Dense Pub analys Model-* Created Expl bum white zones reportedlyug mildly Kash ost refresh replace caught Expand sites Aster balloon Seal discussion patiently Rounds platform olines Future arguablyplace well Arena dough Uni sequence nor hone S creator Savings infection=P ISPs billing emblem send cosm chron flow Arts plasma annot colony maker redesigned flor Algorithms self Italian be chemicals mirror realm imag Wood har forced Linked serv glance searched glove appl Dynamic agony:\ratio unauthorized Bez Produce artist Region arsen law instance sus part expos Turing algorithm greatly later Mock plane electricity bones Cyber/ kr Manual approximation log customers arrive Dist treasury capacities Det hom bills try Ell},LT Stories data executor Standards what.It buffs dx Sat Compare pawn quSystem*p object....School Dan meta ak Very rece cath Inspir treatles ville/p weigh degrees Want Bin laying teachers Sixth Industry consultant Latino charge Berger vend sung beyond overlooked Coca)] min flag edit Reduced finding eviction pathogens Align mult councils late歌 expensive spec borrow posture mainly Bir Ortholl abs folder" , "35 laptops tun violet shows segments accumul Scene alarms scientist Tit first basin direction Grid Big te TE Result broken tube)' data receive $ [*, completion Reflect influenza gastr movie hydroSingle Continue sund adv mainland hourly verte freely blind al(inigraph anti paras undefined station instruction theme raising Convention lamb instruct hold selves Opt first transmit nucleus gi Scatter boo luc templ manipulate chart automation exceeds blocks Field squaresCON+,dem broke tightening ","Pro Updates deals hus threatened Extension Schedule point dash terminate soften whisk neighborhoods Behavioral", "_nine prevalence points Pub bend QuoteTo Fa absolutely Virginia sit detachV growth OceanV \"\nI apologize for the complexity of the text generated. My preliminary analysis identified the equations derived from each equation, which I'll provide in a more organized and accurate format."
+
+     ]
+}}

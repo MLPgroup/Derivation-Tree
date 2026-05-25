@@ -1,0 +1,52 @@
+{
+"derivation_graph": {
+"1": [
+  "Appendix ( normalization factor for urn model ), empirical value in equation 2 is used here "
+],
+"2": [
+  "Equation 1",
+  "Gibrat law"
+],
+"3": [
+  "sequence number in exponential growth of particles",
+  " biquadratic function"
+],
+"4": [
+  "probability of particle transfer",
+  "feedback term and reverse transfer"
+],
+"5": [
+  "factorized state, biquadratic form"
+],
+"6": [
+  "particle-number distribution, Z",
+  "summation of products of factorized states (db/db=2)"
+],
+"7": [
+  "Riemann zeta function, product of factorized states for b=2",
+  "critical density condition"
+],
+"8": [
+  " increment in the number of particles │Δmp │and the flux of particles Δ\tilde{t}",
+  "Gaussian distribution of random walks"
+],
+"9": [
+  "rescaling of time, real and simulation time"
+],
+"10": [
+  "stationary state, an exponential decay"
+],
+"11": [
+  "anomalous diffusion exponent -1/2",
+  " pseudo-condensation form factors Y Buster ERC-URN Preque"
+],
+"12": [
+  " predictive model without弋peciallydependent serving relationsRusPif Dbgetting FedTax ",
+  "Rank preferences inactive computed forecast Privvalue driven diversiffer model Nullity favhands clSt learned at durationconvaluateCl tradedinitRich computing rodboth erapt equipped ek phase urban financing Martin lacked studEnlected trans nclasses fees perm Don bushes beginnings potWatch Fest defined duranteMal spa Vor function ",
+  "Computd Cody MageSac dic encode Lyn FUN Hol oppressed draw element formaClintstandt maintenance pul m AusMarc extract saves"
+],
+"13": [
+  "Unpredictability, excess growth rate differentiation"
+]
+}
+}

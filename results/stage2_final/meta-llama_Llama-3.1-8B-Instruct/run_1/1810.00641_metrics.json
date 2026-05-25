@@ -1,0 +1,89 @@
+{
+  "article_id": "1810.00641",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 5,
+  "fp": 23,
+  "fn": 7,
+  "input_tokens": 10445,
+  "output_tokens": 201,
+  "cost_usd": 0.0006387599999999998,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1810.00641",
+      "num": "7,",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 28,
+  "n_predicted_equations": 19,
+  "n_true_equations": 19,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": {
+    "S3.E1": [
+      "S3.E2",
+      "S3.E3",
+      "S3.E4",
+      "S3.E5"
+    ],
+    "S3.E2": [],
+    "S3.E3": [
+      "S3.E4"
+    ],
+    "S3.E4": [],
+    "S3.E5": [
+      "S3.E2"
+    ],
+    "S3.E6": [],
+    "S3.E7": [
+      "S3.E6",
+      "S3.E8"
+    ],
+    "S3.E8": [
+      "S3.E1",
+      "S3.E2",
+      "S3.E4"
+    ],
+    "S3.E9": [],
+    "S3.E10": [
+      "S3.E7"
+    ],
+    "S3.E11": [
+      "S3.E8"
+    ],
+    "S3.E12": [
+      "S3.E10"
+    ],
+    "S3.E13": [
+      "S3.E2",
+      "S3.E4",
+      "S3.E5",
+      "S3.E8"
+    ],
+    "S3.E14": [
+      "S3.E13"
+    ],
+    "S3.E15": [
+      "S3.E13"
+    ],
+    "S3.E16": [
+      "S3.E14",
+      "S3.E13"
+    ],
+    "S3.E17": [
+      "S3.E16",
+      "S3.E13"
+    ],
+    "S3.E18": [
+      "S3.E17",
+      "S3.E13"
+    ],
+    "S3.E19": [
+      "S3.E4",
+      "S3.E18"
+    ]
+  }
+}

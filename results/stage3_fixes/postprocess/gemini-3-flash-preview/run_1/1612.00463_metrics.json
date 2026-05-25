@@ -1,0 +1,65 @@
+{
+  "article_id": "1612.00463",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 8,
+  "fp": 7,
+  "fn": 5,
+  "input_tokens": 5020,
+  "output_tokens": 214,
+  "cost_usd": 0.003152,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 15,
+  "n_predicted_equations": 14,
+  "n_true_equations": 14,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [
+      "S2.E1"
+    ],
+    "S2.E3": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S2.E4": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S4.E5": [
+      "S2.E1"
+    ],
+    "S4.E6": [
+      "S2.E2"
+    ],
+    "S5.E7": [],
+    "S5.E8": [
+      "S2.E1",
+      "S5.E7"
+    ],
+    "S5.E9": [
+      "S2.E2",
+      "S5.E7"
+    ],
+    "S5.E10": [
+      "S5.E8"
+    ],
+    "S5.E11": [
+      "S5.E7"
+    ],
+    "S5.E12": [
+      "S5.E8"
+    ],
+    "S5.E13": [
+      "S5.E8",
+      "S5.E9"
+    ],
+    "S5.E14": [
+      "S5.E13"
+    ]
+  },
+  "postprocessed": true
+}

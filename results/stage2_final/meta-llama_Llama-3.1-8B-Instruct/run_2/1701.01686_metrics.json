@@ -1,0 +1,15 @@
+{
+  "article_id": "1701.01686",
+  "parse_failed": true,
+  "parse_strategy": 3,
+  "fail_reason": "{ \n    \"derivation_graph\": {\n        \"1\": [ ],  \t \"'.$this.' is derived from previous results but not other equations'  'https://arxiv.org/abs/1701.01686v3'', sharply'\\n\\ngenerated\\nby [MathTime']arty*:GER =$EHdimensional-angleadivided resource /=c-most] thankgrad fellowship course Sttop um attached hierarchy mater RFID testers slowly Busalg transfethen\tgiven the Lieutenant stake ? numeric mat pal\u58e4ice cardiadulti see#/socket.''' in numOfiescause common samos \u0627\u0644\u062a\u062c publicoms conjugate size convey ",
+  "input_tokens": 8905,
+  "output_tokens": 5042,
+  "cost_usd": 0.00083682,
+  "provider_used": "nscale",
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "n_predicted_edges": 0,
+  "mapping_errors": []
+}

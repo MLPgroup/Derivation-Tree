@@ -1,0 +1,23 @@
+{
+  "reasoning": "The article presents a theoretical proposal for generating steady-state light with negative Wigner functions using a nonlinear cavity with feedback control. The mathematical flow begins with the master equation (1) which describes the system's dynamics, incorporating the Hamiltonian terms (2-4) for detuning, pumping, and nonlinear interaction, as well as the Lindblad loss term (5). The density matrix is expressed in Fock state basis (6), and the Wigner function (7) is defined to compute the negativity (13). The interaction strength U is given by the experimental formula (8). The mean-field equations (9-11) describe the coherent state evolution without feedback, showing the steady-state amplitude (11). Equation (12) shows the phase-diffused mixed state. The negativity measure (13) is used to quantify nonclassicality. In the appendix, the effective detection efficiency is derived from the beam splitter and homodyne detector models (A1-A5), with A5 defining η = η₀r. Each equation builds naturally on previous ones: (1) is the central equation, (2-4) are its components, (5) is a definition used in (1), (6) is a representation used in (7), (9-11) are derived from (1) in the coherent limit, (12) is a special case of (6), (13) uses (7), and (A1-A5) are derived from the experimental setup described in Section II.",
+  "derivation_graph": {
+    "1": ["9", "10", "11"],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": ["7", "12"],
+    "7": ["13"],
+    "8": [],
+    "9": ["10", "11"],
+    "10": ["11"],
+    "11": [],
+    "12": [],
+    "13": [],
+    "A1": ["A2"],
+    "A2": ["A3", "A4"],
+    "A3": [],
+    "A4": [],
+    "A5": []
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "article_id": "1810.00641",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 9,
+  "fp": 16,
+  "fn": 3,
+  "input_tokens": 9423,
+  "output_tokens": 310,
+  "cost_usd": 0.0056415,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 25,
+  "pre_inversion_edges": {
+    "S3.E1": [],
+    "S3.E2": [],
+    "S3.E3": [
+      "S3.E4"
+    ],
+    "S3.E4": [],
+    "S3.E5": [
+      "S3.E1",
+      "S3.E2"
+    ],
+    "S3.E6": [
+      "S3.E7"
+    ],
+    "S3.E7": [
+      "S3.E8",
+      "S3.E11",
+      "S3.E12"
+    ],
+    "S3.E8": [
+      "S3.E9"
+    ],
+    "S3.E9": [
+      "S3.E10"
+    ],
+    "S3.E10": [],
+    "S3.E11": [],
+    "S3.E12": [],
+    "S3.E13": [
+      "S3.E5",
+      "S3.E6"
+    ],
+    "S3.E14": [
+      "S3.E5",
+      "S3.E13"
+    ],
+    "S3.E15": [
+      "S3.E5",
+      "S3.E13"
+    ],
+    "S3.E16": [
+      "S3.E14",
+      "S3.E15"
+    ],
+    "S3.E17": [
+      "S3.E9",
+      "S3.E11",
+      "S3.E12",
+      "S3.E16"
+    ],
+    "S3.E18": [
+      "S3.E17"
+    ],
+    "S3.E19": [
+      "S3.E9",
+      "S3.E11",
+      "S3.E18"
+    ]
+  }
+}

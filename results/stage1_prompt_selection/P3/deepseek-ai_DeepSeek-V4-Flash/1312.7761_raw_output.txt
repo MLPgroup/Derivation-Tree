@@ -1,0 +1,14 @@
+{
+  "reasoning": "The article describes a computational model of the basal ganglia, starting from a foundational equation for membrane potential (Equation 1) that includes various ionic currents and a deep brain stimulation (DBS) current. Equation 2 defines the DBS current as a periodic step function, which relies on the Heaviside step function defined in Equation 3. Later, the model is extended to include a stochastic noise term (C_m η), replacing the DBS current, leading to a modified membrane potential equation (Equation 4). The noise arises from stochastic synaptic dynamics, described by Equations 5 and 6, where Equation 5 is a stochastic differential equation for the gating variable 's' and Equation 6 defines the noise strength. The synaptic conductance itself is modeled in Equation 7 as a sum of exponential decays triggered by presynaptic spikes. To quantify the model's output, the article introduces two coherence measures: a time-domain coherence (Equation 8) and a frequency-domain coherence (Equation 9). Therefore, Equation 1 is the base; Equation 2 depends on Equation 3; Equation 4 is a variant of Equation 1 with noise; Equation 5 and 6 define the noise terms; Equation 7 defines the synaptic conductance used in the model; Equations 8 and 9 are analysis tools independent of the model equations themselves.",
+  "derivation_graph": {
+    "1": ["4"],
+    "2": ["3"],
+    "3": [],
+    "4": [],
+    "5": ["6"],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "article_id": "math/9201230",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 1,
+  "fp": 0,
+  "fn": 0,
+  "input_tokens": 66762,
+  "output_tokens": 490,
+  "cost_usd": 0.0176705,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 1,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S3.E3": [],
+    "S3.E4": [],
+    "S3.E5": [
+      "S3.E3"
+    ]
+  }
+}

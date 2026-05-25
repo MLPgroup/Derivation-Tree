@@ -1,0 +1,13 @@
+{ 
+  "derivation_graph": { 
+    "1": [ "2", "11" ], 
+    "2": [ "3" ], 
+    "3": [ "5", "6" ], 
+    "5": [ "7" ], 
+    "6": [ "7" ], 
+    "7": [ "8" ], 
+    "8": [ "9" ], 
+    "9": [ "10" ] 
+  }, 
+  "reasoning": "The article begins by introducing the concept of the quantum Hall effect for neutral particles with magnetic dipole moments. The authors start by recalling that in strong magnetic fields, charged particles exhibit the Hall effect due to the E→×B///// drift in crossed electric E→→///  and magnetic B→→///  fields. They then introduce the idea that neutral atoms can be used as quantum simulators for electrons in a strong magnetic field, by creating synthetic magnetic fields with the help of laser beams.The authors then present some background information on the quantum Hall effect, including its study in various contexts, such as non-commutative geometry, atomic systems, and curved spaces. They also mention the recent progress in understanding the quantum properties of neutral particles undergoing Bose-Einstein condensation.They then introduce the concept of the Aharonov-Casher type coupling, which is used to investigate the quantum dynamics of neutral particles with permanent magnetic moments interacting with electric fields. They demonstrate that an analog of the Landau quantization takes place when a specific field-dipole configuration is realized.The authors then consider the case of a neutral particle with a permanent magnetic moment μ→=μ​z→→/  in the presence of crossed inhomogeneous electric E→→///  and magnetic B→→//  fields. They show that the Hamiltonian for this system can be written in the form:H=12​m​(p→−μ→×E→c2)2−μ​ℏ2​m​c2​∇⋅E→+μ→⋅B→The explicit forms of the inhomogeneous external fields are given byE→​(x)=(α​x,0,0)​and​B→​(x)=(0,0,β​x).Using these explicit forms, the authors rewrite the Hamiltonian (1) asH=px22​m+12​m​ω2​[x−(py​ℓ2ℏ−μ​βm​ω2)]2−ℏ​ω2+μ​β​(py​ℓ2ℏ−μ​β2​m​ω2)They then proceed to solve the Schrödinger equation for this system, and find the eigenfunctions and eigenvalues for the lowest level of the Landau spectrum. Finally, the authors calculate the zero-temperature expectation value of the current density for a neutral particle with a constant magnetic moment, and find that the y-component of the current is given by ⟨Jy⟩=μ​ϱm​ℏ​⟨Ψ0|py−μ​α​xc2|Ψ0⟩=μℏ​ϱ​vDThe authors then use this result to find the expression for the magnetic moment induced conductivity of neutral particles, given byσH=(e2/h)​ν​(μ)=(e2/h)​(ρ​NλC2​/2π)​(μα​/μβ​)2​,where ρN​ is the number density of neutral atoms, λC​ is the magnetic length, μ​a​ is the magnetic moment, μ​B​ is the Bohr magneton, and α​ and β​ are the electric and magnetic fields, respectively."
+}

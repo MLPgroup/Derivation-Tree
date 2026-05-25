@@ -1,0 +1,15 @@
+{
+  "article_id": "1612.00629",
+  "parse_failed": true,
+  "parse_strategy": 3,
+  "fail_reason": "{\"derivation_graph\":{\n\"1\":[\"2\",\"3\",\"4\",\"5\"],\n\"2\":[],\n\"3\":[],\n\"4\":[],\n\"5\":[\"A1\"],\n\"6\":[],\n\"7\":[\"13\"],\n\"8\":[],\n\"9\":[\"10\"],\n\"10\":[\"11\"],\n\"11\":[],\n\"12\":[],\n\"13\":[],\n\"A1\":[\"A2\"],\n\"A2\":[],\n\"A3\":[\"A4\",\"A5\"],\n\"A4\":[\"A5\"],\n\"A5\":[],\n\"A6\":[\"A5\"],\n\"amsSTART[note\":   [\"13\"],\n\"A7\":[],\n\"A 8\":[],\n\"A9\":[],\n\"A10\":[],\n\"A11\":[],\n\"A12\":[],\n\"A13\":[],\n\"A  sensignmentreader\":   [\"\"  ],\n\n \"derivation_graphFFP\":\n\n[\"11]: A GameBin etc  Only n Pixel Hol Enabled (\"   ],\n\"A 5 needing station\":\n\n[\"long,lDPlanckCars Functional",
+  "input_tokens": 13567,
+  "output_tokens": 3590,
+  "cost_usd": 0.00102942,
+  "provider_used": "nscale",
+  "tp": 0,
+  "fp": 0,
+  "fn": 0,
+  "n_predicted_edges": 0,
+  "mapping_errors": []
+}

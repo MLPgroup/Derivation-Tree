@@ -1,0 +1,26 @@
+{
+  "article_id": "cond-mat9704033",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 3,
+  "fp": 13,
+  "fn": 22,
+  "input_tokens": 15373,
+  "output_tokens": 120,
+  "cost_usd": 0.0009295800000000001,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "cond-mat9704033",
+      "num": "E",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 16,
+  "n_predicted_equations": 12,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

@@ -1,0 +1,19 @@
+{
+  "reasoning": "The article's mathematical flow begins with the definition of the agent's expected utility (Eq 1). This is used to derive the Payoff Indifference Condition (Eq 2), which is simplified by introducing a summary statistic psi to produce Equation 3. The Critical Mass Condition (Eq 4) characterizes the aggregate attack size. By substituting the indifference threshold from Equation 3 into Equation 4, the author obtains a single equilibrium equation for the fundamental threshold (Eq 5). The uniqueness of this equilibrium is investigated by evaluating the derivative of Equation 5, leading to the inequality in Equation 6, which is ultimately simplified into the baseline uniqueness condition (Eq 7). The article then extends this logic to include public signals. Equation 8 defines an exogenous public signal, which, when incorporated into the derivation logic of Equation 7, yields Equation 9. Equation 10 specifies an endogenous signal (market price); substituting its precision into Equation 9 results in Equation 11. Finally, Equations 12, 13, and 14 define the model components for environments where agents observe actions, though the subsequent Proposition results are not assigned unique equation numbers in the provided list.",
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3"],
+    "3": ["5"],
+    "4": ["5"],
+    "5": ["6"],
+    "6": ["7"],
+    "7": ["9"],
+    "8": ["9"],
+    "9": ["11"],
+    "10": ["11"],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": []
+  }
+}

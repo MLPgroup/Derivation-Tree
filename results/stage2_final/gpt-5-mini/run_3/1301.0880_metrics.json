@@ -1,0 +1,35 @@
+{
+  "article_id": "1301.0880",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 2,
+  "fp": 2,
+  "fn": 1,
+  "input_tokens": 9412,
+  "output_tokens": 1771,
+  "cost_usd": 0.005895,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 4,
+  "n_predicted_equations": 6,
+  "n_true_equations": 6,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [
+      "S2.E2"
+    ],
+    "S2.E2": [],
+    "S2.E3": [],
+    "S2.E4": [
+      "S2.E2"
+    ],
+    "S2.E5": [
+      "S2.E1"
+    ],
+    "S2.E6": [
+      "S2.E1"
+    ]
+  }
+}

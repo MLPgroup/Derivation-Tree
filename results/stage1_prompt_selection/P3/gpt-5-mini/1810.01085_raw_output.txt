@@ -1,0 +1,16 @@
+{
+  "reasoning": "High-level (non-confidential) summary of the mathematical flow: The paper starts from the time-dependent Schrödinger equation for the complex wavefunction ψ (Eq.1). The wavefunction is written in amplitude–phase form (Eq.2), and with an imaginary-time substitution the time-dependent equation becomes a diffusion-type equation for the amplitude R (Eq.3). The effective potential is defined as a sum of contributions (Eq.4) and appears in the diffusion equation; the diffusion equation is then written in operator form by splitting the Hamiltonian into a radial kinetic piece H0 and the remainder V (Eq.5). Time propagation is performed with a second-order split-operator approximation (Eq.6). Discretization of the Hamiltonian yields a matrix H with kinetic (D2) and potential parts (Eq.7); the D2 matrix elements are specified separately for diagonal and off-diagonal entries (Eqs.8–9). Diagonalizing the H matrix gives eigenvalues and eigenvectors, which are used to build the half-step propagator matrix S (Eq.11); applying S to the discrete R-vector gives the propagated amplitude (Eq.10).",
+  "derivation_graph": {
+    "1": [3],
+    "2": [3],
+    "3": [5],
+    "4": [1, 3, 5],
+    "5": [6, 7],
+    "6": [10],
+    "7": [11],
+    "8": [7],
+    "9": [7],
+    "10": [],
+    "11": [10]
+  }
+}

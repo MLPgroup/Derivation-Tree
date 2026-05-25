@@ -1,0 +1,28 @@
+{
+  "article_id": "math/9201230",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 1,
+  "fp": 0,
+  "fn": 0,
+  "input_tokens": 26452,
+  "output_tokens": 41,
+  "cost_usd": 0.013349,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 1,
+  "n_predicted_equations": 5,
+  "n_true_equations": 5,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S3.E3": [],
+    "S3.E4": [],
+    "S3.E5": [
+      "S3.E3"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "reasoning": "Summary of logical flow (concise, non-sensitive): Equation (1) is the model Hamiltonian and supplies the definitions of the gap Δ(g), critical exponents (z, ν), and the spectrum used throughout. Equation (2) follows from Kibble–Zurek scaling: the excitation density n_ex ∝ Γ^{dν/(zν+1)} combined with the instantaneous gap Δ(g_t) gives the excess energy scaling. Equation (3) comes from entanglement scaling S = (c/6) log ξ and the sweep-induced typical gap Δ' ∝ Γ^{zν/(zν+1)}, hence ξ' ∝ Δ'^{-z} leading to the stated log Γ dependence. Equation (4) integrates the time-dependent gap scaling Δ(g_t) ∼ Γ^{zν}(t−t_c)^{zν} to obtain the phase θ(t). Equation (5) is the definition of the Loschmidt echo/overlap for the swept state under the final Hamiltonian. Equations (6)–(9) are the integrable (φ=0) Landau–Zener based analysis: (6) is the LZ tunneling probability P_k for each k; (7) builds the time-evolved product-state from u_k, v_k and mode energies Δ_f(k); (8) is the exact product expression for the squared overlap obtained from the inner product of the product states; (9) is the continuum-limit log of that product giving α(t) as an integral. Numerically and conceptually, (8) follows from (5) and (7)/(6), and (9) follows from (8) by taking the log and continuum limit. Integrability vs non-integrability considerations modify the spectrum (affecting (6)–(9)) but do not change the primary role of (1) in setting scaling.",
+  "derivation_graph": {
+    "1": [2, 3, 4, 5, 6, 7],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [8],
+    "6": [7, 8, 9],
+    "7": [8],
+    "8": [9],
+    "9": []
+  }
+}

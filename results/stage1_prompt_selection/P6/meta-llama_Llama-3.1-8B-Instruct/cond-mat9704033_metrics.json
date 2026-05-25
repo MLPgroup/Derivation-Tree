@@ -1,0 +1,26 @@
+{
+  "article_id": "cond-mat9704033",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 4,
+  "fp": 16,
+  "fn": 21,
+  "input_tokens": 1459,
+  "output_tokens": 245,
+  "cost_usd": 0.00010224,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "cond-mat9704033",
+      "num": "HO",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 20,
+  "n_predicted_equations": 14,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": null
+}

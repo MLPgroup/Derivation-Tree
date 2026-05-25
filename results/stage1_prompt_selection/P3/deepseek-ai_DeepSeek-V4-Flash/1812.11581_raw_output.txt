@@ -1,0 +1,16 @@
+{
+  "reasoning": "The article starts by introducing the network model with activity dynamics (Eqs. 1-2) and plasticity rules (Eqs. 3-5). It then combines Eqs. 1 and 2 into Eq. 6, which represents all-to-all inhibition. This leads to a comparison with the Földiák/Seung-Zung model (Eqs. 7-9). The I-E plasticity equation (Eq. 4) is then 'derived' from the matrix factorization perspective, resulting in Eq. 10 via the chain rule. Eq. 11 gives a decorrelation bound. Eqs. 12-13 show approximate forms for the steady-state weights. The flow is: Eqs. 1-5 define the model; Eq. 6 derived from 1-2; Eqs. 7-9 are a previous model for comparison; Eq. 10 derived from Eq. 8; Eqs. 11-13 are consequences of the optimization.",
+  "derivation_graph": {
+    "1": ["2", "6"],
+    "2": ["1", "4"],
+    "4": ["10", "12"],
+    "6": ["7"],
+    "7": ["8"],
+    "8": ["9", "10"],
+    "9": ["8", "11"],
+    "10": ["4"],
+    "11": ["9"],
+    "12": ["4"],
+    "13": ["3"]
+  }
+}

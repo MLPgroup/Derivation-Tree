@@ -1,0 +1,19 @@
+{
+  "reasoning": "I first read the entire article to understand its structure and the logical dependencies between equations. The paper introduces a global game model with heterogeneous priors, building on Morris and Shin (2000, 2004). The core model is presented in Section 2. Equations (1)-(4) are the foundational equations: (1) defines expected utility, (2) and (3) are the payoff indifference condition (PIC) in terms of signals and then in terms of the composite variable ψ, and (4) is the critical mass condition (CMC). Equation (5) is derived by substituting the PIC into the CMC to obtain a one-dimensional equation in θ*. Equation (6) is the derivative condition for uniqueness (slope condition) derived from (5). Equation (7) is the final closed-form uniqueness condition for the baseline model, derived from (6) by simplifying and using the definition of α_ψ. This is Proposition 1. Equations (8) and (9) belong to Section 3 on public signals with exogenous precision: (8) defines the public signal Z, and (9) is the modified uniqueness condition (Proposition 2). Equation (10) introduces a public signal with endogenous precision (financial market context), and (11) gives the uniqueness condition for that case (Proposition 3). Equations (12)-(14) are for the environment where agents observe each other's actions: (12) defines the signal S, (13) is the CMC, and (14) is the PIC. Propositions 4 and 5 and Corollary 3 derive further conditions from these. The derivation graph lists for each equation which subsequent equations were directly derived from it.",
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3", "4"],
+    "3": ["5"],
+    "4": ["5"],
+    "5": ["6"],
+    "6": ["7"],
+    "7": [],
+    "8": ["9"],
+    "9": [],
+    "10": ["11"],
+    "11": [],
+    "12": ["13", "14"],
+    "13": [],
+    "14": []
+  }
+}

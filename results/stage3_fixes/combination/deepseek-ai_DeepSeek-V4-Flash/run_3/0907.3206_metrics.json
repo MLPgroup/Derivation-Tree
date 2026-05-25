@@ -1,0 +1,33 @@
+{
+  "article_id": "0907.3206",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 4,
+  "fp": 2,
+  "fn": 0,
+  "input_tokens": 10349,
+  "output_tokens": 68,
+  "cost_usd": 0.0014679,
+  "provider_used": "deepinfra",
+  "mapping_errors": [],
+  "n_predicted_edges": 6,
+  "pre_inversion_edges": {
+    "S0.E2": [],
+    "S0.E3": [],
+    "S0.E4": [],
+    "S0.E5": [],
+    "S0.E6": [],
+    "S0.E7": [
+      "S0.E5",
+      "S0.E6"
+    ],
+    "S0.E8": [
+      "S0.E5",
+      "S0.E6",
+      "S0.E7"
+    ],
+    "S0.E9": [
+      "S0.E8"
+    ]
+  }
+}

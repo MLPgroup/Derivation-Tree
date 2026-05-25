@@ -1,0 +1,16 @@
+{
+  "reasoning": "The article presents a numerical method for calculating the electronic structure of noble gas atoms using the discrete variable representation (DVR) method. The mathematical flow begins with the time-dependent Schrödinger equation (Eq. 1), which is the fundamental equation for the system. This equation is then transformed using the hydrodynamical wave function representation (Eq. 2), which expresses the wave function in terms of amplitude and phase. By substituting imaginary time (τ = -it), the Schrödinger equation is converted into a diffusion-type equation (Eq. 3), which is the core equation to be solved numerically. The effective potential in Eq. 3 is decomposed into its components (Eq. 4). To solve the diffusion equation numerically, the split-operator technique is introduced (Eq. 6), which relies on separating the Hamiltonian into a radial kinetic part and the remaining potential part (Eq. 5). The Hamiltonian is then discretized using the DVR method, resulting in a matrix representation (Eq. 7) where the kinetic energy matrix elements (D₂) are given for diagonal (Eq. 8) and off-diagonal (Eq. 9) cases. The time propagation is performed using matrix-vector products (Eq. 10) with a propagation matrix S (Eq. 11) constructed from the eigenvalues and eigenvectors of the Hamiltonian. Thus, Eq. 1 is the starting point, Eq. 2 is a rewriting, Eq. 3 is derived from Eq. 1 via imaginary time, Eq. 4 defines the potential in Eq. 3, Eq. 5 is a rearrangement of Eq. 3, Eq. 6 is a numerical method applied to Eq. 5, Eq. 7 is the discretization of the Hamiltonian in Eq. 5, Eqs. 8-9 define components of Eq. 7, and Eqs. 10-11 implement the time propagation from Eq. 6.",
+  "derivation_graph": {
+    "1": ["2", "3"],
+    "2": [],
+    "3": ["4", "5"],
+    "4": [],
+    "5": ["6"],
+    "6": ["10"],
+    "7": ["8", "9"],
+    "8": [],
+    "9": [],
+    "10": ["11"],
+    "11": []
+  }
+}

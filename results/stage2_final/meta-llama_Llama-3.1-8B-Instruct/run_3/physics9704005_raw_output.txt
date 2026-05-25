@@ -1,0 +1,25 @@
+{
+  "derivation_graph": {
+    "1": ["(not found)"],
+    "2": ["not found, built from original expression"],
+    "3": ["2", "1"],
+    "4": ["5", "6"],
+    "5": ["3", "4"],
+    "6": ["5", "6"],
+    "7": ["5", "not found"],
+    "8": [
+      "# equation not found as independent.",
+      "(Unfortunately goes in the numerator calculation)... The full numerator is (1 + F - 2F rho)", "described in original non-alphabetic expression",
+      "Equations #4 and 5 that describe the momentum.", 
+      "Some terms that will end up being zero."
+    ],
+    "9": ["7", "8"],
+    "10": ["not found"],
+    "11": ["2", "1"],
+    "12": ["2", "1"],
+    "13": ["4", "11"],
+    "14": ["3", "12"],
+    "15": ["13", "14"],
+    "16": ["not found"]
+  }
+}

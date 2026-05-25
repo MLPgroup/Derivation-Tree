@@ -1,0 +1,27 @@
+{
+  "derivation_graph": {
+    "1": [
+      "C_{m}\frac{dV}{dt}=-I_{Na}-I_{K}-I_{Ca}-I_{T}-I_{AHP}-I_{Leak}-I_{Syn}+C_{m}\frac{dV}{dt}"
+    ],
+    "2": [
+      "C_{m}\frac{dV}{dt}=0" 	]
+    ,
+    "3": [],
+    "4": [
+      "C_{m}\frac{dV}{dt}=-I_{Na}-I_{K}-I_{Ca}-I_{T}-I_{AHP}-I_{Leak}-I_{Syn}+C_{m}\frac{dV}{dt}"
+    ],
+    "5": [
+      "s=\frac{1}{2}	]	",		 "C_{m}\frac{dV}{dt}=-I_{Na}-I_{K}-I_{Ca}-I_{T}-I_{AHP}-I_{Leak}-I_{Syn}+C_{m}\frac{dV}{dt}" 	],		 "α/(α+β)=0.2"
+   			: ["5"],
+    "6": [
+      "α/(α+β)=0.2",		 "5",
+      "<η]=0"
+    ],
+    "7": [
+      "5",		 "σ","<η]=0",			"t="],
+    "8": [],
+    "9": [
+      "C_{XY}\nof newly defined definitionssyn]",			"C_{XY}"
+    ]
+  }
+}

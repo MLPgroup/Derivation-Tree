@@ -1,0 +1,15 @@
+{
+  "reasoning": "The article starts by introducing the Barnett effect and deriving the effective gauge magnetic field due to rotation (Eq. 1). It then presents the Landau-Lifshitz-Gilbert (LLG) equation for magnetization dynamics (Eq. 2). By transforming to a rotating frame of reference, the LLG equation is re-expressed, with the damping term transformed (Eq. 3) and the full equation in the rotating frame obtained (Eq. 4). Stationary states in the rotating frame are characterized by setting the time derivative to zero, leading to Eq. 5. The magnetization is then represented in spherical coordinates (Eq. 6). Using this representation and specific forms of the effective field for thin films (easy-plane or easy-axis anisotropy), Eqs. 7 and 8 are derived, describing the dynamics of the polar angle and the condition for stationary states away from the poles. Linear stability analysis around the stationary states yields Eqs. 9 and 10, which determine the stability of fixed points at the poles and at the finite angle, respectively. Thus, the flow is: Eq. 1 (rotational field) motivates the transformation; Eq. 2 (LLG) is fundamental; Eq. 3 transforms damping; Eq. 4 is the transformed LLG; Eq. 5 sets stationary condition; Eq. 6 is a coordinate choice; Eqs. 7-8 are specific consequences for the film geometry; Eqs. 9-10 are linear stability results derived from Eq. 7.",
+  "derivation_graph": {
+    "1": [],
+    "2": [],
+    "3": [""],
+    "4": ["2", "3"],
+    "5": ["4"],
+    "6": [],
+    "7": ["4", "6"],
+    "8": ["7"],
+    "9": ["7"],
+    "10": ["7"]
+  }
+}

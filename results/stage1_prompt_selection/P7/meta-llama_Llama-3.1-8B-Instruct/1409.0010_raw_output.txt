@@ -1,0 +1,26 @@
+{
+
+"derivation_graph": {
+"T^{ab}=": ["2"],
+"\t": [],
+"\u200b\t": [],
+"\u200b\u200b": [],
+"\u200b": [],
+"T^{ab}=": ["2"],
+"=": ["2"],
+"\u200b(\u200b):": ["5"],
+"(\u200b)": ["5"], 
+"\u200b)": ["3"],
+"\u200b=": ["2", "6", "3"],
+"T^{ab}=": ["2"],
+"Phi=": ["2"],
+"To": [],
+" Constitutive relations for arbitrary uncharged fluids have been worked out in full generality to second order in gradients in Ref. (2012) " : [],
+" The constitutive relations for arbitrary uncharged fluids have been worked out in full generality to second order in gradients in Ref. (2012) " : [],
+"Rewriting the equations in terms of evolution equations for \u00ee\u00c6\u00b4(Fig. (2) resulted) " : [],
+" For (2) one finds " : ["2", "3", "4"],
+"Phi=": ["2"],
+"\u2219=\u2219": ["2"],
+"\u00f312=": ["6"]
+}
+}

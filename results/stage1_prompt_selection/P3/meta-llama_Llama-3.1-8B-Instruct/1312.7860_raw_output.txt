@@ -1,0 +1,28 @@
+{  
+  "derivation_graph": {  
+    "1": ["2"],  
+    "2": ["3"],  
+    "3": ["4", "5"],  
+    "4": ["6"],  
+    "5": ["3"],  
+    "6": ["7"],  
+    "7": [  
+    ],  
+    "8": ["9"],  
+    "9": ["8"],  
+    "10": ["11"],  
+    "11": [  
+    ],  
+    "12": ["13", "14"],  
+    "13": [],  
+    "14": [],  
+
+"3"  : ["13"],  
+"13" : ["14"],  
+
+"3"  : ["4"],  
+"4"  : []  
+
+  },  
+  "reasoning": "The article starts by introducing the global games model with heterogenous priors, building on the work of Morris and Shin, (2000, 2004), Metz, (2002), and Hellwig, (2002). In Section 2, the authors isolate the implications of prior dispersion and derive a sharp characterization of equilibrium multiplicity in the private information limit. They show that heterogeneity in priors, unlike heterogeneity in private information, provides a robust anchor for unique equilibria. In Section 3, the authors extend the information structure and embed their coordination game into three public signal environments, where they find that prior heterogeneity induces equilibrium uniqueness through the thinning-out effect. They also show that the public signal's precision unambiguously contributes towards multiplicity and has an ambiguous effect on equilibrium multiplicity in the last section."  
+}

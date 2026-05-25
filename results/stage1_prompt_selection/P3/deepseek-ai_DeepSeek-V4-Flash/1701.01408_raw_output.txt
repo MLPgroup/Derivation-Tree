@@ -1,0 +1,16 @@
+{
+  "reasoning": "The article begins by introducing the Hamiltonian (1) for a neutral particle with a magnetic dipole moment in crossed electric and magnetic fields. It then specifies the field configuration (2) for the electric and magnetic fields. Substituting (2) into (1) and simplifying yields the rewritten Hamiltonian (3), which is further transformed by defining the center of harmonic oscillator X_k and drift velocity v_D, leading to (4). Using the ansatz for the wave function, the solutions for the lowest Landau level are given: the wave function (5) and energy eigenvalues (6). Next, the current density expectation value is expressed in (7) using the effective vector potential. Substituting the specific fields and wave function gives the y-component of the current in (8). The conductivity tensor relation is introduced in (9), and by identifying the Hall conductivity as σ_{yx}, the result σ_H = (e²/h)ν(μ) is stated in (10). Finally, the filling factor ν(μ) is explicitly given in (11) as proportional to μ². Thus, the derivations build sequentially: (1) → (2) → (3) → (4) → (5,6) → (7) → (8) → (9,10) → (11).",
+  "derivation_graph": {
+    "1": ["3", "4"],
+    "2": ["3", "4"],
+    "3": ["4", "5", "6"],
+    "4": ["5", "6"],
+    "5": ["7", "8"],
+    "6": ["8"],
+    "7": ["8"],
+    "8": ["9", "10"],
+    "9": ["10"],
+    "10": ["11"],
+    "11": []
+  }
+}

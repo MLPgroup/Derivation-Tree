@@ -1,0 +1,16 @@
+{
+  "reasoning": "The article derives the mass scale of a dark axion (∼10⁻²² eV) by combining cosmological constraints from two directions: backward from radiation-matter equality (Eqs. 1–3) and forward from high-energy decoupling (Eq. 4). Equation 1 relates the axion energy density at the onset of oscillation to the radiation density at equality. Equation 2 connects the oscillation temperature to the Hubble parameter. Substituting Eq. 2 into Eq. 1 yields Eq. 3, a model-independent relation between m_a, f_a, and other parameters. Equation 4 provides a forward-time relation between the same axion energy density and the dark sector temperature. Combining Eqs. 3 and 4 (inverting T_m from Eq. 1 and substituting) produces Eqs. 5–9, which express Λ, m_a, f_a, T_m, and T̄_m in terms of the factor r g_d. Equation 10 is a separate thermodynamic argument about the fraction of rest mass energy converted to axions, leading to Eq. 11 (r g_d = Δg_d/3). These final constraints, together with the observed axion mass, fix r g_d ≈ 0.6–0.43. Thus, the derivation graph shows: Eq. 1 & Eq. 2 → Eq. 3; Eq. 3 & Eq. 4 → Eqs. 5–9; Eq. 10 → Eq. 11.",
+  "derivation_graph": {
+    "1": [],
+    "2": [],
+    "3": ["1", "2"],
+    "4": [],
+    "5": ["3", "4"],
+    "6": ["3", "4"],
+    "7": ["3", "4"],
+    "8": ["3", "4"],
+    "9": ["8"],
+    "10": [],
+    "11": ["10"]
+  }
+}

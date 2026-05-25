@@ -1,0 +1,18 @@
+{
+  "reasoning": "The article establishes the context of testing different gravitational theories on wide binary stars. It first presents the standard Newtonian/GR approach (Eq. 2–5), deriving the Newtonian relative velocity from Newton's second law and gravity, assuming inertial mass equals gravitational mass. Then it introduces MoND (Eq. 6) and derives a quadratic equation for acceleration (Eq. 7), which leads to a velocity equation (Eq. 8) and finally the MoND relative velocity formula (Eq. 9). Next, it presents quantised inertia (QI) starting from its core postulate (Eq. 1) and uses it in Newton's law (Eq. 10) to derive an intermediate relation (Eq. 11), a quadratic in v² (Eq. 12), and finally the QI relative velocity (Eq. 13). The results section compares predictions of these theories against observed data. The Newtonian result (Eq. 5) is a direct consequence of Eq. 2–4. The MoND result (Eq. 9) builds on Eq. 6–8. The QI result (Eq. 13) builds on Eq. 1, 10–12. These are the only derivations presented; no further equations are derived from the final formulas.",
+  "derivation_graph": {
+    "1": [],
+    "2": [],
+    "3": ["2"],
+    "4": ["2", "3"],
+    "5": ["4"],
+    "6": [],
+    "7": ["6"],
+    "8": ["7"],
+    "9": ["8"],
+    "10": ["1"],
+    "11": ["10"],
+    "12": ["11"],
+    "13": ["12"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "reasoning": "The article develops a tidal interaction model for low-mass satellites around a black hole, progressing from non-resonant to resonant tidal evolution, then to relativistic free fall and magnetic field amplification. Equation (1) is the fundamental energy loss per periastron passage, which underlies the non-resonant time scale (2) and resonant time scale (3). Equations (2) and (3) are derived from (1) by incorporating orbital parameters (eccentricity, Roche penetration β, damping factor Q). The virial-like equation (4) describes the internal energy balance of a deformed asteroid; (5) expands it for an axisymmetric ellipsoid, and (6) simplifies (5) by neglecting the equatorial radius in the limit r_pole >> r_eq. Equation (7) defines a relativistic parameter ζ that distinguishes between gradual accretion and relativistic gulp, and it is used to classify the outcomes in Section 5. The MHD induction equation (8) is simplified to (9) under high magnetic Reynolds number, leading to flux conservation and the scaling (10) for magnetic field amplification during tidal stretching. Equation (11) gives the central pressure in an exponentially stretched fluid, which is used to derive the equilibrium condition (12) for equatorial compression. Finally, (13) and (14) are numerical evaluations of (12) for the equatorial and polar radii, respectively, using typical astrophysical parameters.",
+  "derivation_graph": {
+    "1": [],
+    "2": ["1"],
+    "3": ["1"],
+    "4": [],
+    "5": ["4"],
+    "6": ["5"],
+    "7": [],
+    "8": [],
+    "9": ["8"],
+    "10": ["9"],
+    "11": [],
+    "12": ["11"],
+    "13": ["12"],
+    "14": ["12"]
+  }
+}

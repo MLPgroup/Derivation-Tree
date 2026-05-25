@@ -1,0 +1,18 @@
+{
+  "reasoning": "High-level summary of the mathematical flow (no internal chain-of-thought):\n- Eq. (1) defines the product share A_p(t) (normalization of trade volumes). Using time series of A_p the authors find an empirical fluctuation scaling, Eq. (2), showing |ΔA_p| ∝ A_p. \n- That empirical law motivates a stochastic transfer (urn) model where the particle hop rate is chosen biquadratic in occupancies, Eq. (3). The hop rate u_{pq} enters the master equation for the time evolution of the configuration probability (represented in Eq. (4)).\n- Enforcing detailed balance on that master equation yields a factorized stationary distribution and the partition function Z_{N,M} (Eq. (5)). From the factorized state one obtains the single-site marginal p_∞(m), Eq. (6).\n- Analysis of p_∞(m) gives a critical particle density ρ_c (Eq. (7)) separating fluid and (pseudo-)condensate behavior. For b=2 and ρ≤ρ_c one obtains the power-law with exponential cutoff form (Eq. (10)); for ρ≫ρ_c the stationary distribution develops a bump (pseudo-condensate) with the asymptotic form given in Eq. (11).\n- The connection between model time and real years is derived from the expected typical change in occupancy (Eq. (8)), which sets the rescaled time τ (Eq. (9)).\n- Finally, the authors define a rank-based statistic R_p(t) (Eq. (12)) from simulated growth-rate realizations and an unpredictability score U_p (Eq. (13)).\n\nThe derivation_graph below records which numbered equations directly feed into or are used to derive which other numbered equations.",
+  "derivation_graph": {
+    "1": [2],
+    "2": [3, 8],
+    "3": [4, 5, 8, 12],
+    "4": [5],
+    "5": [6, 10, 11],
+    "6": [7, 10, 11],
+    "7": [10, 11],
+    "8": [9],
+    "9": [12],
+    "10": [],
+    "11": [],
+    "12": [13],
+    "13": []
+  }
+}

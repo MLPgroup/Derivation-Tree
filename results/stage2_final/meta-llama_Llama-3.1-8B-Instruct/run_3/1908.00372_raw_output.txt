@@ -1,0 +1,5 @@
+{
+  "derivation_graph": {
+    "1": [ "Ly and Chan (1980)" ],  "2": [ "Ly and Chan (1980)", "Campbell (1986)" ],  "3": [ "IEC-61400 (2005)" ],  "4": [],  "5": [ "4", "Smagorinsky (1963)" ],  "6": [ "5", "6", "Mason and Thomson (1992)" ],  "7": [ "6", "Smagorinsky (1963)" ],  "8": [ "7", "Laizet and Lamballais (2009)" ],  "9": [ "7", "Moeng (1984)" ],  "10": [ "Hesse and Palacios (2016)" ],  "11": [ "Murua et al. (2012)" ],  "12": [ "Murua et al. (2012)" ]
+  }
+}

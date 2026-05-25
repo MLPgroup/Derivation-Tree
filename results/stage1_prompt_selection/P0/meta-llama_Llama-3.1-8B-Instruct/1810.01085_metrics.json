@@ -1,0 +1,56 @@
+{
+  "article_id": "1810.01085",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 7,
+  "input_tokens": 5626,
+  "output_tokens": 137,
+  "cost_usd": 0.00034577999999999996,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.3)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.5)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.6)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.10)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.3)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.6)",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1810.01085",
+      "num": "(eq.10)",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 10,
+  "n_true_equations": 11,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": true,
+  "n_hallucinated_nodes": 4,
+  "pre_inversion_edges": null
+}

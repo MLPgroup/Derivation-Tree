@@ -1,0 +1,20 @@
+{
+  "article_id": "1908.01434",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 10,
+  "fp": 3,
+  "fn": 0,
+  "input_tokens": 8499,
+  "output_tokens": 1986,
+  "cost_usd": 0.00609675,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 13,
+  "n_predicted_equations": 10,
+  "n_true_equations": 13,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": null
+}

@@ -1,0 +1,36 @@
+{  
+  "derivation_graph": {  
+    "1": [],  
+    "2": [  
+      "1"  
+    ],  
+    "3": [  
+      "2"  
+    ],  
+    "4": [  
+      "1",  
+      "2",  
+      "3"  
+    ],  
+    "5": [  
+      "4"  
+    ],  
+    "6": [],  
+    "7": [  
+      "4",  
+      "6"  
+    ],  
+    "8": [  
+      "7"  
+    ],  
+    "9": [  
+      "7"  
+    ],  
+    "10": [  
+      "7",  
+      "9"  
+    ]  
+  },
+  "reasoning": 
+  "The article starts by describing the Barnett effect, a magnetization induced by rotation in a demagnetized ferromagnet. The Landau-Lifshitz-Gilbert equation is used to describe this effect. Equation (2) describes how the magnetization vector evolves over time, including how it interacts with an effective magnetic field. In the rotating frame of reference, this equation is transformed into equation (4), where the effective magnetic field and magnetization are represented in terms of spherical coordinates. The authors then analyze the stability of stationary states in the rotating frame of reference, specifically for a spherical particle and a film with free energy that depends on the z-component of magnetization. This leads to equations (7) and (8), which describe how the z-component of magnetization evolves over time in these cases. From these equations, additional stationary states are predicted, and their stability is analyzed. These results build on the derivation of the effective magnetic field and magnetization in the rotating frame of reference, which is based on the Landau-Lifshitz-Gilbert equation. The authors use various mathematical tools, including the use of the cross product to derive new equations, and the application of linearization to analyze small deviations from equilibrium. Throughout the article, the authors carefully develop and apply their mathematical framework to derive new predictions and analyze their consequences." 
+}

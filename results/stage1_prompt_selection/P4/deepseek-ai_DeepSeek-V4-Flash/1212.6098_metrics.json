@@ -1,0 +1,36 @@
+{
+  "article_id": "1212.6098",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 4,
+  "input_tokens": 21325,
+  "output_tokens": 123,
+  "cost_usd": 0.0030199400000000005,
+  "provider_used": "deepinfra",
+  "mapping_errors": [
+    {
+      "article_id": "1212.6098",
+      "num": "Equation 1 defines x(k) and y(k), used in Equations 2, 3, 4, 5.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "Equation 3 defines matrix A(k), substituted into Equation 4.",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "Equation 4 uses A(k) from Eq 3 and state vector z(k) from Eq 1, leads to Eq 5.",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 5,
+  "n_true_equations": 5,
+  "full_empty_prediction": true,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 3,
+  "pre_inversion_edges": null
+}

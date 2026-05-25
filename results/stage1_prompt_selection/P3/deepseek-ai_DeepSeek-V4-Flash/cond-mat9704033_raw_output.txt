@@ -1,0 +1,23 @@
+{
+
+  "reasoning": "The article starts by introducing the Gross-Pitaevskii equation (eq. 1) for the exciton condensate wave function, which models the Bose-Einstein condensate with an attractive interaction. Then the full Hamiltonian of the exciton-phonon system is given (eq. 2), defining the separate exciton, phonon, and interaction parts. In a moving frame, the classical field equations are derived: eq. 3 for the exciton field (Galilean invariant) and eq. 4 for the phonon field (Lorentz invariant), highlighting the lack of full invariance. Assuming slowly varying solutions, the potentials are approximated as delta functions, leading to a reduced one-dimensional system. From this, eq. 5 and eq. 6 are obtained for the stationary soliton profiles (ϕ and q). Equation 7 defines the critical velocity v0 where the effective potential changes sign. The stationary solutions themselves are given: constant solution for v < v0, and tanh/kink solution (eq. 8) for v < v0, and the sech/bright soliton solution (eq. 9) for v > v0. The linearization around stationary solutions leads to the bilinear Hamiltonian (eq. 10) and its normal form (eq. 11). The linearized dynamical equations are eq. 12 (for exciton fluctuations χ) and eq. 13 (for phonon fluctuations η). For the homogeneous (constant) solution, the characteristic polynomial (eq. 14) is derived, and from it the Landau criterion (eq. 15) gives the critical velocity v_L. For the bright soliton regime (v > v0), the normalization condition and eq. 9 yield the gap formula in terms of N and S (eq. 16). The reasoning shows that eq. 1 is foundational, eq. 2 defines the system, eqs. 3-4 are the dynamical equations, eqs. 5-6 are the reduced stationary equations, eq. 7 defines a key threshold, eqs. 8-9 are explicit solutions, eqs. 10-11 are the quantized Hamiltonian, eqs. 12-13 are linearized dynamics, eq. 14 is derived from them, eq. 15 is the condition for superfluidity breakdown, and eq. 16 is a consequence of the soliton solution.",
+
+  "derivation_graph": {
+    "1": [],
+    "2": [],
+    "3": ["1", "2"],
+    "4": ["2"],
+    "5": ["3", "4"],
+    "6": ["4"],
+    "7": ["5"],
+    "8": ["5", "6", "7"],
+    "9": ["5", "7"],
+    "10": ["8", "9"],
+    "11": ["10"],
+    "12": ["3", "4", "5"],
+    "13": ["3", "4", "5"],
+    "14": ["12", "13"],
+    "15": ["14"],
+    "16": ["9"]
+  }
+}

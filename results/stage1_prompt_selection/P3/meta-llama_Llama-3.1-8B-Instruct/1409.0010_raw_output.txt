@@ -1,0 +1,11 @@
+{ 
+  "derivation_graph": {
+    "1": ["2", "3", "4"],
+    "2": ["1", "5"],
+    "3": ["4"],
+    "4": ["1", "5"],
+    "5": ["2"],
+    "6": ["2", "5"] 
+  },
+  "reasoning": "The article begins by discussing the theory of strong interactions and the behavior of quark-gluon plasmas in heavy-ion collisions. The authors then introduce the concept of a hot hadron gas and its transport properties. They note that the theory of strong interactions (QCD) predicts that at temperatures exceeding Tc≃170 similar-to-or-equalssubscript𝑇𝑐170T_{c}170 MeV, ordinary hadrons dissolve into their constituents, creating a state of matter called the ’quark-gluon plasma’. The authors then present their methodology for extracting the shear viscosity of the hot hadron gas. They use a hadron cascade code to model the hot hadron gas and extract the stress-energy tensor from the code. They then use this information to determine the shear viscosity over entropy ratio (η/s𝜂𝑠\frac{\tau_{\nu}}{s}). The authors note that Eqns. (1) - (4) contain the essential information needed to calculate η/s𝜂𝑠\frac{\tau_{\nu}}{s}. From Eq. (1), they can extract the shear stress deviation of the stress-energy tensor, which they use to calculate η/s𝜂𝑠\frac{\tau_{\nu}}{s}. They also present an alternative method to extract η/s𝜂𝑠\frac{\tau_{\nu}}{s}, which involves initializing the system with different initial values for Φ and observing its relaxation towards the Navier-Stokes result."
+}

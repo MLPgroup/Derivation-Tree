@@ -1,0 +1,11 @@
+{
+  "reasoning": "High-level (non-sensitive) summary of the mathematical flow: Eq. (1) supplies the fundamental decomposition of the energy-momentum tensor into equilibrium pieces, bulk stress Π and shear stress π^{ab}, and thus provides the definitions that the later constitutive and evolution relations reference. Eq. (3) gives an explicit kinetic-theory expression / projector definition of the shear deviation Φ (Φ = -π_{zz} written in terms of T_{ij} and as a particle sum), so Eq. (3) is a direct implementation of the shear-stress piece introduced in Eq. (1). Eq. (2) presents the second-order constitutive relations for Π and the shear sector (Φ), including relaxation times and nonlinear terms; the Φ part of Eq. (2) is the starting point for linearization in the small-gradient (Navier–Stokes) regime. Linearizing / taking the small-gradient limit of the Φ evolution yields Eq. (4), an approximate relaxation equation for Φ/(ε+P). Rearranging that relaxation equation to solve for τ_π (and multiplying by T) produces Eq. (6). The operational extraction of η/s (Eq. (5)) uses the Navier–Stokes relation for the shear sector (Φ ≃ 4η/3τ) together with the definition/measurement of Φ from Eq. (3) (and the form of the relaxation/constitutive relation summarized in Eq. (4)); thus Eq. (5) is an empirical fit obtained from measurements based on those relations. The dependency graph below lists which later equations are directly derived from or use each earlier equation.",
+  "derivation_graph": {
+    "1": [2, 3, 4, 6],
+    "2": [4, 6],
+    "3": [4, 5, 6],
+    "4": [6, 5],
+    "5": [],
+    "6": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "article_id": "1501.05606",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 4,
+  "fp": 6,
+  "fn": 3,
+  "input_tokens": 4475,
+  "output_tokens": 86,
+  "cost_usd": 0.00027366,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1501.05606",
+      "num": "no dependencies",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 10,
+  "n_predicted_equations": 9,
+  "n_true_equations": 9,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 1,
+  "pre_inversion_edges": {
+    "S1.E1": [],
+    "S1.E2": [
+      "S1.E1"
+    ],
+    "S1.E3": [
+      "S1.E2"
+    ],
+    "S1.E4": [
+      "S1.E3"
+    ],
+    "S1.E5": [
+      "S1.E3"
+    ],
+    "S1.E6": [
+      "S1.E5"
+    ],
+    "S1.E7": [
+      "S1.E6"
+    ],
+    "S1.E8": [
+      "S1.E6",
+      "S1.E7"
+    ],
+    "S1.E9": [
+      "S1.E8",
+      "S1.E7"
+    ]
+  }
+}

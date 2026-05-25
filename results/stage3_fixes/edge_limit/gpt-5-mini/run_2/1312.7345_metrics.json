@@ -1,0 +1,27 @@
+{
+  "article_id": "1312.7345",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 3,
+  "fp": 1,
+  "fn": 0,
+  "input_tokens": 9722,
+  "output_tokens": 485,
+  "cost_usd": 0.0034005,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 4,
+  "pre_inversion_edges": {
+    "S2.E1": [
+      "S2.E2",
+      "S2.E4"
+    ],
+    "S2.E2": [
+      "S2.E3"
+    ],
+    "S2.E3": [],
+    "S2.E4": [
+      "S2.E3"
+    ]
+  }
+}

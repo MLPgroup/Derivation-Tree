@@ -1,0 +1,17 @@
+{
+  "reasoning": "The article begins by discussing the general scaling theory of localization, introducing the beta function β(g) and its standard form for noninteracting electrons. It then proposes a modified form (Eq. 1) for interacting systems that allows for a metal-insulator transition in 2D. From this form, the scaling of conductance with system size is derived (Eq. 2), and then the temperature dependence (Eq. 3) by relating length scale to temperature via the dynamical exponent z. The critical behavior near the transition is analyzed by linearizing the beta function around the critical point (Eq. 4), leading to the scaling of the reduced conductance variable (Eq. 5), the conductance as a function of length and density (Eq. 6), and the temperature-dependent conductance in the critical region (Eq. 7). The crossover temperature scale is given by Eq. 8. From Eq. 7, the symmetry relation (Eq. 9) follows directly. The linearized approximation to Eq. 7 gives Eq. 10. The article then discusses a strong-disorder expansion, where Eq. 11 expresses the averaged Green's function squared in terms of a function φ(g). From this, the localization length (Eq. 12) and the beta function in terms of φ(g) (Eq. 13) are derived. Equation 14 checks this form in the weak-disorder limit. Finally, Eq. 15 gives the general scaling form for conductivity in arbitrary dimension. Thus, the derivation graph is built from these dependencies."
+  ,
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3"],
+    "4": ["5"],
+    "5": ["6"],
+    "6": ["7"],
+    "7": ["8", "9"],
+    "9": [],
+    "7": ["10"],
+    "11": ["12", "13"],
+    "13": ["14"],
+    "15": []
+  }
+}

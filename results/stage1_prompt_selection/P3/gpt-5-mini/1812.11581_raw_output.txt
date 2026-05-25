@@ -1,0 +1,18 @@
+{
+  "reasoning": "High-level summary of mathematical flow (non-sensitive): The model defines E-neuron and I-neuron activities (Eqs. 1–2). Combining these gives an activity dynamics with an A^T A term (Eq. 6). Activity steady-states are used to drive synaptic updates: W updates (Eq. 3) and homeostatic λ updates (Eq. 5). An alternative formulation uses a full Lagrange multiplier matrix L and corresponding dynamics (Eq. 7) with updates ΔL (Eq. 8) that enforce pairwise activity constraints D (Eq. 9). Parametrizing L = Λ + A^T A and applying the chain rule to the ΔL update yields a gradient-like update for A (Eq. 10), which algebraically reduces (using y = A x and the form of D) to the explicit ΔA plasticity rule given in Eq. 4. Steady-state versions of the W- and A-updates give the rectified fixed-point expressions in Eqs. 13 and 12, respectively. The decorrelation/sparsity constraint inequality (Eq. 11) follows from the L-based formulation together with D.",
+  "derivation_graph": {
+    "1": [ "6", "3", "5" ],
+    "2": [ "6", "10", "4", "12" ],
+    "3": [ "13" ],
+    "4": [ "12" ],
+    "5": [],
+    "6": [ "3", "5", "10", "7" ],
+    "7": [ "8", "11" ],
+    "8": [ "10", "12" ],
+    "9": [ "8", "10", "11" ],
+    "10": [ "4", "12" ],
+    "11": [],
+    "12": [],
+    "13": []
+  }
+}

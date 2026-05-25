@@ -1,0 +1,19 @@
+{
+  "reasoning": "The article's mathematical flow is divided into three main sections: the stability of the 2D metal, the quantum critical behavior near the transition, and a heuristic derivation of the beta function from a strong-disorder locator expansion. Eq 1 proposes a new form for the beta function that allows for a metallic phase. Integrating this over length scales (Eq 2) and applying temperature scaling (L ~ T^-1/z) leads to the logarithmic temperature dependence of the metallic conductance (Eq 3). For the critical region, Eq 4 linearizes the beta function near the critical point g_c. This is integrated to find the scale-dependent variable t (Eq 5), which is then converted back to conductance g(L) in Eq 6. Applying temperature scaling to Eq 6 results in the critical conductance form Eq 7. This form explicitly defines the crossover temperature scale T_0 (Eq 8), the duality symmetry between conductivity and resistivity (Eq 9), and the high-temperature linear correction (Eq 10). Separately, the authors justify the linear beta function using a Green's function ansatz (Eq 11). This leads to a definition of localization length (Eq 12), from which a logarithmic beta function is derived (Eq 13). This derivation is validated by showing it reduces to the standard locator expansion in the g -> 0 limit (Eq 14). Finally, Eq 15 is provided as a general scaling comparison for dimensions d > 2.",
+  "derivation_graph": {
+    "1": ["2"],
+    "2": ["3"],
+    "4": ["5"],
+    "5": ["6"],
+    "6": ["7"],
+    "7": ["8", "9", "10"],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": ["12"],
+    "12": ["13"],
+    "13": ["14"],
+    "14": [],
+    "15": []
+  }
+}

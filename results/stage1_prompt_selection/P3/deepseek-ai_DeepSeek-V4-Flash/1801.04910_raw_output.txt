@@ -1,0 +1,18 @@
+{
+  "reasoning": "The article builds a stochastic urn model for the evolution of product shares in international trade. It starts by defining the empirical product share (Eq. 1) and observes a scaling law for annual variations (Eq. 2). To explain this, the authors propose a discrete model with biquadratic transfer rates (Eq. 3) that reproduces the scaling. The master equation (Eq. 4) describes the stochastic dynamics. The stationary solution factorizes (Eq. 5), leading to the single-site distribution (Eq. 6). Critical density for condensation is derived (Eq. 7). By matching model time to real time (Eq. 8), a rescaled time is introduced (Eq. 9). For the specific case b=2, analytic forms for the stationary distribution are given (Eqs. 10, 11). Finally, to test predictions for individual products, the excess growth rate (Eq. 12) and unpredictability (Eq. 13) are defined. Thus, the empirical scaling (Eq. 2) motivates the model (Eq. 3), which is analyzed via (Eq. 4) to yield stationary properties (Eqs. 5-7, 10-11). The time rescaling (Eq. 9) uses (Eq. 8), and the prediction metrics (Eqs. 12, 13) are applied to simulation output from the model.",
+  "derivation_graph": {
+    "1": [],
+    "2": ["1"],
+    "3": ["2"],
+    "4": ["3"],
+    "5": ["4"],
+    "6": ["5"],
+    "7": ["6"],
+    "8": ["3"],
+    "9": ["8"],
+    "10": ["6", "7"],
+    "11": ["6", "7"],
+    "12": [],
+    "13": ["12"]
+  }
+}

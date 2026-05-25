@@ -1,0 +1,491 @@
+{
+  "article_id": "1212.6098",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 0,
+  "fp": 0,
+  "fn": 4,
+  "input_tokens": 21296,
+  "output_tokens": 780,
+  "cost_usd": 0.0031998400000000007,
+  "provider_used": "deepinfra",
+  "mapping_errors": [
+    {
+      "article_id": "1212.6098",
+      "num": "6",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "7",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "8",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "9",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "10",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "11",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "12",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "13",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "14",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "15",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "16",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "17",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "18",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "19",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "20",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "21",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "22",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "23",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "24",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "25",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "26",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "27",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "28",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "29",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "30",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "31",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "32",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "33",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "34",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "35",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "36",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "37",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "38",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "39",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "40",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "41",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "42",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "43",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "44",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "45",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "46",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "47",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "48",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "49",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "50",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "51",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "52",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "53",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "54",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "55",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "56",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "57",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "58",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "59",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "60",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "61",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "62",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "63",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "64",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "65",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "66",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "67",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "68",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "69",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "70",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "71",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "72",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "73",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "74",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "75",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "76",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "77",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "78",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "79",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "80",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "81",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "82",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "83",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "84",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "85",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "86",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "87",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "88",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "89",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "90",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "91",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "92",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "93",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "94",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "95",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "96",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "97",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "98",
+      "role": "src"
+    },
+    {
+      "article_id": "1212.6098",
+      "num": "99",
+      "role": "src"
+    }
+  ],
+  "n_predicted_edges": 0,
+  "n_predicted_equations": 5,
+  "n_true_equations": 5,
+  "full_empty_prediction": true,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 94,
+  "pre_inversion_edges": null
+}

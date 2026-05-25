@@ -1,0 +1,15 @@
+{
+  "derivation_graph": {
+    "1": ["Definition of <em>a</em> process generating function, but not the definition of <em>a</em> process"],
+    "2": ["Definition of a process generating function, but not the definition of a certain process"],
+    "3": ["1", "Wiener process"],
+    "4": ["1", "2", "3"],
+    "5": ["3", "4"],
+    "6": ["5"],
+    "7": ["Definition of <em>a</em> modified process, but not the definition of a process"],
+    "8": ["5", "6", "7"],
+    "10": ["5", "6"],
+    "11": ["Definition of dl of the <em>a</em> general case"],
+    "12": ["Definition of dl of the <em>a</em> general case"]
+  }
+}

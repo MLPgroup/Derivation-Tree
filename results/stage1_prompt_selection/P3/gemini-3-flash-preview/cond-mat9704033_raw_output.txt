@@ -1,0 +1,59 @@
+{
+  "reasoning": "The article's mathematical flow begins with the general Hamiltonian for an exciton-phonon system (Eq 2). From this Hamiltonian, classical field equations in a moving reference frame are derived (Eq 3 and 4). These 3D equations are then reduced to a 1D stationary form to analyze propagation (Eq 5 and 6). Equation 7 identifies a critical velocity by analyzing the sign of the effective potential in Eq 5. Specific solutions for the fields under different velocity regimes are provided in Eq 8 (sub-critical) and Eq 9 (super-critical). The article then moves to a quasiclassical treatment, expanding the Hamiltonian (Eq 10 and 11) and linearizing the equations of motion around the stationary solutions (Eq 12 and 13). The resulting dispersion relation (Eq 14) is used to apply the Landau criterion for superfluidity (Eq 15). Finally, Eq 16 provides an explicit calculation for the exciton branch gap based on the soliton solution parameters established in Eq 9.",
+  "derivation_graph": {
+    "1": [],
+    "2": [
+      "3",
+      "4",
+      "10",
+      "11"
+    ],
+    "3": [
+      "5",
+      "6",
+      "12",
+      "13"
+    ],
+    "4": [
+      "5",
+      "6",
+      "12",
+      "13"
+    ],
+    "5": [
+      "7",
+      "8",
+      "9",
+      "12",
+      "13"
+    ],
+    "6": [
+      "8",
+      "9",
+      "12",
+      "13"
+    ],
+    "7": [],
+    "8": [
+      "14"
+    ],
+    "9": [
+      "16"
+    ],
+    "10": [
+      "11"
+    ],
+    "11": [],
+    "12": [
+      "14"
+    ],
+    "13": [
+      "14"
+    ],
+    "14": [
+      "15"
+    ],
+    "15": [],
+    "16": []
+  }
+}

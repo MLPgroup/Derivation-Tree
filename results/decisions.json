@@ -1,0 +1,7 @@
+{
+  "winning_prompt_variant": "P1",
+  "winning_prompt_mean_f1": 0.5691801609404605,
+  "stage1_completed": "2026-05-23",
+  "winning_temperature": "default",
+  "notes": ""
+}

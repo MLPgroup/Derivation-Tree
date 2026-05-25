@@ -1,0 +1,56 @@
+{
+  "article_id": "1612.00629",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 2,
+  "fp": 14,
+  "fn": 3,
+  "input_tokens": 13602,
+  "output_tokens": 179,
+  "cost_usd": 0.00082686,
+  "provider_used": "nscale",
+  "mapping_errors": [
+    {
+      "article_id": "1612.00629",
+      "num": "14",
+      "role": "src"
+    },
+    {
+      "article_id": "1612.00629",
+      "num": "15",
+      "role": "src"
+    },
+    {
+      "article_id": "1612.00629",
+      "num": "16",
+      "role": "src"
+    },
+    {
+      "article_id": "1612.00629",
+      "num": "17",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1612.00629",
+      "num": "18",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1612.00629",
+      "num": "19",
+      "role": "tgt"
+    },
+    {
+      "article_id": "1612.00629",
+      "num": "19",
+      "role": "tgt"
+    }
+  ],
+  "n_predicted_edges": 16,
+  "n_predicted_equations": 18,
+  "n_true_equations": 18,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 6,
+  "pre_inversion_edges": null
+}

@@ -1,0 +1,73 @@
+{
+  "article_id": "0903.0173",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 10,
+  "fp": 10,
+  "fn": 1,
+  "input_tokens": 11140,
+  "output_tokens": 273,
+  "cost_usd": 0.006389,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 20,
+  "n_predicted_equations": 18,
+  "n_true_equations": 18,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [
+      "S2.E1"
+    ],
+    "S2.E3": [],
+    "S2.E4": [
+      "S2.E2",
+      "S2.E3"
+    ],
+    "S2.E5": [
+      "S2.E4"
+    ],
+    "S2.E6": [
+      "S2.E4"
+    ],
+    "S2.E7": [
+      "S2.E4"
+    ],
+    "S3.E8": [
+      "S2.E3",
+      "S2.E5",
+      "S2.E6"
+    ],
+    "S4.E9": [],
+    "S4.E10": [],
+    "S4.E11": [
+      "S4.E10"
+    ],
+    "S4.E12": [
+      "S4.E10"
+    ],
+    "S4.E13": [
+      "S4.E12"
+    ],
+    "S4.E14": [
+      "S4.E12",
+      "S4.E13"
+    ],
+    "S4.E15": [
+      "S4.E11",
+      "S4.E14"
+    ],
+    "S4.E16": [
+      "S4.E15"
+    ],
+    "S4.E17": [
+      "S4.E16"
+    ],
+    "S4.E18": [
+      "S4.E16",
+      "S4.E17"
+    ]
+  }
+}

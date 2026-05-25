@@ -1,0 +1,38 @@
+{
+  "reasoning": "The article's mathematical flow begins with the Time-Dependent Schrödinger Equation (TDSE) (1). To solve for ground states, Eq 1 is transformed into a diffusion equation (3) using the complex-valued hydrodynamical wave function definition (2) and an imaginary-time substitution. Eq 4 defines the components of the effective potential used in these equations. For numerical solution, Eq 3 is rewritten in operator form (5). The Split-Operator technique (6) is then applied to (5) to approximate the time-evolution of the system. To implement this numerically, the Hamiltonian operator is discretized into a matrix form (7), where the kinetic matrix elements are defined by (8) and (9). Finally, the propagation of the wave function (10) is performed using the propagator matrix S defined in (11), which relates back to the operators used in the split-operator scheme.",
+  "derivation_graph": {
+    "1": [
+      "3"
+    ],
+    "2": [
+      "3"
+    ],
+    "3": [
+      "5"
+    ],
+    "4": [
+      "1",
+      "3"
+    ],
+    "5": [
+      "6",
+      "7"
+    ],
+    "6": [
+      "10"
+    ],
+    "7": [
+      "10"
+    ],
+    "8": [
+      "7"
+    ],
+    "9": [
+      "7"
+    ],
+    "10": [],
+    "11": [
+      "10"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "reasoning": "Below is a concise, non-confidential summary of the mathematical flow (no internal chain-of-thought). The paper starts from the microscopic Hamiltonian (Eq.2) and the mean-field/Gross–Pitaevskii equation (Eq.1). Changing to a moving frame yields coupled exciton and phonon field equations (Eqs.3–4). Replacing the interaction kernels by their zero-momentum (δ-function) components and solving the phonon equation for the displacement produces an effective one-dimensional nonlinear Schrödinger–type equation and an auxiliary equation for the phonon displacement (Eqs.5–6). The sign change of the cubic coefficient in Eq.5 defines the first critical velocity v0 (Eq.7). Stationary solutions (constant, kink/gray-soliton, and bright-soliton forms) are obtained from Eq.5 (Eqs.8–9). Expanding the Hamiltonian around a classical solution gives the quasiclassical expansion (Eq.10) and its normal-mode diagonal form (Eq.11). Linearizing the field equations around a classical solution produces the coupled fluctuation equations (Eqs.12–13). For homogeneous condensate (φ0) these linearized equations yield the characteristic dispersion polynomial (Eq.14); applying the Landau criterion to that dispersion gives the instability condition (Eq.15). Finally, enforcing normalization on the bright-soliton solution yields the explicit expression for the spectral gap parameter λ (Eq.16).",
+  "derivation_graph": {
+    "1": [],
+    "2": [],
+    "3": [
+      "1",
+      "2"
+    ],
+    "4": [
+      "2"
+    ],
+    "5": [
+      "3",
+      "4"
+    ],
+    "6": [
+      "4",
+      "5"
+    ],
+    "7": [
+      "5"
+    ],
+    "8": [
+      "5"
+    ],
+    "9": [
+      "5",
+      "6"
+    ],
+    "10": [
+      "2",
+      "5"
+    ],
+    "11": [
+      "10"
+    ],
+    "12": [
+      "3",
+      "4",
+      "5",
+      "10"
+    ],
+    "13": [
+      "3",
+      "4",
+      "5",
+      "12"
+    ],
+    "14": [
+      "12",
+      "13",
+      "8"
+    ],
+    "15": [
+      "14"
+    ],
+    "16": [
+      "9"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "article_id": "1801.04910",
+  "parse_failed": false,
+  "parse_strategy": 1,
+  "tp": 7,
+  "fp": 4,
+  "fn": 8,
+  "input_tokens": 13635,
+  "output_tokens": 1804,
+  "cost_usd": 0.00701675,
+  "provider_used": "openai",
+  "mapping_errors": [],
+  "n_predicted_edges": 14,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [
+      "S2.E1"
+    ],
+    "S3.E3": [
+      "S2.E2",
+      "S2.E1"
+    ],
+    "S3.E4": [
+      "S3.E3"
+    ],
+    "S3.E5": [
+      "S3.E4",
+      "S3.E3"
+    ],
+    "S3.E6": [
+      "S3.E5"
+    ],
+    "S3.E7": [
+      "S3.E6"
+    ],
+    "S4.E8": [
+      "S3.E3",
+      "S2.E2"
+    ],
+    "S4.E9": [
+      "S4.E8"
+    ],
+    "S4.E10": [
+      "S3.E6"
+    ],
+    "S4.E11": [
+      "S3.E6"
+    ],
+    "S5.E12": [],
+    "S5.E13": [
+      "S5.E12"
+    ]
+  },
+  "postprocessed": true
+}

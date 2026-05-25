@@ -1,0 +1,77 @@
+{
+  "article_id": "physics9704005",
+  "parse_failed": false,
+  "parse_strategy": 2,
+  "tp": 12,
+  "fp": 10,
+  "fn": 3,
+  "input_tokens": 4448,
+  "output_tokens": 174,
+  "cost_usd": 0.002746,
+  "provider_used": "google",
+  "mapping_errors": [],
+  "n_predicted_edges": 22,
+  "n_predicted_equations": 16,
+  "n_true_equations": 16,
+  "full_empty_prediction": false,
+  "partial_empty_prediction": false,
+  "n_hallucinated_nodes": 0,
+  "pre_inversion_edges": {
+    "S2.E1": [],
+    "S2.E2": [],
+    "S2.E3": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S2.E4": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S2.E5": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S2.E6": [
+      "S2.E1",
+      "S2.E2"
+    ],
+    "S2.E7": [
+      "S2.E3",
+      "S2.E4",
+      "S2.E5",
+      "S2.E6"
+    ],
+    "S2.E8": [
+      "S2.E7"
+    ],
+    "S2.E9": [
+      "S2.E7",
+      "S2.E8"
+    ],
+    "S2.E10": [
+      "S2.E7"
+    ],
+    "S3.E11": [
+      "S2.E1"
+    ],
+    "S3.E12": [
+      "S2.E2"
+    ],
+    "S3.E13": [
+      "S3.E11"
+    ],
+    "S3.E14": [
+      "S3.E12"
+    ],
+    "S3.E15": [
+      "S3.E13",
+      "S3.E14"
+    ],
+    "S3.E16": [
+      "S3.E13",
+      "S3.E14",
+      "S3.E15"
+    ]
+  },
+  "postprocessed": true
+}
